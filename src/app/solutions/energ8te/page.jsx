@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import InfineonSection from '@/components/services/InfineonSection';
-import Energ8te from '@/components/Energ8te'
+import Energ8te from '@/components/solutions/Energ8te'
 import Safety from "@/components/icons/Safety"
 import Scale from "@/components/icons/Scale"
 import Future from "@/components/icons/Future"

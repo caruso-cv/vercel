@@ -40,10 +40,10 @@ export default function RootLayout({ children }) {
       </head>
       <body>
           <div className="bg-[#090A0B]">
-            <Nav className='mt-4'/>
+            <Nav className=''/>
             <BackgroundHero/>
           </div>
-          {children}
+            {children}
           <Footer/>
       </body>
     </html>

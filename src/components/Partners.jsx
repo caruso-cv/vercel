@@ -10,7 +10,7 @@ export default function Partners() {
     "/partners/infineon.webp",
     "/partners/jabil.webp",
     "/partners/tasking.webp",
-    "/partners/mathworks.webp",
+    "/partners/analog.webp",
   ];
 
   // Duplicate images statically for seamless scrolling

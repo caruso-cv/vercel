@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import InfineonSection from '@/components/services/InfineonSection';
-import Ecu8tr from '@/components/Ecu8tr'
+import Ecu8tr from '@/components/solutions/Ecu8tr'
 import Purpose from "@/components/icons/Purpose"
 import Quality from "@/components/icons/Quality"
 import Parameter from "@/components/icons/Parameter"

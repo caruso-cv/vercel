@@ -64,7 +64,7 @@ export default function Page() {
           </p>
         </div>
         <div className="relative mt-6">
-          <p className="mx-auto max-w-2xl text-pretty text-lg font-medium text-gray-400 sm:text-xl/8">
+          <p className="mx-auto max-w-2xl text-pretty text-lg font-medium text-gray-400 sm:text-xl/8 lg:text-2xl lg:max-w-4xl">
             Advanced BMS and ESS solutions designed for efficiency, safety, and seamless integration—optimizing performance and reliability.
           </p>
           <svg

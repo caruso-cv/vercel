@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import MainNav from "./MainNav";
 import { motion } from "framer-motion";
 import SecondaryNav from "@/components/nav/SecondaryNav";
+import DropNav from "@/components/nav/DropNav";
 
 export default function Nav() {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,7 +12,7 @@ export default function Nav() {
   return (
     <div className="relative">
       {/* ----- MAIN NAV BAR (z-50) ----- */}
-      <div className="relative z-50">
+      <div className="relative w-full z-50">
         <MainNav
           isOpen={isOpen}
           setIsOpen={setIsOpen}
@@ -20,8 +21,8 @@ export default function Nav() {
       </div>
 
       {/* ----- SECONDARY NAV CONTAINER ----- */}
-      <div className="relative w-full" style={{ height: "48px" }}>
-        <motion.div className="absolute inset-0">
+      <div className="relative w-full z-40">
+        <motion.div className="absolute w-full top-[122px] left-0">
           <SecondaryNav setSecondaryNavReady={setSecondaryNavReady} />
         </motion.div>
       </div>

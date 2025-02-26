@@ -3,7 +3,7 @@ import React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
-export default function ContactButton() {
+export default function DropButton() {
   return (
           <Link href="/contact" passHref>
             <motion.div
@@ -23,7 +23,7 @@ export default function ContactButton() {
                 opacity-90
                 hover:opacity-100
                 text-black
-                px-3.5 py-3.5
+                px-3.5 py-2
                 text-base
                 3xl:text-base
               "
