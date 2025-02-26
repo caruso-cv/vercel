@@ -1,0 +1,18 @@
+stages:
+  - mirror
+
+mirror:
+  stage: mirror
+  # The image directive is ignored in shell executor, so remove apk command.
+  before_script:
+    # Remove apk command since it's not available on macOS.
+    # - apk add --no-cache git
+    - git config --global user.email "caruso@ocelot.ltd"
+    - git config --global user.name "SolCaruso"
+  script:
+    - git clone --mirror "$CI_REPOSITORY_URL" repo-mirror
+    - cd repo-mirror
+    - git remote add github "https://$GITHUB_USERNAME:$GITHUB_TOKEN@github.com/SolCaruso/vercel.git"
+    - git push --mirror github
+  only:
+    - dev
