@@ -9,7 +9,7 @@ export default function ModalTrigger() {
     <>
       <button
         onClick={() => setIsModalOpen(true)}
-        className="rounded-md bg-[#425ACA] px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 3xl:text-base"
+        className="rounded-md bg-[#425ACA] px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 md:text-base"
       >
         Join our team <span aria-hidden="true">&rarr;</span>
       </button>

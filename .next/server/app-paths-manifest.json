@@ -1,7 +1,8 @@
 {
-  "/page": "app/page.js",
-  "/contact/page": "app/contact/page.js",
-  "/careers/page": "app/careers/page.js",
   "/services/page": "app/services/page.js",
-  "/solutions/ecu8tr/page": "app/solutions/ecu8tr/page.js"
+  "/solutions/ecu8tr/page": "app/solutions/ecu8tr/page.js",
+  "/about/page": "app/about/page.js",
+  "/careers/page": "app/careers/page.js",
+  "/contact/page": "app/contact/page.js",
+  "/page": "app/page.js"
 }

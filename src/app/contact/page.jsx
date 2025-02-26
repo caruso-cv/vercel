@@ -273,14 +273,14 @@ export default function Contact() {
                   <rect fill="url(#54f88622-e7f8-4f1d-aaf9-c2f5e46dd1f2)" width="100%" height="100%" strokeWidth={0} />
                 </svg>
               </div>
-              <h2 className="text-pretty text-4xl font-semibold tracking-tight text-white sm:text-5xl relative z-30">
+              <h2 className="text-pretty text-4xl font-semibold tracking-tight text-white sm:text-5xl relative z-30 md:text-6xl">
                 Get in touch
               </h2>
-              <p className="mt-6 text-lg/8 text-gray-300 relative z-30">
+              <p className="mt-6 text-lg/8 md:text-lg text-gray-300 relative z-30">
                 Our team is here to help with any questions you might have about optimizing energy storage and battery management systems.
                 Feel free to reach out—we look forward to connecting with you.
               </p>
-              <dl className="mt-10 space-y-4 text-base/7 text-gray-300 relative z-30">
+              <dl className="mt-10 space-y-4 text-base/7 md:text-lg text-gray-300 relative z-30">
                 <div className="flex gap-x-4">
                   <dt className="flex-none">
                     <span className="sr-only">Address</span>
