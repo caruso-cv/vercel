@@ -56,7 +56,7 @@ export default function Page() {
   return (
     <div className="overflow-hidden bg-[#090A0B]">
       {/* Header / Services Section */}
-      <div className="mx-auto max-w-7xl px-6 pb-96 text-center pt-32 lg:px-8">
+      <div className="mx-auto max-w-7xl px-6 pb-96 text-center pt-32 lg:px-8 lg:pt-64">
         <div className="mx-auto max-w-4xl relative z-30">
           <h2 className="text-base/7 md:text-lg font-semibold text-[#425ACA]">Services</h2>
           <p className="mt-2 text-balance text-5xl font-semibold tracking-tight text-white sm:text-6xl">

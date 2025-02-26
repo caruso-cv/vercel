@@ -68,7 +68,7 @@ const faqs = [
 export default function Faq() {
   return (
     <div className="bg-[#090A0B]">
-      <div className="mx-auto px-6 py-24 sm:py-32 md:px-8 md:py-40">
+      <div className="mx-auto px-6 pt-24 sm:py-32 md:px-8 md:py-40">
         <div className="mx-auto max-w-7xl">
           <h2 className="text-4xl font-semibold tracking-tight text-white sm:text-5xl">
             Frequently asked questions

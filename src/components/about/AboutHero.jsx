@@ -45,9 +45,9 @@ export default function Example() {
         />
       </div>
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl lg:mx-0">
+        <div className="mx-auto max-w-3xl lg:mx-0">
           <h2 className="text-5xl font-semibold tracking-tight text-white sm:text-7xl">HOW IT STARTED</h2>
-          <p className="mt-8 text-pretty text-lg font-medium text-gray-400 sm:text-xl/8">
+          <p className="mt-8 text-pretty text-lg font-medium text-gray-300 sm:text-2xl/8">
           Neutron Controls traces its roots back to our proud Canadian heritage and a deep understanding of the semiconductor industry. It began with a team of visionary professionals who shared one goal: to revolutionize the landscape of industrial and automotive control solutions.
           </p>
         </div>

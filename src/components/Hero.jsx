@@ -7,12 +7,12 @@ export default function Example() {
 
   return (
 
-        <div className="relative isolate px-6 lg:px-8 z-30"> 
+        <div className="relative isolate px-6 lg:px-8 z-30 lg:pt-32"> 
 
             <div className="mx-auto max-w-4xl px-6 pb-28 text-center pt-32 lg:px-8">        
 
-                <div className="mx-auto max-w-5xl relative z-30">
-                    <p className="mt-8 sm:mt-14 lg:mt-2 text-balance text-5xl font-bold text-white sm:text-6xl uppercase">
+                <div className="mx-auto max-w-2xl relative z-30">
+                    <p className="mt-8 sm:mt-14 lg:mt-2 text-5xl font-bold text-white sm:text-6xl uppercase text-balance">
                         Contain your energy
                     </p>
                 </div>
@@ -21,7 +21,7 @@ export default function Example() {
                     <p className="mx-auto text-pretty text-xl font-medium text-gray-300 sm:text-2xl mb-2">
                         Advanced BMS controllers for ESS/BESS installations.
                     </p>
-                    <p className="mx-auto text-pretty text-xl font-medium text-gray-300 sm:text-2xl mb-2">
+                    <p className="mx-auto text-pretty text-xl font-medium text-gray-300 sm:text-2xl mb-2 hidden md:block">
                         Designed for efficiency, safety, and reliability.
                     </p>
                 <div className="mt-10 flex items-center justify-center gap-x-6">

@@ -1,4 +1,3 @@
-// MainNav.jsx
 "use client";
 import React, { useRef, useEffect, useState } from "react";
 import NavLogo from "@/components/logos/Logo";
@@ -38,8 +37,10 @@ const dropdownItemVariants = {
 
 export default function MainNav({ isOpen, setIsOpen, secondaryNavReady }) {
   const navRef = useRef(null);
-  const mainNavHeight = 106;
-  const dropdownExtraHeight = 300;
+  const DESKTOP_NAV_HEIGHT = 106;
+  const MOBILE_NAV_HEIGHT = 80;
+  const dropdownExtraHeight = 425;
+  const [navHeight, setNavHeight] = useState(DESKTOP_NAV_HEIGHT);
   const [mobileDropdownExtraHeight, setMobileDropdownExtraHeight] =
     useState(dropdownExtraHeight);
 
@@ -59,16 +60,16 @@ export default function MainNav({ isOpen, setIsOpen, secondaryNavReady }) {
 
   // Adjust dropdown height (mobile vs desktop)
   useEffect(() => {
-    function updateHeight() {
-      if (window.innerWidth < 640) {
-        setMobileDropdownExtraHeight(400);
+    function updateNavHeight() {
+      if (window.innerWidth < 1024) {
+        setNavHeight(MOBILE_NAV_HEIGHT);
       } else {
-        setMobileDropdownExtraHeight(dropdownExtraHeight);
+        setNavHeight(DESKTOP_NAV_HEIGHT);
       }
     }
-    updateHeight();
-    window.addEventListener("resize", updateHeight);
-    return () => window.removeEventListener("resize", updateHeight);
+    updateNavHeight();
+    window.addEventListener("resize", updateNavHeight);
+    return () => window.removeEventListener("resize", updateNavHeight);
   }, []);
 
   // Close mobile dropdown on scroll
@@ -99,9 +100,7 @@ export default function MainNav({ isOpen, setIsOpen, secondaryNavReady }) {
   return (
     <>
       {/* Minimal nav (desktop only) once user scrolls past main nav */}
-      <AnimatePresence>
-        {showMinimalNav && <MinimalNav />}
-      </AnimatePresence>
+      <AnimatePresence>{showMinimalNav && <MinimalNav />}</AnimatePresence>
 
       <header
         ref={navRef}
@@ -114,12 +113,12 @@ export default function MainNav({ isOpen, setIsOpen, secondaryNavReady }) {
         "
         suppressHydrationWarning
       >
-        {/* Overly behind the nav if mobile menu is open */}
+        {/* Overlay behind the nav if mobile menu is open */}
         <AnimatePresence>
           {isOpen && (
             <motion.div
               key="overlay"
-              className="fixed inset-0 bg-black/40 z-40"
+              className="fixed inset-0 bg-black z-40"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -133,15 +132,13 @@ export default function MainNav({ isOpen, setIsOpen, secondaryNavReady }) {
         <motion.div
           initial={{
             opacity: 0,
-            height: mainNavHeight,
+            height: navHeight,
             background: "linear-gradient(to top, #0f0e0e, rgba(0,0,0,0.7))",
             boxShadow: "0 4px 4px rgba(0,0,0,0.25)",
           }}
           animate={{
             opacity: secondaryNavReady ? 1 : 0,
-            height: isOpen
-              ? mainNavHeight + mobileDropdownExtraHeight
-              : mainNavHeight,
+            height: isOpen ? navHeight + mobileDropdownExtraHeight : navHeight,
             background: isOpen
               ? "linear-gradient(to top, rgba(255,255,255,0.8), rgba(255,255,255,0.9))"
               : "linear-gradient(to top, #0f0e0e, rgba(0,0,0,0.7))",
@@ -150,32 +147,57 @@ export default function MainNav({ isOpen, setIsOpen, secondaryNavReady }) {
               : "0 4px 4px rgba(0,0,0,0.25)",
           }}
           transition={{ duration: 0.3, ease: "easeOut" }}
-          className="backdrop-blur-[40px] rounded-xl sm:rounded-b-none sm:rounded-t-lg 
-                     max-w-8xl mx-auto py-6 px-3.5 flex flex-col relative z-50 
-                     border-[#181818] border-t border-x"
+          className="
+            backdrop-blur-[40px] 
+            rounded-xl lg:rounded-b-none lg:rounded-t-lg 
+            max-w-8xl mx-auto py-6 px-3.5 
+            flex flex-col 
+            relative z-50 
+            border-[#181818] border-t border-x
+          "
           style={{ willChange: "transform, opacity" }}
         >
-          {/* Top Navigation Row */}
-          <div className="flex justify-between items-center">
+          {/* 
+            Top Navigation Row: 
+            - Mobile: Logo absolutely positioned, hamburger on right. 
+            - Desktop: Logo on left, NavLinks centered, Contact on right. 
+          */}
+          <div className="flex items-center relative">
+            {/* LOGO */}
             <Link href="/" onClick={() => setIsOpen(false)}>
               <motion.div
+                // Remove absolute for desktop using `lg:static` and reset top/left
+                className="
+                  w-44
+                  absolute -top-3 left-1
+                  lg:static lg:top-auto lg:left-auto
+                "
                 animate={{ color: isOpen ? "#000" : "#fff", opacity: [0, 1] }}
                 transition={{ duration: 0.3, delay: 0.1 }}
               >
-                {/* Full-size logo for the main nav */}
-                <NavLogo className="w-44" />
+                <NavLogo />
               </motion.div>
             </Link>
 
-            <NavLinks />
+            {/* DESKTOP NAV LINKS (hidden on mobile) */}
+            <div className="hidden lg:flex flex-1 justify-center">
+              <NavLinks />
+            </div>
 
-            <div className="flex items-center">
+            {/* CONTACT BUTTON + MOBILE HAMBURGER */}
+            <div className="flex items-center ml-auto">
+              {/* Contact button only on desktop */}
               <ContactButton className="hidden lg:block" />
 
               {/* Mobile Hamburger / X */}
               <motion.button
                 onClick={() => setIsOpen(!isOpen)}
-                className="block lg:hidden mr-3 p-4"
+                className="
+                  block
+                  lg:hidden
+                  mr-3 p-4
+                  absolute -top-3 -right-4
+                "
                 aria-label="Toggle mobile menu"
               >
                 <motion.svg
@@ -226,12 +248,16 @@ export default function MainNav({ isOpen, setIsOpen, secondaryNavReady }) {
                 exit="exit"
                 transition={{ duration: 0.3, ease: "easeOut" }}
                 onClick={(e) => {
+                  // close only if user clicks outside a link
                   if (!e.target.closest("a")) {
                     setIsOpen(false);
                   }
                 }}
-                className="left-8 w-full flex sm:flex-row flex-col justify-around items-stretch 
-                           pt-10 sm:pt-12 pb-8 pl-6 sm:pl-0"
+                className="
+                  left-8 w-full 
+                  flex sm:flex-row flex-col justify-around items-stretch 
+                  pt-10 sm:pt-12 pb-8 pl-6 sm:pl-0
+                "
               >
                 {/* Company Links */}
                 <motion.div
@@ -241,9 +267,12 @@ export default function MainNav({ isOpen, setIsOpen, secondaryNavReady }) {
                   <p className="sm:text-base text-sm font-bold mb-6 text-black uppercase tracking-[7px]">
                     Company
                   </p>
-                  <div className="flex flex-col space-y-3 sm:space-y-4 
-                                  text-[13px] sm:text-[14px] uppercase 
-                                  tracking-[3px] font-semibold text-gray-500"
+                  <div
+                    className="
+                      flex flex-col space-y-3 sm:space-y-4 
+                      text-[13px] sm:text-[14px] uppercase 
+                      tracking-[3px] font-semibold text-gray-500
+                    "
                   >
                     <Link
                       href="/services"

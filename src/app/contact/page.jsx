@@ -240,7 +240,7 @@ export default function Contact() {
 
   return (
     <div className="relative bg-[#090A0B] overflow-x-hidden">
-      <div className="relative bg-[#090A0B] pt-12">
+      <div className="relative bg-[#090A0B] pt-20 md:pt-36 lg:pt-52">
         <div className="mx-auto grid max-w-7xl grid-cols-1 lg:grid-cols-2">
           {/* Left Side – Contact Information */}
           <div className="relative px-6 pb-2 pt-24 lg:static lg:px-8 lg:py-48">
