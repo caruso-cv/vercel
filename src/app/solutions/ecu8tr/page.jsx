@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import Infineon from '@/components/Infineon'
+import InfineonSection from '@/components/services/InfineonSection';
 import Ecu8tr from '@/components/Ecu8tr'
 import Purpose from "@/components/icons/Purpose"
 import Quality from "@/components/icons/Quality"
@@ -82,7 +82,7 @@ export default function Home() {
         </div>
       </main>
       <div className="overflow-x-hidden relative">
-        <Infineon />
+        <InfineonSection />
       </div>
     </div>
   )

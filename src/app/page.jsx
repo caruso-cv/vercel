@@ -1,10 +1,8 @@
 import Partners from '@/components/Partners'
 import Slider from '@/components/Slider'
-import Numbers from '@/components/Numbers'
 import Hero from '@/components/Hero'
 import SideScroll from '@/components/SideScroll'
 import VerticalSlider from '@/components/VerticalSlider'
-import Infineon from '@/components/Infineon'
 import DigitalBackground from '@/components/DigitalBackground'
 import NoiseOverlay from '@/components/NoiseOverlay'
 import InfineonSection from '@/components/services/InfineonSection';
@@ -21,11 +19,6 @@ export default function Home() {
           <div className='relative z-30'>
             <Partners/>
             <Slider/>
-            {/* <Numbers 
-              timeValue={500000}   // e.g. 500k
-              moneyValue={30000000} // e.g. 3 million
-              duration={500}      // 4 seconds
-            /> */}
           </div>
           <DigitalBackground />
           <NoiseOverlay />
