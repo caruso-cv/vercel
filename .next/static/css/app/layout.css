@@ -1983,6 +1983,15 @@ video {
 .h-\[20vh\] {
   height: 20vh;
 }
+.h-\[1\.2rem\] {
+  height: 1.2rem;
+}
+.h-\[2\.2rem\] {
+  height: 2.2rem;
+}
+.h-\[2rem\] {
+  height: 2rem;
+}
 .min-h-\[30rem\] {
   min-height: 30rem;
 }
@@ -2308,6 +2317,9 @@ video {
 }
 .gap-\[0\.5ch\] {
   gap: 0.5ch;
+}
+.gap-1 {
+  gap: 0.25rem;
 }
 .gap-x-12 {
   -moz-column-gap: 3rem;
@@ -4999,6 +5011,14 @@ body {
 
   .\33xl\:h-\[25vh\] {
     height: 25vh;
+  }
+
+  .\33xl\:h-24 {
+    height: 6rem;
+  }
+
+  .\33xl\:h-36 {
+    height: 9rem;
   }
 
   .\33xl\:min-h-\[1200px\] {

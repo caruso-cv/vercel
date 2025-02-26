@@ -6,6 +6,7 @@ import Down from "@/components/icons/Down";
 import RightArrow from "@/components/icons/RightArrow";
 import Equ8ter from "@/components/logos/ECU8TR";
 import Energate from "@/components/logos/ENERG8TE";
+import Elev8tr from "@/components/logos/ELEV8TR";
 import Link from "next/link";
 
 export default function NavLinks() {
@@ -107,7 +108,37 @@ export default function NavLinks() {
                     transition={{ duration: 0.2 }}
                     className="mr-2"
                   >
-                    <Equ8ter className="h-[23px]" />
+                    <Equ8ter className="h-8" />
+                  </motion.div>
+                  <motion.div
+                    variants={arrowVariants}
+                    transition={{ duration: 0.2 }}
+                    className="ml-auto"
+                  >
+                    <RightArrow className="w-4 h-4" />
+                  </motion.div>
+                </motion.div>
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/solutions/ecu8tr"
+                onClick={() => setIsOpen(false)}
+              >
+                <motion.div
+                  initial="rest"
+                  whileHover="hover"
+                  animate="rest"
+                  variants={parentVariants}
+                  transition={{ duration: 0.2 }}
+                  className="flex items-center px-4 mx-3 py-4 rounded-lg text-white cursor-pointer"
+                >
+                  <motion.div
+                    variants={logoVariants}
+                    transition={{ duration: 0.2 }}
+                    className="mr-2"
+                  >
+                    <Elev8tr className="h-8" />
                   </motion.div>
                   <motion.div
                     variants={arrowVariants}
@@ -137,7 +168,7 @@ export default function NavLinks() {
                     transition={{ duration: 0.2 }}
                     className="mr-2"
                   >
-                    <Energate className="h-[0.75rem]" />
+                    <Energate className="h-8" />
                   </motion.div>
                   <motion.div
                     variants={arrowVariants}

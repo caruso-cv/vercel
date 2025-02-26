@@ -3,10 +3,7 @@ stages:
 
 mirror:
   stage: mirror
-  # The image directive is ignored in shell executor, so remove apk command.
   before_script:
-    # Remove apk command since it's not available on macOS.
-    # - apk add --no-cache git
     - git config --global user.email "caruso@ocelot.ltd"
     - git config --global user.name "SolCaruso"
   script:

@@ -4,7 +4,7 @@ import NavLinks from "./NavLinks";
 import ContactButton from "./ContactButton";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import Equ8 from "@/components/logos/ECU8";
+import Elev8tr from "@/components/logos/ELEV8TR";
 import Equ8ter from "@/components/logos/ECU8TR";
 import Energate from "@/components/logos/ENERG8TE";
 
@@ -259,18 +259,18 @@ export default function MainNav({ isOpen, setIsOpen, secondaryNavReady }) {
                 <p className="sm:text-base text-sm font-bold mb-6 text-black uppercase tracking-[7px]">
                   Solutions
                 </p>
-                <div className="flex flex-col">
+                <div className="flex flex-col gap-1">
                   <Link href="/solutions/ecu8tr" onClick={() => setIsOpen(false)}>
-                    <Equ8 className="h-[18px] sm:h-[22px] opacity-60 hover:opacity-100 cursor-pointer transition-all duration-50 ease-in-out" />
+                    <Equ8ter className="h-8 opacity-60 hover:opacity-100 cursor-pointer transition-all duration-50 ease-in-out" />
                   </Link>
                   <Link href="/solutions/ecu8tr" onClick={() => setIsOpen(false)}>
-                    <Equ8ter className="h-[20px] sm:h-[26px] mt-4 opacity-60 hover:opacity-100 cursor-pointer transition-all duration-50 ease-in-out" />
+                    <Elev8tr className="h-8 opacity-60 hover:opacity-100 cursor-pointer transition-all duration-50 ease-in-out" />
                   </Link>
                   <Link
                     href="/solutions/energ8te"
                     onClick={() => setIsOpen(false)}
                   >
-                    <Energate className="h-[14px] sm:h-[17px] mt-5 opacity-60 hover:opacity-100 cursor-pointer transition-all duration-50 ease-in-out" />
+                    <Energate className="h-8 opacity-60 hover:opacity-100 cursor-pointer transition-all duration-50 ease-in-out" />
                   </Link>
                 </div>
               </motion.div>

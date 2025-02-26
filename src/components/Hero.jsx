@@ -1,17 +1,6 @@
 'use client'
 
 import { Link }from '@/components/link'
-// import Bolt from '@/components/icons/Bolt'
-// import { motion } from "framer-motion";
-// import styles from "./WishList.module.css";
-
-const handleScroll = (e) => {
-    e.preventDefault();
-    const target = document.getElementById("get-started");
-    if (target) {
-      target.scrollIntoView({ behavior: "smooth" });
-    }
-  };
 
 export default function Example() {
 
@@ -20,21 +9,7 @@ export default function Example() {
 
         <div className="relative isolate px-6 lg:px-8 z-30"> 
 
-            <div className="mx-auto max-w-4xl px-6 pb-28 text-center pt-32 lg:px-8">
-
-                {/* <Link href="/solutions/energ8te">
-                    <div className="flex justify-center mb-12">
-                    <div className={`${styles.wishlistOuter} ${styles.wishlistAnimate}`}>
-                        <div className={` ${styles.wishlistAnnouncement} sm:h-[38px] h-[34px] sm:py-[4px] sm:px-[12px] px-[8px]`}>
-                        <Bolt className="w-4 text-red-600 ml-2"/>
-                        <span className="gradient-text text-transparent animate-gradient text-white lg:text-[16px] text-[12px] font-semibold uppercase tracking-[2px] py-2 pr-2 rounded-full flex gap-2">
-                        Advanced BMS controllers
-                        </span>
-                        </div>
-                    </div>
-                    </div>
-                </Link> */}
-                
+            <div className="mx-auto max-w-4xl px-6 pb-28 text-center pt-32 lg:px-8">        
 
                 <div className="mx-auto max-w-5xl relative z-30">
                     <p className="mt-8 sm:mt-14 lg:mt-2 text-balance text-5xl font-bold text-white sm:text-6xl uppercase">

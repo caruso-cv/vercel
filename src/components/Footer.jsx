@@ -2,7 +2,7 @@
 
 import React from "react";
 import Logo from "@/components/logos/Logo";
-import Equ8 from "@/components/logos/ECU8";
+import Elev8tr from "@/components/logos/ELEV8TR";
 import Equ8ter from "@/components/logos/ECU8TR";
 import Energate from "@/components/logos/ENERG8TE";
 import BackgroundFooter from "@/components/BackgroundFooter";
@@ -57,19 +57,19 @@ return (
               Solutions
             </h3>
             <div>
-              <Link href="/solutions/ecu8tr">
-                <Equ8 
-                  className="h-6 opacity-60 hover:opacity-100 cursor-pointer transition-all duration-50 ease-in-out"
+            <Link href="/solutions/ecu8tr">
+                <Equ8ter
+                  className="h-8 opacity-60 hover:opacity-100 cursor-pointer transition-all duration-50 ease-in-out mb-2"
                 />
               </Link>
               <Link href="/solutions/ecu8tr">
-                <Equ8ter
-                  className="h-[26px] mt-4 opacity-60 hover:opacity-100 cursor-pointer transition-all duration-50 ease-in-out"
+                <Elev8tr
+                  className="h-8 opacity-60 hover:opacity-100 cursor-pointer transition-all duration-50 ease-in-out mb-2"
                 />
               </Link>
               <Link href="/solutions/energ8te">
                 <Energate
-                  className="h-[16.5px] mt-5 opacity-60 hover:opacity-100 cursor-pointer transition-all duration-50 ease-in-out"
+                  className="h-8 opacity-60 hover:opacity-100 cursor-pointer transition-all duration-50 ease-in-out"
                 />
               </Link>
             </div>

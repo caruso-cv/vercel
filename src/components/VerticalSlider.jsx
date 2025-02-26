@@ -6,6 +6,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import Equ8ter from "@/components/logos/ECU8TR";
 import Energate from "@/components/logos/ENERG8TE";
+import Elev8tr from "@/components/logos/ELEV8TR";
 
 
 const pinnedSections = [
@@ -16,21 +17,20 @@ const pinnedSections = [
     sectionClasses:
       "lg:sticky top-4 lg:h-[calc(100vh-32px)] bg-white text-black z-20 flex flex-col-reverse lg:flex-row items-center justify-center lg:rounded-4xl lg:mx-4 py-20 xl:py-0 2xl:px-[90px] 3xl:px-40",
     containerClasses: "lg:w-1/2 text-left px-12 lg:max-w-[50vw] pt-12 lg:pt-0",
-    // Example: Using your ECU8TR logo
-    logo: <Energate className="h-8 md:h-16 mb-10 md:mb-16" />,
-    heading: "REVOLUTIONIZING QUALITY CONTROL",
+    logo: <Energate className="h-12 md:h-24 3xl:h-36 mb-10 md:mb-14" />,
+    heading: "THE SMART SOLUTION FOR ADVANCED ENERGY STORAGE MANAGEMENT",
     headingClasses:
       "3xl:text-6xl 2xl:text-4xl text-3xl font-bold xl:mb-10 mb-6",
     paragraphs: [
       {
-        text: `ECU8TR™ is a cutting-edge tester crafted for the verification of cell monitor operations within battery modules or packs.`,
+        text: `The ENERG8TE™ ESS Controller is an advanced Energy Storage System management product designed to optimize the performance of Battery Energy Storage Systems (BESS).`,
         className: "md:text-2xl text-xl xl:mb-10 mb-6 3xl:text-3xl",
       },
     ],
     bullets: [
-      "Precision Monitoring",
-      "iso SPI and iso UART compatible",
-      "Quality Management",
+      "Optimized Energy Efficiency",
+      "System Reliability and Safety",
+      "Flexible Integration",
     ],
     link: {
       href: "/solutions/ecu8tr",
@@ -52,20 +52,20 @@ const pinnedSections = [
       className:
         "text-[#E00000] font-bold lg:text-[14px] text-[.75rem] tracking-[6px] mb-6 3xl:text-lg",
     },
-    logo: <Equ8ter className="h-12 md:h-24 mb-10 md:mb-14" />,
-    heading: "ADVANCED ENERGY STORAGE MANAGEMENT",
+    logo: <Equ8ter className="h-12 md:h-24 3xl:h-36 mb-10 md:mb-14" />,
+    heading: "POWERING PRECISION: REVOLUTIONIZING QUALITY CONTROL",
     headingClasses:
       "3xl:text-6xl 2xl:text-4xl text-3xl font-bold xl:mb-10 mb-6",
     paragraphs: [
       {
-        text: `The ENERG8TE™ BMS Controller is a high-performance control solution designed to ensure efficient battery management of your Energy Storage System (ESS).`,
+        text: `ECU8TR™ is a cutting-edge tester crafted for the verification of cell monitor operations within battery modules or packs.`,
         className: "2xl:text-2xl text-xl xl:mb-10 mb-6 3xl:text-3xl",
       },
     ],
     bullets: [
-      "Optimized Energy Efficiency",
-      "System Reliability and Safety",
-      "Flexible Integration",
+      "Precision Monitoring",
+      "ISO SPI and ISO UART compatible",
+      "Quality Management",
     ],
     link: {
       href: "/solutions/energ8te",
@@ -87,20 +87,18 @@ const pinnedSections = [
       className:
         "text-[#E00000] font-bold lg:text-[14px] text-[.75rem] tracking-[6px] mb-6 3xl:text-lg",
     },
-    logo: <Equ8ter className="h-12 md:h-20 mb-6 md:mb-12" />,
-    heading: "ADVANCED ENERGY STORAGE MANAGEMENT",
+    logo: <Elev8tr className="h-12 md:h-24 3xl:h-36 mb-10 md:mb-14" />,
+    heading: "THE COMPLETE PLATFORM FOR ACCELERATING BMS ALGORITHM DEVELOPMENT",
     headingClasses:
       "3xl:text-6xl 2xl:text-4xl text-3xl font-bold xl:mb-10 mb-6",
     paragraphs: [
       {
-        text: `The ENERG8TE™ BMS Controller is a high-performance control solution designed to ensure efficient battery management of your Energy Storage System (ESS).`,
+        text: `ELEV8TR™ is a comprehensive package of automotive development tools designed for OEMs looking to fast-track their Battery Management System (BMS) algorithms.`,
         className: "2xl:text-2xl text-xl xl:mb-10 mb-6 3xl:text-3xl",
       },
     ],
     bullets: [
-      "Optimized Energy Efficiency",
-      "System Reliability and Safety",
-      "Flexible Integration",
+      "All-in-One Simulation Solution",
     ],
     link: {
       href: "/solutions/energ8te",
