@@ -88,10 +88,10 @@ export default function InfineonSection() {
         <div className="mx-auto max-w-2xl sm:text-center">
           <h2 className="text-base/7 3xl:text-lg font-semibold text-[#425ACA]">Custom design</h2>
           <p className="mt-2 text-pretty text-4xl font-semibold tracking-tight text-white sm:text-balance sm:text-5xl 3xl:text-6xl">
-            Infineon's Preferred Design House
+            Infineon's Premiere Design House
           </p>
           <p className="mt-6 text-lg/8 text-gray-300 3xl:text-xl">
-            Unlock your design potential with Neutron Controls, your Infineon Preferred Design House for North America.
+            Unlock your design potential with Neutron Controls, your Infineon Premiere Design House for North America.
           </p>
         </div>
       </div>
@@ -128,9 +128,9 @@ export default function InfineonSection() {
               style={logoStyle}
             >
               <InfineonLogo className="w-60 h-auto text-white" />
-              <p className="mt-6 text-4xl font-semibold bg-gradient-to-tr from-[#4DE9FE] to-[#0419AE] bg-clip-text text-transparent opacity-70">
+              {/* <p className="mt-6 text-4xl font-semibold bg-gradient-to-tr from-[#4DE9FE] to-[#0419AE] bg-clip-text text-transparent opacity-70">
                 TriCore
-              </p>
+              </p> */}
             </div>
           </div>
         </div>

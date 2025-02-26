@@ -1,0 +1,1 @@
+self.__NEXT_FONT_MANIFEST="{\"pages\":{},\"app\":{\"/Users/carmenvacchio/Developer/code/caruso/neutron/vercel/src/app/layout\":[\"static/media/4bcb60b63075eb7f-s.p.woff2\",\"static/media/4f05ba3a6752a328-s.p.woff2\",\"static/media/7e3270d39ef94c14-s.p.ttf\"]},\"appUsingSizeAdjust\":true,\"pagesUsingSizeAdjust\":false}"

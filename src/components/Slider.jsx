@@ -181,11 +181,11 @@ export default function Slider() {
 
                 {/* Video Info Box */}
                 <div className="hidden lg:block absolute top-12 right-6 xl:-right-24 border border-white/10 bg-gradient-to-tr from-[#0C0D0F] to-[#111214] via-[#111214]/85 backdrop-blur-sm text-white p-5 pt-7 w-[90%] max-w-[460px] rounded-lg shadow-lg">
-                  <h3 className="text-lg font-bold flex items-center mb-4">
+                  <h3 className="text-lg uppercase font-bold flex items-center mb-4">
                     <Energy className="mr-3" />
                     Energy Storage
                   </h3>
-                  <p className="text-base text-gray-200 mb-6 tracking-wide">
+                  <p className="text-lg text-gray-200 mb-6 tracking-wide">
                     We deliver{" "}
                     <span className="text-[#8CD6FF] bg-[#1C445D] rounded-sm px-1">
                       cutting-edge energy storage control solutions
@@ -193,7 +193,7 @@ export default function Slider() {
                     designed to maximize efficiency and reliability in energy and industrial power systems.
                   </p>
                   <Link href="/solutions/energ8te" passHref>
-                    <motion.div className="inline-flex items-center justify-center py-2 px-2.5 md:px-3.5 text-[13.5px] font-semibold tracking-[0.2px] cursor-pointer border-none rounded-[4px] transition-colors duration-200 ease-in-out bg-[#E6E6E6] hover:bg-[#FFF] shadow-md opacity-90 hover:opacity-100 text-black">
+                    <motion.div className="inline-flex items-center justify-center py-2 px-2.5 md:px-3.5 text-md font-semibold tracking-[0.2px] cursor-pointer border-none rounded-[4px] transition-colors duration-200 ease-in-out bg-[#E6E6E6] hover:bg-[#FFF] shadow-md opacity-90 hover:opacity-100 text-black">
                       <span>Learn more</span>
                     </motion.div>
                   </Link>
@@ -202,7 +202,7 @@ export default function Slider() {
 
               {/* Energate Logo (bottom-right) */}
               <div className="hidden lg:block absolute bottom-48 right-20 bg-white/85 backdrop-blur-sm px-4 py-[70px] rounded-lg shadow-md border-white/30">
-                <Energate className="h-7 w-auto" />
+                <Energate className="h-8 w-auto" />
               </div>
             </div>
 
@@ -223,7 +223,7 @@ export default function Slider() {
                     <Energy className="mr-3" />
                     Energy Storage
                   </h3>
-                  <p className="text-sm text-gray-200 mb-6 tracking-wide">
+                  <p className="text-base text-gray-200 mb-6 tracking-wide">
                     We deliver{" "}
                     <span className="text-[#8CD6FF] bg-[#1C445D] rounded-sm px-1">
                       cutting-edge energy storage control solutions
@@ -231,7 +231,7 @@ export default function Slider() {
                     designed to maximize efficiency and reliability in energy and industrial power systems.
                   </p>
                   <Link href="/solutions/energ8te" passHref>
-                    <motion.div className="inline-flex items-center justify-center py-2 px-2.5 md:px-3.5 text-[13.5px] font-semibold tracking-[0.2px] cursor-pointer border-none rounded-[4px] transition-colors duration-200 ease-in-out bg-[#E6E6E6] hover:bg-[#FFF] shadow-md opacity-90 hover:opacity-100 text-black">
+                    <motion.div className="inline-flex items-center justify-center py-2 px-2.5 md:px-3.5 text-sm font-semibold tracking-[0.2px] cursor-pointer border-none rounded-[4px] transition-colors duration-200 ease-in-out bg-[#E6E6E6] hover:bg-[#FFF] shadow-md opacity-90 hover:opacity-100 text-black">
                       <span>Learn More</span>
                     </motion.div>
                   </Link>
@@ -263,11 +263,11 @@ export default function Slider() {
 
                 {/* Video Info Box */}
                 <div className="hidden lg:block absolute top-12 right-6 xl:-right-24 border border-white/10 bg-gradient-to-tr from-[#0C0D0F] to-[#111214] via-[#111214]/85 backdrop-blur-sm text-white p-5 pt-7 w-[90%] max-w-[460px] rounded-lg shadow-lg">
-                  <h3 className="text-lg font-bold flex items-center mb-4">
+                  <h3 className="text-lg uppercase font-bold flex items-center mb-4">
                     <Manage className="w-7 mr-3" />
-                    Battery Management
+                    Battery Factory Point Tester
                   </h3>
-                  <p className="text-base text-gray-200 mb-6 tracking-wide">
+                  <p className="text-lg text-gray-200 mb-6 tracking-wide">
                     We specialize in{" "}
                     <span className="text-[#8CD6FF] bg-[#1C445D] rounded-sm px-1">
                       advanced Battery Management Systems (BMS)
@@ -275,7 +275,7 @@ export default function Slider() {
                     that enhance performance and ensure safety across automotive and industrial applications.
                   </p>
                   <Link href="/solutions/ecu8tr" passHref>
-                    <motion.div className="inline-flex items-center justify-center py-2 px-2.5 md:px-3.5 text-[13.5px] font-semibold tracking-[0.2px] cursor-pointer border-none rounded-[4px] transition-colors duration-200 ease-in-out bg-[#E6E6E6] hover:bg-[#FFF] shadow-md opacity-90 hover:opacity-100 text-black">
+                    <motion.div className="inline-flex items-center justify-center py-2 px-2.5 md:px-3.5 text-md font-semibold tracking-[0.2px] cursor-pointer border-none rounded-[4px] transition-colors duration-200 ease-in-out bg-[#E6E6E6] hover:bg-[#FFF] shadow-md opacity-90 hover:opacity-100 text-black">
                       <span>Learn More</span>
                     </motion.div>
                   </Link>
@@ -283,8 +283,8 @@ export default function Slider() {
               </div>
 
               {/* Logo */}
-              <div className="hidden lg:block absolute bottom-48 right-20 bg-white/85 backdrop-blur-sm px-12 py-[60px] rounded-lg shadow-md border-white/30">
-                <Equ8 className="h-9 w-auto" />
+              <div className="hidden lg:block absolute bottom-48 right-20 bg-white/85 backdrop-blur-sm px-8 py-[60px] rounded-lg shadow-md border-white/30">
+                <Equ8ter className="h-12 w-auto" />
               </div>
             </div>
 
@@ -303,9 +303,9 @@ export default function Slider() {
                 <div className="text-white p-5 pt-7">
                   <h3 className="text-lg font-bold flex items-center mb-4">
                     <Manage className="w-6 mr-3" />
-                    Battery Management
+                    Battery Factory Point Tester
                   </h3>
-                  <p className="text-sm text-gray-200 mb-6 tracking-wide">
+                  <p className="text-base text-gray-200 mb-6 tracking-wide">
                     We specialize in{" "}
                     <span className="text-[#8CD6FF] bg-[#1C445D] rounded-sm px-1">
                       advanced Battery Management Systems (BMS)
@@ -313,7 +313,7 @@ export default function Slider() {
                     that enhance performance and ensure safety across automotive and industrial applications.
                   </p>
                   <Link href="/solutions/ecu8tr" passHref>
-                    <motion.div className="inline-flex items-center justify-center py-2 px-2.5 md:px-3.5 text-[13.5px] font-semibold tracking-[0.2px] cursor-pointer border-none rounded-[4px] transition-colors duration-200 ease-in-out bg-[#E6E6E6] hover:bg-[#FFF] shadow-md opacity-90 hover:opacity-100 text-black">
+                    <motion.div className="inline-flex items-center justify-center py-2 px-2.5 md:px-3.5 text-sm font-semibold tracking-[0.2px] cursor-pointer border-none rounded-[4px] transition-colors duration-200 ease-in-out bg-[#E6E6E6] hover:bg-[#FFF] shadow-md opacity-90 hover:opacity-100 text-black">
                       <span>Learn More</span>
                     </motion.div>
                   </Link>
@@ -321,94 +321,14 @@ export default function Slider() {
               </div>
             </div>
           </div>
-
-          {/* ===================== SLIDE 3 ===================== */}
-          <div className="keen-slider__slide relative">
-            {/* Video layout */}
-            <div className="hidden lg:flex flex-col items-center lg:flex-row lg:justify-center px-4 pt-44 pb-20 w-full h-full">
-              <div className="relative">
-                <div className="w-[800px] h-[450px] mr-44 mb-20">
-                  {visitedSlides.has(2) && (
-                    <video
-                      ref={videoRefSlide3Desktop}
-                      loop
-                      muted
-                      playsInline
-                      preload="auto"
-                      className="w-full h-full object-cover rounded-lg shadow-xl"
-                    >
-                      <source src="/vids/auto.webm" type="video/webm" />
-                      <source src="/vids/auto.mp4" type="video/mp4" />
-                    </video>
-                  )}
-                </div>
-
-                {/* Video Info Box */}
-                <div className="hidden lg:block absolute top-12 right-6 xl:-right-24 border border-white/10 bg-gradient-to-tr from-[#0C0D0F] to-[#111214] via-[#111214]/85 backdrop-blur-sm text-white p-5 pt-7 w-[90%] max-w-[460px] rounded-lg shadow-lg">
-                  <h3 className="text-lg font-bold flex items-center mb-4">
-                    <Auto className="w-8 mr-3" />
-                    Automotive Engineering
-                  </h3>
-                  <p className="text-base text-gray-200 mb-6 tracking-wide">
-                    We drive innovation by delivering{" "}
-                    <span className="text-[#8CD6FF] bg-[#1C445D] rounded-sm px-1">
-                      custom hardware and software solutions
-                    </span>{" "}
-                    that meet safety, efficiency, and performance demands for modern vehicles.
-                  </p>
-                  <Link href="/solutions/ecu8tr" passHref>
-                    <motion.div className="inline-flex items-center justify-center py-2 px-2.5 md:px-3.5 text-[13.5px] font-semibold tracking-[0.2px] cursor-pointer border-none rounded-[4px] transition-colors duration-200 ease-in-out bg-[#E6E6E6] hover:bg-[#FFF] shadow-md opacity-90 hover:opacity-100 text-black">
-                      <span>Learn More</span>
-                    </motion.div>
-                  </Link>
-                </div>
-              </div>
-
-              <div className="hidden lg:block absolute bottom-48 right-20 bg-white/85 backdrop-blur-sm px-8 py-[60px] rounded-lg shadow-md border-white/30">
-                <Equ8ter className="h-10 w-auto" />
-              </div>
-            </div>
-
-            {/* Image layout */}
-            <div className="lg:hidden flex flex-col items-center w-full px-4 py-24">
-              <div className="border border-white/10 rounded-md bg-gradient-to-tr from-[#0C0D0F] to-[#111214] via-[#111214]/75 backdrop-blur-sm shadow-lg w-full max-w-[700px] overflow-hidden">
-                <div className="relative w-full aspect-video">
-                  <Image
-                    src="/side-scroll/11.webp"
-                    alt="Automotive Engineering"
-                    fill
-                    className="object-cover border-b border-white/10"
-                  />
-                </div>
-
-                <div className="text-white p-5 pt-7">
-                  <h3 className="text-lg font-bold flex items-center mb-4">
-                    <Auto className="w-6 mr-3" />
-                    Automotive Engineering
-                  </h3>
-                  <p className="text-sm text-gray-200 mb-6 tracking-wide">
-                    We drive innovation by delivering{" "}
-                    <span className="text-[#8CD6FF] bg-[#1C445D] rounded-sm px-1">
-                      custom hardware and software solutions
-                    </span>{" "}
-                    that meet safety, efficiency, and performance demands for modern vehicles.
-                  </p>
-                  <Link href="/solutions/ecu8tr" passHref>
-                    <motion.div className="inline-flex items-center justify-center py-2 px-2.5 md:px-3.5 text-[13.5px] font-semibold tracking-[0.2px] cursor-pointer border-none rounded-[4px] transition-colors duration-200 ease-in-out bg-[#E6E6E6] hover:bg-[#FFF] shadow-md opacity-90 hover:opacity-100 text-black">
-                      <span>Learn More</span>
-                    </motion.div>
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
+          
         </div>
 
         {/* Dots */}
         <div className="absolute bottom-10 lg:bottom-24 w-full flex justify-center z-20">
           <Dot index={0} />
           <Dot index={1} />
-          <Dot index={2} />
+          {/* <Dot index={2} /> */}
         </div>
       </div>
     </div>

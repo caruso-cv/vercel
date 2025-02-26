@@ -86,7 +86,7 @@ export default function MainNav({ isOpen, setIsOpen, secondaryNavReady }) {
   return (
     <header
       ref={navRef}
-      className="absolute lg:relative top-0 left-0 w-full z-50 px-4 pt-4"
+      className="absolute lg:sticky top-0 left-0 w-full z-50 px-4 pt-4"
       suppressHydrationWarning
     >
       {/* 1) The overlay */}

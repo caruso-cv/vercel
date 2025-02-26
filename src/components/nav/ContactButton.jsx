@@ -23,8 +23,8 @@ export default function DownloadButton() {
                 opacity-90
                 hover:opacity-100
                 text-black
-                px-3.5 py-2.5
-                text-sm 
+                px-3.5 py-3.5
+                text-base
                 3xl:text-base
               "
             >

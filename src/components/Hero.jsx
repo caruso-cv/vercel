@@ -1,33 +1,70 @@
+'use client'
+
 import { Link }from '@/components/link'
+// import Bolt from '@/components/icons/Bolt'
+// import { motion } from "framer-motion";
+// import styles from "./WishList.module.css";
+
+const handleScroll = (e) => {
+    e.preventDefault();
+    const target = document.getElementById("get-started");
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
 export default function Example() {
+
 
   return (
 
         <div className="relative isolate px-6 lg:px-8 z-30"> 
 
-            <div className="mx-auto max-w-7xl px-6 pb-28 text-center pt-32 lg:px-8">
+            <div className="mx-auto max-w-4xl px-6 pb-28 text-center pt-32 lg:px-8">
 
-                <div className="mx-auto max-w-4xl relative z-30">
-                    <h2 className="text-base/7 font-semibold text-[#425ACA] 3xl:text-lg">Control your energy</h2>
-                    <p className="mt-2 text-balance text-5xl font-semibold tracking-tight text-white sm:text-6xl">
-                        Test your strength
+                {/* <Link href="/solutions/energ8te">
+                    <div className="flex justify-center mb-12">
+                    <div className={`${styles.wishlistOuter} ${styles.wishlistAnimate}`}>
+                        <div className={` ${styles.wishlistAnnouncement} sm:h-[38px] h-[34px] sm:py-[4px] sm:px-[12px] px-[8px]`}>
+                        <Bolt className="w-4 text-red-600 ml-2"/>
+                        <span className="gradient-text text-transparent animate-gradient text-white lg:text-[16px] text-[12px] font-semibold uppercase tracking-[2px] py-2 pr-2 rounded-full flex gap-2">
+                        Advanced BMS controllers
+                        </span>
+                        </div>
+                    </div>
+                    </div>
+                </Link> */}
+                
+
+                <div className="mx-auto max-w-5xl relative z-30">
+                    <p className="mt-8 sm:mt-14 lg:mt-2 text-balance text-5xl font-bold text-white sm:text-6xl uppercase">
+                        Contain your energy
                     </p>
                 </div>
                 
-                <div className="relative mt-6">
-                    <p className="mx-auto max-w-2xl text-pretty text-lg font-medium text-gray-400 sm:text-xl/8 3xl:text-xl">
-                        Advanced BMS controls and ESS solutions designed for efficiency, safety, and reliability.
+                <div className="relative mt-8">
+                    <p className="mx-auto text-pretty text-xl font-medium text-gray-300 sm:text-2xl mb-2">
+                        Advanced BMS controllers for ESS/BESS installations.
                     </p>
-
+                    <p className="mx-auto text-pretty text-xl font-medium text-gray-300 sm:text-2xl mb-2">
+                        Designed for efficiency, safety, and reliability.
+                    </p>
                 <div className="mt-10 flex items-center justify-center gap-x-6">
-                    <Link
-                    href="/services"
-                    className="rounded-md bg-[#425ACA] px-3.5 py-2.5 text-sm font-semibold text-white 3xl:text-base shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+                <Link
+                    href="#get-started"
+                    scroll={false}
+                    onClick={(e) => {
+                        e.preventDefault();
+                        const target = document.getElementById("get-started");
+                        if (target) {
+                        target.scrollIntoView({ behavior: "smooth" });
+                        }
+                    }}
+                    className="rounded-md bg-[#425ACA] px-3.5 py-2.5 text-sm sm:text-lg font-semibold text-white 3xl:text-base shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
                     >
                     Get started
                     </Link>
-                    <Link href="/about" className="text-sm/6 font-semibold text-white 3xl:text-base">
+                    <Link href="/services" className="text-sm/6 sm:text-lg font-semibold text-white 3xl:text-base">
                     Learn more <span aria-hidden="true">→</span>
                     </Link>
                 </div>

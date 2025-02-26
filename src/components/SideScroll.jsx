@@ -10,7 +10,7 @@ export default function SideScroll() {
   const images = [
     { src: "/side-scroll/10.webp", alt: "Custom Design Process" },
     { src: "/side-scroll/7.webp", alt: "ECU Design" },
-    { src: "/side-scroll/8.webp", alt: "Engineer at Work" },
+    { src: "/side-scroll/9.webp", alt: "Engineer at Work" },
     { src: "/side-scroll/5.webp", alt: "Factory Floor" },
     { src: "/side-scroll/4.webp", alt: "Custom Design Process" },
     { src: "/side-scroll/3.webp", alt: "ECU Design" },

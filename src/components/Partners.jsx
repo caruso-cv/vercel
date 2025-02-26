@@ -5,12 +5,12 @@ export default function Partners() {
   // list of images
   const images = [
     "/partners/infineon.webp",
-    "/partners/matlab.webp",
+    "/partners/mathworks.webp",
     "/partners/tasking.webp",
     "/partners/infineon.webp",
-    "/partners/matlab.webp",
+    "/partners/jabil.webp",
     "/partners/tasking.webp",
-    "/partners/matlab.webp",
+    "/partners/mathworks.webp",
   ];
 
   // Duplicate images statically for seamless scrolling
@@ -18,10 +18,10 @@ export default function Partners() {
 
   return (
     <div className="pb-28 relative flex flex-col items-center justify-center">
-      <p className="text-center mb-1 text-xl lg:text-[1.5625rem] 3xl:text-3xl font-bold uppercase pb-3 sm:pb-1">
+      <p className="text-center mb-1 text-2xl lg:text-3xl 3xl:text-3xl font-bold uppercase pb-3 sm:pb-1">
         Trusted by partners worldwide
       </p>
-      <p className="text-center mb-12 lg:text-xl font-medium 3xl:text-2xl">
+      <p className="text-center mb-12 text-xl lg:text-2xl font-medium 3xl:text-2xl">
         We build relationships rooted in trust, respect, and shared success.
       </p>
 

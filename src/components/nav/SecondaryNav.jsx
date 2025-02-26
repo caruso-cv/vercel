@@ -68,7 +68,7 @@ export default function SecondaryNav({ setSecondaryNavReady }) {
           content: "";
           position: absolute;
           inset: 0;
-          background: rgba(67, 95, 225, 0.7);
+          background: rgba(67, 95, 225, 0.8);
           backdrop-filter: blur(10px);
           -webkit-backdrop-filter: blur(10px);
           border-radius: inherit;
@@ -121,7 +121,7 @@ export default function SecondaryNav({ setSecondaryNavReady }) {
 
 function MarqueeItem() {
   return (
-    <li className="inline-block whitespace-nowrap font-semibold sm:text-[15px] text-[12px]">
+    <li className="inline-block whitespace-nowrap font-semibold sm:text-[18px] text-[12px]">
       INTERSOLAR | Event Feb 25–27, 2025
       <a
         href="https://www.intersolar.us/"
