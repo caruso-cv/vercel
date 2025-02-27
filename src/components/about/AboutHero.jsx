@@ -1,26 +1,30 @@
-import { LifebuoyIcon, NewspaperIcon, PhoneIcon } from '@heroicons/react/20/solid'
+import {
+  LightBulbIcon,
+  UserGroupIcon,
+  GlobeAmericasIcon,
+} from '@heroicons/react/20/solid'
 
 const cards = [
   {
     name: 'PIONEERING EXPERTISE',
-    description: 'Drawing on our capabilities in energy control, battery management systems, integrated safety-critical design, and advanced design solutions, we forged a path of excellence. Each project expands our horizons, propelling us to create more efficient and cutting-edge innovations for a rapidly evolving market.',
-    icon: PhoneIcon,
+    description: 'Drawing on our capabilities in energy control, battery management systems, integrated safety-critical design, and advanced design solutions, we forged a path of excellence.',
+    icon: LightBulbIcon,
   },
   {
     name: 'OUR TEAM',
-    description: 'At Neutron Controls, we bring together experienced minds and emerging superstars. This blend of expertise and fresh perspectives fosters a culture of collaboration—one that pushes the boundaries of what’s possible. With unwavering dedication, our professionals continually refine and expand their skills to deliver industry-leading solutions.',
-    icon: LifebuoyIcon,
+    description: 'At Neutron Controls, we bring together experienced minds and emerging superstars. This blend of expertise and fresh perspectives fosters a culture of collaboration—one that pushes the boundaries of what’s possible.',
+    icon: UserGroupIcon,
   },
   {
     name: 'DESIGNED IN CANADA, BUILT IN THE USA',
-    description: 'Through strong relationships with the global semiconductor industry, Neutron Controls leverages the best of both worlds. Our forward-thinking designs are born from Canadian ingenuity and engineered for production in the United States, ensuring that every product we deliver is built with uncompromising quality and reliability.',
-    icon: NewspaperIcon,
+    description: 'Through strong ties with the global semiconductor industry, Neutron Controls pairs Canadian ingenuity with US production to deliver uncompromising quality and reliability.',
+    icon: GlobeAmericasIcon,
   },
 ]
 
 export default function Example() {
   return (
-    <div className="relative isolate overflow-hidden bg-[#090A0B] py-24 sm:py-72">
+    <div className="relative isolate overflow-hidden bg-[#090A0B] py-40 sm:py-72 z-30">
       <img
         alt=""
         src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=focalpoint&fp-y=.8&w=2830&h=1500&q=80&blend=111827&sat=-100&exp=15&blend-mode=multiply"
@@ -46,18 +50,18 @@ export default function Example() {
       </div>
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-3xl lg:mx-0">
-          <h2 className="text-5xl font-semibold tracking-tight text-white sm:text-7xl">HOW IT STARTED</h2>
-          <p className="mt-8 text-pretty text-lg font-medium text-gray-300 sm:text-2xl/8">
-          Neutron Controls traces its roots back to our proud Canadian heritage and a deep understanding of the semiconductor industry. It began with a team of visionary professionals who shared one goal: to revolutionize the landscape of industrial and automotive control solutions.
+          <h2 className="text-5xl font-semibold tracking-tight text-white sm:text-6xl">Our Story</h2>
+          <p className="mt-8 text-pretty text-xl font-medium text-gray-300 sm:text-2xl/8">
+          Neutron Controls traces its roots back to our proud Canadian heritage and a deep understanding of the semiconductor industry.
           </p>
         </div>
         <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-6 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3 lg:gap-8">
           {cards.map((card) => (
             <div key={card.name} className="flex gap-x-4 rounded-xl bg-white/5 p-6 ring-1 ring-inset ring-white/10">
               <card.icon aria-hidden="true" className="h-7 w-5 flex-none text-indigo-400" />
-              <div className="text-base/7">
+              <div className="text-xl ">
                 <h3 className="font-semibold text-white">{card.name}</h3>
-                <p className="mt-2 text-gray-300">{card.description}</p>
+                <p className="mt-6 text-gray-300">{card.description}</p>
               </div>
             </div>
           ))}

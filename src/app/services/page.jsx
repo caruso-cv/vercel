@@ -19,7 +19,7 @@ const tiers = [
       'Tailored solutions for EVs and renewables',
       'Industrial-grade safety and performance',
     ],
-    icon: <Battery className="h-20 w-20" aria-hidden="true" />,
+    icon: <Battery className="h-20 w-20 sm:w-28 sm:h-28" aria-hidden="true" />,
   },
   {
     name: 'Safety-Critical Design',
@@ -33,7 +33,7 @@ const tiers = [
       'Compliance with ISO 26262 for highest reliability',
       'High-performance designs prioritizing occupant and environmental protection',
     ],
-    icon: <Safety className="h-20 w-20" aria-hidden="true" />,
+    icon: <Safety className="h-20 w-20 sm:w-28 sm:h-28" aria-hidden="true" />,
   },
   {
     name: 'Advanced Design Solutions',
@@ -48,7 +48,7 @@ const tiers = [
       'Advanced analytics',
       'Expert teams tackling complex challenges with ingenuity and creativity',
     ],
-    icon: <Design className="h-20 w-20" aria-hidden="true" />,
+    icon: <Design className="h-20 w-20 sm:w-28 sm:h-28" aria-hidden="true" />,
   },
 ];
 
@@ -56,15 +56,15 @@ export default function Page() {
   return (
     <div className="overflow-hidden bg-[#090A0B]">
       {/* Header / Services Section */}
-      <div className="mx-auto max-w-7xl px-6 pb-96 text-center pt-32 lg:px-8 lg:pt-64">
+      <div className="mx-auto max-w-7xl px-6 pb-96 text-center pt-44 lg:px-8 lg:pt-64">
         <div className="mx-auto max-w-4xl relative z-30">
-          <h2 className="text-base/7 md:text-lg font-semibold text-[#425ACA]">Services</h2>
-          <p className="mt-2 text-balance text-5xl font-semibold tracking-tight text-white sm:text-6xl">
-            Smarter energy solutions
+        <h2 className="text-lg font-semibold text-[#425ACA] lg:text-2xl">Custom design</h2>
+          <p className="mt-2 lg:mt-6 text-pretty text-5xl font-semibold tracking-tight text-white sm:text-balance md:text-6xl md:mt-4">
+            Smarter Energy Solutions
           </p>
         </div>
         <div className="relative mt-6">
-          <p className="mx-auto max-w-2xl text-pretty text-lg font-medium text-gray-400 sm:text-xl/8 lg:text-2xl lg:max-w-4xl">
+          <p className="mx-auto max-w-2xl text-pretty text-lg font-medium text-gray-200 sm:text-xl/8 lg:text-2xl lg:max-w-4xl">
             Advanced BMS and ESS solutions designed for efficiency, safety, and seamless integration—optimizing performance and reliability.
           </p>
           <svg
@@ -93,14 +93,14 @@ export default function Page() {
                   className="flex flex-col justify-between rounded-3xl bg-white p-6 shadow-lg ring-1 ring-gray-900/10 sm:p-8 w-full"
                 >
                   <div>
-                    <h3 id={tier.id} className="text-base/7 md:text-lg font-semibold text-[#425ACA] pb-8">
+                    <h3 id={tier.id} className="text-base/7 sm:text-lg font-semibold text-[#425ACA] pb-8">
                       {tier.name}
                     </h3>
-                    <div className="mt-4 md:mt-6 flex items-center justify-center">
+                    <div className="mt-4 sm:mt-6 flex items-center justify-center">
                       {tier.icon}
                     </div>
-                    <p className="mt-6 md:mt-12 text-base/7 text-gray-600 md:text-lg">{tier.description}</p>
-                    <ul role="list" className="mt-10 space-y-4 text-sm/6 md:text-base text-gray-600">
+                    <p className="mt-6 sm:mt-12 text-lg text-gray-600 sm:text-xl">{tier.description}</p>
+                    <ul role="list" className="mt-10 space-y-4 text-base sm:text-lg text-gray-600">
                       {tier.features.map((feature) => (
                         <li key={feature} className="flex gap-x-3">
                           <CheckIcon aria-hidden="true" className="h-6 w-5 flex-none text-[#425ACA]" />
@@ -120,8 +120,8 @@ export default function Page() {
               ))}
               <div className="flex flex-col items-start gap-x-8 gap-y-6 rounded-md p-8 ring-1 ring-gray-900/10 sm:gap-y-10 sm:p-10 lg:col-span-3 lg:flex-row lg:items-center">
                 <div className="lg:min-w-0 lg:flex-1">
-                  <h3 className="text-base/7 font-semibold text-[#425ACA] md:text-lg">Our AURIX Expertise</h3>
-                  <p className="mt-1 text-base/7 text-gray-600 md:text-lg">
+                  <h3 className="text-lg font-semibold text-[#425ACA] md:text-xl">Our AURIX Expertise</h3>
+                  <p className="mt-4 text-lg text-gray-600 md:text-xl">
                     Unleash the full potential of Infineon’s AURIX™-MCUs with expert design support and tailored training, equipping you to harness cutting-edge technology for maximum performance and reliability.
                   </p>
                 </div>

@@ -8,7 +8,6 @@ import Link from "next/link";
 import Elev8tr from "@/components/logos/ELEV8TR";
 import Equ8tr from "@/components/logos/ECU8TR";
 import Energate from "@/components/logos/ENERG8TE";
-// Import the minimal nav (with smaller/different logo & smaller button)
 import MinimalNav from "@/components/nav/MinimalNav";
 
 const Path = (props) => (
@@ -256,7 +255,7 @@ export default function MainNav({ isOpen, setIsOpen, secondaryNavReady }) {
                 className="
                   left-8 w-full 
                   flex sm:flex-row flex-col justify-around items-stretch 
-                  pt-10 sm:pt-12 pb-8 pl-6 sm:pl-0
+                  pt-20 sm:pt-28 pb-8 pl-6 sm:pl-0
                 "
               >
                 {/* Company Links */}
@@ -264,13 +263,13 @@ export default function MainNav({ isOpen, setIsOpen, secondaryNavReady }) {
                   variants={dropdownItemVariants}
                   className="flex flex-col"
                 >
-                  <p className="sm:text-base text-sm font-bold mb-6 text-black uppercase tracking-[7px]">
+                  <p className="sm:text-lg text-sm font-bold mb-6 text-black uppercase tracking-[7px]">
                     Company
                   </p>
                   <div
                     className="
                       flex flex-col space-y-3 sm:space-y-4 
-                      text-[13px] sm:text-[14px] uppercase 
+                      text-sm sm:text-base uppercase 
                       tracking-[3px] font-semibold text-gray-500
                     "
                   >
@@ -316,27 +315,27 @@ export default function MainNav({ isOpen, setIsOpen, secondaryNavReady }) {
                   variants={dropdownItemVariants}
                   className="flex flex-col mt-10 sm:mt-0"
                 >
-                  <p className="sm:text-base text-sm font-bold mb-6 text-black uppercase tracking-[7px]">
+                  <p className="sm:text-lg text-sm font-bold mb-6 text-black uppercase tracking-[7px]">
                     Solutions
                   </p>
-                  <div className="flex flex-col gap-1">
+                  <div className="flex flex-col gap-1 sm:gap-2">
                     <Link
                       href="/solutions/ecu8tr"
                       onClick={() => setIsOpen(false)}
                     >
-                      <Equ8tr className="h-8 opacity-60 hover:opacity-100 cursor-pointer transition-all duration-50 ease-in-out" />
+                      <Equ8tr className="h-8 sm:h-10 opacity-60 hover:opacity-100 cursor-pointer transition-all duration-50 ease-in-out" />
                     </Link>
                     <Link
                       href="/solutions/ecu8tr"
                       onClick={() => setIsOpen(false)}
                     >
-                      <Elev8tr className="h-8 opacity-60 hover:opacity-100 cursor-pointer transition-all duration-50 ease-in-out" />
+                      <Elev8tr className="h-8 sm:h-10 opacity-60 hover:opacity-100 cursor-pointer transition-all duration-50 ease-in-out" />
                     </Link>
                     <Link
                       href="/solutions/energ8te"
                       onClick={() => setIsOpen(false)}
                     >
-                      <Energate className="h-8 opacity-60 hover:opacity-100 cursor-pointer transition-all duration-50 ease-in-out" />
+                      <Energate className="h-8 sm:h-10 opacity-60 hover:opacity-100 cursor-pointer transition-all duration-50 ease-in-out" />
                     </Link>
                   </div>
                 </motion.div>

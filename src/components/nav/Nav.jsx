@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import MainNav from "./MainNav";
 import { motion } from "framer-motion";
 import SecondaryNav from "@/components/nav/SecondaryNav";
-import DropNav from "@/components/nav/DropNav";
 
 export default function Nav() {
   const [isOpen, setIsOpen] = useState(false);

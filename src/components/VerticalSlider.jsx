@@ -49,7 +49,7 @@ const pinnedSections = [
       label: "Find out more",
     },
     image: {
-      src: "/vertical/ENERG8TE-box.webp",
+      src: "/vertical/ENERG8TE-box-copy.webp",
       alt: "Emula8tr ESS Controller",
     },
   },
@@ -200,7 +200,7 @@ export default function VerticalSlider() {
          ----------------------------------------- */}
       {pinnedSections.map((item) => (
         <section key={item.id} id={item.id} className={item.sectionClasses}>
-          <div className={item.containerClasses}>
+          <div className={`${item.containerClasses} lg:max-w-[50vw] mx-auto`}>
             {/* Optional Logo */}
             {item.logo && item.logo}
 

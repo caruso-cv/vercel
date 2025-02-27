@@ -239,8 +239,8 @@ export default function Contact() {
   }
 
   return (
-    <div className="relative bg-[#090A0B] overflow-x-hidden">
-      <div className="relative bg-[#090A0B] pt-20 md:pt-36 lg:pt-52">
+    <div className="relative overflow-x-hidden z-30">
+      <div className="relative pt-20 md:pt-36 lg:pt-52">
         <div className="mx-auto grid max-w-7xl grid-cols-1 lg:grid-cols-2">
           {/* Left Side – Contact Information */}
           <div className="relative px-6 pb-2 pt-24 lg:static lg:px-8 lg:py-48">
@@ -273,7 +273,7 @@ export default function Contact() {
                   <rect fill="url(#54f88622-e7f8-4f1d-aaf9-c2f5e46dd1f2)" width="100%" height="100%" strokeWidth={0} />
                 </svg>
               </div>
-              <h2 className="text-pretty text-4xl font-semibold tracking-tight text-white sm:text-5xl relative z-30 md:text-6xl ">
+              <h2 className="text-pretty text-5xl font-semibold tracking-tight text-white relative z-30 md:text-6xl ">
                 Get in touch
               </h2>
               <p className="mt-6 text-xl md:text-2xl text-white">

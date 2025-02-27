@@ -35,7 +35,7 @@ export default function NavLinks() {
   // Framer Motion variants
   const parentVariants = {
     rest: { backgroundColor: "rgba(0, 0, 0, 0)" },
-    hover: { backgroundColor: "#0f1010" },
+    hover: { backgroundColor: "#1E2020" },
   };
 
   const logoVariants = {
@@ -74,14 +74,14 @@ export default function NavLinks() {
           </div>
 
           {/* Dropdown */}
-          <ul
+          <motion.ul
             className={`
               absolute top-10 -left-6 
               text-white
-              border-[#151618] border
-              bg-gradient-to-t from-[#0f0e0e] to-black/90 
-              shadow-[0px_-4px_4px_0px_rgba(0,0,0,0.25)] 
-              backdrop-blur-[40px]
+              border-[#222326] border
+              bg-gradient-to-tr from-[#090909] to-[#181818]
+              shadow-[0px_-4px_4px_0px_rgba(0,0,0,0.25)]
+              backdrop-blur-[40px] 
               text-base
               w-64
               rounded-xl
@@ -180,7 +180,7 @@ export default function NavLinks() {
                 </motion.div>
               </Link>
             </li>
-          </ul>
+          </motion.ul>
         </li>
 
         <li>
