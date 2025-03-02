@@ -1,10 +1,14 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation"; // NEW: import usePathname
 import TopRight from "@/components/icons/TopRight";
 
 export default function SecondaryNav({ setSecondaryNavReady }) {
   const [isReady, setIsReady] = useState(false);
   const scrollerRef = useRef(null);
+  // NEW: Get the current pathname and check if it starts with "/solutions"
+  const pathname = usePathname();
+  const isSolutionsPage = pathname.startsWith("/solutions");
 
   useEffect(() => {
     const scroller = scrollerRef.current;
@@ -37,7 +41,8 @@ export default function SecondaryNav({ setSecondaryNavReady }) {
   }, [setSecondaryNavReady]);
 
   return (
-    <div className="3md:px-4 hidden lg:block relative z-20">
+    // NEW: Conditionally add the "solutions-nav" class if on a solutions page
+    <div className={`3md:px-4 hidden lg:block relative z-20 ${isSolutionsPage ? "solutions-nav" : ""}`}>
       <div
         className={`noise-bg sm:h-11 h-[2px] flex items-center text-white text-sm 3md:rounded-b-lg max-w-8xl mx-auto transition-opacity duration-700 ${
           isReady ? "opacity-100" : "opacity-0"
@@ -113,6 +118,13 @@ export default function SecondaryNav({ setSecondaryNavReady }) {
           to {
             transform: translateX(-50%);
           }
+        }
+        /* NEW: Override styles for solutions pages */
+        .solutions-nav .noise-bg {
+          background: rgba(67, 95, 225, 1);
+        }
+        .solutions-nav .noise-bg::before {
+          background: rgba(67, 95, 225, 1);
         }
       `}</style>
     </div>

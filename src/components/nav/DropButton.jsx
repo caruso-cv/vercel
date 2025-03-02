@@ -11,9 +11,9 @@ export default function DropButton() {
                 items-center 
                 justify-center
                 hidden lg:inline-flex 
-                font-semibold 
+                font-bold 
                 cursor-pointer
-                rounded-md
+                rounded-[.25rem]
                 transition-colors
                 duration-200
                 ease-in-out
@@ -23,9 +23,9 @@ export default function DropButton() {
                 opacity-90
                 hover:opacity-100
                 text-black
-                px-3.5 py-2
-                text-base
-                3xl:text-base
+                px-3.5 py-2.5
+                text-sm
+                uppercase
               "
             >
               

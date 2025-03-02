@@ -122,7 +122,7 @@ export default function NavLinks() {
             </li>
             <li>
               <Link
-                href="/solutions/ecu8tr"
+                href="/solutions/elev8tr"
                 onClick={() => setIsOpen(false)}
               >
                 <motion.div

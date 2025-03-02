@@ -7,7 +7,6 @@ import Nav from '@/components/nav/Nav'
 import BackgroundHero from '@/components/BackgroundHero'
 import Footer from '@/components/Footer'
 
-
 const montserrat = Montserrat({
   subsets: ['latin'],
   weight: ['100','200','300','400','500','600','700','800','900'],
@@ -40,7 +39,7 @@ export default function RootLayout({ children }) {
       </head>
       <body>
           <div className="bg-[#090A0B]">
-            <Nav className=''/>
+            <Nav/>
             <BackgroundHero/>
           </div>
             {children}

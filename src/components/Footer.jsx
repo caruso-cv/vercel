@@ -14,12 +14,12 @@ export default function Footer() {
 
 return (
   <footer
-    className="relative bg-[#090A0B] text-white overflow-x-hidden"
+    className="relative text-white overflow-x-hidden"
     style={ { paddingTop: "clamp(100px, calc(100vw * 0.23 + 13.79px), 200px)" } }
     suppressHydrationWarning
   >
       {/* Render BackgroundFooter only if NOT on About or Careers pages */}
-      <BackgroundFooter/>
+      <BackgroundFooter />
 
 
       {/* Content container with gradient, blur, shadow, and border */}

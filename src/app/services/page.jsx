@@ -56,12 +56,11 @@ export default function Page() {
   return (
     <div className="overflow-hidden bg-[#090A0B]">
       {/* Header / Services Section */}
-      <div className="mx-auto max-w-7xl px-6 pb-96 text-center pt-44 lg:px-8 lg:pt-64">
+      <div className="mx-auto max-w-7xl px-6 pb-96 lg:pb-[26rem] text-center pt-44 lg:px-8 lg:pt-64">
         <div className="mx-auto max-w-4xl relative z-30">
-        <h2 className="text-lg font-semibold text-[#425ACA] lg:text-2xl">Custom design</h2>
-          <p className="mt-2 lg:mt-6 text-pretty text-5xl font-semibold tracking-tight text-white sm:text-balance md:text-6xl md:mt-4">
+          <h2 className="mt-2 uppercase lg:mt-6 text-pretty text-4xl font-bold text-white sm:text-balance sm:text-[3.5rem] md:mt-4 leading-[1.1]">
             Smarter Energy Solutions
-          </p>
+          </h2>
         </div>
         <div className="relative mt-6">
           <p className="mx-auto max-w-2xl text-pretty text-lg font-medium text-gray-200 sm:text-xl/8 lg:text-2xl lg:max-w-4xl">
@@ -112,7 +111,7 @@ export default function Page() {
                   <Link
                     href={tier.href}
                     aria-describedby={tier.id}
-                    className="mt-8 block rounded-md bg-[#425ACA] px-3.5 py-2 text-center text-sm/6 font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#425ACA] md:text-base"
+                    className="mt-8 uppercase block rounded-md bg-[#425ACA] px-3.5 py-2 text-center text-sm/6 font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#425ACA] md:text-base"
                   >
                     {tier.buttonText}
                   </Link>

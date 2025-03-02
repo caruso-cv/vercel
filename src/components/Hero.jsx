@@ -1,29 +1,44 @@
 'use client'
-
+import { ChevronRightIcon } from '@heroicons/react/20/solid'
 import { Link }from '@/components/link'
+import { motion } from 'framer-motion'
 
 export default function Example() {
 
 
   return (
 
-        <div className="relative isolate px-6 lg:px-8 z-30 lg:pt-32"> 
+        <div className="relative isolate px-6 lg:px-8 z-30 lg:pt-32 hidden lg:block"> 
 
-            <div className="mx-auto max-w-4xl px-6 pb-28 text-center pt-32 lg:px-8">        
+            <div className="mx-auto max-w-4xl px-6 pb-28 text-center lg:pt-40 lg:px-8 lg:pb-40">
 
-                <div className="mx-auto max-w-2xl relative z-30">
-                    <p className="mt-8 sm:mt-14 lg:mt-2 text-5xl font-bold text-white sm:text-6xl uppercase text-balance">
+                <motion.div className="mt-24 sm:mt-32 lg:my-10 space-x-6" animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, delay: 0.2 }}>
+                    <Link href="/solutions/energ8te" className="inline-flex">
+                        <span className="rounded-full bg-indigo-400/10 px-3 py-1 text-sm/6 sm:text-lg/6 font-medium text-indigo-300 ring-1 ring-inset ring-indigo-500/20 hover:bg-indigo-500/30">
+                            ESS/BESS Installations
+                        </span>
+                    </Link>
+                    <Link href="/solutions/ecu8tr" className="inline-flex">
+                        <span className="inline-flex items-center space-x-2 text-sm/6 sm:text-lg/6 font-medium text-gray-300 hover:text-gray-50 font-geist">
+                            <span>Factory line testers</span>
+                            <ChevronRightIcon aria-hidden="true" className="size-5 text-gray-500 " />
+                        </span>
+                    </Link>
+                </motion.div>        
+
+                <div className="mx-auto max-w-3xl relative z-30">
+                    <p className="mt-8 sm:mt-14 lg:mt-2 text-5xl font-bold text-white sm:text-6xl uppercase ">
                         Contain your energy
                     </p>
                 </div>
                 
-                <div className="relative mt-8">
+                <div className="relative mt-8 max-w-2xl mx-auto">
                     <p className="mx-auto text-pretty text-xl font-medium text-gray-300 sm:text-2xl mb-2">
-                        Advanced BMS controllers for ESS/BESS installations.
+                        Advanced BMS controllers for ESS/BESS installations. Designed for efficiency, safety, and reliability.
                     </p>
-                    <p className="mx-auto text-pretty text-xl font-medium text-gray-300 sm:text-2xl mb-2 hidden md:block">
+                    {/* <p className="mx-auto text-pretty text-xl font-medium text-gray-300 sm:text-2xl mb-2 hidden md:block">
                         Designed for efficiency, safety, and reliability.
-                    </p>
+                    </p> */}
                 <div className="mt-10 flex items-center justify-center gap-x-6">
                 <Link
                     href="#get-started"

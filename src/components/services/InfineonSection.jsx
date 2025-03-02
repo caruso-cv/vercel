@@ -85,9 +85,9 @@ export default function InfineonSection() {
   return (
     <div ref={infineonRef} className="bg-gradient-to-b from-gray-900 py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl sm:text-center lg:max-w-4xl">
+        <div className="mx-auto max-w-2xl sm:text-center lg:max-w-3xl">
           <h2 className="text-lg font-semibold text-[#425ACA] lg:text-2xl">Custom design</h2>
-          <p className="mt-2 lg:mt-6 text-pretty text-4xl font-semibold tracking-tight text-white sm:text-balance sm:text-5xl md:text-6xl md:mt-4">
+          <p className="mt-2 uppercase lg:mt-6 text-pretty text-4xl font-bold text-white sm:text-balance sm:text-[2.7rem] md:mt-4 leading-[1.1]">
             Infineon's Premiere Design House
           </p>
           <p className="mt-6 text-xl/8 text-gray-300 md:text-xl md:mt-8 lg:text-2xl lg:mt-10">

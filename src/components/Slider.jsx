@@ -265,7 +265,7 @@ export default function Slider() {
                       {slide.desktop.bodyTextAfterSpan}
                     </p>
                     <Link href={slide.desktop.ctaHref} passHref>
-                      <motion.div className="inline-flex items-center justify-center py-2 px-2.5 md:px-3.5 text-md font-semibold tracking-[0.2px] cursor-pointer border-none rounded-[4px] transition-colors duration-200 ease-in-out bg-[#E6E6E6] hover:bg-[#FFF] shadow-md opacity-90 hover:opacity-100 text-black">
+                      <motion.div className="uppercase inline-flex items-center justify-center py-2 px-2.5 md:px-3.5 text-sm font-bold tracking-[0.2px] cursor-pointer border-none rounded-[4px] transition-colors duration-200 ease-in-out bg-[#E6E6E6] hover:bg-[#FFF] shadow-md opacity-90 hover:opacity-100 text-black">
                         <span>{slide.desktop.ctaLabel}</span>
                       </motion.div>
                     </Link>
@@ -304,7 +304,7 @@ export default function Slider() {
                       {slide.mobile.bodyTextAfterSpan}
                     </p>
                     <Link href={slide.mobile.ctaHref} passHref>
-                      <motion.div className="inline-flex items-center justify-center py-2 px-2.5 md:px-3.5 text-sm font-semibold tracking-[0.2px] cursor-pointer border-none rounded-[4px] transition-colors duration-200 ease-in-out bg-[#E6E6E6] hover:bg-[#FFF] shadow-md opacity-90 hover:opacity-100 text-black">
+                      <motion.div className="inline-flex items-center justify-center uppercase py-2 px-2.5 md:px-3.5 text-sm font-bold tracking-[0.2px] cursor-pointer border-none rounded-[4px] transition-colors duration-200 ease-in-out bg-[#E6E6E6] hover:bg-[#FFF] shadow-md opacity-90 hover:opacity-100 text-black">
                         <span>{slide.mobile.ctaLabel}</span>
                       </motion.div>
                     </Link>

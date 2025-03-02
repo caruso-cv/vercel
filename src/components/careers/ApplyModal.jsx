@@ -3,47 +3,159 @@ import { useState } from 'react'
 import { Dialog, DialogTitle, DialogBody } from '@/components/careers/Dialog'
 import FileInput from '@/components/careers/FileInput'
 
-export default function ApplyModal({ isOpen, onClose }) {
-  // Define job options with name and description
+export default function ApplyModal({ isOpen, onClose, showNotification }) {
   const jobOptions = [
     {
       name: 'General Application',
-      description:
-        'Seeking talented individuals with automotive industry experience to join our team. Apply now to unleash your potential with Neutron Controls!',
+      description: 'Seeking talented individuals with automotive industry experience...',
     },
     {
       name: 'Embedded Software Engineer',
-      description:
-        'Passionate about embedded software development? Join our automotive-focused team and shape the future of cutting-edge solutions.',
+      description: 'Passionate about embedded software? Join our automotive-focused team...',
     },
   ]
 
+  const defaultPosition = jobOptions.length > 0 ? jobOptions[0].name : ''
+
+  // Local state for form fields
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
-    position: jobOptions[0].name,
-    resume: null,
-    coverLetter: null,
+    position: defaultPosition,
+    coverLetter: null,  // optional
+    resume: null,       // required, max 5MB
   })
 
-  const selectedJob = jobOptions.find(
-    (job) => job.name === formData.position
-  )
+  // Validation errors, e.g., errors.resume = 'File too large. Max 5MB'
+  const [errors, setErrors] = useState({})
 
+  // Find the job object for the description
+  const selectedJob = jobOptions.find((job) => job.name === formData.position)
+
+  // Handle changes for text/select/file
   const handleChange = (e) => {
     const { name, value, files } = e.target
     if (files) {
-      setFormData({ ...formData, [name]: files[0] })
+      setFormData((prev) => ({ ...prev, [name]: files[0] }))
     } else {
-      setFormData({ ...formData, [name]: value })
+      setFormData((prev) => ({ ...prev, [name]: value }))
     }
   }
 
-  const handleSubmit = (e) => {
+  // =========================
+  // VALIDATION FUNCTION
+  // =========================
+  const validateForm = (data) => {
+    const newErrors = {}
+
+    // 1) Name required
+    if (!data.name) {
+      newErrors.name = 'Required *'
+    }
+
+    // 2) Email required, basic format
+    if (!data.email) {
+      newErrors.email = 'Required *'
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(data.email)) {
+      newErrors.email = 'Invalid email'
+    }
+
+    // 3) Phone required, only digits/dashes, >= 10 digits ignoring dashes
+    if (!data.phone) {
+      newErrors.phone = 'Required *'
+    } else {
+      if (!/^[0-9-]+$/.test(data.phone)) {
+        newErrors.phone = 'only digits & dashes allowed'
+      } else {
+        const digitsOnly = data.phone.replace(/-/g, '')
+        if (digitsOnly.length < 10) {
+          newErrors.phone = 'must have at least 10 digits'
+        }
+      }
+    }
+
+    // 4) Resume required & must not exceed 5 MB
+    if (!data.resume) {
+      newErrors.resume = 'Required *'
+    } else {
+      // Check size if we have a File object
+      if (data.resume.size > 5 * 1024 * 1024) {
+        newErrors.resume = 'File too large. Max 5MB'
+      }
+    }
+
+    // Cover letter is optional, no validation
+
+    return newErrors
+  }
+
+  // =========================
+  // SUBMIT HANDLER
+  // =========================
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log(formData)
-    onClose()
+    setErrors({})
+
+    // Validate fields
+    const validationErrors = validateForm(formData)
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors)
+      return
+    }
+
+    // Build form for POST
+    const data = new FormData()
+    data.append('name', formData.name)
+    data.append('email', formData.email)
+    data.append('phone', formData.phone)
+    data.append('position', formData.position)
+    if (formData.coverLetter) {
+      data.append('coverLetter', formData.coverLetter)
+    }
+    data.append('resume', formData.resume) // guaranteed to exist now
+
+    // Attempt fetch
+    try {
+      const response = await fetch('/api/careers', {
+        method: 'POST',
+        body: data,
+      })
+
+      if (response.ok) {
+        showNotification?.({
+          type: 'success',
+          title: 'Application submitted!',
+          message: 'Thanks for applying at Neutron Controls!',
+        })
+
+        // Reset form
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          position: defaultPosition,
+          coverLetter: null,
+          resume: null,
+        })
+
+        // Close modal
+        onClose()
+      } else {
+        showNotification?.({
+          type: 'error',
+          title: 'Submission failed',
+          message: 'Please try again later.',
+        })
+      }
+    } catch (error) {
+      console.error('Submission error:', error)
+      showNotification?.({
+        type: 'error',
+        title: 'Submission failed',
+        message: 'An unexpected error occurred. Please try again.',
+      })
+    }
   }
 
   return (
@@ -66,8 +178,10 @@ export default function ApplyModal({ isOpen, onClose }) {
                 type="text"
                 value={formData.name}
                 onChange={handleChange}
-                required
-                className="mt-1 block w-full border border-gray-300 rounded-md p-2"
+                placeholder={errors.name === 'Required *' ? 'Required *' : ''}
+                className={`mt-1 block w-full border rounded-md p-2 ${
+                  errors.name ? 'border-red-500 placeholder:text-red-400' : ''
+                }`}
               />
             </div>
 
@@ -78,6 +192,9 @@ export default function ApplyModal({ isOpen, onClose }) {
                 className="block text-sm font-medium text-gray-700 md:text-base"
               >
                 Email
+                {errors.email && errors.email !== 'Required *' && (
+                  <span className="ml-2 text-red-400">({errors.email})</span>
+                )}
               </label>
               <input
                 id="email"
@@ -85,8 +202,10 @@ export default function ApplyModal({ isOpen, onClose }) {
                 type="email"
                 value={formData.email}
                 onChange={handleChange}
-                required
-                className="mt-1 block w-full border border-gray-300 rounded-md p-2"
+                placeholder={errors.email === 'Required *' ? 'Required *' : ''}
+                className={`mt-1 block w-full border rounded-md p-2 ${
+                  errors.email ? 'border-red-500 placeholder:text-red-400' : ''
+                }`}
               />
             </div>
 
@@ -97,6 +216,9 @@ export default function ApplyModal({ isOpen, onClose }) {
                 className="block text-sm font-medium text-gray-700 md:text-base"
               >
                 Phone Number
+                {errors.phone && errors.phone !== 'Required *' && (
+                  <span className="ml-2 text-red-400">({errors.phone})</span>
+                )}
               </label>
               <input
                 id="phone"
@@ -104,8 +226,10 @@ export default function ApplyModal({ isOpen, onClose }) {
                 type="tel"
                 value={formData.phone}
                 onChange={handleChange}
-                required
-                className="mt-1 block w-full border border-gray-300 rounded-md p-2"
+                placeholder={errors.phone === 'Required *' ? 'Required *' : ''}
+                className={`mt-1 block w-full border rounded-md p-2 ${
+                  errors.phone ? 'border-red-500 placeholder:text-red-400' : ''
+                }`}
               />
             </div>
 
@@ -131,12 +255,14 @@ export default function ApplyModal({ isOpen, onClose }) {
                   </option>
                 ))}
               </select>
-              <div className="mt-2 text-sm text-gray-600 md:text-base md:pb-4">
-                {selectedJob?.description}
-              </div>
+              {selectedJob?.description && (
+                <div className="mt-2 text-sm text-gray-600 md:text-base md:pb-4">
+                  {selectedJob.description}
+                </div>
+              )}
             </div>
 
-            {/* Cover Letter */}
+            {/* Cover Letter (Optional) */}
             <div>
               <label
                 htmlFor="coverLetter"
@@ -149,19 +275,20 @@ export default function ApplyModal({ isOpen, onClose }) {
                 name="coverLetter"
                 accept=".pdf,.doc,.docx"
                 onChange={handleChange}
-                fileName={
-                  formData.coverLetter ? formData.coverLetter.name : ''
-                }
+                fileName={formData.coverLetter ? formData.coverLetter.name : ''}
               />
             </div>
 
-            {/* Resume */}
+            {/* Resume (Required, max 5MB) */}
             <div>
               <label
                 htmlFor="resume"
                 className="block text-sm font-medium text-gray-700 md:text-base"
               >
                 Upload Resume
+                {errors.resume && (
+                  <span className="ml-2 text-red-400">({errors.resume})</span>
+                )}
               </label>
               <FileInput
                 id="resume"
@@ -177,13 +304,13 @@ export default function ApplyModal({ isOpen, onClose }) {
               <button
                 type="button"
                 onClick={onClose}
-                className="rounded-md text-sm px-4 py-2 text-black/70 font-semibold hover:bg-gray-100 md:text-base"
+                className="uppercase rounded-md text-sm px-4 py-2 text-black/70 font-semibold hover:bg-gray-100 md:text-base"
               >
                 Cancel
               </button>
               <button
                 type="submit"
-                className="rounded-md bg-[#425ACA] px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 md:text-base"
+                className="rounded-md uppercase bg-[#425ACA] px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 md:text-base"
               >
                 Submit <span aria-hidden="true">&rarr;</span>
               </button>

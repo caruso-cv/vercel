@@ -17,12 +17,12 @@ const pinnedSections = [
     id: "get-started",
     sectionClasses:
     "lg:sticky top-[80px] lg:h-[calc(100vh-80px)] bg-white text-black z-20 flex flex-col-reverse lg:flex-row-reverse items-center justify-center lg:rounded-4xl lg:mx-4 py-20 xl:py-0 2xl:px-[90px] 3xl:px-40",
-    containerClasses: "lg:w-2/3 text-left px-12 pt-12 lg:pt-0",
+    containerClasses: "lg:w-2/3 text-left px-8 pt-12 lg:pt-0",
     topNote: {
       className:
         "",
     },
-    logo: <Energate className="h-16 sm:h-24 3xl:h-36 md:mb-1" />,
+    logo: <Energate className="h-14 sm:h-24 3xl:h-36 md:mb-1" />,
     heading: (
       <>
         <span className="hidden sm:inline">
@@ -59,12 +59,12 @@ const pinnedSections = [
     id: "gray-layer",
     sectionClasses:
     "lg:sticky top-[96px] lg:h-[calc(100vh-112px)] bg-gray-100 text-black z-30 flex flex-col-reverse lg:flex-row items-center justify-center lg:rounded-4xl lg:mx-8 py-20 xl:py-0 lg:mb-4 2xl:px-[90px] 3xl:px-40",
-    containerClasses: "lg:w-1/2 text-left px-12 pt-12 lg:pt-0",
+    containerClasses: "lg:w-1/2 text-left px-8 pt-12 lg:pt-0",
     topNote: {
       className:
         "text-[#E00000] font-bold lg:text-[14px] text-[.75rem] tracking-[6px] mb-6 3xl:text-lg",
     },
-    logo: <Equ8ter className="h-16 sm:h-24 3xl:h-36 md:mb-1" />,
+    logo: <Equ8ter className="h-14 sm:h-24 3xl:h-36 md:mb-1" />,
     heading: (
       <>
         <span className="hidden sm:inline">
@@ -101,12 +101,12 @@ const pinnedSections = [
     id: "white-layer-2",
     sectionClasses:
     "lg:sticky top-[112px] lg:h-[calc(100vh-144px)] bg-[#E2E2E2] text-black z-40 flex flex-col-reverse lg:flex-row-reverse items-center justify-center lg:rounded-4xl lg:mx-12 py-20 xl:py-0 lg:mb-8 2xl:px-[90px] 3xl:px-40",
-    containerClasses: "lg:w-2/3 text-left px-12 pt-12 lg:pt-0",
+    containerClasses: "lg:w-2/3 text-left px-8 pt-12 lg:pt-0",
     topNote: {
       className:
         "",
     },
-    logo: <Elev8tr className="h-16 sm:h-24 3xl:h-36 md:mb-1" />,
+    logo: <Elev8tr className="h-14 sm:h-24 3xl:h-36 md:mb-1" />,
     heading: (
       <>
         <span className="hidden sm:inline">
@@ -145,21 +145,21 @@ export default function VerticalSlider() {
           ----------------------- */}
       <section
         className="
-          lg:sticky 
+          
           lg:h-[50vh] 
           top-0 
           text-white 
           z-10 
-          flex 
           items-center 
           justify-center 
           lg:rounded-t-4xl 
           lg:py-24 
           py-12
+          hidden lg:flex
         "
       >
         <div className="max-w-4xl p-8 text-center 3xl:max-w-5xl">
-          <h2 className="lg:text-[2.5rem] text-3xl font-semibold mb-10 3xl:mb-14 3xl:text-[3.4rem] leading-[1.2]">
+          <h2 className="lg:text-[2.5rem] text-3xl font-semibold mb-10 3xl:mb-10 3xl:text-[2.8rem] leading-[1.2]">
             ADVANCED DEVELOPMENT SOLUTIONS
           </h2>
           <p className="lg:text-2xl text-xl text-left mb-10 3xl:text-3xl">
@@ -245,7 +245,7 @@ export default function VerticalSlider() {
                     text-[1rem]
                     sm:text-lg
                     3xl:text-lg
-                    font-medium 
+                    font-semibold 
                     leading-[16px]
                     tracking-[0.2px]
                     whitespace-nowrap
@@ -261,6 +261,7 @@ export default function VerticalSlider() {
                     opacity-90
                     hover:opacity-100
                     text-white
+                    uppercase
                   "
                 >
                   <span>{item.link.label}</span>

@@ -41,7 +41,7 @@ export default function MainNav({ isOpen, setIsOpen, secondaryNavReady }) {
   const [navHeight, setNavHeight] = useState(DESKTOP_NAV_HEIGHT);
   const [isMobile, setIsMobile] = useState(false);
 
-  // Get the current pathname for potential future logic
+  // NEW: Get the current pathname and determine if we're on a solutions page
   const pathname = usePathname();
   const isSolutionsPage = pathname.startsWith("/solutions");
 
@@ -99,9 +99,6 @@ export default function MainNav({ isOpen, setIsOpen, secondaryNavReady }) {
     };
   }, [isOpen, setIsOpen]);
 
-  // Define your desktop background (matching the footer)
-  const desktopBackground = "linear-gradient(to bottom, #07080a, rgba(0,0,0,0.7))";
-
   return (
     <>
       {/* Minimal nav (desktop only) once user scrolls past main nav */}
@@ -109,7 +106,7 @@ export default function MainNav({ isOpen, setIsOpen, secondaryNavReady }) {
 
       <header
         ref={navRef}
-        className="fixed lg:absolute top-0 left-0 w-full z-50 lg:px-0 lg:pt-0"
+        className="fixed lg:absolute top-0 left-0 w-full z-50 lg:px-4 lg:pt-4"
         suppressHydrationWarning
       >
         {/* Overlay behind the nav if mobile menu is open */}
@@ -132,47 +129,42 @@ export default function MainNav({ isOpen, setIsOpen, secondaryNavReady }) {
           initial={{
             opacity: 0,
             height: navHeight,
-            // If it's mobile, use the mobile gradient;
-            // otherwise, if on solutions page => solid black,
-            // else the flipped gradient
             background: isMobile
-            ? "linear-gradient(to top, #0f0e0e, #0f0e0e)"
-            : isSolutionsPage
-            ? "linear-gradient(to bottom, #0f0e0e, #0f0e0e)"
-            : desktopBackground,
-          boxShadow: "0 4px 4px rgba(0,0,0,0.25)",
-        }}
-        animate={{
-          opacity: 1,
-          height: isOpen ? navHeight + dropdownExtraHeight : navHeight,
-          background: isMobile
-            ? isOpen
-              ? "linear-gradient(to top, #ffffff, #ffffff)"
-              : "linear-gradient(to top, #0f0e0e, #0f0e0e)"
-            : isOpen
-            ? isSolutionsPage
-              ? "linear-gradient(to bottom, #ffffff, #ffffff)"
-              : "linear-gradient(to bottom, rgba(255,255,255,0.8), rgba(255,255,255,0.9))"
-            : isSolutionsPage
-            ? "linear-gradient(to bottom, #0f0e0e, #0f0e0e)"
-            : desktopBackground,
-          boxShadow: isOpen
-            ? "0 8px 20px rgba(0,0,0,0.3)"
-            : "0 4px 4px rgba(0,0,0,0.25)",
-        }}
+              ? "linear-gradient(to top, #0f0e0e, #0f0e0e)"
+              : isSolutionsPage
+              ? "linear-gradient(to top, #0f0e0e, #0f0e0e)" // desktop solutions pages: opaque background
+              : "linear-gradient(to top, #0f0e0e, rgba(0,0,0,0.7))",
+            boxShadow: "0 4px 4px rgba(0,0,0,0.25)",
+          }}
+          animate={{
+            opacity: secondaryNavReady ? 1 : 0,
+            height: isOpen ? navHeight + dropdownExtraHeight : navHeight,
+            background: isMobile
+              ? isOpen
+                ? "linear-gradient(to top, #ffffff, #ffffff)"
+                : "linear-gradient(to top, #0f0e0e, #0f0e0e)"
+              : isOpen
+              ? isSolutionsPage
+                ? "linear-gradient(to top, #ffffff, #ffffff)" // even when open, opaque for solutions pages
+                : "linear-gradient(to top, rgba(255,255,255,0.8), rgba(255,255,255,0.9))"
+              : isSolutionsPage
+              ? "linear-gradient(to top, #0f0e0e, #0f0e0e)" // default opaque on solutions pages
+              : "linear-gradient(to top, #0f0e0e, rgba(0,0,0,0.7))",
+            boxShadow: isOpen
+              ? "0 8px 20px rgba(0,0,0,0.3)"
+              : "0 4px 4px rgba(0,0,0,0.25)",
+          }}
           transition={{ duration: 0.3, ease: "easeOut" }}
           className="
             backdrop-blur-[2000px]
-             
-            w-full 
-            py-6 
+            lg:rounded-xl lg:rounded-b-none lg:rounded-t-lg 
+            max-w-8xl mx-auto py-6 px-3.5 
             flex flex-col 
             relative z-50 
             border-[#181818] border-t border-x
           "
           style={{ willChange: "transform, opacity" }}
         >
-          <div className="mx-auto max-w-8xl w-full px-6">
           {/* Top Navigation Row */}
           <div className="flex items-center relative">
             {/* LOGO */}
@@ -180,7 +172,7 @@ export default function MainNav({ isOpen, setIsOpen, secondaryNavReady }) {
               <motion.div
                 className="
                   w-44
-                  absolute -top-3 left-0
+                  absolute -top-4 left-1
                   lg:static lg:top-auto lg:left-auto
                 "
                 animate={{ color: isOpen ? "#000" : "#fff", opacity: [0, 1] }}
@@ -245,7 +237,6 @@ export default function MainNav({ isOpen, setIsOpen, secondaryNavReady }) {
                 </motion.svg>
               </motion.button>
             </div>
-          </div>
           </div>
 
           {/* Dropdown Content (mobile) */}

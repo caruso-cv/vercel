@@ -22,6 +22,7 @@ module.exports = {
         "2md": "820px",
         '3md': '992px',
         '4md': '1078px',
+        '5md':"1650px",
         "3xl": "2000px",
         "4xl": "2700px",
         "5xl": "3500px",
