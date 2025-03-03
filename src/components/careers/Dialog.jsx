@@ -5,16 +5,6 @@ import * as Headless from '@headlessui/react'
 import clsx from 'clsx'
 import { motion, AnimatePresence } from 'framer-motion'
 
-/* 
-  1) Make sure you have installed these:
-       npm install @headlessui/react framer-motion clsx
-  2) Place this file wherever you like (e.g. app/components/Dialog.jsx)
-     and import from a parent component to show <CareersDialog open={true} ... />
-*/
-
-/**
- * Optional size presets for different modal widths
- */
 const sizes = {
   xs: 'sm:max-w-xs',
   sm: 'sm:max-w-sm',

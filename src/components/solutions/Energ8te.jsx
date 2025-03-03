@@ -16,242 +16,71 @@ import { MoveLeft } from "lucide-react";
 function SpecificationsView({ containerHeight, onClose }) {
   return (
     <motion.div
-      key="specs"
-      initial={{ opacity: 0, x: 50 }}
-      animate={{ opacity: 1, x: 0 }}
-      exit={{ opacity: 0, x: 50 }}
-      transition={{ duration: 0.4, ease: "easeInOut" }}
-      style={{ minHeight: containerHeight || "auto" }}
-      className="relative w-full pt-36"
-    >
-      <div
-        className="
-          max-w-8xl 
-          w-full 
-          mx-auto 
-          text-black 
-          px-4 
-          sm:px-6 
-          lg:px-8 
-          xs:pt-6 
-          md:pt-20 
-          lg:pt-24 
-          pb-28
-          /* 2xl overrides (instead of 3xl) */
-
-          2xl:text-left
-          2xl:px-12
-
-          2xl:pt-20
-        "
+  key="specs"
+  initial={{ opacity: 0, x: 50 }}
+  animate={{ opacity: 1, x: 0 }}
+  exit={{ opacity: 0, x: 50 }}
+  transition={{ duration: 0.4, ease: "easeInOut" }}
+  style={{ minHeight: containerHeight || "auto" }}
+  className="relative w-full pt-36"
+>
+  <div className="max-w-8xl w-full mx-auto text-black px-4 sm:px-6 lg:px-8 xs:pt-6 md:pt-20 lg:pt-24 pb-28 2xl:text-left 2xl:pt-28">
+    {/* Header Row: FEATURES + Back */}
+    <div className="flex justify-between items-center">
+      <h2 className="text-[2.3rem] sm:text-5xl font-bold mb-11 xl:mb-16">
+        FEATURES
+      </h2>
+      <button
+        onClick={onClose}
+        className="rounded-md text-black uppercase font-bold bg-gray-100 hover:bg-gray-200 py-2 px-4 mb-11 sm:mb-9 xl:mb-16"
       >
-        {/* Header Row: FEATURES + Back */}
-        <div className="flex justify-between items-center">
-          <h2
-            className="
-              text-[2.3rem] 
-              sm:text-5xl 
-              font-bold 
-              mb-10 
-              2xl:mb-16
-            "
-          >
-            FEATURES
-          </h2>
-          <button
-            onClick={onClose}
-            className="
-              rounded-md 
-              text-black 
-              uppercase 
-              font-bold 
-              bg-gray-100 
-              hover:bg-gray-200 
-              py-2 
-              px-4 
-              mb-11 
-              sm:mb-9 
-              xl:mb-4
-            "
-          >
-            <MoveLeft className="w-6 h-6 text-gray-500 inline-flex mr-1 md:mr-3" />
-            <span className="hidden xs:inline">Back </span>
-            <span className="hidden md:inline">to product</span>
-          </button>
-        </div>
+        <MoveLeft className="w-6 h-6 text-gray-500 inline-flex mr-1 md:mr-3" />
+        <span className="hidden xs:inline">Back </span>
+        <span className="hidden md:inline">to product</span>
+      </button>
+    </div>
 
-        {/* Main container: keep border for sub-2xl, remove it at 2xl */}
-        <div
-          className="
-            border-2 
-            border-[#016DFF] 
-            rounded-md 
-            overflow-hidden 
-            2xl:border-none
-          "
-        >
-          {/* Use original grid for sub-2xl, switch to block at 2xl */}
-          <div
-            className="
-              grid 
-              grid-cols-1 
-              md:grid-cols-[240px_minmax(0,1fr)]
-              2xl:grid-cols-1
-              2xl:block
-            "
-          >
-            {/* 1) ADVANCED CHARGING AND DISCHARGING CONTROL */}
-            <div
-              className="
-                p-4 
-                lg:p-6 
-                pb-0 
-                md:pb-4 
-                md:border-b 
-                border-[#016DFF] 
-                font-semibold 
-                xs:text-xl 
-                lg:text-[1.4rem] 
-                2xl:text-4xl
-                2xl:pb-4
-                2xl:px-0
-                2xl:border-none
-              "
-            >
-              ADVANCED CHARGING AND DISCHARGING CONTROL
-            </div>
-            <div
-              className="
-                p-4 
-                lg:p-6 
-                border-b 
-                border-[#016DFF] 
-                md:border-l 
-                md:border-[#016DFF] 
-                xs:text-lg 
-                lg:text-2xl 
-                font-geist 
-                text-black/70 
-                2xl:text-black
-                2xl:font-sans
-                2xl:text-[1.75rem]
-                2xl:leading-[2.5rem]
-                2xl:mb-4
-                2xl:pb-6
-                2xl:border-none
-                2xl:p-0
-              "
-            >
-              <p>
-                ENERG8TE™ manages charging and discharging cycles with precision,
-                ensuring optimal battery performance and extended lifespan, and
-                crucial for extending lifespan and maximizing your energy
-                storage investment.
-              </p>
-            </div>
-
-            {/* 2) GRID INTERACTION AND COMPLIANCE */}
-            <div
-              className="
-                p-4 
-                lg:p-6 
-                pb-0 
-                md:pb-4 
-                md:border-b 
-                border-[#016DFF] 
-                font-semibold 
-                xs:text-xl 
-                lg:text-[1.4rem] 
-                2xl:text-4xl
-                2xl:pb-4
-                2xl:px-0
-                2xl:border-none
-              "
-            >
-              GRID INTERACTION AND COMPLIANCE
-            </div>
-            <div
-              className="
-                p-4 
-                lg:p-6 
-                border-b 
-                border-[#016DFF] 
-                md:border-l 
-                md:border-[#016DFF] 
-                xs:text-lg 
-                lg:text-2xl 
-                font-geist 
-                text-black/70 
-                2xl:text-black
-                2xl:font-sans
-                2xl:text-[1.75rem]
-                2xl:leading-[2.5rem]
-                2xl:mb-4
-                2xl:pb-6
-                2xl:border-none
-                2xl:p-0
-              "
-            >
-              <p>
-                ENERG8TE™ includes advanced grid management features like peak
-                shaving, time-of-use management, and reactive power control.
-                These features ensure that your energy storage system complies
-                with local regulations and optimizes energy costs.
-              </p>
-            </div>
-
-            {/* 3) ADVANCED CHARGING AND DISCHARGING CONTROL */}
-            <div
-              className="
-                p-4 
-                lg:p-6 
-                pb-0 
-                md:pb-4 
-                md:border-b 
-                border-[#016DFF] 
-                font-semibold 
-                xs:text-xl 
-                lg:text-[1.4rem] 
-                2xl:text-4xl
-                2xl:pb-4
-                2xl:px-0
-                2xl:border-none
-              "
-            >
-              ADVANCED CHARGING AND DISCHARGING CONTROL
-            </div>
-            <div
-              className="
-                p-4 
-                lg:p-6 
-                border-b 
-                border-[#016DFF] 
-                md:border-l 
-                md:border-[#016DFF] 
-                xs:text-lg 
-                lg:text-2xl 
-                font-geist 
-                text-black/70 
-                2xl:text-black
-                2xl:font-sans
-                2xl:text-[1.75rem]
-                2xl:leading-[2.5rem]
-                2xl:mb-4
-                2xl:pb-6
-                2xl:border-none
-                2xl:p-0
-              "
-            >
-              <p>
-                Easily integrate with various energy sources, including solar,
-                wind, and grid power, making ENERG8TE™ adaptable for both
-                small-scale installations and large industrial applications.
-              </p>
-            </div>
-          </div>
-        </div>
+    {/* Features: Block Layout */}
+    <div className="space-y-10">
+      {/* Feature 1 */}
+      <div>
+        <h3 className="text-2xl md:text-3xl 2xl:text-4xl font-bold mb-4">
+          ADVANCED CHARGING AND DISCHARGING CONTROL
+        </h3>
+        <p className="text-[1.25rem] md:text-[1.5rem] 2xl:text-[1.75rem] leading-[2rem] md:leading-[2.25rem] 2xl:leading-[2.5rem] max-w-5xl 2xl:max-w-none">
+          ENERG8TE™ manages charging and discharging cycles with precision,
+          ensuring optimal battery performance and an extended lifespan. This is
+          crucial for maximizing your energy storage investment.
+        </p>
       </div>
-    </motion.div>
+
+      {/* Feature 2 */}
+      <div>
+        <h3 className="text-2xl md:text-3xl 2xl:text-4xl font-bold mb-4">
+          GRID INTERACTION AND COMPLIANCE
+        </h3>
+        <p className="text-[1.25rem] md:text-[1.5rem] 2xl:text-[1.75rem] leading-[2rem] md:leading-[2.25rem] 2xl:leading-[2.5rem] max-w-5xl 2xl:max-w-none">
+          ENERG8TE™ includes advanced grid management features like peak shaving,
+          time-of-use management, and reactive power control. These features
+          ensure your energy storage system complies with local regulations while
+          optimizing energy costs.
+        </p>
+      </div>
+
+      {/* Feature 3 */}
+      <div>
+        <h3 className="text-2xl md:text-3xl 2xl:text-4xl font-bold mb-4">
+          ADVANCED CHARGING AND DISCHARGING CONTROL
+        </h3>
+        <p className="text-[1.25rem] md:text-[1.5rem] 2xl:text-[1.75rem] leading-[2rem] md:leading-[2.25rem] 2xl:leading-[2.5rem] max-w-5xl 2xl:max-w-none">
+          Easily integrate with various energy sources, including solar, wind,
+          and grid power, making ENERG8TE™ adaptable for both small-scale installations
+          and large industrial applications.
+        </p>
+      </div>
+    </div>
+  </div>
+</motion.div>
   );
 }
 
@@ -298,7 +127,7 @@ function MainView({ onShowSpecs }) {
             alt="BMS Controls for energy storage"
             width={1916}
             height={1145}
-            className="w-full xs:max-w-full h-auto"
+            className="w-full xs:max-w-6xl h-auto"
           />
         </div>
         <div className="xl:max-w-[50vw] mx-auto xl:w-1/2 text-left xs:px-2 lg:px-8">

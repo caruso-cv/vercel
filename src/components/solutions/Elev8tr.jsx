@@ -117,7 +117,7 @@ function MainView({ onShowSpecs }) {
             alt="Battery Algorithm Simulator"
             width={1916}
             height={1145}
-            className="w-full xs:max-w-full h-auto"
+            className="w-full xs:max-w-6xl h-auto"
           />
         </div>
         <div className="xl:max-w-[50vw] mx-auto xl:w-1/2 text-left xs:px-2 lg:px-8">
