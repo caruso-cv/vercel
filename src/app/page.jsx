@@ -8,6 +8,7 @@ import InfineonSection from '@/components/services/InfineonSection';
 import MobileHero from '@/components/MobileHero';
 
 
+
 export default function Home() {
   return (
     <div>
@@ -24,6 +25,7 @@ export default function Home() {
           </div>
           <DigitalBackground />
           <NoiseOverlay />
+
         </div>
         <div>
           <VerticalSlider/>

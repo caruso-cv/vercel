@@ -6,6 +6,7 @@ import localFont from 'next/font/local'
 import Nav from '@/components/nav/Nav'
 import BackgroundHero from '@/components/BackgroundHero'
 import Footer from '@/components/Footer'
+import CookieBanner from '../components/CookieBanner';
 
 const montserrat = Montserrat({
   subsets: ['latin'],
@@ -41,6 +42,7 @@ export default function RootLayout({ children }) {
           <div className="bg-[#090A0B]">
             <Nav/>
             <BackgroundHero/>
+            <CookieBanner />
           </div>
             {children}
           <Footer/>
