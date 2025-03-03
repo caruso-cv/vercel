@@ -24,12 +24,16 @@ const cards = [
 
 export default function Example() {
   return (
-    <div className="relative isolate overflow-hidden bg-[#090A0B] py-40 sm:py-72 z-30">
+    <div className="relative isolate overflow-hidden bg-[#090A0B] py-40 lg:pt-72 z-30">
       <img
         alt=""
         src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=focalpoint&fp-y=.8&w=2830&h=1500&q=80&blend=111827&sat=-100&exp=15&blend-mode=multiply"
         className="absolute inset-0 -z-10 size-full object-cover object-right md:object-center"
       />
+      {/* Gradient overlay at the bottom */}
+      <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-gray-900 to-transparent pointer-events-none z-0" />
+
+      {/* Existing gradient shapes */}
       <div className="hidden sm:absolute sm:-top-10 sm:right-1/2 sm:-z-10 sm:mr-10 sm:block sm:transform-gpu sm:blur-3xl">
         <div
           style={{
@@ -48,11 +52,11 @@ export default function Example() {
           className="aspect-[1097/845] w-[68.5625rem] bg-gradient-to-tr from-[#4652ff] to-[#776fff] opacity-20"
         />
       </div>
-      <div className="mx-auto max-w-8xl px-6 lg:px-8">
+      <div className="mx-auto max-w-8xl px-6 lg:px-6">
         <div className="mx-auto max-w-3xl lg:mx-0">
-          <h2 className="text-5xl font-bold text-white sm:text-6xl uppercase">Our Story</h2>
+          <h1 className="text-5xl font-bold text-white sm:text-6xl uppercase">Our Story</h1>
           <p className="mt-8 text-pretty text-xl font-medium text-gray-300 sm:text-2xl/8">
-          Neutron Controls traces its roots back to our proud Canadian heritage and a deep understanding of the semiconductor industry.
+            Neutron Controls traces its roots back to our proud Canadian heritage and a deep understanding of the semiconductor industry.
           </p>
         </div>
         <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-6 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3 lg:gap-8">
@@ -60,7 +64,7 @@ export default function Example() {
             <div key={card.name} className="flex gap-x-4 rounded-xl bg-white/5 p-6 ring-1 ring-inset ring-white/10">
               <card.icon aria-hidden="true" className="h-7 w-5 flex-none text-indigo-400" />
               <div className="text-xl ">
-                <h3 className="font-semibold text-white">{card.name}</h3>
+                <p className="font-semibold text-white">{card.name}</p>
                 <p className="mt-6 text-gray-300">{card.description}</p>
               </div>
             </div>

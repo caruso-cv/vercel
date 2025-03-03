@@ -15,9 +15,9 @@ export default function BackgroundFooter() {
       <Image
         src="/bg/bg.webp"
         alt="neutron red background"
-        fill
         className="object-cover"
-        sizes="800px"
+        width={1600 }
+        height={1600}
       />
     </div>
   );

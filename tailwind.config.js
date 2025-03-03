@@ -14,6 +14,7 @@ module.exports = {
         "xs": "400px",
         "2xs": "375px",
         "3xs": "390px",
+        "4xs": "350px",
         "3.5xs":"420px",
         "4xs": "430px",
         "4sm": "490px",

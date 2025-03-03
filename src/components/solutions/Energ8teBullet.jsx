@@ -30,7 +30,7 @@ export default function InfineonSections() {
               </div>
               <div className="py-8">
                 <Future className="w-[72px] h-auto mb-8" />
-                <p className="text-white uppercase text-[2rem] 3xl:text-[2.8rem] font-bold leading-[1.2] my-3 max-w-[28rem] text-balance">
+                <p className="text-white uppercase text-[2rem] 3xl:text-[2.8rem] font-bold leading-[1.2] my-3 max-w-[17rem] text-balance">
                 Future-proof design
                 </p>
                 <p className="text-white/60  max-w-sm text-xl 3xl:text-2xl">

@@ -33,7 +33,7 @@ return (
           
           {/* LOCATIONS Column */}
           <div>
-            <h3 className="text-sm uppercase tracking-[7px] font-semibold mb-3 text-white lg:text-base">
+            <h3 className="text-xs 4xs:text-sm uppercase tracking-[7px] font-semibold mb-3 text-white lg:text-base">
               Ottawa
             </h3>
             <p className="mb-6 leading-[1.8] text-white/60 lg:text-lg">
@@ -41,7 +41,7 @@ return (
               Kanata, Ontario, K2K 3G8<br />
               Canada
             </p>
-            <h3 className="text-sm uppercase tracking-[7px] font-semibold mb-3 text-white lg:text-base">
+            <h3 className="text-xs 4xs:text-sm uppercase tracking-[7px] font-semibold mb-3 text-white lg:text-base">
               Toronto
             </h3>
             <p className="mb-6 leading-[1.8] text-white/60 lg:text-lg">
@@ -53,23 +53,23 @@ return (
 
           {/* SOLUTIONS Column */}
           <div>
-            <h3 className="text-sm uppercase tracking-[7px] font-semibold mb-4 text-white lg:text-base">
+            <h3 className=" text-xs 4xs:text-sm uppercase tracking-[7px] font-semibold mb-4 text-white lg:text-base">
               Solutions
             </h3>
             <div>
             <Link href="/solutions/ecu8tr">
                 <Equ8ter
-                  className="h-8 opacity-60 hover:opacity-100 cursor-pointer transition-all duration-50 ease-in-out mb-2 lg:h-10"
+                  className="4xs:h-8 opacity-60 hover:opacity-100 cursor-pointer transition-all duration-50 ease-in-out mb-2 lg:h-10"
                 />
               </Link>
               <Link href="/solutions/elev8tr">
                 <Elev8tr
-                  className="h-8 opacity-60 hover:opacity-100 cursor-pointer transition-all duration-50 ease-in-out mb-2 lg:h-10"
+                  className="4xs:h-8 opacity-60 hover:opacity-100 cursor-pointer transition-all duration-50 ease-in-out mb-2 lg:h-10"
                 />
               </Link>
               <Link href="/solutions/energ8te">
                 <Energate
-                  className="h-8 opacity-60 hover:opacity-100 cursor-pointer transition-all duration-50 ease-in-out lg:h-10"
+                  className="4xs:h-8 opacity-60 hover:opacity-100 cursor-pointer transition-all duration-50 ease-in-out lg:h-10"
                 />
               </Link>
             </div>
@@ -77,7 +77,7 @@ return (
 
           {/* COMPANY Column */}
           <div>
-            <h3 className="text-sm uppercase tracking-[7px] font-semibold mb-3 lg:text-base">
+            <h3 className="text-xs 4xs:text-sm uppercase tracking-[7px] font-semibold mb-3 lg:text-base">
               Company
             </h3>
             <ul className="space-y-[2px] leading-relaxed text-white/60 lg:text-lg lg:space-y-[4px]">
