@@ -1,5 +1,5 @@
 
-import InfineonSection from '@/components/services/InfineonSection';
+import InfineonSection from '@/components/solutions/Energ8teBullet';
 import Elev8tr from "@/components/solutions/Energ8te";
 
 export default function Home() {

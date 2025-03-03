@@ -1,4 +1,4 @@
-import InfineonSection from '@/components/services/InfineonSection';
+import InfineonSection from '@/components/solutions/Ecu8trBullet';
 import Ecu8tr from "@/components/solutions/Ecu8tr"; 
 
 export default function Home() {

@@ -45,7 +45,7 @@ const pinnedSections = [
       "Flexible Integration",
     ],
     link: {
-      href: "/solutions/ecu8tr",
+      href: "/solutions/energ8te",
       label: "Find out more",
     },
     image: {
@@ -87,7 +87,7 @@ const pinnedSections = [
       "Quality Management",
     ],
     link: {
-      href: "/solutions/energ8te",
+      href: "/solutions/ecu8tr",
       label: "Find out more",
     },
     image: {
