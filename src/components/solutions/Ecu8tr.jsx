@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import DigitalBackground from "@/components/DigitalBackground";
 import NoiseOverlay from "@/components/NoiseOverlay";
@@ -13,7 +13,7 @@ import { MoveLeft } from "lucide-react";
 /* -------------------------------------------
    1) SPECIFICATIONS SECTION 
 ------------------------------------------- */
-function SpecificationsView({ containerHeight, onClose }) {
+function SpecificationsView({ onClose }) {
   return (
     <motion.div
       key="specs"
@@ -21,11 +21,9 @@ function SpecificationsView({ containerHeight, onClose }) {
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: 50 }}
       transition={{ duration: 0.4, ease: "easeInOut" }}
-      // Apply the minHeight based on the parent's measured height
-      style={{ minHeight: containerHeight || "auto" }}
-      className="relative w-full pt-36"
+      className="relative w-full pt-36 min-h-screen"
     >
-      <div className="max-w-8xl w-full mx-auto text-black px-4 sm:px-6 lg:px-8 xs:pt-6 md:pt-20 lg:pt-24 pb-28 ">
+      <div className="max-w-8xl w-full mx-auto text-black px-4 sm:px-6 lg:px-8 xs:pt-6 md:pt-20 lg:pt-24 pb-28">
         <div className="flex justify-between items-center">
           <h2 className="text-2xl xs:text-[1.75rem] sm:text-5xl font-bold mb-10 3xl:text-6xl">
             SPECIFICATIONS
@@ -34,8 +32,8 @@ function SpecificationsView({ containerHeight, onClose }) {
             onClick={onClose}
             className="rounded-md text-black uppercase font-bold bg-gray-100 hover:bg-gray-200 py-2 px-4 mb-11 sm:mb-9 xl:mb-4"
           >
-            <MoveLeft className="w-6 h-6 text-gray-500 inline-flex mr-1 md:mr-3" />{" "}
-            <span className='hidden xs:inline'>Back </span>
+            <MoveLeft className="w-6 h-6 text-gray-500 inline-flex mr-1 md:mr-3" />
+            <span className="hidden xs:inline">Back </span>
             <span className="hidden md:inline">to product</span>
           </button>
         </div>
@@ -96,6 +94,8 @@ function SpecificationsView({ containerHeight, onClose }) {
    2) MAIN CONTENT (the original landing content)
 ------------------------------------------- */
 function MainView({ onShowSpecs }) {
+
+  
   return (
     <motion.div
       key="main"
@@ -105,9 +105,7 @@ function MainView({ onShowSpecs }) {
       transition={{ duration: 0.4, ease: "easeInOut" }}
       className="relative w-full"
     >
-      <div
-        className="h-full text-black flex flex-col xl:flex-row items-center justify-center relative z-30 max-w-8xl 2xl:max-w-[1900px] mx-auto pb-28 md:pb-52 lg:pt-28 xl:pt-64 3xl:pt-72"
-      >
+      <div className="h-full text-black flex flex-col xl:flex-row items-center justify-center relative z-30 max-w-[1900px] mx-auto pb-28 md:pb-52 lg:pt-28 xl:pt-64 3xl:pt-72">
         <div className="flex justify-start mb-6 xl:mb-0 w-full pl-8 lg:pl-14 pt-32 xl:hidden">
           <Elev8tr className="h-[4rem] xs:h-[5rem] sm:h-24 mb-12" />
         </div>
@@ -117,6 +115,8 @@ function MainView({ onShowSpecs }) {
             alt="Emula8tr ESS Controller"
             width={1916}
             height={1145}
+            quality={70}
+            priority
             className="w-full xs:max-w-6xl h-auto"
           />
         </div>
@@ -165,39 +165,21 @@ function MainView({ onShowSpecs }) {
 ------------------------------------------- */
 export default function Example() {
   const [showSpecs, setShowSpecs] = useState(false);
-  const mainRef = useRef(null);
-  const [containerHeight, setContainerHeight] = useState(0);
-
-  // Measure the main view's height on mount
-  useEffect(() => {
-    if (mainRef.current) {
-      setContainerHeight(mainRef.current.offsetHeight);
-    }
-  }, []);
 
   const handleShowSpecs = () => {
     if (window.innerWidth < 1268) {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
     setShowSpecs(true);
   };
 
   return (
-    <div
-      // Ensure the container never shrinks below the measured mainView height
-      style={{ minHeight: containerHeight ? containerHeight : "auto" }}
-      className="relative"
-    >
+    <div className="relative min-h-screen">
       <AnimatePresence mode="wait">
         {showSpecs ? (
-          <SpecificationsView
-            containerHeight={containerHeight}
-            onClose={() => setShowSpecs(false)}
-          />
+          <SpecificationsView onClose={() => setShowSpecs(false)} />
         ) : (
-          <div ref={mainRef}>
-            <MainView onShowSpecs={handleShowSpecs} />
-          </div>
+          <MainView onShowSpecs={handleShowSpecs} />
         )}
       </AnimatePresence>
 

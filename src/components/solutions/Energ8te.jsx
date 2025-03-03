@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import DigitalBackground from "@/components/DigitalBackground";
 import NoiseOverlay from "@/components/NoiseOverlay";
@@ -13,74 +13,73 @@ import { MoveLeft } from "lucide-react";
 /* -------------------------------------------
    1) SPECIFICATIONS SECTION (Now breaks at 2xl)
 ------------------------------------------- */
-function SpecificationsView({ containerHeight, onClose }) {
+function SpecificationsView({ onClose }) {
   return (
     <motion.div
-  key="specs"
-  initial={{ opacity: 0, x: 50 }}
-  animate={{ opacity: 1, x: 0 }}
-  exit={{ opacity: 0, x: 50 }}
-  transition={{ duration: 0.4, ease: "easeInOut" }}
-  style={{ minHeight: containerHeight || "auto" }}
-  className="relative w-full pt-36"
->
-  <div className="max-w-8xl w-full mx-auto text-black px-4 sm:px-6 lg:px-8 xs:pt-6 md:pt-20 lg:pt-24 pb-28 2xl:text-left 2xl:pt-28">
-    {/* Header Row: FEATURES + Back */}
-    <div className="flex justify-between items-center">
-      <h2 className="text-[2.3rem] sm:text-5xl font-bold mb-11 xl:mb-16">
-        FEATURES
-      </h2>
-      <button
-        onClick={onClose}
-        className="rounded-md text-black uppercase font-bold bg-gray-100 hover:bg-gray-200 py-2 px-4 mb-11 sm:mb-9 xl:mb-16"
-      >
-        <MoveLeft className="w-6 h-6 text-gray-500 inline-flex mr-1 md:mr-3" />
-        <span className="hidden xs:inline">Back </span>
-        <span className="hidden md:inline">to product</span>
-      </button>
-    </div>
+      key="specs"
+      initial={{ opacity: 0, x: 50 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: 50 }}
+      transition={{ duration: 0.4, ease: "easeInOut" }}
+      className="relative w-full pt-36 min-h-screen"
+    >
+      <div className="max-w-8xl w-full mx-auto text-black px-4 sm:px-6 lg:px-8 xs:pt-6 md:pt-20 lg:pt-24 pb-28 2xl:text-left 2xl:pt-28">
+        {/* Header Row: FEATURES + Back */}
+        <div className="flex justify-between items-center">
+          <h2 className="text-[2.3rem] sm:text-5xl font-bold mb-11 xl:mb-16">
+            FEATURES
+          </h2>
+          <button
+            onClick={onClose}
+            className="rounded-md text-black uppercase font-bold bg-gray-100 hover:bg-gray-200 py-2 px-4 mb-11 sm:mb-9 xl:mb-16"
+          >
+            <MoveLeft className="w-6 h-6 text-gray-500 inline-flex mr-1 md:mr-3" />
+            <span className="hidden xs:inline">Back </span>
+            <span className="hidden md:inline">to product</span>
+          </button>
+        </div>
 
-    {/* Features: Block Layout */}
-    <div className="space-y-10">
-      {/* Feature 1 */}
-      <div>
-        <h3 className="text-2xl md:text-3xl 2xl:text-4xl font-bold mb-4">
-          ADVANCED CHARGING AND DISCHARGING CONTROL
-        </h3>
-        <p className="text-[1.25rem] md:text-[1.5rem] 2xl:text-[1.75rem] leading-[2rem] md:leading-[2.25rem] 2xl:leading-[2.5rem] max-w-5xl 2xl:max-w-none">
-          ENERG8TE™ manages charging and discharging cycles with precision,
-          ensuring optimal battery performance and an extended lifespan. This is
-          crucial for maximizing your energy storage investment.
-        </p>
-      </div>
+        {/* Features: Block Layout */}
+        <div className="space-y-10">
+          {/* Feature 1 */}
+          <div>
+            <h3 className="text-2xl md:text-3xl 2xl:text-4xl font-bold mb-4">
+              ADVANCED CHARGING AND DISCHARGING CONTROL
+            </h3>
+            <p className="text-[1.25rem] md:text-[1.5rem] 2xl:text-[1.75rem] leading-[2rem] md:leading-[2.25rem] 2xl:leading-[2.5rem] max-w-5xl 2xl:max-w-none">
+              ENERG8TE™ manages charging and discharging cycles with precision,
+              ensuring optimal battery performance and an extended lifespan. This is
+              crucial for maximizing your energy storage investment.
+            </p>
+          </div>
 
-      {/* Feature 2 */}
-      <div>
-        <h3 className="text-2xl md:text-3xl 2xl:text-4xl font-bold mb-4">
-          GRID INTERACTION AND COMPLIANCE
-        </h3>
-        <p className="text-[1.25rem] md:text-[1.5rem] 2xl:text-[1.75rem] leading-[2rem] md:leading-[2.25rem] 2xl:leading-[2.5rem] max-w-5xl 2xl:max-w-none">
-          ENERG8TE™ includes advanced grid management features like peak shaving,
-          time-of-use management, and reactive power control. These features
-          ensure your energy storage system complies with local regulations while
-          optimizing energy costs.
-        </p>
-      </div>
+          {/* Feature 2 */}
+          <div>
+            <h3 className="text-2xl md:text-3xl 2xl:text-4xl font-bold mb-4">
+              GRID INTERACTION AND COMPLIANCE
+            </h3>
+            <p className="text-[1.25rem] md:text-[1.5rem] 2xl:text-[1.75rem] leading-[2rem] md:leading-[2.25rem] 2xl:leading-[2.5rem] max-w-5xl 2xl:max-w-none">
+              ENERG8TE™ includes advanced grid management features like peak shaving,
+              time-of-use management, and reactive power control. These features
+              ensure your energy storage system complies with local regulations while
+              optimizing energy costs.
+            </p>
+          </div>
 
-      {/* Feature 3 */}
-      <div>
-        <h3 className="text-2xl md:text-3xl 2xl:text-4xl font-bold mb-4">
-          ADVANCED CHARGING AND DISCHARGING CONTROL
-        </h3>
-        <p className="text-[1.25rem] md:text-[1.5rem] 2xl:text-[1.75rem] leading-[2rem] md:leading-[2.25rem] 2xl:leading-[2.5rem] max-w-5xl 2xl:max-w-none">
-          Easily integrate with various energy sources, including solar, wind,
-          and grid power, making ENERG8TE™ adaptable for both small-scale installations
-          and large industrial applications.
-        </p>
+          {/* Feature 3 */}
+          <div>
+            <h3 className="text-2xl md:text-3xl 2xl:text-4xl font-bold mb-4">
+              ADVANCED CHARGING AND DISCHARGING CONTROL
+            </h3>
+            <p className="text-[1.25rem] md:text-[1.5rem] 2xl:text-[1.75rem] leading-[2rem] md:leading-[2.25rem] 2xl:leading-[2.5rem] max-w-5xl 2xl:max-w-none">
+              Easily integrate with various energy sources, including solar, wind,
+              and grid power, making ENERG8TE™ adaptable for both small-scale installations
+              and large industrial applications.
+            </p>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</motion.div>
+    </motion.div>
   );
 }
 
@@ -108,8 +107,7 @@ function MainView({ onShowSpecs }) {
           justify-center 
           relative 
           z-30 
-          max-w-8xl 
-          2xl:max-w-[1900px] 
+          max-w-[1900px] 
           mx-auto 
           pb-28 
           md:pb-52 
@@ -128,6 +126,8 @@ function MainView({ onShowSpecs }) {
             width={1916}
             height={1145}
             className="w-full xs:max-w-6xl h-auto"
+            priority
+            quality={70}
           />
         </div>
         <div className="xl:max-w-[50vw] mx-auto xl:w-1/2 text-left xs:px-2 lg:px-8">
@@ -230,42 +230,23 @@ function MainView({ onShowSpecs }) {
 ------------------------------------------- */
 export default function Example() {
   const [showSpecs, setShowSpecs] = useState(false);
-  const mainRef = useRef(null);
-  const [containerHeight, setContainerHeight] = useState(0);
-
-  // Measure the main view's height on mount
-  useEffect(() => {
-    if (mainRef.current) {
-      setContainerHeight(mainRef.current.offsetHeight);
-    }
-  }, []);
 
   const handleShowSpecs = () => {
     if (window.innerWidth < 1268) {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
     setShowSpecs(true);
   };
 
   return (
-    <div
-      // Ensure the container never shrinks below the measured mainView height
-      style={{ minHeight: containerHeight ? containerHeight : "auto" }}
-      className="relative"
-    >
+    <div className="relative min-h-screen">
       <AnimatePresence mode="wait">
         {showSpecs ? (
-          <SpecificationsView
-            containerHeight={containerHeight}
-            onClose={() => setShowSpecs(false)}
-          />
+          <SpecificationsView onClose={() => setShowSpecs(false)} />
         ) : (
-          <div ref={mainRef}>
-            <MainView onShowSpecs={handleShowSpecs} />
-          </div>
+          <MainView onShowSpecs={handleShowSpecs} />
         )}
       </AnimatePresence>
-
       <DigitalBackground />
       <NoiseOverlay />
     </div>

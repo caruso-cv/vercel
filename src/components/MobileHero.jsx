@@ -1,46 +1,23 @@
 'use client'
-import { useEffect, useState } from 'react'
+
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 
 export default function Example() {
-  const [isVisible, setIsVisible] = useState(false)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true)
-            observer.disconnect() 
-          }
-        })
-      },
-      { threshold: 0.1 }
-    )
-
-    const target = document.getElementById('hero-image')
-    if (target) {
-      observer.observe(target)
-    }
-    return () => observer.disconnect()
-  }, [])
-
   return (
     <div className="bg-gray-900 block lg:hidden">
-      <div className="relative isolate overflow-hidden" id="hero-image">
-        {isVisible && (
-          <Image
-            alt="Sunset with solar panels"
-            src="/hero/sunset.webp"
-            fill
-            priority
-            sizes="100vw"
-            quality={70}
-            className="absolute inset-0 -z-20 object-cover object-bottom md:object-center"
-          />
-        )}
+      {/* Adjust container height responsively */}
+      <div className="relative isolate overflow-hidden">
+      <Image
+        alt="Sunset with solar panels"
+        src="/hero/sunset.webp"
+        fill
+        sizes="100vw"
+        quality={70}
+        className="absolute inset-0 -z-20 object-cover object-bottom md:object-center"
+        priority
+      />
         <div
           aria-hidden="true"
           className="absolute inset-x-0 -top-40 -z-20 transform-gpu overflow-hidden blur-3xl"
