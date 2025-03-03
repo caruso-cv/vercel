@@ -46,7 +46,7 @@ export default function Example() {
               <p className="mt-8 text-pretty text-xl font-medium text-gray-100 sm:text-3xl">
                 Advanced BMS controllers for ESS/BESS installations.
               </p>
-              <div className="mt-10 hidden xs:flex items-left justify-start gap-x-6">
+              <div className="mt-10 flex items-left justify-start gap-x-6">
                 <Link
                   passHref
                   href="#get-started"

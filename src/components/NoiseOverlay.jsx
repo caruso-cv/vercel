@@ -3,7 +3,7 @@ import React from "react";
 
 export default function NoiseOverlay() {
   return (
-    <div className="pointer-events-none absolute inset-0 z-0">
+    <div className="pointer-events-none absolute inset-0 z-0 hidden md:block">
       <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
         <filter id="noiseFilter">
           {/* fractalNoise or turbulence */}

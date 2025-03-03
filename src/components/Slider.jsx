@@ -83,10 +83,10 @@ export default function Slider() {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [mounted, setMounted] = useState(false)
 
-  // Store one desktop video ref per slide (no TS syntax)
+  // Store one desktop video ref per slide
   const videoRefs = useRef([])
 
-  // Track slides that have been visited so once a video is loaded, we keep it in the DOM
+  // Track slides that have been visited so once a video/image is loaded, we keep it in the DOM.
   const [visitedSlides, setVisitedSlides] = useState(() => new Set([0]))
 
   // Keep track of the previous slide index
@@ -139,7 +139,7 @@ export default function Slider() {
     prevSlide.current = currentSlide
   }, [currentSlide, visitedSlides, restartAndPlaySlide])
 
-  // Dot component
+  // Dot component for pagination
   function Dot({ index }) {
     const isActive = currentSlide === index
     const shapeControls = useAnimationControls()
@@ -178,7 +178,7 @@ export default function Slider() {
             ])
             if (canceled) return
 
-            // Auto-advance to next
+            // Auto-advance to next slide
             if (instanceRef.current && currentSlide === index) {
               instanceRef.current.next()
             }
@@ -189,7 +189,7 @@ export default function Slider() {
           canceled = true
         }
       } else {
-        // If not active, shrink back and clear
+        // If not active, reset animations
         shapeControls.start({ width: "10px", transition: { duration: 0.3 } })
         fillControls.start({ width: "0%", transition: { duration: 0.3 } })
       }
@@ -284,12 +284,15 @@ export default function Slider() {
               <div className="lg:hidden flex flex-col items-center w-full px-4 py-24">
                 <div className="border border-white/10 rounded-md bg-gradient-to-tr from-[#0C0D0F] to-[#111214] via-[#111214]/75 backdrop-blur-sm shadow-lg w-full max-w-[700px] overflow-hidden">
                   <div className="relative w-full aspect-video">
-                    <Image
-                      src={slide.mobile.image}
-                      alt={slide.mobile.headingText}
-                      fill
-                      className="object-cover border-b border-white/10"
-                    />
+                    {visitedSlides.has(index) && (
+                      <Image
+                        src={slide.mobile.image}
+                        alt={slide.mobile.headingText}
+                        fill
+                        loading="lazy"
+                        className="object-cover border-b border-white/10"
+                      />
+                    )}
                   </div>
                   <div className="text-white p-5 pt-7">
                     <h3 className="text-lg font-bold flex items-center mb-4">
