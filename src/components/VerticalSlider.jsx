@@ -17,7 +17,7 @@ const pinnedSections = [
     id: "get-started",
     sectionClasses:
     "lg:sticky top-[80px] lg:h-[calc(100vh-80px)] bg-white text-black z-20 flex flex-col-reverse lg:flex-row-reverse items-center justify-center lg:rounded-4xl lg:mx-4 py-20 xl:py-0 2xl:px-[90px] 3xl:px-40",
-    containerClasses: "lg:w-2/3 text-left px-8 pt-12 lg:pt-0",
+    containerClasses: "lg:w-2/3 3xl:w-1/2 text-left px-8 pt-12 lg:pt-0",
     topNote: {
       className:
         "",
@@ -101,7 +101,7 @@ const pinnedSections = [
     id: "white-layer-2",
     sectionClasses:
     "lg:sticky top-[112px] lg:h-[calc(100vh-144px)] bg-[#E2E2E2] text-black z-40 flex flex-col-reverse lg:flex-row-reverse items-center justify-center lg:rounded-4xl lg:mx-12 py-20 xl:py-0 lg:mb-8 2xl:px-[90px] 3xl:px-40",
-    containerClasses: "lg:w-2/3 text-left px-8 pt-12 lg:pt-0",
+    containerClasses: "lg:w-2/3 3xl:w-1/2 text-left px-8 pt-12 lg:pt-0",
     topNote: {
       className:
         "",
@@ -127,7 +127,7 @@ const pinnedSections = [
       "All-in-One Simulation Solution",
     ],
     link: {
-      href: "/solutions/energ8te",
+      href: "/solutions/elev8tr",
       label: "Find out more",
     },
     image: {

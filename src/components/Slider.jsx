@@ -215,7 +215,7 @@ export default function Slider() {
   // RENDER
   return (
     <div className="mx-auto w-full flex justify-center">
-      <div className="relative w-full max-w-7xl bg-black xl:rounded-3xl overflow-hidden z-40">
+      <div className="relative w-full max-w-8xl bg-black xl:rounded-3xl overflow-hidden z-40">
         {/* Right-side background image */}
         <div
           className="absolute inset-y-0 right-0 w-[40%] bg-cover bg-no-repeat"

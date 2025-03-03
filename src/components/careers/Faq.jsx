@@ -69,8 +69,8 @@ export default function Faq() {
   return (
     <div className="bg-[#090A0B]">
       <div className="mx-auto px-6 pt-24 sm:py-32 md:px-8 md:py-40">
-        <div className="mx-auto max-w-7xl">
-          <h2 className="text-4xl font-semibold tracking-tight text-white sm:text-5xl">
+        <div className="mx-auto max-w-8xl">
+          <h2 className="text-4xl font-semibold text-white sm:text-5xl uppercase">
             Frequently asked questions
           </h2>
           <dl className="mt-16 divide-y divide-white/10">
@@ -80,7 +80,7 @@ export default function Faq() {
                   <>
                     <dt>
                       <DisclosureButton className="group flex w-full items-center justify-between text-left text-white p-6 rounded-md transition-colors duration-200">
-                        <span className="text-base font-semibold md:text-xl">{faq.question}</span>
+                        <span className="text-base font-semibold md:text-xl lg:text-2xl">{faq.question}</span>
                         <span className="ml-6 flex h-7 items-center">
                           {open ? (
                             <MinusIcon className="h-6 w-6" />
@@ -94,7 +94,7 @@ export default function Faq() {
                     <DisclosurePanel
                       static
                       as={motion.dd}
-                      className="overflow-hidden text-gray-200 md:text-lg"
+                      className="overflow-hidden text-gray-200 md:text-lg lg:text-xl"
                       animate={open ? { opacity: 1, height: 'auto' } : { opacity: 0, height: 0 }}
                       transition={{ duration: 0.3 }}
                     >

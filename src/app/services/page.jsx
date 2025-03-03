@@ -84,8 +84,8 @@ export default function Page() {
       {/* Tier Cards Section */}
       <div className="flow-root bg-white pb-24 sm:pb-32 relative z-10">
         <div className="-mt-80">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mx-auto max-w-8xl px-6 lg:px-8">
+            <div className="mx-auto grid max-w-8xl grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
               {tiers.map((tier) => (
                 <div
                   key={tier.id}

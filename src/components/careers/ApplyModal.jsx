@@ -161,7 +161,7 @@ export default function ApplyModal({ isOpen, onClose, showNotification }) {
   return (
     <Dialog open={isOpen} onClose={onClose}>
       <div className="p-6">
-        <DialogTitle className="mb-4">Join Our Team</DialogTitle>
+        <DialogTitle className="mb-4 uppercase ">Join Our Team</DialogTitle>
         <DialogBody>
           <form onSubmit={handleSubmit} className="space-y-4">
             {/* Name */}

@@ -336,7 +336,7 @@ export default function MainNav({ isOpen, setIsOpen, secondaryNavReady }) {
                       <Equ8tr className="h-8 sm:h-10 opacity-60 hover:opacity-100 cursor-pointer transition-all duration-50 ease-in-out" />
                     </Link>
                     <Link
-                      href="/solutions/ecu8tr"
+                      href="/solutions/elev8tr"
                       onClick={() => setIsOpen(false)}
                     >
                       <Elev8tr className="h-8 sm:h-10 opacity-60 hover:opacity-100 cursor-pointer transition-all duration-50 ease-in-out" />

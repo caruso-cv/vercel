@@ -142,7 +142,7 @@ export default function Contact() {
       />
 
       <div className="relative pt-20 md:pt-36 3xl:pt-52">
-        <div className="mx-auto grid max-w-7xl grid-cols-1 lg:grid-cols-2">
+        <div className="mx-auto grid max-w-8xl grid-cols-1 lg:grid-cols-2">
           {/* Left Side – Contact Info */}
           <div className="relative px-6 pb-2 pt-24 lg:static lg:px-8 lg:py-48">
             <div className="mx-auto max-w-xl lg:mx-0 lg:max-w-lg">
@@ -245,7 +245,7 @@ export default function Contact() {
                 <div>
                   <label
                     htmlFor="first-name"
-                    className="block text-sm/6 font-semibold text-white"
+                    className="block text-sm/6 lg:text-base 3xl:text-lg font-semibold text-white"
                   >
                     First name
                   </label>
@@ -269,7 +269,7 @@ export default function Contact() {
                 <div>
                   <label
                     htmlFor="last-name"
-                    className="block text-sm/6 font-semibold text-white"
+                    className="block text-sm/6 lg:text-base 3xl:text-lg font-semibold text-white"
                   >
                     Last name
                   </label>
@@ -293,7 +293,7 @@ export default function Contact() {
                   {/* If there's an email error beyond just "Required *", show it in red brackets next to label */}
                   <label
                     htmlFor="email"
-                    className="block text-sm/6 font-semibold text-white 3xl:text-base"
+                    className="block text-sm/6 font-semibold text-white lg:text-base 3xl:text-lg"
                   >
                     Email
                     {errors.email && errors.email !== 'Required *' && (
@@ -328,7 +328,7 @@ export default function Contact() {
                 <div className="sm:col-span-2">
                   <label
                     htmlFor="phone-number"
-                    className="block text-sm/6 font-semibold text-white 3xl:text-base"
+                    className="block text-sm/6 font-semibold text-white lg:text-base 3xl:text-lg"
                   >
                     Phone number
                     {errors.phone && errors.phone !== 'Required *' && (
@@ -362,7 +362,7 @@ export default function Contact() {
                 <div className="sm:col-span-2">
                   <label
                     htmlFor="message"
-                    className="block text-sm/6 font-semibold text-white 3xl:text-base"
+                    className="block text-sm/6 font-semibold text-white lg:text-base 3xl:text-lg"
                   >
                     Message
                     {errors.message && errors.message !== 'Required *' && (
