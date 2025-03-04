@@ -35,7 +35,7 @@ const slidesData = [
         "hidden lg:block absolute bottom-36 right-20 bg-white/85 backdrop-blur-sm px-4 py-[70px] rounded-lg shadow-md border-white/30",
     },
     mobile: {
-      image: "/side-scroll/12.webp",
+      image: "/slider/12.webp",
       headingIcon: <Energy className="mr-3 w-10 h-6" />,
       headingText: "BATTERY MANAGEMENT FOR ESS/BESS INSTALLATIONS",
       bodyTextBeforeSpan: "We deliver a customizable ",
@@ -66,7 +66,7 @@ const slidesData = [
         "hidden lg:block absolute bottom-44 right-16 bg-white/85 backdrop-blur-sm px-8 py-[60px] rounded-lg shadow-md border-white/30",
     },
     mobile: {
-      image: "/side-scroll/7.webp",
+      image: "/slider/7.webp",
       headingIcon: <Manage className="w-6 mr-3" />,
       headingText: "BATTERY FACTORY LINE TESTERS",
       bodyTextBeforeSpan: "We specialize in ",
