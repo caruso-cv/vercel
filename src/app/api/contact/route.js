@@ -3,8 +3,15 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
   try {
-    // Parse the JSON request body
+    // Log request headers to check the Content-Type
+    const contentType = request.headers.get('content-type');
+    console.log('Content-Type:', contentType);
+
+    // Parse the JSON request body and log it for debugging
     const body = await request.json();
+    console.log('Received payload:', body);
+    
+    // Destructure expected values from the payload
     const { 'first-name': firstName, 'last-name': lastName, email, 'phone-number': phoneNumber, message } = body;
 
     // Create a Nodemailer transporter using your SMTP settings
@@ -20,7 +27,6 @@ export async function POST(request) {
 
     // Send the email with the form details
     await transporter.sendMail({
-      // Use environment variables for a display name + email address
       from: `${process.env.FROM_NAME || 'Contact Form'} <${process.env.FROM_EMAIL}>`,
       to: process.env.TO_EMAIL || 'testform@neutroncontrols.com',
       subject: `New Contact Form Submission from ${firstName} ${lastName}`,

@@ -23,7 +23,7 @@ function SpecificationsView({ onClose }) {
       transition={{ duration: 0.4, ease: "easeInOut" }}
       className="relative w-full pt-36 min-h-screen"
     >
-      <div className="max-w-8xl w-full mx-auto text-black px-4 sm:px-6 lg:px-8 xs:pt-6 md:pt-20 lg:pt-24 pb-28 2xl:text-left 2xl:pt-28">
+      <div className="max-w-8xl w-full mx-auto text-black px-4 sm:px-6 lg:px-8 xs:pt-6 md:pt-20 lg:pt-24 pb-28 lg:pb-36 2xl:text-left 2xl:pt-28">
         {/* Header Row: FEATURES + Back */}
         <div className="flex justify-between items-center">
           <h2 className="text-[2.3rem] sm:text-5xl font-bold mb-11 xl:mb-16">

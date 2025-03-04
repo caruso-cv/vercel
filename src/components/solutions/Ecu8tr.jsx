@@ -70,7 +70,7 @@ function SpecificationsView({ onClose }) {
             </div>
             <div className="p-4 lg:p-6 border-b border-[#016DFF] md:border-l md:border-[#016DFF] xs:text-lg lg:text-2xl font-geist text-black/70 3xl:text-2xl">
               <p className="mb-1">
-                iso SPI and iso UART analog frontend communications
+                ISO SPI and ISO UART analog frontend communications
               </p>
               <p className="mb-1">Ethernet network interface – 10/100 baseT</p>
               <p className="mb-1">CAN FD interface via 9-pin Dsub connector</p>
@@ -132,7 +132,7 @@ function MainView({ onShowSpecs }) {
             </p>
             <ul className="list-disc font-base text-lg md:text-xl xl:text-2xl 3xl:text-3xl pl-4 leading-[1.8] mb-8 xl:mb-14 xl:space-y-3 md:space-y-1">
               <li>Precision Monitoring</li>
-              <li>iso SPI and iso UART compatible</li>
+              <li>ISO SPI and ISO UART compatible</li>
               <li>Quality Management</li>
             </ul>
             <div className="mt-10 flex gap-6 relative flex-col 4sm:flex-row items-start">
