@@ -182,7 +182,7 @@ export default function Contact() {
               <h2 className="text-pretty text-5xl font-bold text-white relative z-30 md:text-6xl uppercase">
                 Get in touch
               </h2>
-              <p className="mt-6 text-xl md:text-2xl text-white">
+              <p className="mt-6 text-xl md:text-2xl 2xl:text-3xl text-white">
                 Our team is here to help with any questions you might have.
               </p>
               <p className="mt-6 text-base md:text-xl text-white">
@@ -403,7 +403,7 @@ export default function Contact() {
               <div className="mt-8 flex justify-end">
                 <button
                   type="submit"
-                  className="uppercase rounded-md bg-[#425ACA] px-3.5 py-2.5 text-center text-sm font-semibold text-white 3xl:text-base shadow-sm hover:bg-indigo-500 focus:outline-indigo-500"
+                  className="uppercase rounded-md bg-[#425ACA] px-3.5 py-2.5 text-center text-sm font-semibold text-white 2xl:text-base shadow-sm hover:bg-indigo-500 focus:outline-indigo-500"
                 >
                   Send message
                 </button>

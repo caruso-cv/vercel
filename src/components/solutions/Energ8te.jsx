@@ -84,14 +84,19 @@ function SpecificationsView({ onClose }) {
 }
 
 /* -------------------------------------------
-   2) MAIN CONTENT (Unchanged from original)
+   2) MAIN CONTENT (Unchanged from original) with image loading improvements
 ------------------------------------------- */
 function MainView({ onShowSpecs }) {
+  // Add state for image loading
+  const [imageLoaded, setImageLoaded] = useState(false);
+  // Calculate aspect ratio percentage for the placeholder (height / width * 100)
+  const aspectRatio = (1145 / 1916) * 100;
+
   return (
     <motion.div
       key="main"
       initial={{ opacity: 0, x: -50 }}
-      animate={{ opacity: 1, x: 0 }}
+      animate={imageLoaded ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
       exit={{ opacity: 0, x: -50 }}
       transition={{ duration: 0.4, ease: "easeInOut" }}
       className="relative w-full"
@@ -120,15 +125,22 @@ function MainView({ onShowSpecs }) {
           <Elev8tr className="h-[4rem] xs:h-[5rem] sm:h-24 mb-12" />
         </div>
         <div className="flex justify-center mb-6 xl:mb-0">
-          <Image
-            src="/vertical/energ8te.webp"
-            alt="BMS Controls for energy storage"
-            width={1916}
-            height={1145}
-            className="w-full xs:max-w-6xl h-auto"
-            priority
-            quality={70}
-          />
+          <div className="relative w-full xs:max-w-6xl">
+            {/* Invisible placeholder to reserve space */}
+            {!imageLoaded && (
+              <div style={{ paddingBottom: `${aspectRatio}%` }} />
+            )}
+            <Image
+              src="/vertical/energ8te.png"
+              alt="BMS Controls for energy storage"
+              width={1916}
+              height={1145}
+              className={`w-full xs:max-w-6xl h-auto ${!imageLoaded ? "invisible" : "visible"}`}
+              priority
+              quality={70}
+              onLoadingComplete={() => setImageLoaded(true)}
+            />
+          </div>
         </div>
         <div className="xl:max-w-[50vw] mx-auto xl:w-1/2 text-left xs:px-2 lg:px-8">
           <div className="text-left px-8 pt-12 xl:pt-0">
@@ -136,7 +148,7 @@ function MainView({ onShowSpecs }) {
             <h2 className="3xl:text-4xl text-2xl sm:text-3xl font-bold xl:mb-10 mb-6">
               THE SMART SOLUTION FOR ADVANCED ENERGY STORAGE MANAGEMENT
             </h2>
-            <p className="font-medium text-xl md:text-2xl 3xl:text-3xl xl:mb-10 mb-6">
+            <p className="font-medium text-xl md:text-2xl 2xl:text-[1.7rem] 2xl:leading-[1.3] 3xl:text-3xl xl:mb-10 mb-6">
               The ENERG8TE™ ESS Controller is an advanced Energy Storage System
               management product designed to optimize the performance of Battery
               Energy Storage Systems (BESS).
@@ -181,7 +193,6 @@ function MainView({ onShowSpecs }) {
               >
                 Features
               </button>
-
               <Link
                 href="/pdf/ENERG8TE.pdf"
                 target="_blank"

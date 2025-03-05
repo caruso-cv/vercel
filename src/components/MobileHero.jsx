@@ -11,7 +11,7 @@ export default function Example() {
       <div className="relative isolate overflow-hidden">
       <Image
         alt="Sunset with solar panels"
-        src="/hero/sunset.webp"
+        src="/hero/sunset.jpg"
         fill
         sizes="100vw"
         quality={70}

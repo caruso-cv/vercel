@@ -9,13 +9,13 @@ export default function InfineonSections() {
 
 
             
-            <div className="flex mt-12 mx-auto max-w-8xl justify-between flex-wrap">
+            <div className="flex md:mt-12 md:mb-6 mx-auto max-w-8xl justify-between flex-wrap">
               <div className="py-8">
                 <Safety className="w-12 h-auto mb-8" />
                 <p className="text-white uppercase text-[2rem] 3xl:text-[2.8rem] font-bold leading-[1.2] my-3 max-w-[17rem] text-balance">
                 Safety by design
                 </p>
-                <p className="text-white/60 max-w-sm text-xl 3xl:text-2xl">
+                <p className="text-white/60 max-w-sm text-xl md:text-2xl">
                 ENERG8TE™ lets teams integrate data logging, diagnostics, failsafes, and prevention measures for battery risks.
                 </p>
               </div>
@@ -24,7 +24,7 @@ export default function InfineonSections() {
                 <p className="text-white uppercase text-[2rem] 3xl:text-[2.8rem] font-bold leading-[1.2] my-3 max-w-[17rem] text-balance">
                 Scalable + flexible
                 </p>
-                <p className="text-white/60  max-w-sm text-xl 3xl:text-2xl">
+                <p className="text-white/60 max-w-sm text-xl md:text-2xl">
                 ENERG8TE™ offers hardware platform enabling software algorithms for SoX, cell balancing, charging, and discharging.
                 </p>
               </div>
@@ -33,7 +33,7 @@ export default function InfineonSections() {
                 <p className="text-white uppercase text-[2rem] 3xl:text-[2.8rem] font-bold leading-[1.2] my-3 max-w-[17rem] text-balance">
                 Future-proof design
                 </p>
-                <p className="text-white/60  max-w-sm text-xl 3xl:text-2xl">
+                <p className="text-white/60 max-w-sm text-xl md:text-2xl">
                 As ESS technologies advance, ENERGSTE is designed to adapt, ensuring compatibility and long-term value.
                 </p>
               </div>

@@ -1,6 +1,6 @@
 import Partners from '@/components/Partners'
 import Slider from '@/components/Slider'
-import Hero from '@/components/HeroNew'
+import Hero from '@/components/Hero'
 import VerticalSlider from '@/components/VerticalSlider'
 import DigitalBackground from '@/components/DigitalBackground'
 import NoiseOverlay from '@/components/NoiseOverlay'

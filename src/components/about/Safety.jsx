@@ -32,7 +32,7 @@ export default function InfineonSections() {
                     style={{ transform: 'translate(-50%, 50%)', height: '80%' }}
                   />
                   <Image
-                    src="/logo/Orion9001.webp"
+                    src="/logo/Orion9001.png"
                     alt="Certification Badge"
                     width={250}
                     height={250}
@@ -43,10 +43,10 @@ export default function InfineonSections() {
                 <div className="pointer-events-none absolute inset-px rounded-lg shadow ring-1 ring-black/5 lg:rounded-tl-[2rem]" />
               </motion.div>
               <div className="p-6 xs:p-10">
-                <p className="mt-2 text-xl font-bold tracking-tight text-white uppercase">
+                <p className="mt-2 text-xl font-bold tracking-tight text-white uppercase 2xl:text-2xl">
                   Quality
                 </p>
-                <p className="mt-2 text-lg lg:text-xl text-gray-300 font-medium">
+                <p className="mt-2 text-lg lg:text-xl text-gray-300 font-medium 2xl:text-2xl">
                   Equally, its ISO9001 certification affirms Neutron Controls’ dedication to quality, maintaining high operational standards that consistently satisfy customers, shareholders, and other key stakeholders.
                 </p>
               </div>
@@ -55,7 +55,7 @@ export default function InfineonSections() {
           </div>
           {/* Environmental Section */}
           <div className="relative lg:col-span-3">
-            <div className="absolute inset-px rounded-lg bg-white/5 p-6 ring-1 ring-inset ring-white/10 max-lg:rounded-t-[2rem] lg:rounded-tl-[2rem]" />
+            <div className="absolute inset-px rounded-lg bg-white/5 p-6 ring-1 ring-inset ring-white/10 max-lg:rounded-t-[2rem] lg:rounded-tr-[2rem]" />
             <div className="relative flex h-full flex-col overflow-hidden rounded-[calc(theme(borderRadius.lg)+1px)] lg:rounded-tr-[calc(2rem+1px)]">
               <motion.div
                 className="relative h-80 w-full"
@@ -69,7 +69,7 @@ export default function InfineonSections() {
                     style={{ transform: 'translateX(25%)' }}
                   />
                   <Image
-                    src="/logo/Orion14001.webp"
+                    src="/logo/Orion14001.png"
                     alt="Certification Badge"
                     width={250}
                     height={250}
@@ -80,10 +80,10 @@ export default function InfineonSections() {
                 <div className="pointer-events-none absolute inset-px rounded-lg shadow ring-1 ring-black/5 lg:rounded-tr-[2rem]" />
               </motion.div>
               <div className="p-6 xs:p-10">
-                <p className="mt-2 text-xl font-bold tracking-tight text-white uppercase">
+                <p className="mt-2 text-xl font-bold tracking-tight 2xl:text-2xl text-white uppercase">
                   Environmental
                 </p>
-                <p className="mt-2 text-lg lg:text-xl text-gray-300 font-medium">
+                <p className="mt-2 text-lg lg:text-xl 2xl:text-2xl text-gray-300 font-medium">
                   Neutron Controls shows its commitment to sustainability with ISO14001 certification, ensuring its operations not only meet environmental standards but also support stakeholder needs.
                 </p>
               </div>

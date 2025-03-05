@@ -35,7 +35,7 @@ const slidesData = [
         "hidden lg:block absolute bottom-36 right-20 bg-white/85 backdrop-blur-sm px-4 py-[70px] rounded-lg shadow-md border-white/30",
     },
     mobile: {
-      image: "/slider/12.webp",
+      image: "/slider/12.jpg",
       headingIcon: <Energy className="mr-3 w-10 h-6" />,
       headingText: "BATTERY MANAGEMENT FOR ESS/BESS INSTALLATIONS",
       bodyTextBeforeSpan: "We deliver a customizable ",
@@ -66,7 +66,7 @@ const slidesData = [
         "hidden lg:block absolute bottom-44 right-16 bg-white/85 backdrop-blur-sm px-8 py-[60px] rounded-lg shadow-md border-white/30",
     },
     mobile: {
-      image: "/slider/7.webp",
+      image: "/slider/7.jpg",
       headingIcon: <Manage className="w-6 mr-3" />,
       headingText: "BATTERY FACTORY LINE TESTERS",
       bodyTextBeforeSpan: "We specialize in ",
@@ -219,7 +219,7 @@ export default function Slider() {
         {/* Right-side background image */}
         <div
           className="absolute inset-y-0 right-0 w-[40%] bg-cover bg-no-repeat"
-          style={{ backgroundImage: 'url("/slider/slider-bg.webp")' }}
+          style={{ backgroundImage: 'url("/slider/slider-bg.png")' }}
         />
 
         {/* Title */}
@@ -253,11 +253,11 @@ export default function Slider() {
 
                   {/* Video Info Box */}
                   <div className="hidden lg:block absolute top-12 right-6 xl:-right-24 border border-white/10 bg-gradient-to-tr from-[#0C0D0F] to-[#111214] via-[#111214]/85 backdrop-blur-sm text-white p-5 pt-7 w-[90%] max-w-[460px] rounded-lg shadow-lg">
-                    <h3 className="text-lg uppercase font-bold flex items-center mb-4">
+                    <h3 className="text-lg 2xl:text-xl uppercase font-bold flex items-center mb-4">
                       {slide.desktop.headingIcon}
                       {slide.desktop.headingText}
                     </h3>
-                    <p className="text-lg text-gray-200 mb-6 tracking-wide">
+                    <p className="text-lg 2xl:text-xl text-gray-200 mb-6 tracking-wide">
                       {slide.desktop.bodyTextBeforeSpan}
                       <span className="text-[#8CD6FF] bg-[#1C445D] rounded-sm px-1">
                         {slide.desktop.bodyTextSpan}

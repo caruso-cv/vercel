@@ -23,7 +23,7 @@ function SpecificationsView({ onClose }) {
       transition={{ duration: 0.4, ease: "easeInOut" }}
       className="relative w-full pt-36 min-h-screen"
     >
-      <div className="max-w-8xl w-full mx-auto text-black px-4 sm:px-6 lg:px-8 xs:pt-6 md:pt-20 lg:pt-24 pb-28">
+      <div className="max-w-8xl w-full mx-auto text-black px-4 sm:px-6 lg:px-8 xs:pt-6 md:pt-20 lg:pt-24 3xl:pt-44 pb-28">
         <div className="flex justify-between items-center">
           <h2 className="text-2xl xs:text-[1.75rem] sm:text-5xl font-bold mb-10 3xl:text-6xl">
             SPECIFICATIONS
@@ -94,31 +94,41 @@ function SpecificationsView({ onClose }) {
    2) MAIN CONTENT (the original landing content)
 ------------------------------------------- */
 function MainView({ onShowSpecs }) {
+  // Add state for image loading
+  const [imageLoaded, setImageLoaded] = useState(false);
+  // Calculate aspect ratio percentage for the placeholder (height / width * 100)
+  const aspectRatio = (1145 / 1916) * 100;
 
-  
   return (
     <motion.div
       key="main"
       initial={{ opacity: 0, x: -50 }}
-      animate={{ opacity: 1, x: 0 }}
+      animate={imageLoaded ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
       exit={{ opacity: 0, x: -50 }}
       transition={{ duration: 0.4, ease: "easeInOut" }}
       className="relative w-full"
     >
-      <div className="h-full text-black flex flex-col xl:flex-row items-center justify-center relative z-30 max-w-[1900px] mx-auto pb-28 md:pb-52 lg:pt-28 xl:pt-64 3xl:pt-72">
+      <div className="h-full text-black flex flex-col xl:flex-row items-center justify-center relative z-30 max-w-[1900px] mx-auto pb-28 md:pb-52 lg:pt-28 xl:pt-72 3xl:pt-96 ">
         <div className="flex justify-start mb-6 xl:mb-0 w-full pl-8 lg:pl-14 pt-32 xl:hidden">
           <Elev8tr className="h-[4rem] xs:h-[5rem] sm:h-24 mb-12" />
         </div>
         <div className="flex justify-center mb-6 xl:mb-0">
-          <Image
-            src="/vertical/ecu8tr.webp"
-            alt="Emula8tr ESS Controller"
-            width={1916}
-            height={1145}
-            quality={70}
-            priority
-            className="w-full xs:max-w-6xl h-auto"
-          />
+          <div className="relative w-full xs:max-w-6xl">
+            {/* Invisible placeholder to reserve space */}
+            {!imageLoaded && (
+              <div style={{ paddingBottom: `${aspectRatio}%` }} />
+            )}
+            <Image
+              src="/vertical/ecu8tr.png"
+              alt="Emula8tr ESS Controller"
+              width={1916}
+              height={1145}
+              quality={70}
+              priority
+              onLoadingComplete={() => setImageLoaded(true)}
+              className={`w-full xs:max-w-6xl h-auto ${!imageLoaded ? "invisible" : "visible"}`}
+            />
+          </div>
         </div>
         <div className="xl:max-w-[50vw] mx-auto xl:w-1/2 text-left xs:px-2 lg:px-8">
           <div className="text-left px-8 pt-12 xl:pt-0">
@@ -126,7 +136,7 @@ function MainView({ onShowSpecs }) {
             <h2 className="3xl:text-4xl text-2xl sm:text-4xl font-bold xl:mb-10 mb-6">
               REVOLUTIONIZING QUALITY CONTROL
             </h2>
-            <p className="font-medium text-xl md:text-2xl 3xl:text-3xl xl:mb-10 mb-6">
+            <p className="font-medium text-xl md:text-2xl 2xl:text-[1.7rem] 2xl:leading-[1.3] 3xl:text-3xl xl:mb-10 mb-6">
               ECU8TR™ is a cutting-edge tester crafted for the verification of
               cell monitor operations within battery modules or packs.
             </p>

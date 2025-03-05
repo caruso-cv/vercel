@@ -62,8 +62,8 @@ export default function Page() {
             Smarter Energy Solutions
           </h2>
         </div>
-        <div className="relative mt-6">
-          <p className="mx-auto max-w-2xl text-pretty text-lg font-medium text-gray-200 sm:text-xl/8 lg:text-2xl lg:max-w-4xl">
+        <div className="relative mt-6 2xl:mt-10">
+          <p className="mx-auto max-w-2xl text-pretty text-lg font-medium text-gray-200 sm:text-xl/8 lg:text-2xl 2xl:text-[1.6rem] lg:max-w-4xl">
             Advanced BMS and ESS solutions designed for efficiency, safety, and seamless integration—optimizing performance and reliability.
           </p>
           <svg

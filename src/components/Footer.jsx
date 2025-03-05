@@ -80,7 +80,7 @@ return (
             <h3 className="text-xs 4xs:text-sm uppercase tracking-[7px] font-semibold mb-3 lg:text-base">
               Company
             </h3>
-            <ul className="space-y-[2px] leading-relaxed text-white/60 lg:text-lg lg:space-y-[4px]">
+            <ul className="space-y-[2px] leading-relaxed text-white/60 lg:text-lg 2xl:text-xl lg:space-y-[4px] 2xl:space-y-[6px]">
               <li><Link href="/services" className="hover:text-white">Services</Link></li>
               <li><Link href="/about" className="hover:text-white">About</Link></li>
               <li><Link href="/careers" className="hover:text-white">Careers</Link></li>

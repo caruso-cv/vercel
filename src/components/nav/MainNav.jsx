@@ -163,7 +163,6 @@ export default function MainNav({ isOpen, setIsOpen, secondaryNavReady }) {
           transition={{ duration: 0.3, ease: "easeOut" }}
           className="
             backdrop-blur-[2000px]
-             
             w-full 
             py-6 
             flex flex-col 

@@ -49,7 +49,7 @@ const pinnedSections = [
       label: "Find out more",
     },
     image: {
-      src: "/vertical/ENERG8TE-box-copy.webp",
+      src: "/vertical/ENERG8TE-box-copy.png",
       alt: "Emula8tr ESS Controller",
     },
   },
@@ -91,7 +91,7 @@ const pinnedSections = [
       label: "Find out more",
     },
     image: {
-      src: "/vertical/ecu8tr.webp",
+      src: "/vertical/ecu8tr.png",
       alt: "Emula8tr ESS Controller",
     },
   },
@@ -131,7 +131,7 @@ const pinnedSections = [
       label: "Find out more",
     },
     image: {
-      src: "/vertical/elev8tr.webp",
+      src: "/vertical/elev8tr.png",
       alt: "Emula8tr ESS Controller",
     },
   },
@@ -145,7 +145,8 @@ export default function VerticalSlider() {
           ----------------------- */}
       <section
         className="
-          
+        3xl:h-[50vh] 
+          2xl:h-[55vh]
           lg:h-[50vh] 
           top-0 
           text-white 
@@ -162,7 +163,7 @@ export default function VerticalSlider() {
           <h2 className="lg:text-[2.5rem] text-3xl font-semibold mb-10 3xl:mb-10 3xl:text-[2.8rem] leading-[1.2]">
             ADVANCED DEVELOPMENT SOLUTIONS
           </h2>
-          <p className="lg:text-2xl text-xl text-left mb-10 3xl:text-3xl">
+          <p className="lg:text-2xl 2xl:text-3xl text-xl text-left mb-10 3xl:text-3xl">
             Our Advanced Development Solutions streamline your processes while
             ensuring compliance with{" "}
             <span className="px-[2.5px] bg-[#435FE1] rounded-sm">
@@ -174,7 +175,7 @@ export default function VerticalSlider() {
             </span>{" "}
             standards.
           </p>
-          <p className="lg:text-2xl text-xl text-left mb-10 3xl:text-3xl">
+          <p className="lg:text-2xl 2xl:text-3xl text-xl text-left mb-10 3xl:text-3xl">
             Supported by a team of global engineering experts, our tools can be
             used in a variety of environments to provide you and your team the
             spark needed to{" "}
@@ -183,7 +184,7 @@ export default function VerticalSlider() {
             </span>{" "}
             your initiatives.
           </p>
-          <p className="lg:text-2xl text-xl text-left 3xl:text-3xl">
+          <p className="lg:text-2xl 2xl:text-3xl text-xl text-left 3xl:text-3xl">
             Advanced&nbsp;
             <span className="px-[2.5px] bg-[#435FE1] rounded-sm">BMS</span>{" "}
             controllers for&nbsp;
@@ -206,22 +207,22 @@ export default function VerticalSlider() {
 
             {/* Optional "top note" (red text in gray layer) */}
             {item.topNote && (
-              <p className={`${item.topNote.className} text-[#E00000] font-bold lg:text-[14px] text-[.75rem] tracking-[6px] mb-6 3xl:text-lg`}>{item.topNote.text}</p>
+              <p className={`${item.topNote.className} text-[#E00000] font-bold lg:text-[14px] text-[.75rem] tracking-[6px] mb-6 2xl:text-lg`}>{item.topNote.text}</p>
             )}
 
             {/* Heading */}
-            <h2 className={`${item.headingClasses} 3xl:text-4xl text-2xl sm:text-3xl font-bold xl:mb-10 mb-6`}>{item.heading}</h2>
+            <h2 className={`${item.headingClasses} 2xl:text-4xl text-2xl sm:text-3xl font-bold xl:mb-10 mb-6`}>{item.heading}</h2>
 
             {/* Paragraphs */}
             {item.paragraphs?.map((para, idx) => (
-              <p key={idx} style={{ lineHeight: "1.5" }} className={`${para.className} font-medium text-xl md:text-2xl 3xl:text-3xl xl:mb-10 mb-6`}>
+              <p key={idx} style={{ lineHeight: "1.5" }} className={`${para.className} font-medium text-xl md:text-2xl 2xl:text-3xl xl:mb-10 mb-6`}>
                 {para.text}
               </p>
             ))}
 
             {/* Bullets */}
             {item.bullets && item.bullets.length > 0 && (
-              <ul className="list-disc font-base text-lg md:text-xl xl:text-2xl 3xl:text-3xl pl-4 leading-[1.8] mb-8 lg:mb-14 xl:space-y-3 md:space-y-1 ">
+              <ul className="list-disc font-base text-lg md:text-xl xl:text-2xl 2xl:text-3xl pl-4 leading-[1.8] mb-8 lg:mb-14 xl:space-y-3 md:space-y-1 ">
                 {item.bullets.map((bullet, i) => (
                   <li key={i}>{bullet}</li>
                 ))}
@@ -244,7 +245,7 @@ export default function VerticalSlider() {
                     py-1.5
                     text-[1rem]
                     sm:text-lg
-                    3xl:text-lg
+                    2xl:text-lg
                     font-semibold 
                     leading-[16px]
                     tracking-[0.2px]

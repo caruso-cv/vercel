@@ -21,8 +21,9 @@ export default function BackgroundHero() {
         ${isPages ? "filter hue-rotate-[240deg]" : ""}
         ${visibilityClasses}
         block
-        absolute 
-        top-0
+        absolute
+        -top-24
+        sm:top-0
         left-1/2 
         -translate-x-1/2 
         pointer-events-none
@@ -38,11 +39,11 @@ export default function BackgroundHero() {
       `}
     >
      <Image
-        src="/bg/bg-hero.webp"
+        src="/bg/bg-hero.png"
         alt="Neutron red background"
         fill
         priority
-        className="object-cover"
+        className="object-contain lg:object-cover"
         sizes="(max-width: 1064px) 100vw, 1064px"
       />
     </div>
