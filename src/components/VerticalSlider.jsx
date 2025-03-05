@@ -49,7 +49,7 @@ const pinnedSections = [
       label: "Find out more",
     },
     image: {
-      src: "/vertical/ENERG8TE-box-copy.png",
+      src: "/vertical/energ8te-box.png",
       alt: "Emula8tr ESS Controller",
     },
   },
@@ -91,7 +91,7 @@ const pinnedSections = [
       label: "Find out more",
     },
     image: {
-      src: "/vertical/ecu8tr.png",
+      src: "/vertical/ecu8tr-box.png",
       alt: "Emula8tr ESS Controller",
     },
   },

@@ -125,7 +125,7 @@ function MainView({ onShowSpecs }) {
               height={1145}
               quality={70}
               priority
-              onLoadingComplete={() => setImageLoaded(true)}
+              onLoad={() => setImageLoaded(true)}
               className={`w-full xs:max-w-6xl h-auto ${!imageLoaded ? "invisible" : "visible"}`}
             />
           </div>
