@@ -15,7 +15,7 @@ export default function MinimalNav() {
   transition={{ duration: 0.3 }}
   className="hidden lg:flex items-center justify-center bg-black text-white fixed top-0 left-0 w-full h-16 z-[999]"
 >
-  <div className="mx-auto max-w-8xl w-full px-6 relative flex items-center justify-between">
+  <div className="mx-auto max-w-8xl w-full px-6 2xl:px-0 relative flex items-center justify-between">
     {/* Logo on left */}
     <div className="flex items-center">
       <Link href="/">

@@ -83,15 +83,15 @@ export default function InfineonSection() {
     : 'opacity-0 translate-y-10';
 
   return (
-    <div ref={infineonRef} className="bg-gradient-to-b from-gray-900 py-24 sm:py-32">
+    <div ref={infineonRef} className="bg-gradient-to-b from-gray-900 pt-24 sm:pt-32">
       <div className="mx-auto max-w-8xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl sm:text-center lg:max-w-3xl">
           <h2 className="text-lg font-semibold text-[#425ACA] lg:text-2xl">Custom design</h2>
           <p className="mt-2 uppercase lg:mt-6 text-pretty text-4xl font-bold text-white sm:text-balance sm:text-[2.7rem] md:mt-4 leading-[1.1]">
-            Infineon's Premiere Design House
+            Infineon's Premier Design House
           </p>
           <p className="mt-6 text-xl/8 text-gray-300 md:text-xl md:mt-8 lg:text-2xl lg:mt-10">
-            Unlock your design potential with Neutron Controls, your Infineon Premiere Design House for North America.
+            Unlock your design potential with Neutron Controls, your Infineon Premier Design House for North America.
           </p>
         </div>
       </div>

@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 export default function BackgroundFooter() {
 
   const pathname = usePathname();
-  const isPages = pathname === "/about" ||  pathname === "/contact" ||  pathname === "/services";
+  const isPages = pathname === "/about" ||  pathname === "/services" || pathname === "/contact";
 
   return (
     <div

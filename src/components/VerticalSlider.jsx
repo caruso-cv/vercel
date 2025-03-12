@@ -25,10 +25,7 @@ const pinnedSections = [
     logo: <Energate className="h-14 sm:h-24 3xl:h-36 md:mb-1" />,
     heading: (
       <>
-        <span className="hidden sm:inline">
-        THE SMART SOLUTION FOR
-        </span>{" "}
-        ADVANCED ENERGY STORAGE MANAGEMENT
+       BMS CONTROLLER FOR BESS/ESS
       </>
     ),
     headingClasses:
@@ -48,6 +45,7 @@ const pinnedSections = [
       href: "/solutions/energ8te",
       label: "Find out more",
     },
+    imageClasses:'px-2',
     image: {
       src: "/vertical/energ8te-box.png",
       alt: "Emula8tr ESS Controller",
@@ -56,7 +54,7 @@ const pinnedSections = [
 
   // LAYER TWO
   {
-    id: "gray-layer",
+    id: "ecu8tr",
     sectionClasses:
     "lg:sticky top-[96px] lg:h-[calc(100vh-112px)] bg-gray-100 text-black z-30 flex flex-col-reverse lg:flex-row items-center justify-center lg:rounded-4xl lg:mx-8 py-20 xl:py-0 lg:mb-4 2xl:px-[90px] 3xl:px-40",
     containerClasses: "lg:w-1/2 text-left px-8 pt-12 lg:pt-0",
@@ -68,7 +66,7 @@ const pinnedSections = [
     heading: (
       <>
         <span className="hidden sm:inline">
-        POWERING PRECISION:
+        Battery factory point tester:
         </span>{" "}
         REVOLUTIONIZING QUALITY CONTROL
       </>
@@ -77,7 +75,7 @@ const pinnedSections = [
       "",
     paragraphs: [
       {
-        text: `ECU8TR™ is a cutting-edge tester crafted for the verification of cell monitor operations within battery modules or packs.`,
+        text: `ECU8TR™ is a cutting-edge battery factory point tester designed to ensure production quality.`,
         className: "",
       },
     ],
@@ -90,6 +88,7 @@ const pinnedSections = [
       href: "/solutions/ecu8tr",
       label: "Find out more",
     },
+    imageClasses:'',
     image: {
       src: "/vertical/ecu8tr-box.png",
       alt: "Emula8tr ESS Controller",
@@ -98,7 +97,7 @@ const pinnedSections = [
 
   // LAYER THREE
   {
-    id: "white-layer-2",
+    id: "elev8tr",
     sectionClasses:
     "lg:sticky top-[112px] lg:h-[calc(100vh-144px)] bg-[#E2E2E2] text-black z-40 flex flex-col-reverse lg:flex-row-reverse items-center justify-center lg:rounded-4xl lg:mx-12 py-20 xl:py-0 lg:mb-8 2xl:px-[90px] 3xl:px-40",
     containerClasses: "lg:w-2/3 3xl:w-1/2 text-left px-8 pt-12 lg:pt-0",
@@ -119,7 +118,7 @@ const pinnedSections = [
       "",
     paragraphs: [
       {
-        text: `ELEV8TR™ is a comprehensive package of automotive development tools designed for OEMs looking to fast-track their Battery Management System (BMS) algorithms.`,
+        text: `ELEV8TR™ is a comprehensive package of advanced embedded development tools designed for OEMs looking to fast-track their Battery Management System (BMS) algorithms.`,
         className: "",
       },
     ],
@@ -130,6 +129,7 @@ const pinnedSections = [
       href: "/solutions/elev8tr",
       label: "Find out more",
     },
+    imageClasses:'',
     image: {
       src: "/vertical/elev8tr.png",
       alt: "Emula8tr ESS Controller",
@@ -161,37 +161,31 @@ export default function VerticalSlider() {
       >
         <div className="max-w-4xl p-8 text-center 3xl:max-w-5xl">
           <h2 className="lg:text-[2.5rem] text-3xl font-semibold mb-10 3xl:mb-10 3xl:text-[2.8rem] leading-[1.2]">
-            ADVANCED DEVELOPMENT SOLUTIONS
+            OUR VISION
           </h2>
           <p className="lg:text-2xl 2xl:text-3xl text-xl text-left mb-10 3xl:text-3xl">
-            Our Advanced Development Solutions streamline your processes while
-            ensuring compliance with{" "}
+            Our vision is to transform how {" "}
             <span className="px-[2.5px] bg-[#435FE1] rounded-sm">
-              safety
+              energy is managed
             </span>{" "}
-            and{" "}
+              and{" "}
             <span className="px-[2.5px] bg-[#435FE1] rounded-sm">
-              security
-            </span>{" "}
-            standards.
+              batteries are produced.
+            </span>
           </p>
           <p className="lg:text-2xl 2xl:text-3xl text-xl text-left mb-10 3xl:text-3xl">
-            Supported by a team of global engineering experts, our tools can be
-            used in a variety of environments to provide you and your team the
-            spark needed to{" "}
+          We’re focused on delivering cutting-edge battery management and control solutions that prioritize {" "}
             <span className="px-[2.5px] bg-[#435FE1] rounded-sm">
-              accelerate
-            </span>{" "}
-            your initiatives.
+            efficiency, safety, and sustainability.
+            </span>
           </p>
           <p className="lg:text-2xl 2xl:text-3xl text-xl text-left 3xl:text-3xl">
-            Advanced&nbsp;
-            <span className="px-[2.5px] bg-[#435FE1] rounded-sm">BMS</span>{" "}
-            controllers for&nbsp;
+          By combining innovative engineering with a commitment to quality, we help our clients lead the way in&nbsp;
+            <span className="px-[2.5px] bg-[#435FE1] rounded-sm">energy controls</span>{" "}
+            and&nbsp;
             <span className="px-[2.5px] bg-[#435FE1] rounded-sm">
-              ESS/BESS
-            </span>{" "}
-            installations.
+            industrial automation.
+            </span>
           </p>
         </div>
       </section>
@@ -211,7 +205,7 @@ export default function VerticalSlider() {
             )}
 
             {/* Heading */}
-            <h2 className={`${item.headingClasses} 2xl:text-4xl text-2xl sm:text-3xl font-bold xl:mb-10 mb-6`}>{item.heading}</h2>
+            <h2 className={`${item.headingClasses} 2xl:text-4xl text-2xl sm:text-3xl font-bold xl:mb-10 mb-6 uppercase`}>{item.heading}</h2>
 
             {/* Paragraphs */}
             {item.paragraphs?.map((para, idx) => (
@@ -273,7 +267,7 @@ export default function VerticalSlider() {
 
           {/* Image side */}
           {item.image && (
-            <div className="flex justify-center mb-6 lg:mb-0">
+            <div className={`${item.imageClasses} flex justify-center mb-6 lg:mb-0`}>
               <Image
                 src={item.image.src}
                 alt={item.image.alt}

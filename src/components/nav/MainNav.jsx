@@ -109,7 +109,7 @@ export default function MainNav({ isOpen, setIsOpen, secondaryNavReady }) {
 
       <header
         ref={navRef}
-        className="fixed lg:absolute top-0 left-0 w-full z-50 lg:px-0 lg:pt-0"
+        className="fixed lg:absolute top-0 left-0 w-full z-50 lg:pt-0"
         suppressHydrationWarning
       >
         {/* Overlay behind the nav if mobile menu is open */}
@@ -171,7 +171,7 @@ export default function MainNav({ isOpen, setIsOpen, secondaryNavReady }) {
           "
           style={{ willChange: "transform, opacity" }}
         >
-          <div className="mx-auto max-w-8xl w-full px-6">
+          <div className="mx-auto max-w-8xl w-full px-6 2xl:px-0">
           {/* Top Navigation Row */}
           <div className="flex items-center relative">
             {/* LOGO */}
@@ -316,7 +316,7 @@ export default function MainNav({ isOpen, setIsOpen, secondaryNavReady }) {
                 {/* Divider */}
                 <motion.div
                   variants={dropdownItemVariants}
-                  className="w-[1.5px] bg-black/10 mx-8 self-stretch sm:block hidden"
+                  className="w-[1.5px] bg-black/10 self-stretch sm:block hidden"
                 />
 
                 {/* Solutions Icons */}

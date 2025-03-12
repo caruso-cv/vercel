@@ -6,8 +6,7 @@ import "keen-slider/keen-slider.min.css"
 import { useKeenSlider } from "keen-slider/react"
 import { motion, useAnimationControls } from "framer-motion"
 import Link from "next/link"
-
-// Logos / Icons
+import { useRouter, usePathname } from "next/navigation"; 
 import Energate from "@/components/logos/Energate"
 import Equ8ter from "@/components/logos/Equ8ter"
 import Energy from "@/components/icons/Energy"
@@ -80,6 +79,7 @@ const slidesData = [
 ]
 
 export default function Slider() {
+
   const [currentSlide, setCurrentSlide] = useState(0)
   const [mounted, setMounted] = useState(false)
 
@@ -91,6 +91,22 @@ export default function Slider() {
 
   // Keep track of the previous slide index
   const prevSlide = useRef(currentSlide)
+
+  // Nav Scroll Functions/Variables
+  const router = useRouter(); 
+  const pathname = usePathname(); 
+
+  const scrollToSection = (targetId) => {
+    const targetElement = document.getElementById(targetId);
+    if (targetElement) {
+      const offsetTop = targetElement.getBoundingClientRect().top + window.scrollY;
+
+      window.scrollTo({
+        top: offsetTop,
+        behavior: "smooth",
+      });
+    }
+  };
 
   // Mark as mounted after first client render
   useEffect(() => {

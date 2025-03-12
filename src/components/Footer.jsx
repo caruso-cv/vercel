@@ -14,7 +14,7 @@ export default function Footer() {
 
 return (
   <footer
-    className="relative text-white overflow-x-hidden"
+    className="relative text-white overflow-x-hidden px-6 2xl:px-0"
     style={ { paddingTop: "clamp(100px, calc(100vw * 0.23 + 13.79px), 200px)" } }
     suppressHydrationWarning
   >
@@ -24,7 +24,7 @@ return (
 
       {/* Content container with gradient, blur, shadow, and border */}
       <div
-        className="relative mx-auto z-10 w-full bg-gradient-to-t from-[#07080a] to-black/70 shadow-[0px_-4px_4px_0px_rgba(0,0,0,0.25)] border-t border-[#111213] backdrop-blur-[72px] md:pb-40 pb-12 pt-28 px-6"
+        className="relative mx-auto z-10 w-full bg-gradient-to-t from-[#07080a] to-black/70 shadow-[0px_-4px_4px_0px_rgba(0,0,0,0.25)] border-t border-[#111213] backdrop-blur-[72px] md:pb-40 pb-12 pt-28"
         style={{ willChange: "transform, opacity" }}
       >
         

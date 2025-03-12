@@ -1,198 +1,159 @@
 'use client'
 
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import DigitalBackground from "@/components/DigitalBackground";
 import NoiseOverlay from "@/components/NoiseOverlay";
 import Elev8tr from "@/components/logos/ECU8TR";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
-import { MoveLeft } from "lucide-react";
+import Bullets from "@/components/solutions/Ecu8trBullet";
 
-/* -------------------------------------------
-   1) SPECIFICATIONS SECTION 
-------------------------------------------- */
-function SpecificationsView({ onClose }) {
-  return (
-    <motion.div
-      key="specs"
-      initial={{ opacity: 0, x: 50 }}
-      animate={{ opacity: 1, x: 0 }}
-      exit={{ opacity: 0, x: 50 }}
-      transition={{ duration: 0.4, ease: "easeInOut" }}
-      className="relative w-full pt-36 min-h-screen"
-    >
-      <div className="max-w-8xl w-full mx-auto text-black px-4 sm:px-6 lg:px-8 xs:pt-6 md:pt-20 lg:pt-24 3xl:pt-44 pb-28">
-        <div className="flex justify-between items-center">
-          <h2 className="text-2xl xs:text-[1.75rem] sm:text-5xl font-bold mb-10 3xl:text-6xl">
-            SPECIFICATIONS
-          </h2>
-          <button
-            onClick={onClose}
-            className="rounded-md text-black uppercase font-bold bg-gray-100 hover:bg-gray-200 py-2 px-4 mb-11 sm:mb-9 xl:mb-4"
-          >
-            <MoveLeft className="w-6 h-6 text-gray-500 inline-flex mr-1 md:mr-3" />
-            <span className="hidden xs:inline">Back </span>
-            <span className="hidden md:inline">to product</span>
-          </button>
-        </div>
-
-        <div className="border-2 border-[#016DFF] rounded-md overflow-hidden">
-          <div className="grid grid-cols-1 md:grid-cols-[240px_minmax(0,1fr)] 3xl:grid-cols-[260px_minmax(0,1fr)]">
-            {/* 1) DIMENSIONS */}
-            <div className="p-4 lg:p-6 pb-0 md:pb-4 md:border-b border-[#016DFF] font-semibold xs:text-xl lg:text-[1.4rem] 3xl:text-2xl">
-              DIMENSIONS
-            </div>
-            <div className="p-4 lg:p-6 border-b border-[#016DFF] md:border-l md:border-[#016DFF] xs:text-lg lg:text-2xl font-geist text-black/70 3xl:text-2xl">
-              <p className="mb-1">Standard 1U Chassis size</p>
-              <p className="mb-1">8.000&#34; L x 16.600&#34; W x 1.750&#34; H</p>
-              <p>203.20mm x 421.64mm x 44.45mm</p>
-            </div>
-            {/* 2) SAFETY CERTIFICATIONS */}
-            <div className="p-4 lg:p-6 pb-0 md:pb-4 md:border-b border-[#016DFF] font-semibold xs:text-xl lg:text-[1.4rem] 3xl:text-2xl">
-              SAFETY CERTIFICATIONS
-            </div>
-            <div className="p-4 lg:p-6 border-b border-[#016DFF] md:border-l md:border-[#016DFF] xs:text-lg lg:text-2xl font-geist text-black/70 3xl:text-2xl">
-              UL 61010
-            </div>
-            {/* 3) POWER */}
-            <div className="p-4 lg:p-6 pb-0 md:pb-4 md:border-b border-[#016DFF] font-semibold xs:text-xl lg:text-[1.4rem] 3xl:text-2xl">
-              POWER
-            </div>
-            <div className="p-4 lg:p-6 border-b border-[#016DFF] md:border-l md:border-[#016DFF] xs:text-lg lg:text-2xl font-geist text-black/70 3xl:text-2xl">
-              12V 36 W AC/DC External Desktop (Class I) Adapter International,<br />
-              90 &#126; 264 VAC
-            </div>
-            {/* 4) INTERFACES */}
-            <div className="p-4 lg:p-6 pb-0 md:pb-4 md:border-b border-[#016DFF] font-semibold xs:text-xl lg:text-[1.4rem] 3xl:text-2xl">
-              INTERFACES
-            </div>
-            <div className="p-4 lg:p-6 border-b border-[#016DFF] md:border-l md:border-[#016DFF] xs:text-lg lg:text-2xl font-geist text-black/70 3xl:text-2xl">
-              <p className="mb-1">
-                ISO SPI and ISO UART analog frontend communications
-              </p>
-              <p className="mb-1">Ethernet network interface – 10/100 baseT</p>
-              <p className="mb-1">CAN FD interface via 9-pin Dsub connector</p>
-              <p>12V power input via barrel jack</p>
-            </div>
-            {/* 5) INDICATORS */}
-            <div className="p-4 lg:p-6 pb-0 md:pb-4 md:border-b border-[#016DFF] font-semibold xs:text-xl lg:text-[1.4rem] 3xl:text-2xl">
-              INDICATORS
-            </div>
-            <div className="p-4 lg:p-6 border-b border-[#016DFF] md:border-l md:border-[#016DFF] xs:text-lg lg:text-2xl font-geist text-black/70 3xl:text-2xl">
-              Large LED indicator to display test modes and test results
-            </div>
-          </div>
-        </div>
-      </div>
-    </motion.div>
-  );
-}
-
-/* -------------------------------------------
-   2) MAIN CONTENT (the original landing content)
-------------------------------------------- */
-function MainView({ onShowSpecs }) {
-  // Add state for image loading
+export default function ProductPage() {
+  // State to track when the main image has loaded
   const [imageLoaded, setImageLoaded] = useState(false);
-  // Calculate aspect ratio percentage for the placeholder (height / width * 100)
+  // Calculate aspect ratio percentage for the image placeholder
   const aspectRatio = (1145 / 1916) * 100;
 
   return (
-    <motion.div
-      key="main"
-      initial={{ opacity: 0, x: -50 }}
-      animate={imageLoaded ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
-      exit={{ opacity: 0, x: -50 }}
-      transition={{ duration: 0.4, ease: "easeInOut" }}
-      className="relative w-full"
-    >
-      <div className="h-full text-black flex flex-col xl:flex-row items-center justify-center relative z-30 max-w-[1900px] mx-auto pb-28 md:pb-52 lg:pt-28 xl:pt-72 3xl:pt-96 ">
-        <div className="flex justify-start mb-6 xl:mb-0 w-full pl-8 lg:pl-14 pt-32 xl:hidden">
-          <Elev8tr className="h-[4rem] xs:h-[5rem] sm:h-24 mb-12" />
-        </div>
-        <div className="flex justify-center mb-6 xl:mb-0">
-          <div className="relative w-full xs:max-w-6xl">
-            {/* Invisible placeholder to reserve space */}
-            {!imageLoaded && (
-              <div style={{ paddingBottom: `${aspectRatio}%` }} />
-            )}
-            <Image
-              src="/vertical/ecu8tr.png"
-              alt="Emula8tr ESS Controller"
-              width={1916}
-              height={1145}
-              quality={70}
-              priority
-              onLoad={() => setImageLoaded(true)}
-              className={`w-full xs:max-w-6xl h-auto ${!imageLoaded ? "invisible" : "visible"}`}
-            />
-          </div>
-        </div>
-        <div className="xl:max-w-[50vw] mx-auto xl:w-1/2 text-left xs:px-2 lg:px-8">
-          <div className="text-left px-8 pt-12 xl:pt-0">
-            <Elev8tr className="h-16 sm:h-24 3xl:h-36 md:mb-5 hidden xl:block" />
-            <h2 className="3xl:text-4xl text-2xl sm:text-4xl font-bold xl:mb-10 mb-6">
-              REVOLUTIONIZING QUALITY CONTROL
-            </h2>
-            <p className="font-medium text-xl md:text-2xl 2xl:text-[1.7rem] 2xl:leading-[1.3] 3xl:text-3xl xl:mb-10 mb-6">
-              ECU8TR™ is a cutting-edge tester crafted for the verification of
-              cell monitor operations within battery modules or packs.
-            </p>
-            <ul className="list-disc font-base text-lg md:text-xl xl:text-2xl 3xl:text-3xl pl-4 leading-[1.8] mb-8 xl:mb-14 xl:space-y-3 md:space-y-1">
-              <li>Precision Monitoring</li>
-              <li>ISO SPI and ISO UART compatible</li>
-              <li>Quality Management</li>
-            </ul>
-            <div className="mt-10 flex gap-6 relative flex-col 4sm:flex-row items-start">
-              <button
-                onClick={onShowSpecs}
-                className="inline-flex items-center justify-center gap-2 min-h-[40px] sm:min-h-[48px] px-3 sm:px-6 py-1.5 text-[1rem] sm:text-lg 3xl:text-lg font-semibold whitespace-nowrap cursor-pointer border-none rounded-md transition-colors duration-200 ease-in-out bg-[#000] hover:bg-[#343434] shadow-[0_0_2px_rgba(0,0,0,0.5),_0_0_14px_rgba(255,255,255,0.19),_inset_0_-1px_0.4px_rgba(0,0,0,0.2)] opacity-90 hover:opacity-100 text-white uppercase"
-              >
-                Specifications
-              </button>
+    <div className="relative min-h-screen">
+      {/* Header with logo inside max-w-8xl container */}
+      <div className="max-w-8xl mx-auto px-6 2xl:px-0 pt-32 lg:pt-48 relative z-30">
+        <Elev8tr className="h-16 sm:h-28 xl:h-32" />
+      </div>
 
-              <Link
-                href="/pdf/ECU8TR.pdf"
-                alt="Ecu8tr Battery Point Tester"
-                target="_blank"
-                className="inline-flex items-center justify-center gap-2 min-h-[40px] sm:min-h-[48px] px-3 sm:px-6 py-1.5 text-[1rem] sm:text-lg 3xl:text-lg font-bold whitespace-nowrap cursor-pointer border-none rounded-md transition-colors duration-200 ease-in-out bg-gray-100 hover:bg-gray-200 opacity-90 hover:opacity-100 text-black uppercase"
-              >
-                View brochure{" "}
-                <ArrowUpRight className="w-5 h-5 text-gray-500" />
-              </Link>
+      <motion.div
+        key="main"
+        initial={{ opacity: 0, x: -50 }}
+        animate={imageLoaded ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
+        exit={{ opacity: 0, x: -50 }}
+        transition={{ duration: 0.4, ease: "easeInOut" }}
+        className="relative w-full"
+      >
+        <div className="h-full text-black flex flex-col xl:flex-row items-center justify-center max-w-8xl mx-auto lg:pt-2">
+
+        {/* Main image for mobile */}
+        <div className="flex justify-center xl:mb-0 xl:hidden">
+            <div className="relative w-full xs:max-w-6xl z-30 mt-8">
+              {/* Invisible placeholder to reserve space until the image loads */}
+              {!imageLoaded && <div style={{ paddingBottom: `${aspectRatio}%` }} />}
+              <Image
+                src="/vertical/ecu8tr.png"
+                alt="Emula8tr ESS Controller"
+                width={1916}
+                height={1145}
+                quality={70}
+                priority
+                onLoad={() => setImageLoaded(true)}
+                className={`w-full xs:max-w-6xl h-auto ${!imageLoaded ? "invisible" : "visible"}`}
+              />
+            </div>
+          </div>
+
+          {/* Text Section */}
+          <div className="xl:max-w-[50vw] mx-auto xl:w-2/3 text-left px-6 2xl:px-0">
+            <div className="text-left pt-12 xl:pt-0">
+              <h2 className=" text-2xl sm:text-4xl font-bold xl:mb-6 mb-4">
+                ABOUT ECU8TR™
+              </h2>
+              <p className="font-medium text-xl md:text-2xl 2xl:text-[1.6rem] 2xl:leading-[1.4] xl:mb-10 mb-6">
+              ECU8TR™ is an advanced tester designed to verify cell monitor operations in battery modules or packs. Its intuitive design integrates seamlessly into manufacturing, offering real-time monitoring to help manufacturers make informed decisions and address issues at any stage.
+              </p>
+             
+              <div className="mt-10 flex gap-6 relative flex-col 4sm:flex-row items-start">
+                <Link
+                  href="/pdf/ECU8TR.pdf"
+                  alt="Ecu8tr Battery Point Tester"
+                  target="_blank"
+                  className="inline-flex items-center justify-center gap-2 min-h-[40px] sm:min-h-[48px] px-3 sm:px-6 py-1.5 text-[1rem] sm:text-lg font-bold whitespace-nowrap cursor-pointer border-none rounded-md transition-colors duration-200 ease-in-out bg-gray-100 hover:bg-gray-200 opacity-90 hover:opacity-100 text-black uppercase"
+                >
+                  View product brief{" "}
+                  <ArrowUpRight className="w-5 h-5 text-gray-500" />
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          {/* Main Image for desktop */}
+          <div className="justify-center mb-6 xl:mb-0 hidden xl:flex">
+            <div className="relative w-full xs:max-w-6xl z-30">
+              {/* Invisible placeholder to reserve space until the image loads */}
+              {!imageLoaded && <div style={{ paddingBottom: `${aspectRatio}%` }} />}
+              <Image
+                src="/vertical/ecu8tr.png"
+                alt="Emula8tr ESS Controller"
+                width={1916}
+                height={1145}
+                quality={70}
+                priority
+                onLoad={() => setImageLoaded(true)}
+                className={`w-full xs:max-w-6xl h-auto ${!imageLoaded ? "invisible" : "visible"}`}
+              />
+            </div>
+          </div>
+
+          
+        </div>
+      </motion.div>
+
+      {/* Static SPECIFICATIONS Section */}
+      <div className="max-w-8xl w-full mx-auto text-black pt-20 lg:pt-24 pb-28 px-6 2xl:px-0">
+        <h2 className=" text-2xl sm:text-4xl font-bold mb-10 ">
+          SPECIFICATIONS
+        </h2>
+        <div className="border-2 border-[#2F79F8] rounded-md overflow-hidden">
+          <div className="grid grid-cols-1 md:grid-cols-[240px_minmax(0,1fr)] ">
+            {/* DIMENSIONS */}
+            <div className="p-4 lg:p-6 pb-0 md:pb-4 md:border-b border-[#2F79F8] font-semibold xs:text-xl lg:text-[1.4rem] ">
+              INTERFACES
+            </div>
+            <div className="p-4 lg:p-6 border-b border-[#2F79F8] md:border-l md:border-[#2F79F8] xs:text-lg lg:text-2xl font-geist text-black/70 ">
+              <p className="mb-1">ISO COMM (ISO SPI, ISO UART) analog frontend
+                Ethernet network interface - 10/100 baseT
+                CAN FD Interface via 9-pin Dsub connector
+                12V Power Input via Barrel Jack</p>
+            </div>
+            {/* DIMENSIONS */}
+            <div className="p-4 lg:p-6 pb-0 md:pb-4 md:border-b border-[#2F79F8] font-semibold xs:text-xl lg:text-[1.4rem] ">
+              DIMENSIONS
+            </div>
+            <div className="p-4 lg:p-6 border-b border-[#2F79F8] md:border-l md:border-[#2F79F8] xs:text-lg lg:text-2xl font-geist text-black/70">
+              <p className="mb-1">
+                Standard 1U Chassis Size
+              </p>
+              <p className="mb-1">8.000"L x 16.600"W x 1,750"H</p>
+              <p className="mb-1">203.20mm x 421.64mm x 44.45mm</p>
+            </div>
+            {/* POWER */}
+            <div className="p-4 lg:p-6 pb-0 md:pb-4 md:border-b border-[#2F79F8] font-semibold xs:text-xl lg:text-[1.4rem] ">
+              POWER
+            </div>
+            <div className="p-4 lg:p-6 border-b border-[#2F79F8] md:border-l md:border-[#2F79F8] xs:text-lg lg:text-2xl font-geist text-black/70 ">
+              <p className="mb-1">12V/36W AC/DC External Desktop (Class 1)</p>
+              <p className="mb-1">Adapter International, 90 ~ 264 VAC</p>
+            </div>
+            {/* INTERFACES */}
+            <div className="p-4 lg:p-6 pb-0 md:pb-4 md:border-b border-[#2F79F8] font-semibold xs:text-xl lg:text-[1.4rem] ">
+              INDICATORS
+            </div>
+            <div className="p-4 lg:p-6 border-b border-[#2F79F8] md:border-l md:border-[#2F79F8] xs:text-lg lg:text-2xl font-geist text-black/70 ">
+              <p className="mb-1">
+                Test mode and results LED indicator
+              </p>
+            </div>
+            {/* CERTIFICATIONS */}
+            <div className="p-4 lg:p-6 pb-0 md:pb-4 md:border-b border-[#2F79F8] font-semibold xs:text-xl lg:text-[1.4rem] ">
+               CERTIFICATIONS
+            </div>
+            <div className="p-4 lg:p-6 border-b border-[#2F79F8] md:border-l md:border-[#2F79F8] xs:text-lg lg:text-2xl font-geist text-black/70 ">
+              UL Certified (UL61010)
             </div>
           </div>
         </div>
       </div>
-    </motion.div>
-  );
-}
 
-/* -------------------------------------------
-   3) PARENT PAGE COMPONENT
-------------------------------------------- */
-export default function Example() {
-  const [showSpecs, setShowSpecs] = useState(false);
-
-  const handleShowSpecs = () => {
-    if (window.innerWidth < 1268) {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-    setShowSpecs(true);
-  };
-
-  return (
-    <div className="relative min-h-screen">
-      <AnimatePresence mode="wait">
-        {showSpecs ? (
-          <SpecificationsView onClose={() => setShowSpecs(false)} />
-        ) : (
-          <MainView onShowSpecs={handleShowSpecs} />
-        )}
-      </AnimatePresence>
-
+      <Bullets />
       <DigitalBackground />
       <NoiseOverlay />
     </div>

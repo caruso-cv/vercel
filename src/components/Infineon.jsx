@@ -14,10 +14,10 @@ const arrowVariants = {
 
 function Infineon() {
   return (
-    <section className="bg-[#090A0B] text-white pt-20 sm:pb-16">
+    <section className="bg-[#090A0B] text-white pt-20 sm:pb-16 hidden lg:block">
 
       {/* ================== 5-COLUMN DESKTOP (≥LG) ================== */}
-      <div className="hidden lg:flex max-w-7xl 3xl:max-w-8xl mx-auto relative overflow-hidden">
+      <div className="hidden lg:flex max-w-8xl mx-auto relative overflow-hidden">
         {/*
           ========= FADE GRADIENTS ON ALL SIDES =========
           Adjust the widths/heights as needed.
@@ -36,7 +36,7 @@ function Infineon() {
           <div className="py-12" />
           <div className="border-t border-[#1B1C1E] py-6" />
           <div className="border-y border-[#1B1C1E] min-h-[360px]" />
-          <div className="min-h-[354.74px]" />
+          <div className="min-h-[424.74px]" />
           <div className="border-y border-[#1B1C1E] py-6" />
           <div className="py-6" />
         </div>
@@ -46,24 +46,24 @@ function Infineon() {
           <div className="py-12" />
           <div className="border-t border-[#1B1C1E] py-6" />
           <div className="border-y border-[#1B1C1E]">
-            <p className="text-6xl font-semibold p-12 pb-[46px] leading-[1.1]">
-              Infineon&apos;s Preferred Design House.
+            <p className="text-pretty text-4xl xl:text-5xl font-bold text-white sm:text-balance sm:text-[2.7rem] p-16 pb-[52.5px] xl:pb-[54px] uppercase leading-[1.2]" >
+              Infineon&apos;s Premier Design House.
             </p>
           </div>
 
           {/* HOVER CONTAINER (Framer Motion) */}
           <Link href="/services" className="transition-colors">
             <motion.div
-              className="p-12 pr-2 pb-[50.5px] hover:bg-[#0C0D0F] cursor-pointer"
+              className="p-16 pr-12 xl:pr-2 pb-[50.5px] hover:bg-[#0C0D0F] cursor-pointer"
               initial="rest"
               whileHover="hover"
               animate="rest"
             >
-              <p className="text-lg 3xl:text-xl leading-relaxed max-w-xs font-geist text-[#8e8f90]">
-                As an Infineon Preferred Design House, Neutron Controls brings ideas to life,
+              <p className="text-lg xl:text-2xl leading-relaxed max-w-xs font-geist text-[#8e8f90]">
+                As an Infineon Premier Design House, Neutron Controls brings ideas to life,
                 uniting Infineon&apos;s advanced solutions with our expert guidance.
               </p>
-              <p className="inline-block font-medium text-white transition-colors font-geist pt-[56.5px] 3xl:text-xl 3xl:pt-[60px]">
+              <p className="inline-block font-medium text-white transition-colors font-geist pt-[56.5px] xl:text-xl xl:pt-[58.5px]">
                 Learn more
               </p>
               <motion.span
@@ -94,7 +94,7 @@ function Infineon() {
           </div>
 
           {/* Rows 3 & 4 -> merged cell for the image */}
-          <div className="relative border-y border-[#1B1C1E] min-h-[715.74px] min-w-[796.62px] flex items-center justify-center overflow-hidden">
+          <div className="relative border-y border-[#1B1C1E] min-h-[680px] xl:min-h-[785.74px] min-w-[796.62px] flex items-center justify-center overflow-hidden">
             {/* Polka‑dot background (inline SVG, smaller + spaced) */}
             <div
               className="
@@ -128,14 +128,14 @@ function Infineon() {
           <div className="py-12" />
           <div className="border-t border-[#1B1C1E] py-6" />
           <div className="border-y border-[#1B1C1E] min-h-[360px]" />
-          <div className="min-h-[354.74px]" />
+          <div className="min-h-[425.1px]" />
           <div className="border-y border-[#1B1C1E] py-6" />
           <div className="py-6" />
         </div>
       </div>
 
       {/* ================== RESPONSIVE (UNDER LG) ================== */}
-      <div className="lg:hidden max-w-7xl mx-auto px-4 sm:px-6">
+      <div className="lg:hidden max-w-8xl mx-auto px-4 sm:px-6">
 
         {/* ROW 1: top spacing + top border */}
         <div className="border-t border-[#1B1C1E] py-6" />
@@ -158,9 +158,9 @@ function Infineon() {
         {/* ROW 3: two columns at md, single column below md */}
         <div className="border-b border-[#1B1C1E] grid grid-cols-1 md:grid-cols-2">
           {/* LEFT COLUMN: big heading */}
-          <div className="border-[#1B1C1E] p-8 flex items-center">
-            <p className="text-4xl md:text-5xl 3xl:text-6xl font-semibold leading-tight">
-              Infineon&apos;s Preferred Design House.
+          <div className="border-[#1B1C1E] p-8 pb-0 md:pb-8 flex items-center">
+            <p className="text-pretty text-4xl font-bold text-white sm:text-balance sm:text-[2.7rem] uppercase leading-tight max-w-md">
+              Infineon&apos;s Preferred Design House
             </p>
           </div>
 
@@ -172,7 +172,7 @@ function Infineon() {
               whileHover="hover"
               animate="rest"
             >
-              <p className="text-base md:text-lg leading-relaxed max-w-xs font-geist text-[#6A6B6C] mb-6">
+              <p className="text-lg leading-relaxed max-w-xs font-geist text-[#6A6B6C] mb-6">
                 As an Infineon Preferred Design House, Neutron Controls brings ideas to life,
                 uniting Infineon&apos;s advanced solutions with our expert guidance.
               </p>

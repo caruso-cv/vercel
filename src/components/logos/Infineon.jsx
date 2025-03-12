@@ -3,7 +3,8 @@ import * as React from "react"
 const SvgComponent = (props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    viewBox="-108.701 -69.945 1120.85 519.064"
+    viewBox="0 -40.945 1012.149 519.064"
+    //Use this if you remove commented out Tri-core text ( -108.701 -69.945 1120.85 519.064 )
     {...props}
   >
     <defs>

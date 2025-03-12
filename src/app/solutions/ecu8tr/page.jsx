@@ -8,9 +8,6 @@ export default function Home() {
       <main>
         <Ecu8tr />
       </main>
-      <div className="overflow-x-hidden relative bg-[#090A0B]">
-        <InfineonSection />
-      </div>
     </div>
   )
 }

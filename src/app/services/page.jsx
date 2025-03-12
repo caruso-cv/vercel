@@ -4,6 +4,8 @@ import Battery from '@/components/icons/Battery';
 import Design from '@/components/icons/Design';
 import Safety from '@/components/icons/SafetyIcon';
 import InfineonSection from '@/components/services/InfineonSection';
+import Infineon from '@/components/services/Infineon';
+import Bullets from '@/components/services/Bullets';
 
 const tiers = [
   {
@@ -138,6 +140,8 @@ export default function Page() {
 
       {/* Render the Infineon Section */}
       <InfineonSection />
+      <Infineon/>
+      {/* <Bullets/> */}
     </div>
   );
 }

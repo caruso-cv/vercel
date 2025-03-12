@@ -325,7 +325,7 @@ export default function Contact() {
                 </div>
 
                 {/* Phone number */}
-                <div className="sm:col-span-2">
+                {/* <div className="sm:col-span-2">
                   <label
                     htmlFor="phone-number"
                     className="block text-sm/6 font-semibold text-white lg:text-base 3xl:text-lg"
@@ -356,7 +356,7 @@ export default function Contact() {
                       `}
                     />
                   </div>
-                </div>
+                </div> */}
 
                 {/* Message */}
                 <div className="sm:col-span-2">
