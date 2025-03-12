@@ -14,6 +14,10 @@ export default function BackgroundHero() {
   if (isSolutionsPage) {
     return null;
   }
+  
+  if (isHome || isSolutionsPage) {
+    return null;
+  }
 
   return (
     <div

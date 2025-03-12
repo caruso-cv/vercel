@@ -6,7 +6,7 @@ import { motion } from 'framer-motion'
 
 export default function Example() {
   return (
-    <div className="bg-gray-900 block lg:hidden">
+    <div className="bg-gray-900">
       {/* Adjust container height responsively */}
       <div className="relative isolate overflow-hidden">
       <Image
@@ -25,9 +25,9 @@ export default function Example() {
           {/* (Your clipPath content can remain here) */}
         </div>
         <div className="absolute inset-0 bg-black bg-opacity-70 -z-10"></div>
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="mx-auto max-w-8xl px-6 lg:px-8 2xl:px-0">
           <div
-            className="mx-auto max-w-2xl
+            className="max-w-2xl shrink-0
                        pt-[calc(12rem+env(safe-area-inset-top))] pb-32 
                        sm:pt-[calc(14rem+env(safe-area-inset-top))] sm:pb-48 
                        lg:py-56"
@@ -40,10 +40,10 @@ export default function Example() {
               </div>
             </div>
             <div className="text-left">
-              <h1 className="text-balance uppercase text-5xl font-bold text-white sm:text-6xl">
+              <h1 className="text-balance uppercase text-5xl font-bold text-white sm:mt-12 sm:text-[5.2rem]">
                 Contain your energy
               </h1>
-              <p className="mt-8 text-pretty text-xl font-medium text-gray-100 sm:text-3xl">
+              <p className="mt-8 text-pretty text-xl font-medium text-gray-100 sm:text-4xl">
                 Advanced BMS controllers for ESS/BESS installations.
               </p>
               <div className="mt-10 flex items-left justify-start gap-x-6">

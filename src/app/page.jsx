@@ -12,7 +12,7 @@ export default function Home() {
     <div>
       <main>
         <div className="lg:h-full relative overflow-x-hidden bg-[#090A0B]">
-            <Hero />
+            {/* <Hero /> */}
             <MobileHero />
             {/* <SideScroll/> */}
         </div>
