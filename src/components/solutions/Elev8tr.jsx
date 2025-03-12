@@ -8,7 +8,7 @@ import Elev8tr from "@/components/logos/ELEV8TR";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
-import Bullets from "@/components/solutions/Ecu8trBullet";
+import Bullets from "@/components/solutions/Elev8trBullet";
 
 export default function ProductPage() {
   // State to track when the main image has loaded
