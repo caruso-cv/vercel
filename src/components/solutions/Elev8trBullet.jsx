@@ -1,4 +1,4 @@
-import Purpose from "@/components/icons/Scale"
+import Purpose from "@/components/icons/Purpose"
 import Quality from "@/components/icons/Quality"
 import Parameter from "@/components/icons/Parameter"
 
@@ -14,31 +14,34 @@ export default function InfineonSections() {
             <div className="py-8">
               <Purpose className="w-12 h-auto mb-8" />
               <p className="text-white uppercase text-[2rem] lg:text-[2.3rem] font-bold leading-[1.2] my-3 max-w-[15rem] ">
-              BI-DIRECTIONAL
-              POWER
+                Technology Agnostic
               </p>
               <p className="text-white/60 max-w-sm text-xl lg:text-2xl">
-                Supports charging and discharging—key for thorough BMS testing and robust performance.
+              Designed with multiple
+                interfaces in mind, ECU8TR™
+                boasts extensive compatibility.
               </p>
             </div>
             <div className="py-8">
               <Quality className="w-12 h-auto mb-8" />
               <p className="text-white uppercase text-[2rem] lg:text-[2.3rem] font-bold leading-[1.2] my-3 max-w-[15rem]">
-              LIVE
-              INTEGRATION MODULE
+                Command Functions
               </p>
               <p className="text-white/60 max-w-sm text-xl lg:text-2xl">
-              Connect with live battery strips for real-world BMS testing and design refinement.
+              ECU8TR™ is used to initiate
+              functions such as balancing,
+              register writes, and diagnostics.
               </p>
             </div>
             <div className="py-8">
               <Parameter className="w-[72px] h-auto mb-8" />
               <p className="text-white uppercase text-[2rem] lg:text-[2.3rem] font-bold leading-[1.2] my-3 max-w-[15rem]">
-              MATLAB & SIMULINK
-              INTEGRATION
+               Real-Time Detection
               </p>
               <p className="text-white/60 max-w-sm text-xl lg:text-2xl">
-              Integrated with MATLAB and Simulink for seamless transition from design to live testing via direct code generation.
+              Use the ECU8TR™ to find
+              issues before they manifest,
+              optimizing your QA operations.
               </p>
             </div>
 
