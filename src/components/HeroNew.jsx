@@ -70,14 +70,13 @@ export default function HeroNew() {
               aria-hidden="true"
               className="absolute inset-x-0 -top-40 -z-20 transform-gpu overflow-hidden blur-3xl"
             >
-              {/* (Your clipPath content) */}
             </div>
             <div className="absolute inset-0 bg-black bg-opacity-70 -z-10"></div>
             <div className="mx-auto max-w-8xl px-6 lg:px-8 2xl:px-0">
               <div className="flex h-full items-start pt-[calc(12rem+env(safe-area-inset-top))] pb-32 sm:pt-[calc(14rem+env(safe-area-inset-top))] sm:pb-48 lg:py-56">
                 <div className="max-w-2xl select-text">
                   <div className="text-left">
-                    <h1 className="text-balance uppercase text-5xl font-bold text-white sm:mt-12 sm:text-[5.2rem]">
+                    <h1 className="text-balance uppercase text-5xl font-bold text-white sm:mt-12 sm:text-[5.2rem] 3xl:mt-28">
                       Contain your energy
                     </h1>
                     <p className="mt-8 text-pretty text-xl font-medium text-gray-100 sm:text-4xl">

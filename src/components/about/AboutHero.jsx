@@ -24,7 +24,7 @@ const cards = [
 
 export default function Example() {
   return (
-    <div className="relative isolate overflow-hidden bg-[#090A0B] py-40 lg:pt-72 z-30">
+    <div className="relative isolate overflow-hidden bg-[#090A0B] py-40 lg:pt-56 z-30">
       <img
         alt=""
         src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=focalpoint&fp-y=.8&w=2830&h=1500&q=80&blend=111827&sat=-100&exp=15&blend-mode=multiply"
@@ -53,9 +53,9 @@ export default function Example() {
         />
       </div>
       <div className="mx-auto max-w-8xl px-6 lg:px-6">
-        <div className="mx-auto max-w-3xl 2xl:max-w-4xl lg:mx-0">
+        <div className="mx-auto max-w-3xl 2xl:max-w-3xl lg:mx-0">
           <h1 className="text-5xl font-bold text-white sm:text-6xl uppercase">Our Story</h1>
-          <p className="mt-8 text-pretty text-xl font-medium text-gray-300 sm:text-2xl/8 2xl:text-3xl">
+          <p className="mt-8 text-pretty text-xl font-medium text-gray-300 sm:text-2xl/8 2xl:text-2xl">
             Neutron Controls traces its roots back to our proud Canadian heritage and a deep understanding of the semiconductor industry.
           </p>
         </div>
@@ -63,8 +63,8 @@ export default function Example() {
           {cards.map((card) => (
             <div key={card.name} className="flex gap-x-4 rounded-xl bg-white/5 p-6 ring-1 ring-inset ring-white/10">
               <card.icon aria-hidden="true" className="h-7 w-5 flex-none text-indigo-400" />
-              <div className="text-xl 2xl:text-2xl">
-                <p className="font-semibold text-white 2xl:text-3xl">{card.name}</p>
+              <div className="text-xl 2xl:text-xl">
+                <p className="font-semibold text-white 2xl:text-2xl">{card.name}</p>
                 <p className="mt-6 text-gray-300">{card.description}</p>
               </div>
             </div>

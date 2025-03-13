@@ -142,7 +142,7 @@ export default function Contact() {
       />
 
       <div className="relative pt-20 md:pt-36 3xl:pt-52">
-        <div className="mx-auto grid max-w-8xl grid-cols-1 lg:grid-cols-2">
+        <div className="mx-auto grid max-w-8xl grid-cols-1 lg:grid-cols-2 z-30">
           {/* Left Side – Contact Info */}
           <div className="relative px-6 pb-2 pt-24 lg:static lg:px-8 lg:py-48">
             <div className="mx-auto max-w-xl lg:mx-0 lg:max-w-lg">

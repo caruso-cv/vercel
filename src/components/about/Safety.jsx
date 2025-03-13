@@ -9,10 +9,10 @@ export default function InfineonSections() {
   return (
     <div className="bg-gradient-to-b from-gray-900 px-6">
       <div className="mx-auto max-w-2xl lg:max-w-8xl lg:px-6 lg:pb-12">
-        <p className="text-lg font-semibold text-[#425ACA] lg:text-2xl">
+        <p className="text-lg font-semibold text-[#425ACA] lg:text-xl">
           We're commited to our
         </p>
-        <h2 className="mt-2 uppercase lg:mt-6 text-pretty text-3xl xs:text-4xl font-bold text-white sm:text-balance sm:text-[2.7rem] md:mt-4 leading-[1.1] max-w-xl">
+        <h2 className="mt-2 uppercase lg:mt-6 text-pretty text-2xl xs:text-3xl font-bold text-white sm:text-balance sm:text-[2.7rem] md:mt-4 max-w-xl">
           Environmental and Quality Management System
         </h2>
         <div className="mt-10 grid grid-cols-1 gap-4 sm:mt-16 lg:grid-cols-6 lg:grid-rows-1">
