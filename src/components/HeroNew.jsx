@@ -183,7 +183,6 @@ export default function HeroNew() {
             </div>
           </div>
         </div>
-        {/* Additional slides can be added similarly */}
       </div>
     </div>
   )

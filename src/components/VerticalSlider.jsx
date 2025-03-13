@@ -195,10 +195,22 @@ export default function VerticalSlider() {
          ----------------------------------------- */}
       {pinnedSections.map((item) => (
   <section key={item.id} id={item.id} className={item.sectionClasses}>
-    {/* New wrapper for text and image content only */}
     <div className="max-w-8xl mx-auto flex flex-col lg:flex-row items-center justify-center">
+      {/* Image side */}
+      {item.image && (
+        <div className={`${item.imageClasses} order-first lg:order-last flex justify-center mb-6 lg:mb-0`}>
+          <Image
+            src={item.image.src}
+            alt={item.image.alt}
+            width={1200}
+            height={800}
+            className="w-full max-w-full lg:max-w-[50vw] h-auto"
+          />
+        </div>
+      )}
+
       {/* Text side */}
-      <div className={item.containerClasses}>
+      <div className={`${item.containerClasses} order-last lg:order-first`}>
         {item.logo && item.logo}
         {item.topNote && (
           <p className={`${item.topNote.className} text-[#E00000] font-bold lg:text-[14px] text-[.75rem] tracking-[6px] mb-6 2xl:text-lg`}>
@@ -229,57 +241,12 @@ export default function VerticalSlider() {
         )}
         {item.link && (
           <Link href={item.link.href} passHref>
-            <motion.div
-              className="
-                inline-flex 
-                items-center 
-                justify-center
-                gap-2
-                min-h-[40px]
-                sm:min-h-[48px]
-                px-3
-                sm:px-6 
-                py-1.5
-                text-[1rem]
-                sm:text-lg
-                2xl:text-lg
-                font-semibold 
-                leading-[16px]
-                tracking-[0.2px]
-                whitespace-nowrap
-                cursor-pointer
-                border-none
-                rounded-md
-                transition-colors
-                duration-200
-                ease-in-out
-                bg-[#000]
-                hover:bg-[#343434]
-                shadow-[0_0_2px_rgba(0,0,0,0.5),_0_0_14px_rgba(255,255,255,0.19),_inset_0_-1px_0.4px_rgba(0,0,0,0.2)]
-                opacity-90
-                hover:opacity-100
-                text-white
-                uppercase
-              "
-            >
+            <motion.div className="inline-flex items-center justify-center gap-2 min-h-[40px] sm:min-h-[48px] px-3 sm:px-6 py-1.5 text-[1rem] sm:text-lg 2xl:text-lg font-semibold leading-[16px] tracking-[0.2px] whitespace-nowrap cursor-pointer border-none rounded-md transition-colors duration-200 ease-in-out bg-[#000] hover:bg-[#343434] shadow-[0_0_2px_rgba(0,0,0,0.5),_0_0_14px_rgba(255,255,255,0.19),_inset_0_-1px_0.4px_rgba(0,0,0,0.2)] opacity-90 hover:opacity-100 text-white uppercase">
               <span>{item.link.label}</span>
             </motion.div>
           </Link>
         )}
       </div>
-
-      {/* Image side */}
-      {item.image && (
-        <div className={`${item.imageClasses} flex justify-center mb-6 lg:mb-0`}>
-          <Image
-            src={item.image.src}
-            alt={item.image.alt}
-            width={1200}
-            height={800}
-            className="w-full max-w-full lg:max-w-[50vw] h-auto"
-          />
-        </div>
-      )}
     </div>
   </section>
 ))}
