@@ -4,7 +4,6 @@ import Hero from '@/components/HeroNew'
 import VerticalSlider from '@/components/VerticalSlider'
 import DigitalBackground from '@/components/DigitalBackground'
 import NoiseOverlay from '@/components/NoiseOverlay'
-import InfineonSection from '@/components/Infineon'
 import MobileHero from '@/components/MobileHero'
 
 export default function Home() {
@@ -14,7 +13,6 @@ export default function Home() {
         <div className="lg:h-full relative overflow-x-hidden bg-[#090A0B]">
             <Hero />
             <MobileHero />
-            {/* <SideScroll/> */}
         </div>
         <div className="pt-24 lg:py-24 overflow-x-hidden relative bg-white">
           <div className='relative z-30'>
@@ -23,15 +21,11 @@ export default function Home() {
           </div>
           <DigitalBackground />
           <NoiseOverlay />
-
         </div>
         <div>
           <VerticalSlider/>
         </div>
       </main>
-      <div className="overflow-x-hidden relative py-12">
-        {/* <InfineonSection/> */}
-      </div>
     </div>
   );
 }

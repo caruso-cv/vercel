@@ -52,7 +52,7 @@ export default function Example() {
           className="aspect-[1097/845] w-[68.5625rem] bg-gradient-to-tr from-[#4652ff] to-[#776fff] opacity-20"
         />
       </div>
-      <div className="mx-auto max-w-8xl px-6 lg:px-6">
+      <div className="mx-auto max-w-8xl px-6 2xl:px-0">
         <div className="mx-auto max-w-3xl 2xl:max-w-3xl lg:mx-0">
           <h1 className="text-5xl font-bold text-white sm:text-6xl uppercase">Our Story</h1>
           <p className="mt-8 text-pretty text-xl font-medium text-gray-300 sm:text-2xl/8 2xl:text-2xl">

@@ -5,7 +5,6 @@ import Design from '@/components/icons/Design';
 import Safety from '@/components/icons/SafetyIcon';
 import InfineonSection from '@/components/services/InfineonSection';
 import Infineon from '@/components/services/Infineon';
-import Bullets from '@/components/services/Bullets';
 
 const tiers = [
   {
@@ -58,7 +57,7 @@ export default function Page() {
   return (
     <div className="overflow-hidden bg-[#090A0B]">
       {/* Header / Services Section */}
-      <div className="mx-auto max-w-7xl px-6 pb-96 lg:pb-[26rem] text-center pt-44 lg:px-8 lg:pt-64">
+      <div className="mx-auto max-w-8xl px-6 pb-96 lg:pb-[26rem] text-center pt-44 2xl:px-0 lg:pt-64">
         <div className="mx-auto max-w-4xl relative z-30">
           <h2 className="mt-2 uppercase lg:mt-6 text-pretty text-4xl font-bold text-white sm:text-balance sm:text-[3.5rem] md:mt-4 leading-[1.1]">
             Smarter Energy Solutions
@@ -86,7 +85,7 @@ export default function Page() {
       {/* Tier Cards Section */}
       <div className="flow-root bg-white pb-24 sm:pb-32 relative z-10">
         <div className="-mt-80">
-          <div className="mx-auto max-w-8xl px-6 lg:px-8">
+          <div className="mx-auto max-w-8xl px-6 2xl:px-0">
             <div className="mx-auto grid max-w-8xl grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
               {tiers.map((tier) => (
                 <div
