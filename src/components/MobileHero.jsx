@@ -6,7 +6,7 @@ import { motion } from 'framer-motion'
 
 export default function Example() {
   return (
-    <div className="bg-gray-900 relative isolate overflow-hidden">
+    <div className="bg-gray-900 relative isolate overflow-hidden block md:hidden">
       <Image
         alt="Sunset with solar panels"
         src="/hero/energy.jpg"

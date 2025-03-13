@@ -66,9 +66,9 @@ const pinnedSections = [
     heading: (
       <>
         <span className="hidden sm:inline">
-        Battery factory point tester:
+        Battery factory point tester
         </span>{" "}
-        REVOLUTIONIZING QUALITY CONTROL
+  
       </>
     ),
     headingClasses:
@@ -205,7 +205,7 @@ export default function VerticalSlider() {
             )}
 
             {/* Heading */}
-            <h2 className={`${item.headingClasses} 2xl:text-4xl text-2xl sm:text-3xl font-bold xl:mb-10 mb-6 uppercase`}>{item.heading}</h2>
+            <h2  style={{ lineHeight: "1.2" }} className={`${item.headingClasses} 2xl:text-4xl text-2xl sm:text-3xl font-bold xl:mb-10 mb-6 uppercase text-pretty tracking-[2.2px]`}>{item.heading}</h2>
 
             {/* Paragraphs */}
             {item.paragraphs?.map((para, idx) => (

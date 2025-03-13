@@ -1,119 +1,191 @@
-"use client";
+'use client'
+import React, { useState } from 'react'
+import Image from 'next/image'
+import Link from 'next/link'
+import { motion } from 'framer-motion'
+import { useKeenSlider } from 'keen-slider/react'
+import 'keen-slider/keen-slider.min.css'
 
-import { useState, useEffect } from "react";
-import Link from "next/link";
-import { motion } from "framer-motion";
-import { ChevronDownIcon } from "@heroicons/react/20/solid";
 
-export default function Example() {
-  const [arrowOpacity, setArrowOpacity] = useState(1);
+function AutoSlider(slider) {
+  let timeout;
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const maxScroll = 100;
-      const newOpacity = Math.max(1 - window.scrollY / maxScroll, 0);
-      setArrowOpacity(newOpacity);
-    };
+  function clearNextTimeout() {
+    clearTimeout(timeout);
+  }
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  function nextTimeout() {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      slider.next();
+    }, 5000); // 5 seconds interval
+  }
+
+  slider.on('created', () => {
+    nextTimeout();
+  });
+  slider.on('dragStarted', clearNextTimeout);
+  slider.on('animationEnded', nextTimeout);
+}
+
+export default function HeroNew() {
+  const [sliderLoaded, setSliderLoaded] = useState(false)
+  const [sliderRef] = useKeenSlider(
+    {
+      loop: true,
+      slidesPerView: 1,
+      duration: 1000, // transition duration in ms
+      drag: false, // disable manual dragging
+      created(s) {
+        setSliderLoaded(true)
+      },
+    },
+    [AutoSlider]
+  )
 
   return (
-    <div className="relative isolate overflow-hidden hidden lg:block z-40">
-    <div className='bg-white/90 backdrop-blur-md h-[90vh] w-1/2 absolute bottom-0 right-0'></div>
-
-      <div className="mx-auto max-w-8xl">
-        <div className="flex flex-col lg:flex-row">
-          {/* Left container */}
-          <motion.div
-            className="w-full lg:w-1/2"
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            viewport={{ once: true }}
-          >
-            <div className=" rounded-l py-56">
-                <h1 className="mt-12 text-7xl font-bold text-white sm:text-[5.2rem] uppercase text-balance max-w-xl">
-                Contain Your Energy
-                </h1>
-                <p className="mt-10 text-pretty text-lg font-medium text-white sm:text-4xl">
-                Advanced BMS controllers for ESS/BESS installations.
-                </p>
-                <div className="mt-14 flex items-center gap-x-6">
-                    <Link
+    // Responsive wrapper: only show on md and larger screens
+    <div className="hidden md:block">
+      {/* Slider container with fixed height and fade-in effect */}
+      <div
+        ref={sliderRef}
+        className={`keen-slider relative transition-opacity duration-500 ${
+          sliderLoaded ? 'opacity-100' : 'opacity-0'
+        }`}
+        style={{ height: '80vh' }}
+      >
+        {/* Slide 1 */}
+        <div className="keen-slider__slide h-full">
+          <div className="bg-gray-900 relative isolate overflow-hidden h-full">
+            <Image
+              alt="Sunset with solar panels"
+              src="/hero/energy.jpg"
+              fill
+              sizes="100vw"
+              quality={70}
+              className="absolute inset-0 -z-20 object-cover object-bottom md:object-center"
+              priority
+            />
+            <div
+              aria-hidden="true"
+              className="absolute inset-x-0 -top-40 -z-20 transform-gpu overflow-hidden blur-3xl"
+            >
+              {/* (Your clipPath content) */}
+            </div>
+            <div className="absolute inset-0 bg-black bg-opacity-70 -z-10"></div>
+            <div className="mx-auto max-w-8xl px-6 lg:px-8 2xl:px-0">
+              <div className="flex h-full items-start pt-[calc(12rem+env(safe-area-inset-top))] pb-32 sm:pt-[calc(14rem+env(safe-area-inset-top))] sm:pb-48 lg:py-56">
+                <div className="max-w-2xl select-text">
+                  <div className="text-left">
+                    <h1 className="text-balance uppercase text-5xl font-bold text-white sm:mt-12 sm:text-[5.2rem]">
+                      Contain your energy
+                    </h1>
+                    <p className="mt-8 text-pretty text-xl font-medium text-gray-100 sm:text-4xl">
+                      Advanced BMS controllers for ESS/BESS installations.
+                    </p>
+                    <div className="mt-10 flex items-left justify-start gap-x-6">
+                      <Link
+                        passHref
                         href="#get-started"
                         scroll={false}
                         onClick={(e) => {
-                        e.preventDefault();
-                        const target = document.getElementById("get-started");
-                        if (target) {
-                            target.scrollIntoView({ behavior: "smooth" });
-                        }
+                          e.preventDefault()
+                          const target = document.getElementById('get-started')
+                          if (target) {
+                            target.scrollIntoView({ behavior: 'smooth' })
+                          }
                         }}
-                    >
-                        <motion.div
-                        className="hidden lg:inline-flex items-center justify-center py-5 px-2.5 md:px-3.5 text-xl font-bold tracking-[0.2px] cursor-pointer border-none rounded-[5px] transition-colors duration-200 ease-in-out bg-[#E6E6E6] hover:bg-[#FFF] shadow-md opacity-90 hover:opacity-100 text-black"
-                        whileHover={{ scale: 1.03 }}
-                        whileTap={{ scale: 0.98 }}
-                        >
-                        <span>GET STARTED</span>
+                      >
+                        <motion.div className="inline-flex py-3 px-2.5 md:px-3.5 text-sm sm:text-base font-bold tracking-[0.2px] cursor-pointer border-none rounded-[5px] transition-colors duration-200 ease-in-out bg-[#E6E6E6] hover:bg-[#FFF] shadow-md opacity-90 hover:opacity-100 text-black">
+                          <span>GET STARTED</span>
                         </motion.div>
-                    </Link>
+                      </Link>
+                    </div>
+                  </div>
                 </div>
-            </div>
-          </motion.div>
-
-          {/* Right container (inverted) */}
-          <motion.div
-            className="w-full lg:w-1/2 lg:pt-8 relative z-10"
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            viewport={{ once: true }}
-          >
-            <div className="py-56">
-            <h1 className="mt-12 text-7xl font-bold text-black sm:text-[5.2rem] uppercase text-right">
-                Test<br />Your<br />Limits
-            </h1>
-              <p className="mt-10 text-pretty text-lg font-medium text-black sm:text-4xl text-right">
-              Battery factory <br></br> point tester.
-              </p>
-              <div className="mt-14 flex items-center justify-end gap-x-6">
-                <Link
-                  href="#get-started"
-                  scroll={false}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    const target = document.getElementById("get-started");
-                    if (target) {
-                      target.scrollIntoView({ behavior: "smooth" });
-                    }
-                  }}
-                >
-                  <motion.div
-                    className="hidden lg:inline-flex items-center justify-center py-5 px-2.5 md:px-3.5 text-xl font-bold tracking-[0.2px] cursor-pointer border-none rounded-[5px] transition-colors duration-200 ease-in-out bg-black hover:bg-gray-800 shadow-md opacity-90 hover:opacity-100 text-white"
-                    whileHover={{ scale: 1.03 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    <span>GET STARTED</span>
-                  </motion.div>
-                </Link>
               </div>
             </div>
-          </motion.div>
+            <div
+              aria-hidden="true"
+              className="absolute inset-x-0 top-[calc(100%-13rem)] -z-20 transform-gpu overflow-hidden blur-3xl"
+            >
+              <div
+                style={{
+                  clipPath:
+                    'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
+                }}
+                className="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-20"
+              />
+            </div>
+          </div>
         </div>
+        {/* Slide 2 */}
+        <div className="keen-slider__slide h-full">
+          <div className="bg-gray-900 relative isolate overflow-hidden h-full">
+            <Image
+              alt="Sunset with solar panels"
+              src="/hero/test.jpg"
+              fill
+              sizes="100vw"
+              quality={70}
+              className="absolute inset-0 -z-20 object-cover object-bottom md:object-center"
+              priority
+            />
+            <div
+              aria-hidden="true"
+              className="absolute inset-x-0 -top-40 -z-20 transform-gpu overflow-hidden blur-3xl"
+            >
+              {/* (Your clipPath content) */}
+            </div>
+            <div className="absolute inset-0 bg-black bg-opacity-70 -z-10"></div>
+            <div className="mx-auto max-w-8xl px-6 lg:px-8 2xl:px-0">
+              <div className="flex h-full items-start pt-[calc(12rem+env(safe-area-inset-top))] pb-32 sm:pt-[calc(14rem+env(safe-area-inset-top))] sm:pb-48 lg:py-56">
+                <div className="max-w-2xl select-text">
+                  <div className="text-left">
+                    <h1 className="text-balance uppercase text-5xl font-bold text-white sm:mt-12 sm:text-[5.2rem]">
+                      Test your limits
+                    </h1>
+                    <p className="mt-8 text-pretty text-xl font-medium text-gray-100 sm:text-4xl">
+                      Battery factory point tester.
+                    </p>
+                    <div className="mt-10 flex items-left justify-start gap-x-6">
+                      <Link
+                        passHref
+                        href="#ecu8tr"
+                        scroll={false}
+                        onClick={(e) => {
+                          e.preventDefault()
+                          const target = document.getElementById('ecu8tr')
+                          if (target) {
+                            target.scrollIntoView({ behavior: 'smooth' })
+                          }
+                        }}
+                      >
+                        <motion.div className="inline-flex py-3 px-2.5 md:px-3.5 text-sm sm:text-base font-bold tracking-[0.2px] cursor-pointer border-none rounded-[5px] transition-colors duration-200 ease-in-out bg-[#E6E6E6] hover:bg-[#FFF] shadow-md opacity-90 hover:opacity-100 text-black">
+                          <span>GET STARTED</span>
+                        </motion.div>
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              aria-hidden="true"
+              className="absolute inset-x-0 top-[calc(100%-13rem)] -z-20 transform-gpu overflow-hidden blur-3xl"
+            >
+              <div
+                style={{
+                  clipPath:
+                    'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
+                }}
+                className="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-20"
+              />
+            </div>
+          </div>
+        </div>
+        {/* Additional slides can be added similarly */}
       </div>
-
-
-
-      {/* Scroll arrow with fade-out effect on scroll */}
-      {/* <div
-        style={{ opacity: arrowOpacity, transition: "opacity 0.5s ease-out" }}
-        className="absolute bottom-0 left-1/2 transform -translate-x-1/2 3xl:hidden pb-6"
-      >
-        <ChevronDownIcon className="h-8 w-8 text-white animate-bounce" />
-      </div> */}
     </div>
-  );
+  )
 }

@@ -1,6 +1,6 @@
 import Partners from '@/components/Partners'
 import Slider from '@/components/Slider'
-import Hero from '@/components/Hero'
+import Hero from '@/components/HeroNew'
 import VerticalSlider from '@/components/VerticalSlider'
 import DigitalBackground from '@/components/DigitalBackground'
 import NoiseOverlay from '@/components/NoiseOverlay'
@@ -12,7 +12,7 @@ export default function Home() {
     <div>
       <main>
         <div className="lg:h-full relative overflow-x-hidden bg-[#090A0B]">
-            {/* <Hero /> */}
+            <Hero />
             <MobileHero />
             {/* <SideScroll/> */}
         </div>

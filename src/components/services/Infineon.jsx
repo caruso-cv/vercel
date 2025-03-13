@@ -1,5 +1,5 @@
-'use client'
 
+'use client'
 import React from "react";
 import TopRight from "@/components/icons/TopRight";
 import { motion } from "framer-motion";
@@ -16,7 +16,7 @@ const arrowVariants = {
 
 function Infineon() {
   return (
-    <section className="bg-[#090A0B] pt-20 sm:pb-16 hidden md:block">
+    <section className="bg-[#090A0B] pt-20 sm:pb-16 hidden">
 
       {/* ================== 5-COLUMN DESKTOP (≥LG) ================== */}
       <div className="flex max-w-8xl mx-auto relative overflow-hidden">
@@ -58,14 +58,14 @@ function Infineon() {
 
           {/* Row 5 */}
           <div className="flex">
-            <div className="w-1/2 border-b py-6 border-r border-[#1B1C1E]" />
-            <div className="w-1/2 border-b py-6 border-[#1B1C1E]" />
+            <div className="w-1/2 border-b py-6 border-r border-[#1B1C1E]"/>
+            <div className="w-1/2 border-b py-6 border-[#1B1C1E]"/>
           </div>
 
           {/* Row 6 */}
           <div className="flex">
-            <div className="w-1/2 py-12 border-r border-[#1B1C1E]" />
-            <div className="w-1/2 py-12 border-[#1B1C1E]" />
+            <div className="w-1/2 py-12 border-r border-[#1B1C1E]"/>
+            <div className="w-1/2 py-12 border-[#1B1C1E]"/>
           </div>
         </div>
 
@@ -73,8 +73,8 @@ function Infineon() {
         <div className="hidden 2xl:flex flex-col w-full border-r border-[#1B1C1E]">
           {/* Row 1 */}
           <div className="flex">
-            <div className="w-1/2 py-12 border-r border-[#1B1C1E]" />
-            <div className="w-1/2 py-12 border-[#1B1C1E]" />
+            <div className="w-1/2 py-12 border-r border-[#1B1C1E]"/>
+            <div className="w-1/2 py-12 border-[#1B1C1E]"/>
           </div>
 
           {/* Row 2 */}
@@ -174,6 +174,25 @@ function Infineon() {
         {/* ROW 4: bottom spacing */}
         <div className="py-6" />
       </div>
+{/* 
+      <div className="mx-auto max-w-8xl px-6 lg:px-8">
+        <div className=" text-white text-center bg-gray-600 p-6 ">
+          <div className='bg-[#1C4968] align-middle m-2 h-[50px]'>Application Layer (Demo Code)</div>
+          <div className='bg-[#267EBC]  m-2 h-[50px]'>Real-Time Environment</div>
+          <div>
+            <div className='flex'>
+              <div className='bg-[#7940A3] ml-2 w-2/4 p-4'>Services Layer</div>
+              <div className='bg-[#7940A3] mx-2 w-1/4 p-4'></div>
+              <div className='bg-[#FA2A23] mr-2 p-4 w-1/4'>Complex Device Drivers</div>
+            </div>
+            <div>
+              <div className='bg-[#2FB15D] m-2 h-[50px]'>MCU Abstruction Layer (MCAL)</div>
+            </div>
+            <div className='bg-[#FA2A23] m-2 h-[50px]'>Complex Device Drivers</div>
+          </div>
+          <div className='bg-[#505050] m-2 h-[50px]'>Infineon AURIX Microcontroller</div>
+        </div>
+      </div> */}
 
     </section>
   );
