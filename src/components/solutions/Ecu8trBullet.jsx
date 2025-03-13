@@ -13,10 +13,10 @@ export default function InfineonSections() {
 
             <div className="py-8">
               <Purpose className="w-12 h-auto mb-8" />
-              <p className="text-white uppercase text-[2rem] lg:text-[2.3rem] font-bold leading-[1.2] my-3 max-w-[15rem] ">
+              <p className="text-white uppercase text-[2rem] 3xl:text-[2.3rem] font-bold leading-[1.2] my-3 max-w-[15rem] ">
                 Technology Agnostic
               </p>
-              <p className="text-white/60 max-w-sm text-xl lg:text-2xl">
+              <p className="text-white/60 max-w-sm text-xl 3xl:text-2xl">
               Designed with multiple
                 interfaces in mind, ECU8TR™
                 boasts extensive compatibility.
@@ -24,10 +24,10 @@ export default function InfineonSections() {
             </div>
             <div className="py-8">
               <Quality className="w-12 h-auto mb-8" />
-              <p className="text-white uppercase text-[2rem] lg:text-[2.3rem] font-bold leading-[1.2] my-3 max-w-[15rem]">
+              <p className="text-white uppercase text-[2rem] 3xl:text-[2.3rem] font-bold leading-[1.2] my-3 max-w-[15rem]">
                 Command Functions
               </p>
-              <p className="text-white/60 max-w-sm text-xl lg:text-2xl">
+              <p className="text-white/60 max-w-sm text-xl 3xl:text-2xl">
               ECU8TR™ is used to initiate
               functions such as balancing,
               register writes, and diagnostics.
@@ -35,10 +35,10 @@ export default function InfineonSections() {
             </div>
             <div className="py-8">
               <Parameter className="w-[72px] h-auto mb-8" />
-              <p className="text-white uppercase text-[2rem] lg:text-[2.3rem] font-bold leading-[1.2] my-3 max-w-[15rem]">
+              <p className="text-white uppercase text-[2rem] 3xl:text-[2.3rem] font-bold leading-[1.2] my-3 max-w-[15rem]">
                Real-Time Detection
               </p>
-              <p className="text-white/60 max-w-sm text-xl lg:text-2xl">
+              <p className="text-white/60 max-w-sm text-xl 3xl:text-2xl">
               Use the ECU8TR™ to find
               issues before they manifest,
               optimizing your QA operations.
