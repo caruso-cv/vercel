@@ -14,7 +14,7 @@ export default function Footer() {
 
 return (
   <footer
-    className="relative text-white overflow-x-hidden px-6 2xl:px-0"
+    className="relative text-white overflow-x-hidden"
     style={ { paddingTop: "clamp(100px, calc(100vw * 0.23 + 13.79px), 200px)" } }
     suppressHydrationWarning
   >
@@ -29,7 +29,7 @@ return (
       >
         
         {/* ============== TOP ROW: 3 Columns ============== */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-12 max-w-8xl mx-auto">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-12 max-w-8xl mx-auto px-6 2xl:px-0">
           
           {/* LOCATIONS Column */}
           <div>
@@ -91,7 +91,7 @@ return (
         </div>
         
         {/* ============== BOTTOM ROW ============== */}
-        <div className="mt-14 flex flex-col xs:flex-row items-center justify-between gap-4 max-w-8xl mx-auto">
+        <div className="mt-14 flex flex-col xs:flex-row items-center justify-between gap-4 max-w-8xl mx-auto px-6 2xl:px-0">
           <div className="flex-shrink-0">
             <Link href="/">
               <Logo className="h-16 lg:h-24" />

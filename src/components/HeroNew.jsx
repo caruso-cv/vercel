@@ -6,7 +6,6 @@ import { motion } from 'framer-motion'
 import { useKeenSlider } from 'keen-slider/react'
 import 'keen-slider/keen-slider.min.css'
 
-
 function AutoSlider(slider) {
   let timeout;
 
@@ -44,8 +43,16 @@ export default function HeroNew() {
   )
 
   return (
-    // Responsive wrapper: only show on md and larger screens
-    <div className="hidden md:block">
+    // Added inline style to disable text scaling.
+    <div
+      className="hidden md:block"
+      style={{
+        WebkitTextSizeAdjust: 'none',
+        MozTextSizeAdjust: 'none',
+        msTextSizeAdjust: 'none',
+        textSizeAdjust: 'none'
+      }}
+    >
       {/* Slider container with fixed height and fade-in effect */}
       <div
         ref={sliderRef}
@@ -69,18 +76,17 @@ export default function HeroNew() {
             <div
               aria-hidden="true"
               className="absolute inset-x-0 -top-40 -z-20 transform-gpu overflow-hidden blur-3xl"
-            >
-            </div>
+            ></div>
             <div className="absolute inset-0 bg-black bg-opacity-70 -z-10"></div>
             <div className="mx-auto max-w-8xl px-6 lg:px-8 2xl:px-0">
-              <div className="flex h-full items-start pt-[calc(12rem+env(safe-area-inset-top))] pb-32 sm:pt-[calc(14rem+env(safe-area-inset-top))] sm:pb-48 lg:py-56">
+              <div className="flex h-full items-start pt-[calc(192px+env(safe-area-inset-top))] pb-32 sm:pt-[calc(14rem+env(safe-area-inset-top))] sm:pb-48 lg:py-56">
                 <div className="max-w-2xl select-text">
                   <div className="text-left">
-                    <h1 className="text-balance uppercase text-5xl font-bold text-white sm:mt-12 sm:text-[5.2rem] 3xl:mt-28">
+                  <h1 className="text-balance uppercase text-5xl font-bold text-white sm:mt-12 sm:text-[83.2px] 3xl:mt-28 whitespace-pre-line">
                       Contain your energy
                     </h1>
                     <p className="mt-8 text-pretty text-xl font-medium text-gray-100 sm:text-4xl">
-                      Advanced BMS controllers for ESS/BESS installations.
+                      Advanced BMS controllers for <br/>ESS/BESS installations.
                     </p>
                     <div className="mt-10 flex items-left justify-start gap-x-6">
                       <Link
@@ -133,15 +139,13 @@ export default function HeroNew() {
             <div
               aria-hidden="true"
               className="absolute inset-x-0 -top-40 -z-20 transform-gpu overflow-hidden blur-3xl"
-            >
-              {/* (Your clipPath content) */}
-            </div>
+            ></div>
             <div className="absolute inset-0 bg-black bg-opacity-70 -z-10"></div>
             <div className="mx-auto max-w-8xl px-6 lg:px-8 2xl:px-0">
-              <div className="flex h-full items-start pt-[calc(12rem+env(safe-area-inset-top))] pb-32 sm:pt-[calc(14rem+env(safe-area-inset-top))] sm:pb-48 lg:py-56">
+              <div className="flex h-full items-start pt-[calc(192px+env(safe-area-inset-top))] pb-32 sm:pt-[calc(14rem+env(safe-area-inset-top))] sm:pb-48 lg:py-56">
                 <div className="max-w-2xl select-text">
                   <div className="text-left">
-                    <h1 className="text-balance uppercase text-5xl font-bold text-white sm:mt-12 sm:text-[5.2rem]">
+                  <h1 className="text-balance uppercase text-5xl font-bold text-white sm:mt-12 sm:text-[83.2px] 3xl:mt-28 whitespace-pre-line">
                       Test your limits
                     </h1>
                     <p className="mt-8 text-pretty text-xl font-medium text-gray-100 sm:text-4xl">

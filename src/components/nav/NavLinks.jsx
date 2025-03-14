@@ -54,7 +54,7 @@ export default function NavLinks() {
         {/* Wrap "Solutions" + Dropdown in a single <li> with a ref */}
         <li ref={dropdownContainerRef} className="relative">
           <div
-            className="text-[0.85rem] 4xl:text-sm uppercase tracking-[3px] font-semibold hover:text-white inline-flex items-center cursor-pointer "
+            className="text-[14px] 4xl:text-[14px] uppercase tracking-[3px] font-semibold hover:text-white inline-flex items-center cursor-pointer"
             onClick={(e) => {
               e.preventDefault();
               setIsOpen(!isOpen);
@@ -186,7 +186,7 @@ export default function NavLinks() {
         <li>
           <Link
             href="/services"
-            className="text-[0.85rem] 4xl:text-sm uppercase tracking-[3px] font-semibold hover:text-white"
+            className="text-[14px] 4xl:text-[14px] uppercase tracking-[3px] font-semibold hover:text-white"
           >
             Services
           </Link>
@@ -194,7 +194,7 @@ export default function NavLinks() {
         <li>
           <Link
             href="/about"
-            className="text-[0.85rem] 4xl:text-sm uppercase tracking-[3px] font-semibold hover:text-white"
+            className="text-[14px] 4xl:text-[14px] uppercase tracking-[3px] font-semibold hover:text-white"
           >
             About
           </Link>
@@ -202,7 +202,7 @@ export default function NavLinks() {
         <li>
           <Link
             href="/careers"
-            className="text-[0.85rem] 4xl:text-sm uppercase tracking-[3px] font-semibold hover:text-white"
+            className="text-[14px] 4xl:text-[14px] uppercase tracking-[3px] font-semibold hover:text-white"
           >
             Careers
           </Link>

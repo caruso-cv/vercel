@@ -16,7 +16,7 @@ const pinnedSections = [
   {
     id: "get-started",
     sectionClasses:
-    "lg:sticky top-[80px] lg:h-[calc(100vh-80px)] bg-white text-black z-20 flex flex-col-reverse lg:flex-row-reverse items-center justify-center lg:rounded-4xl lg:mx-4 py-20 xl:py-0 2xl:px-[90px] 3xl:px-40",
+    "lg:sticky top-[65px] lg:h-[calc(100vh-80px)] bg-white text-black z-20 flex flex-col-reverse lg:flex-row-reverse items-center justify-center lg:rounded-4xl lg:mx-4 py-20 xl:py-0 2xl:px-[90px] 3xl:px-40",
     containerClasses: "lg:w-2/3 3xl:w-1/2 text-left px-8 pt-12 lg:pt-0",
     topNote: {
       className:
@@ -56,7 +56,7 @@ const pinnedSections = [
   {
     id: "ecu8tr",
     sectionClasses:
-    "lg:sticky top-[96px] lg:h-[calc(100vh-112px)] bg-gray-100 text-black z-30 flex flex-col-reverse lg:flex-row items-center justify-center lg:rounded-4xl lg:mx-8 py-20 xl:py-0 lg:mb-4 2xl:px-[90px] 3xl:px-40",
+    "lg:sticky top-[85px] lg:h-[calc(100vh-112px)] bg-gray-100 text-black z-30 flex flex-col-reverse lg:flex-row items-center justify-center lg:rounded-4xl lg:mx-8 py-20 xl:py-0 lg:mb-4 2xl:px-[90px] 3xl:px-40",
     containerClasses: "lg:w-1/2 text-left px-8 pt-12 lg:pt-0",
     topNote: {
       className:
@@ -99,7 +99,7 @@ const pinnedSections = [
   {
     id: "elev8tr",
     sectionClasses:
-    "lg:sticky top-[112px] lg:h-[calc(100vh-144px)] bg-[#E2E2E2] text-black z-40 flex flex-col-reverse lg:flex-row-reverse items-center justify-center lg:rounded-4xl lg:mx-12 py-20 xl:py-0 lg:mb-8 2xl:px-[90px] 3xl:px-40",
+    "lg:sticky top-[105px] lg:h-[calc(100vh-144px)] bg-[#E2E2E2] text-black z-40 flex flex-col-reverse lg:flex-row-reverse items-center justify-center lg:rounded-4xl lg:mx-12 py-20 xl:py-0 lg:mb-8 2xl:px-[90px] 3xl:px-40",
     containerClasses: "lg:w-2/3 3xl:w-1/2 text-left px-8 pt-12 lg:pt-0",
     topNote: {
       className:
@@ -160,7 +160,7 @@ export default function VerticalSlider() {
         "
       >
         <div className="max-w-4xl p-8 text-center 3xl:max-w-5xl">
-          <h2 className="lg:text-[2.5rem] text-3xl font-semibold mb-10 3xl:mb-10 3xl:text-[2.8rem] leading-[1.2]">
+        <h2 className="lg:text-[40px] text-3xl font-semibold mb-10 3xl:mb-10 3xl:text-[45px] leading-[1.2]">
             OUR VISION
           </h2>
           <p className="lg:text-xl 2xl:text-2xl text-xl text-left mb-10 3xl:text-3xl">
@@ -241,7 +241,7 @@ export default function VerticalSlider() {
         )}
         {item.link && (
           <Link href={item.link.href} passHref>
-            <motion.div className="inline-flex items-center justify-center gap-2 min-h-[40px] sm:min-h-[48px] px-3 sm:px-6 py-1.5 text-[1rem] sm:text-lg 2xl:text-lg font-semibold leading-[16px] tracking-[0.2px] whitespace-nowrap cursor-pointer border-none rounded-md transition-colors duration-200 ease-in-out bg-[#000] hover:bg-[#343434] shadow-[0_0_2px_rgba(0,0,0,0.5),_0_0_14px_rgba(255,255,255,0.19),_inset_0_-1px_0.4px_rgba(0,0,0,0.2)] opacity-90 hover:opacity-100 text-white uppercase">
+            <motion.div className="inline-flex items-center justify-center gap-2 min-h-[40px] sm:min-h-[48px] px-3 sm:px-6 py-1.5 text-[16px] sm:text-lg 2xl:text-lg font-semibold leading-[16px] tracking-[0.2px] whitespace-nowrap cursor-pointer border-none rounded-md transition-colors duration-200 ease-in-out bg-[#000] hover:bg-[#343434] shadow-[0_0_2px_rgba(0,0,0,0.5),_0_0_14px_rgba(255,255,255,0.19),_inset_0_-1px_0.4px_rgba(0,0,0,0.2)] opacity-90 hover:opacity-100 text-white uppercase">
               <span>{item.link.label}</span>
             </motion.div>
           </Link>

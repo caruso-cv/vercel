@@ -100,7 +100,7 @@ export default function MainNav({ isOpen, setIsOpen, secondaryNavReady }) {
   }, [isOpen, setIsOpen]);
 
   // Define your desktop background (matching the footer)
-  const desktopBackground = "linear-gradient(to bottom, #07080a, rgba(0,0,0,0.7))";
+  const desktopBackground = "linear-gradient(to left, #07080a, rgba(0,0,0,0.6))";
 
   return (
     <>
@@ -140,7 +140,7 @@ export default function MainNav({ isOpen, setIsOpen, secondaryNavReady }) {
             : isSolutionsPage
             ? "linear-gradient(to bottom, #0f0e0e, #0f0e0e)"
             : desktopBackground,
-          boxShadow: "0 4px 4px rgba(0,0,0,0.25)",
+              boxShadow: "0 4px 4px rgba(0,0,0,0.25)",
         }}
         animate={{
           opacity: 1,
@@ -148,7 +148,7 @@ export default function MainNav({ isOpen, setIsOpen, secondaryNavReady }) {
           background: isMobile
             ? isOpen
               ? "linear-gradient(to top, #ffffff, #ffffff)"
-              : "linear-gradient(to top, #0f0e0e, #0f0e0e)"
+              : "linear-gradient(to top, #000, #000)"
             : isOpen
             ? isSolutionsPage
               ? "linear-gradient(to bottom, #ffffff, #ffffff)"
@@ -162,12 +162,12 @@ export default function MainNav({ isOpen, setIsOpen, secondaryNavReady }) {
         }}
           transition={{ duration: 0.3, ease: "easeOut" }}
           className="
-            backdrop-blur-[2000px]
+            backdrop-blur-[200px]
             w-full 
             py-6 
             flex flex-col 
             relative z-50 
-            border-[#181818] border-t border-x
+            border-b border-[#111213]
           "
           style={{ willChange: "transform, opacity" }}
         >
