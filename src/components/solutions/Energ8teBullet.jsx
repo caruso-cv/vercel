@@ -1,6 +1,6 @@
-import Safety from "@/components/icons/Safety"
-import Scale from "@/components/icons/Scale"
-import Future from "@/components/icons/Future"
+import Purpose from "@/components/icons/Parameter"
+import Quality from "@/components/icons/Scale"
+import Parameter from "@/components/icons/Future"
 
 export default function InfineonSections() {
 
@@ -12,29 +12,29 @@ export default function InfineonSections() {
         <div className='flex md:mb-6 mx-auto max-w-8xl justify-between flex-wrap pb-12 2xl:pb-0'>
 
             <div className="py-8">
-              <Safety className="w-12 h-auto mb-8" />
-              <p className="text-white uppercase text-[2rem] lg:text-[2.3rem] font-bold leading-[1.2] my-3 max-w-[15rem] ">
-                  Safety By Design
+              <Purpose className="w-[72px] h-auto mb-8" />
+              <p className="text-white uppercase text-[2rem] 3xl:text-[2.3rem] font-bold leading-[1.2] my-3 max-w-[15rem] ">
+              Safety By Design
               </p>
-              <p className="text-white/60 max-w-sm text-xl lg:text-2xl">
+              <p className="text-white/60 max-w-sm text-xl 3xl:text-2xl">
               ENERG8TE™ lets teams integrate data logging, diagnostics, failsafes, and prevention measures for battery risks.
               </p>
             </div>
             <div className="py-8">
-              <Scale className="w-12 h-auto mb-8" />
-              <p className="text-white uppercase text-[2rem] lg:text-[2.3rem] font-bold leading-[1.2] my-3 max-w-[15rem]">
+              <Quality className="w-12 h-auto mb-8" />
+              <p className="text-white uppercase text-[2rem] 3xl:text-[2.3rem] font-bold leading-[1.2] my-3 max-w-[15rem]">
               Scalable + flexible
               </p>
-              <p className="text-white/60 max-w-sm text-xl lg:text-2xl">
+              <p className="text-white/60 max-w-sm text-xl 3xl:text-2xl">
               ENERG8TE™ offers hardware platform enabling software algorithms for SoX, cell balancing, charging, and discharging.
               </p>
             </div>
             <div className="py-8">
-              <Future className="w-[72px] h-auto mb-8" />
-              <p className="text-white uppercase text-[2rem] lg:text-[2.3rem] font-bold leading-[1.2] my-3 max-w-[15rem]">
+              <Parameter className="w-[60px] h-auto mb-8" />
+              <p className="text-white uppercase text-[2rem] 3xl:text-[2.3rem] font-bold leading-[1.2] my-3 max-w-[15rem]">
               Future-proof
               </p>
-              <p className="text-white/60 max-w-sm text-xl lg:text-2xl">
+              <p className="text-white/60 max-w-sm text-xl 3xl:text-2xl">
               As ESS technologies advance, ENERGSTE is designed to adapt, ensuring compatibility and long-term value.
               </p>
             </div>

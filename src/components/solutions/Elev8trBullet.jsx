@@ -13,31 +13,28 @@ export default function InfineonSections() {
 
             <div className="py-8">
               <Purpose className="w-12 h-auto mb-8" />
-              <p className="text-white uppercase text-[2rem] lg:text-[2.3rem] font-bold leading-[1.2] my-3 max-w-[15rem] ">
-              BI-DIRECTIONAL
-              POWER
+              <p className="text-white uppercase text-[2rem] 3xl:text-[2.3rem] font-bold leading-[1.2] my-3 max-w-[15rem] ">
+              BI-DIRECTIONAL POWER
               </p>
-              <p className="text-white/60 max-w-sm text-xl lg:text-2xl">
-                Supports charging and discharging—key for thorough BMS testing and robust performance.
+              <p className="text-white/60 max-w-sm text-xl 3xl:text-2xl">
+              Supports charging and discharging—key for thorough BMS testing and robust performance.
               </p>
             </div>
             <div className="py-8">
               <Quality className="w-12 h-auto mb-8" />
-              <p className="text-white uppercase text-[2rem] lg:text-[2.3rem] font-bold leading-[1.2] my-3 max-w-[15rem]">
-              LIVE
-              INTEGRATION MODULE
+              <p className="text-white uppercase text-[2rem] 3xl:text-[2.3rem] font-bold leading-[1.2] my-3 max-w-[15rem]">
+              LIVE INTEGRATION MODULE
               </p>
-              <p className="text-white/60 max-w-sm text-xl lg:text-2xl">
+              <p className="text-white/60 max-w-sm text-xl 3xl:text-2xl">
               Connect with live battery strips for real-world BMS testing and design refinement.
               </p>
             </div>
             <div className="py-8">
               <Parameter className="w-[72px] h-auto mb-8" />
-              <p className="text-white uppercase text-[2rem] lg:text-[2.3rem] font-bold leading-[1.2] my-3 max-w-[15rem]">
-              MATLAB & SIMULINK
-              INTEGRATION
+              <p className="text-white uppercase text-[2rem] 3xl:text-[2.3rem] font-bold leading-[1.2] my-3 max-w-[15rem]">
+              MATLAB & SIMULINK INTEGRATION
               </p>
-              <p className="text-white/60 max-w-sm text-xl lg:text-2xl">
+              <p className="text-white/60 max-w-sm text-xl 3xl:text-2xl">
               Integrated with MATLAB and Simulink for seamless transition from design to live testing via direct code generation.
               </p>
             </div>

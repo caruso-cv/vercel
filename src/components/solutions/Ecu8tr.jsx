@@ -19,7 +19,7 @@ export default function ProductPage() {
   return (
     <div className="relative min-h-screen">
       {/* Header with logo inside max-w-8xl container */}
-      <div className="max-w-8xl mx-auto px-6 2xl:px-0 pt-32 lg:pt-48 relative z-30">
+      <div className="max-w-8xl mx-auto px-6 2xl:px-0 pt-48 lg:pt-64 relative z-30">
         <Elev8tr className="h-16 sm:h-28 3xl:h-32" />
       </div>
 
@@ -31,7 +31,7 @@ export default function ProductPage() {
         transition={{ duration: 0.4, ease: "easeInOut" }}
         className="relative w-full"
       >
-        <div className="h-full text-black flex flex-col xl:flex-row items-center justify-center max-w-8xl mx-auto lg:pt-2">
+        <div className="h-full text-black flex flex-col xl:flex-row items-center justify-center max-w-8xl mx-auto lg:pt-8">
 
         {/* Main image for mobile */}
         <div className="flex justify-center sm:justify-start item-start align-left self-start  xl:mb-0 xl:hidden">
