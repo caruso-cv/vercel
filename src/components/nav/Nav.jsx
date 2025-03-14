@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import MainNav from "./MainNav";
+import Banner from './Banner'
 
 export default function Nav() {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,6 +15,10 @@ export default function Nav() {
           setIsOpen={setIsOpen}
         />
       </div>
+      <div className="mt-[85px] lg:mt-[106px] absolute w-full z-40" >
+        <Banner />
+      </div>
+
     </div>
   );
 }
