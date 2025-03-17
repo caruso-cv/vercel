@@ -239,7 +239,7 @@ export default function Contact() {
                         placeholder={errors.firstName || ''}
                         className={`
                           block w-full rounded-md bg-white/5 px-3.5 py-2 text-base text-white
-                          placeholder:text-gray-500 focus:outline-indigo-500
+                          outline outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500
                           ${errors.firstName ? 'placeholder:text-red-400 border border-red-500' : ''}
                         `}
                       />
@@ -262,7 +262,7 @@ export default function Contact() {
                         placeholder={errors.lastName || ''}
                         className={`
                           block w-full rounded-md bg-white/5 px-3.5 py-2 text-base text-white
-                          placeholder:text-gray-500 focus:outline-indigo-500
+                          outline outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500
                           ${errors.lastName ? 'placeholder:text-red-400 border border-red-500' : ''}
                         `}
                       />
@@ -290,7 +290,7 @@ export default function Contact() {
                         placeholder={errors.email === 'Required *' ? errors.email : ''}
                         className={`
                           block w-full rounded-md bg-white/5 px-3.5 py-2 text-base text-white
-                          placeholder:text-gray-500 focus:outline-indigo-500
+                          outline outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500
                           ${errors.email ? 'placeholder:text-red-400 border border-red-500' : ''}
                         `}
                       />
@@ -318,8 +318,8 @@ export default function Contact() {
                         maxLength={200}
                         placeholder={errors.message === 'Required *' ? errors.message : ''}
                         className={`
-                          block w-full rounded-md bg-white/5 px-3.5 py-2 text-base text-white 
-                          placeholder:text-gray-500 focus:outline-indigo-500
+                          block w-full rounded-md bg-white/5 px-3.5 py-2 text-base text-white
+                          outline outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500
                           ${errors.message ? 'placeholder:text-red-400 border border-red-500' : ''}
                         `}
                       />
