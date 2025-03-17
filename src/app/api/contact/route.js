@@ -10,26 +10,28 @@ export async function POST(request) {
     // Parse the JSON request body and log it for debugging
     const body = await request.json();
     console.log('Received payload:', body);
-    
-    // Verify reCAPTCHA v3 token
+
+    // Extract captcha token and log it
     const captchaToken = body.captchaToken;
+    console.log('Captcha token received:', captchaToken);
     if (!captchaToken) {
       console.error('Captcha token missing');
       return NextResponse.json({ error: 'Captcha token missing' }, { status: 400 });
     }
-    
+
+    // Verify reCAPTCHA v3 token with Google
     const secretKey = process.env.RECAPTCHA_SECRET || '6LckOa0UAAAAAOMMuPXGDlrRg1GgXVgBAZ1Q27Fy';
     const captchaRes = await fetch('https://www.google.com/recaptcha/api/siteverify', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: `secret=${secretKey}&response=${captchaToken}`
+      body: `secret=${encodeURIComponent(secretKey)}&response=${encodeURIComponent(captchaToken)}`
     });
-    
+
     const captchaResult = await captchaRes.json();
     console.log('Captcha verification result:', captchaResult);
-    // For v3, you may choose a score threshold; here we use 0.5 as an example.
-    if (!captchaResult.success || (captchaResult.score && captchaResult.score < 0.5)) {
-      console.error('Captcha verification failed');
+    // Check if verification passed and the score is acceptable (for v3)
+    if (!captchaResult.success || (typeof captchaResult.score === 'number' && captchaResult.score < 0.5)) {
+      console.error('Captcha verification failed', captchaResult);
       return NextResponse.json({ error: 'Captcha verification failed' }, { status: 400 });
     }
 

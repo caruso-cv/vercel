@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useGoogleReCaptcha } from 'react-google-recaptcha-v3'
 import Notification from '@/components/contact/Notifications'
 import { BuildingOffice2Icon } from '@heroicons/react/24/outline'
@@ -13,6 +13,14 @@ export default function Contact() {
     title: '',
     message: '',
   })
+
+  // Add 'contact-page' class to body so that the badge shows only here.
+  useEffect(() => {
+    document.body.classList.add('contact-page')
+    return () => {
+      document.body.classList.remove('contact-page')
+    }
+  }, [])
 
   // Pull the executeRecaptcha function from the hook
   const { executeRecaptcha } = useGoogleReCaptcha()
@@ -63,18 +71,15 @@ export default function Contact() {
       return
     }
 
-    // If reCAPTCHA is ready, execute to get the token
+    // Execute reCAPTCHA v3 to get token
     let recaptchaToken = ''
     if (executeRecaptcha) {
       try {
-        // "contact_form" is a custom action name for better stats in your reCAPTCHA admin
         recaptchaToken = await executeRecaptcha('contact_form')
       } catch (err) {
         console.error('reCAPTCHA error:', err)
       }
     }
-
-    // Include the token in the data you send to your server
     data.captchaToken = recaptchaToken
 
     // POST data to your API
@@ -107,6 +112,8 @@ export default function Contact() {
       )
     }
   }
+
+
 
   return (
     <div className="relative overflow-x-hidden z-30">
@@ -311,6 +318,27 @@ export default function Contact() {
                   <input id="honeypot" name="honeypot" type="text" autoComplete="off" />
                 </div>
               </div>
+
+              {/* Page-specific global style to style the badge only here */}
+              <style jsx global>{`
+                @keyframes slideInFromRight {
+                  from {
+                    transform: translateX(100%);
+                    opacity: 0;
+                  }
+                  to {
+                    transform: translateX(0);
+                    opacity: 1;
+                  }
+                }
+                body.contact-page .grecaptcha-badge {
+                  z-index: 999999 !important;
+                  position: fixed !important;
+                  bottom: 12px !important;
+                  right: 12px !important;
+                  animation: slideInFromRight 0.5s ease-out;
+                }
+              `}</style>
 
               <div className="mt-8 flex justify-end">
                 <button

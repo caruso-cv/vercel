@@ -135,3 +135,8 @@ html,
 body {
   background-color: #090A0B;
 }
+
+/* Hide the reCAPTCHA badge on pages that do not have the .contact-page class on the body */
+body:not(.contact-page) .grecaptcha-badge {
+  display: none !important;
+}
