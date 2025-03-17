@@ -50,10 +50,10 @@ export default function CareersPage() {
                   <h2 className="text-5xl font-bold text-white md:text-6xl uppercase">
                     Become a Neutron
                   </h2>
-                  <p className="mt-6 text-xl md:text-2xl 2xl:text-3xl text-white">
+                  <p className="mt-6 text-[1.25rem] leading-[1.75rem] md:text-[1.5rem] md:leading-[2rem]  text-white">
                     Join Neutron Controls and help shape extraordinary solutions.
                   </p>
-                  <p className="mt-6 text-lg md:text-xl 2xl:text text-white">
+                  <p className="mt-6 text-[1.125rem] leading-[1.75rem] md:text-[1.25rem] md:leading-[1.75rem]  text-white">
                     Collaborate in a supportive environment using cutting-edge technologies.
                   </p>
                   <div className="mt-10 flex">

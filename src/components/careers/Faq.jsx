@@ -80,7 +80,7 @@ export default function Faq() {
                   <>
                     <dt>
                       <DisclosureButton className="group flex w-full items-center justify-between text-left text-white p-6 rounded-md transition-colors duration-200">
-                        <span className="text-base font-semibold md:text-xl lg:text-2xl">{faq.question}</span>
+                        <span className="text-base font-semibold md:text-xl ">{faq.question}</span>
                         <span className="ml-6 flex h-7 items-center">
                           {open ? (
                             <MinusIcon className="h-6 w-6" />
@@ -94,7 +94,7 @@ export default function Faq() {
                     <DisclosurePanel
                       static
                       as={motion.dd}
-                      className="overflow-hidden text-gray-200 md:text-lg lg:text-xl"
+                      className="overflow-hidden text-gray-200 md:text-[1.125rem] md:leading-[1.75rem] "
                       animate={open ? { opacity: 1, height: 'auto' } : { opacity: 0, height: 0 }}
                       transition={{ duration: 0.3 }}
                     >

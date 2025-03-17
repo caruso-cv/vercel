@@ -87,10 +87,10 @@ export default function InfineonSection() {
       <div className="mx-auto max-w-8xl px-6 2xl:px-0">
         <div className="mx-auto max-w-2xl sm:text-center lg:max-w-3xl">
           <h2 className="text-lg font-semibold text-[#425ACA] lg:text-2xl">Custom design</h2>
-          <p className="mt-2 uppercase lg:mt-6 text-pretty text-4xl font-bold text-white sm:text-balance sm:text-[2.7rem] md:mt-4 leading-[1.1]">
+          <p className="mt-2 uppercase lg:mt-6 text-pretty text-4xl font-bold text-white sm:text-balance sm:text-[43.2px] md:mt-4 leading-[1.1]">
             Infineon's Premier Design House
           </p>
-          <p className="mt-6 text-xl/8 text-gray-300 md:text-xl md:mt-8 lg:text-2xl lg:mt-10">
+          <p className="mt-6 text-gray-300 text-[1.25rem] leading-[1.75rem] md:mt-8">
             Unlock your design potential with Neutron Controls, your Infineon Premier Design House for North America.
           </p>
         </div>
@@ -139,7 +139,7 @@ export default function InfineonSection() {
       <div className="mx-auto mt-16 max-w-8xl px-6 sm:mt-20 md:mt-24 2xl:px-0">
         <dl className="mx-auto grid max-w-2xl grid-cols-1 gap-x-6 gap-y-10 text-base/7 text-gray-300 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3 lg:gap-x-8 lg:gap-y-16">
           {features.map((feature) => (
-            <div key={feature.name} className="relative pl-9 3xl:text-2xl text-xl">
+            <div key={feature.name} className="relative pl-9 text-[1.25rem] leading-[1.75rem]">
               <dt className="inline font-semibold text-white">
                 <feature.icon aria-hidden="true" className="absolute left-1 top-1 size-5 text-[#425ACA]" />
                 {feature.name}

@@ -168,7 +168,7 @@ export default function ApplyModal({ isOpen, onClose, showNotification }) {
             <div>
               <label
                 htmlFor="name"
-                className="block text-sm font-medium text-gray-700 md:text-base"
+                className="block text-[0.875rem] leading-[1.25rem] font-medium text-gray-700 "
               >
                 Name
               </label>
@@ -189,7 +189,7 @@ export default function ApplyModal({ isOpen, onClose, showNotification }) {
             <div>
               <label
                 htmlFor="email"
-                className="block text-sm font-medium text-gray-700 md:text-base"
+                className="block text-[0.875rem] leading-[1.25rem] font-medium text-gray-700 "
               >
                 Email
                 {errors.email && errors.email !== 'Required *' && (
@@ -213,7 +213,7 @@ export default function ApplyModal({ isOpen, onClose, showNotification }) {
             <div>
               <label
                 htmlFor="phone"
-                className="block text-sm font-medium text-gray-700 md:text-base"
+                className="block text-[0.875rem] leading-[1.25rem] font-medium text-gray-700 "
               >
                 Phone Number
                 {errors.phone && errors.phone !== 'Required *' && (
@@ -237,7 +237,7 @@ export default function ApplyModal({ isOpen, onClose, showNotification }) {
             <div>
               <label
                 htmlFor="position"
-                className="block text-sm font-medium text-gray-700 md:text-base"
+                className="block text-[0.875rem] leading-[1.25rem] font-medium text-gray-700 "
               >
                 Position
               </label>
@@ -256,7 +256,7 @@ export default function ApplyModal({ isOpen, onClose, showNotification }) {
                 ))}
               </select>
               {selectedJob?.description && (
-                <div className="mt-2 text-sm text-gray-600 md:text-base md:pb-4">
+                <div className="mt-2 text-[0.875rem] leading-[1.25rem] text-gray-600  md:pb-4">
                   {selectedJob.description}
                 </div>
               )}
@@ -266,7 +266,7 @@ export default function ApplyModal({ isOpen, onClose, showNotification }) {
             <div>
               <label
                 htmlFor="coverLetter"
-                className="block text-sm font-medium text-gray-700 md:text-base"
+                className="block text-[0.875rem] leading-[1.25rem] font-medium text-gray-700 "
               >
                 Upload Cover Letter
               </label>
@@ -283,7 +283,7 @@ export default function ApplyModal({ isOpen, onClose, showNotification }) {
             <div>
               <label
                 htmlFor="resume"
-                className="block text-sm font-medium text-gray-700 md:text-base"
+                className="block text-[0.875rem] leading-[1.25rem] font-medium text-gray-700 "
               >
                 Upload Resume
                 {errors.resume && (
@@ -304,13 +304,13 @@ export default function ApplyModal({ isOpen, onClose, showNotification }) {
               <button
                 type="button"
                 onClick={onClose}
-                className="uppercase rounded-md text-sm px-4 py-2 text-black/70 font-semibold hover:bg-gray-100 md:text-base"
+                className="uppercase rounded-md text-[0.875rem] leading-[1.25rem] px-4 py-2 text-black/70 font-semibold hover:bg-gray-100"
               >
                 Cancel
               </button>
               <button
                 type="submit"
-                className="rounded-md uppercase bg-[#425ACA] px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 md:text-base"
+                className="rounded-md uppercase bg-[#425ACA] px-3.5 py-2.5 text-[0.875rem] leading-[1.25rem] font-semibold text-white shadow-sm hover:bg-indigo-500 "
               >
                 Submit <span aria-hidden="true">&rarr;</span>
               </button>

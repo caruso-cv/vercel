@@ -1,20 +1,21 @@
 'use client'
 
 import React, { useState } from 'react'
-import Notification from '@/components/contact/Notifications' // the sliding toast
-import { BuildingOffice2Icon, EnvelopeIcon } from '@heroicons/react/24/outline'
+import { useGoogleReCaptcha } from 'react-google-recaptcha-v3'
+import Notification from '@/components/contact/Notifications'
+import { BuildingOffice2Icon } from '@heroicons/react/24/outline'
 
 export default function Contact() {
-  // Field-specific errors, e.g. errors.phone = "must have at least 10 digits"
   const [errors, setErrors] = useState({})
-
-  // Toast-like notification state
   const [notif, setNotif] = useState({
     show: false,
     type: 'success',
     title: '',
     message: '',
   })
+
+  // Pull the executeRecaptcha function from the hook
+  const { executeRecaptcha } = useGoogleReCaptcha()
 
   function showNotification(type, title, message) {
     setNotif({ show: true, type, title, message })
@@ -24,64 +25,31 @@ export default function Contact() {
     setNotif((prev) => ({ ...prev, show: false }))
   }
 
-  // ============ VALIDATION ============
-
+  // Basic form validation
   const validateForm = (data) => {
     const newErrors = {}
-
-    // 1) First name required
-    if (!data['first-name']) {
-      newErrors.firstName = 'Required *'
-    }
-
-    // 2) Last name required
-    if (!data['last-name']) {
-      newErrors.lastName = 'Required *'
-    }
-
-    // 3) Email required + basic valid format
-    //    Using a stricter regex: something@something.tld (2+ chars in TLD)
+    if (!data['first-name']) newErrors.firstName = 'Required *'
+    if (!data['last-name']) newErrors.lastName = 'Required *'
     if (!data.email) {
       newErrors.email = 'Required *'
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(data.email)) {
       newErrors.email = 'Invalid email'
     }
-
-    // 4) Phone required, only digits + dashes, at least 10 digits
-    if (!data['phone-number']) {
-      newErrors.phone = 'Required *'
-    } else {
-      // Check allowed characters
-      if (!/^[0-9-]+$/.test(data['phone-number'])) {
-        newErrors.phone = 'only digits & dashes allowed'
-      } else {
-        // Strip out dashes, check length
-        const phoneDigits = data['phone-number'].replace(/-/g, '')
-        if (phoneDigits.length < 10) {
-          newErrors.phone = 'must have at least 10 digits'
-        }
-      }
-    }
-
-    // 5) Message required & max 200 characters
     if (!data.message) {
       newErrors.message = 'Required *'
     } else if (data.message.length > 200) {
       newErrors.message = 'Max 200 characters'
     }
-
     return newErrors
   }
 
-  // ============ FORM SUBMIT ============
-
   const handleSubmit = async (event) => {
     event.preventDefault()
-    setErrors({}) // clear old errors
+    setErrors({})
 
-    // Honeypot check (spam prevention)
+    // Honeypot check
     const honeypot = event.target.honeypot.value
-    if (honeypot) return // skip if spam
+    if (honeypot) return
 
     // Convert form to object
     const formData = new FormData(event.target)
@@ -95,7 +63,21 @@ export default function Contact() {
       return
     }
 
-    // Attempt to POST
+    // If reCAPTCHA is ready, execute to get the token
+    let recaptchaToken = ''
+    if (executeRecaptcha) {
+      try {
+        // "contact_form" is a custom action name for better stats in your reCAPTCHA admin
+        recaptchaToken = await executeRecaptcha('contact_form')
+      } catch (err) {
+        console.error('reCAPTCHA error:', err)
+      }
+    }
+
+    // Include the token in the data you send to your server
+    data.captchaToken = recaptchaToken
+
+    // POST data to your API
     try {
       const response = await fetch('/api/contact', {
         method: 'POST',
@@ -103,17 +85,13 @@ export default function Contact() {
         body: JSON.stringify(data),
       })
       if (response.ok) {
-        // Clear the form
         event.target.reset()
-
-        // Show success toast
         showNotification(
           'success',
           'Message Sent!',
           'Thank you, we will get in touch soon.'
         )
       } else {
-        // Show error toast
         showNotification(
           'error',
           'Error Sending Message',
@@ -182,13 +160,13 @@ export default function Contact() {
               <h2 className="text-pretty text-5xl font-bold text-white relative z-30 md:text-6xl uppercase">
                 Get in touch
               </h2>
-              <p className="mt-6 text-xl md:text-2xl 2xl:text-3xl text-white">
+              <p className="mt-6 text-[1.25rem] leading-[1.75rem] md:text-[1.5rem] md:leading-[2rem] text-white">
                 Our team is here to help with any questions you might have.
               </p>
-              <p className="mt-6 text-base md:text-xl text-white">
+              <p className="mt-6 text-[1.125rem] leading-[1.75rem] md:text-[1.25rem] md:leading-[1.75rem] text-white">
                 Feel free to reach out, we look forward to connecting with you.
               </p>
-              <dl className="mt-10 space-y-4 text-base/7 md:text-lg text-gray-300 relative z-30">
+              <dl className="mt-10 space-y-4 text-[1rem] leading-[1.75rem] text-gray-300 relative z-30">
                 <div className="flex gap-x-4">
                   <dt className="flex-none">
                     <span className="sr-only">Address</span>
@@ -216,23 +194,6 @@ export default function Contact() {
                     Mississauga, Ontario, L4W 0G7
                   </dd>
                 </div>
-                <div className="flex gap-x-4">
-                  <dt className="flex-none">
-                    <span className="sr-only">Email</span>
-                    <EnvelopeIcon
-                      aria-hidden="true"
-                      className="h-7 w-6 text-gray-400"
-                    />
-                  </dt>
-                  <dd>
-                    <a
-                      href="mailto:info@neutroncontrols.com"
-                      className="hover:text-white"
-                    >
-                      info@neutroncontrols.com
-                    </a>
-                  </dd>
-                </div>
               </dl>
             </div>
           </div>
@@ -245,7 +206,7 @@ export default function Contact() {
                 <div>
                   <label
                     htmlFor="first-name"
-                    className="block text-sm/6 lg:text-base 3xl:text-lg font-semibold text-white"
+                    className="block text-[0.875rem] leading-[1.5rem] font-semibold text-white"
                   >
                     First name
                   </label>
@@ -254,7 +215,6 @@ export default function Contact() {
                       id="first-name"
                       name="first-name"
                       type="text"
-                      // If empty, show "Required *" as red placeholder
                       placeholder={errors.firstName || ''}
                       className={`
                         block w-full rounded-md bg-white/5 px-3.5 py-2 text-base text-white
@@ -269,7 +229,7 @@ export default function Contact() {
                 <div>
                   <label
                     htmlFor="last-name"
-                    className="block text-sm/6 lg:text-base 3xl:text-lg font-semibold text-white"
+                    className="block text-[0.875rem] leading-[1.5rem] font-semibold text-white"
                   >
                     Last name
                   </label>
@@ -290,10 +250,9 @@ export default function Contact() {
 
                 {/* Email */}
                 <div className="sm:col-span-2">
-                  {/* If there's an email error beyond just "Required *", show it in red brackets next to label */}
                   <label
                     htmlFor="email"
-                    className="block text-sm/6 font-semibold text-white lg:text-base 3xl:text-lg"
+                    className="block text-[0.875rem] leading-[1.5rem] font-semibold text-white"
                   >
                     Email
                     {errors.email && errors.email !== 'Required *' && (
@@ -307,62 +266,21 @@ export default function Contact() {
                       id="email"
                       name="email"
                       type="email"
-                      placeholder={
-                        // if it's just empty, show "Required *" placeholder
-                        errors.email === 'Required *' ? errors.email : ''
-                      }
+                      placeholder={errors.email === 'Required *' ? errors.email : ''}
                       className={`
                         block w-full rounded-md bg-white/5 px-3.5 py-2 text-base text-white
                         placeholder:text-gray-500 focus:outline-indigo-500
-                        ${
-                          errors.email
-                            ? 'placeholder:text-red-400 border border-red-500'
-                            : ''
-                        }
+                        ${errors.email ? 'placeholder:text-red-400 border border-red-500' : ''}
                       `}
                     />
                   </div>
                 </div>
 
-                {/* Phone number */}
-                {/* <div className="sm:col-span-2">
-                  <label
-                    htmlFor="phone-number"
-                    className="block text-sm/6 font-semibold text-white lg:text-base 3xl:text-lg"
-                  >
-                    Phone number
-                    {errors.phone && errors.phone !== 'Required *' && (
-                      <span className="ml-2 text-red-400">
-                        ({errors.phone})
-                      </span>
-                    )}
-                  </label>
-                  <div className="mt-2.5">
-                    <input
-                      id="phone-number"
-                      name="phone-number"
-                      type="tel"
-                      placeholder={
-                        errors.phone === 'Required *' ? errors.phone : ''
-                      }
-                      className={`
-                        block w-full rounded-md bg-white/5 px-3.5 py-2 text-base text-white
-                        placeholder:text-gray-500 focus:outline-indigo-500
-                        ${
-                          errors.phone
-                            ? 'placeholder:text-red-400 border border-red-500'
-                            : ''
-                        }
-                      `}
-                    />
-                  </div>
-                </div> */}
-
                 {/* Message */}
                 <div className="sm:col-span-2">
                   <label
                     htmlFor="message"
-                    className="block text-sm/6 font-semibold text-white lg:text-base 3xl:text-lg"
+                    className="block text-[0.875rem] leading-[1.5rem] font-semibold text-white"
                   >
                     Message
                     {errors.message && errors.message !== 'Required *' && (
@@ -377,17 +295,11 @@ export default function Contact() {
                       name="message"
                       rows={4}
                       maxLength={200}
-                      placeholder={
-                        errors.message === 'Required *' ? errors.message : ''
-                      }
+                      placeholder={errors.message === 'Required *' ? errors.message : ''}
                       className={`
-                        block w-full rounded-md bg-white/5 px-3.5 py-2 text-base text-white 3xl:text-base
+                        block w-full rounded-md bg-white/5 px-3.5 py-2 text-base text-white 
                         placeholder:text-gray-500 focus:outline-indigo-500
-                        ${
-                          errors.message
-                            ? 'placeholder:text-red-400 border border-red-500'
-                            : ''
-                        }
+                        ${errors.message ? 'placeholder:text-red-400 border border-red-500' : ''}
                       `}
                     />
                   </div>
@@ -403,7 +315,7 @@ export default function Contact() {
               <div className="mt-8 flex justify-end">
                 <button
                   type="submit"
-                  className="uppercase rounded-md bg-[#425ACA] px-3.5 py-2.5 text-center text-sm font-semibold text-white 2xl:text-base shadow-sm hover:bg-indigo-500 focus:outline-indigo-500"
+                  className="uppercase rounded-md bg-[#425ACA] px-3.5 py-2.5 text-center text-[0.875rem] font-semibold text-white shadow-sm hover:bg-indigo-500 focus:outline-indigo-500"
                 >
                   Send message
                 </button>

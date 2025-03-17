@@ -57,7 +57,7 @@ export default function ProductPage() {
               <h2 className=" text-2xl sm:text-4xl font-bold xl:mb-6 mb-4 ">
                 ABOUT ELEV8TR™
               </h2>
-              <p className="mt-4 text-lg text-gray-600 md:text-xl xl:max-w-2xl">
+              <p className="mt-4 text-[1.125rem] md:text-[1.25rem] xl:max-w-[42rem] text-gray-600 ">
               ELEV8TR™ is an automotive toolkit for OEMs aiming to accelerate their Battery Management Systems with advanced algorithms. It integrates real-time battery interaction, simulation, and MATLAB/Simulink compatibility.
               </p>
              
@@ -105,10 +105,10 @@ export default function ProductPage() {
         <div className="border-2 border-[#2F79F8] rounded-md overflow-hidden">
           <div className="grid grid-cols-1 md:grid-cols-[240px_minmax(0,1fr)] ">
             {/* DIMENSIONS */}
-            <div className="p-4 lg:p-6 pb-0 md:pb-4 md:border-b border-[#2F79F8] font-semibold xs:text-xl 3xl:text-[1.4rem] ">
+            <div className="p-4 lg:p-6 pb-0 md:pb-4 md:border-b border-[#2F79F8] font-semibold xs:text-xl 3xl:text-[22.4px] ">
               INTERFACES
             </div>
-            <div className="p-4 lg:p-6 border-b border-[#2F79F8] md:border-l md:border-[#2F79F8] xs:text-lg 3xl:text-2xl text-black/70 ">
+            <div className="p-4 lg:p-6 border-b border-[#2F79F8] md:border-l md:border-[#2F79F8] xs:text-[1.125rem] xs:leading-[1.75rem] text-black/70 ">
                 <p className="mb-1">Integrated 800W Bi-directional Power Supply, configurable up to 15kW</p>
                 <p className="mb-1">Multi-IO Terminal Blocks</p>
                 <p className="mb-1">so COMM (ISO SPI, ISO UART) analog frontend</p>
@@ -117,10 +117,10 @@ export default function ProductPage() {
                 <p className="mb-1">12V Power Input via Barrel Jack</p>
             </div>
             {/* POWER*/}
-            <div className="p-4 lg:p-6 pb-0 md:pb-4 md:border-b border-[#2F79F8] font-semibold xs:text-xl 3xl:text-[1.4rem] ">
+            <div className="p-4 lg:p-6 pb-0 md:pb-4 md:border-b border-[#2F79F8] font-semibold xs:text-xl 3xl:text-[22.4px] ">
               POWER
             </div>
-            <div className="p-4 lg:p-6 border-b border-[#2F79F8] md:border-l md:border-[#2F79F8] xs:text-lg 3xl:text-2xl text-black/70">
+            <div className="p-4 lg:p-6 border-b border-[#2F79F8] md:border-l md:border-[#2F79F8] xs:text-[1.125rem] xs:leading-[1.75rem] text-black/70">
               <p className="mb-1">
               12V/36W AC/DC External Desktop (Class 1) Adapter International, 90 ~ 264 VAC
               </p>

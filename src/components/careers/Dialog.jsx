@@ -90,7 +90,7 @@ export function DialogTitle({ className, ...props }) {
       {...props}
       className={clsx(
         className,
-        'text-lg font-semibold text-gray-900 md:text-xl'
+        'text-[1.125rem] leading-[1.75rem] font-semibold text-gray-900'
       )}
     />
   )

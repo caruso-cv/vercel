@@ -33,10 +33,10 @@ return (
           
           {/* LOCATIONS Column */}
           <div>
-            <h3 className="text-xs 4xs:text-sm uppercase tracking-[7px] font-semibold mb-3 text-white lg:text-base">
+            <h3 className=" uppercase tracking-[7px] font-semibold mb-3 text-white lg:text-base">
               Ottawa
             </h3>
-            <p className="mb-6 leading-[1.8] text-white/60 lg:text-lg">
+            <p className="mb-6 leading-[1.8] text-white/60 lg:text-[1rem] lg:leading-[1.5rem] text-[1rem]">
               1145 Innovation Drive, Suite 101<br />
               Kanata, Ontario, K2K 3G8<br />
               Canada
@@ -44,7 +44,7 @@ return (
             <h3 className="text-xs 4xs:text-sm uppercase tracking-[7px] font-semibold mb-3 text-white lg:text-base">
               Toronto
             </h3>
-            <p className="mb-6 leading-[1.8] text-white/60 lg:text-lg">
+            <p className="mb-6 leading-[1.8] text-white/60 text-base lg:text-[1rem] lg:leading-[1.5rem] text-[1rem]">
               5270 Solar Drive, Unit 21<br />
               Mississauga, Ontario, L4W 0G7<br />
               Canada
@@ -77,10 +77,10 @@ return (
 
           {/* COMPANY Column */}
           <div>
-            <h3 className="text-xs 4xs:text-sm uppercase tracking-[7px] font-semibold mb-3 lg:text-base">
+            <h3 className="text-xs 4xs:text-sm uppercase tracking-[7px] font-semibold mb-3 lg:text-[1rem] lg:leading-[1.5rem]">
               Company
             </h3>
-            <ul className="space-y-[2px] leading-relaxed text-white/60 lg:text-lg 2xl:text-xl lg:space-y-[4px] 2xl:space-y-[6px]">
+            <ul className="space-y-[2px] leading-relaxed text-white/60 lg:text-[1rem] lg:leading-[1.5rem] lg:space-y-[4px] 2xl:space-y-[6px] text-[1rem] ">
               <li><Link href="/services" className="hover:text-white">Services</Link></li>
               <li><Link href="/about" className="hover:text-white">About</Link></li>
               <li><Link href="/careers" className="hover:text-white">Careers</Link></li>
@@ -94,7 +94,7 @@ return (
         <div className="mt-14 flex flex-col xs:flex-row items-center justify-between gap-4 max-w-8xl mx-auto px-6 2xl:px-0">
           <div className="flex-shrink-0">
             <Link href="/">
-              <Logo className="h-16 lg:h-24" />
+              <Logo className="h-[4rem] " />
             </Link>
           </div>
           <a

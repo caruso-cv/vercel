@@ -57,7 +57,7 @@ export default function ProductPage() {
               <h2 className=" text-2xl sm:text-4xl font-bold xl:mb-6 mb-4 ">
                 ABOUT ENERG8TE™
               </h2>
-              <p className="mt-4 text-lg text-gray-600 md:text-xl xl:max-w-2xl">
+              <p className="mt-4  text-gray-600 text-[1.125rem] md:text-[1.25rem] xl:max-w-[42rem]">
               ENERG8TE™ is rated the highest level of Function Safety, targeted for UL9540 and tailored for use in diverse energy environments, the ENERG8TE™ seamlessly integrates with various energy sources.
               </p>
              
@@ -105,26 +105,26 @@ export default function ProductPage() {
         <div className="border-2 border-[#2F79F8] rounded-md overflow-hidden">
           <div className="grid grid-cols-1">
             {/* DIMENSIONS */}
-            <div className="p-4 lg:p-6 pb-0 md:pb-4 md:border-b md:border-b-gray-200 border-[#2F79F8] font-semibold xs:text-xl 3xl:text-[1.4rem] ">
+            <div className="p-4 lg:p-6 pb-0 md:pb-4 md:border-b md:border-b-gray-200 border-[#2F79F8] font-semibold xs:text-xl 3xl:text-[22.4px] ">
               ADVANCED CHARGING AND DISCHARGING CONTROL
             </div>
-            <div className="p-4 lg:p-6 border-b border-[#2F79F8]  md:border-[#2F79F8] xs:text-lg 3xl:text-2xl text-black/70 ">
+            <div className="p-4 lg:p-6 border-b border-[#2F79F8]  md:border-[#2F79F8] xs:text-[1.125rem] xs:leading-[1.75rem] text-black/70 ">
               <p className="mb-1">ENERG8TE™ manages charging and discharging cycles with precision, ensuring optimal battery performance and an extended lifespan. This is crucial for maximizing your energy storage investment.</p>
             </div>
             {/* DIMENSIONS */}
-            <div className="p-4 lg:p-6 pb-0 md:pb-4 md:border-b md:border-b-gray-200 border-[#2F79F8] font-semibold xs:text-xl 3xl:text-[1.4rem] ">
+            <div className="p-4 lg:p-6 pb-0 md:pb-4 md:border-b md:border-b-gray-200 border-[#2F79F8] font-semibold xs:text-xl 3xl:text-[22.4px] ">
               GRID INTERACTION AND COMPLIANCE
             </div>
-            <div className="p-4 lg:p-6 border-b border-[#2F79F8]  md:border-[#2F79F8] xs:text-lg 3xl:text-2xl text-black/70">
+            <div className="p-4 lg:p-6 border-b border-[#2F79F8]  md:border-[#2F79F8] xs:text-[1.125rem] xs:leading-[1.75rem] text-black/70">
               <p className="mb-1">
               ENERG8TE™ includes advanced grid management features like peak shaving, time-of-use management, and reactive power control. These features ensure your energy storage system complies with local regulations while optimizing energy costs.
               </p>
             </div>
             {/* POWER */}
-            <div className="p-4 lg:p-6 pb-0 md:pb-4 md:border-b md:border-b-gray-200 border-[#2F79F8] font-semibold xs:text-xl 3xl:text-[1.4rem] ">
+            <div className="p-4 lg:p-6 pb-0 md:pb-4 md:border-b md:border-b-gray-200 border-[#2F79F8] font-semibold xs:text-xl 3xl:text-[22.4px] ">
             ADVANCED CHARGING AND DISCHARGING CONTROL
             </div>
-            <div className="p-4 lg:p-6 border-b border-[#2F79F8]  md:border-[#2F79F8] xs:text-lg 3xl:text-2xl text-black/70 ">
+            <div className="p-4 lg:p-6 border-b border-[#2F79F8]  md:border-[#2F79F8] xs:text-[1.125rem] xs:leading-[1.75rem] text-black/70 ">
               <p className="mb-1">Easily integrate with various energy sources, including solar, wind, and grid power, making ENERG8TE™ adaptable for both small-scale installations and large industrial applications.</p>
             </div>
           </div>

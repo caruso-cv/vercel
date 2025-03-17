@@ -132,43 +132,41 @@ export default function MainNav({ isOpen, setIsOpen, secondaryNavReady }) {
           initial={{
             opacity: 0,
             height: navHeight,
-            // If it's mobile, use the mobile gradient;
-            // otherwise, if on solutions page => solid black,
-            // else the flipped gradient
             background: isMobile
-            ? "linear-gradient(to top, #0f0e0e, #0f0e0e)"
-            : isSolutionsPage
-            ? "linear-gradient(to bottom, #0f0e0e, #0f0e0e)"
-            : desktopBackground,
-              boxShadow: "0 4px 4px rgba(0,0,0,0.25)",
-        }}
-        animate={{
-          opacity: 1,
-          height: isOpen ? navHeight + dropdownExtraHeight : navHeight,
-          background: isMobile
-            ? isOpen
-              ? "linear-gradient(to top, #ffffff, #ffffff)"
-              : "linear-gradient(to top, #000, #000)"
-            : isOpen
-            ? isSolutionsPage
-              ? "linear-gradient(to bottom, #ffffff, #ffffff)"
-              : "linear-gradient(to bottom, rgba(255,255,255,0.8), rgba(255,255,255,0.9))"
-            : isSolutionsPage
-            ? "linear-gradient(to bottom, #0f0e0e, #0f0e0e)"
-            : desktopBackground,
-          boxShadow: isOpen
-            ? "0 8px 20px rgba(0,0,0,0.3)"
-            : "0 4px 4px rgba(0,0,0,0.25)",
-        }}
-          transition={{ duration: 0.3, ease: "easeOut" }}
-          className="
-            backdrop-blur-[200px]
-            w-full 
-            py-6 
-            flex flex-col 
-            relative z-50 
-            border-b border-[#111213]
-          "
+              ? "linear-gradient(to top, #0f0e0e, #0f0e0e)"
+              : isSolutionsPage
+              ? "linear-gradient(to bottom, #0f0e0e, #0f0e0e)"
+              : desktopBackground,
+            boxShadow: "0 4px 4px rgba(0,0,0,0.25)",
+          }}
+          animate={{
+            opacity: 1,
+            height: isOpen ? navHeight + dropdownExtraHeight : navHeight,
+            background: isMobile
+              ? isOpen
+                ? "linear-gradient(to top, #ffffff, #ffffff)"
+                : "linear-gradient(to top, #000, #000)"
+              : isOpen
+              ? isSolutionsPage
+                ? "linear-gradient(to bottom, #ffffff, #ffffff)"
+                : "linear-gradient(to bottom, rgba(255,255,255,0.8), rgba(255,255,255,0.9))"
+              : isSolutionsPage
+              ? "linear-gradient(to bottom, #0f0e0e, #0f0e0e)"
+              : desktopBackground,
+            boxShadow: isOpen
+              ? "0 8px 20px rgba(0,0,0,0.3)"
+              : "0 4px 4px rgba(0,0,0,0.25)",
+          }}
+          transition={{
+            opacity: { duration: 0.3, ease: "easeOut" },
+            height: { duration: 0.3, ease: "easeOut" },
+            // For mobile, apply a normal background transition; for desktop, change it instantly.
+            background: isMobile
+              ? { duration: 0.3, ease: "easeOut" }
+              : { duration: 0 },
+            boxShadow: { duration: 0.3, ease: "easeOut" },
+          }}
+          className="backdrop-blur-[200px] w-full py-6 flex flex-col relative z-50 border-b border-[#111213]"
           style={{ willChange: "transform, opacity" }}
         >
           <div className="mx-auto max-w-8xl w-full px-6 2xl:px-0">

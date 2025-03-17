@@ -16,13 +16,6 @@ const montserrat = Montserrat({
   display: 'swap',
 })
 
-const geistMono = localFont({
-  src: [
-    { path: '../fonts/GeistMono-VariableFont_wght.ttf', weight: '400', style: 'normal' },
-  ],
-  variable: '--font-geist-mono',
-  display: 'swap',
-})
 
 export const metadata = {
   title: {
@@ -33,7 +26,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${montserrat.variable} ${geistMono.variable}`}>
+    <html lang="en" className={`${montserrat.variable}`}>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
@@ -72,6 +65,13 @@ export default function RootLayout({ children }) {
             gtag('config', 'G-ZZQ44F7P76');
           `}
         </Script>
+
+        {/* Google reCAPTCHA v3 Script */}
+        <Script
+          id="recaptcha-v3"
+          strategy="afterInteractive"
+          src="https://www.google.com/recaptcha/api.js?render=6LckOa0UAAAAACD_wTWVwlf61u8PNBk-tMMs8DP0"
+        />
 
         <div className="bg-[#090A0B]">
           <Nav />

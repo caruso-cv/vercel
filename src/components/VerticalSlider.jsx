@@ -163,7 +163,7 @@ export default function VerticalSlider() {
         <h2 className="lg:text-[40px] text-3xl font-semibold mb-10 3xl:mb-10 3xl:text-[45px] leading-[1.2]">
             OUR VISION
           </h2>
-          <p className="lg:text-xl 2xl:text-2xl text-xl text-left mb-10 3xl:text-3xl">
+          <p className="text-[1.25rem] leading-[1.75rem] lg:text-[1.25rem] lg:leading-[1.75rem] 2xl:text-[1.5rem] 2xl:leading-[2rem] text-left mb-10 ">
             Our vision is to transform how {" "}
             <span className="px-[2.5px] bg-[#435FE1] rounded-sm">
               energy is managed
@@ -173,13 +173,13 @@ export default function VerticalSlider() {
               batteries are produced.
             </span>
           </p>
-          <p className="lg:text-xl 2xl:text-2xl text-xl text-left mb-10 3xl:text-3xl">
+          <p className="text-[1.25rem] leading-[1.75rem] lg:text-[1.25rem] lg:leading-[1.75rem] 2xl:text-[1.5rem] 2xl:leading-[2rem] text-left mb-10 ">
           We’re focused on delivering cutting-edge battery management and control solutions that prioritize {" "}
             <span className="px-[2.5px] bg-[#435FE1] rounded-sm">
             efficiency, safety, and sustainability.
             </span>
           </p>
-          <p className="lg:text-xl 2xl:text-2xl text-xl text-left 3xl:text-3xl">
+          <p className="text-[1.25rem] leading-[1.75rem] lg:text-[1.25rem] lg:leading-[1.75rem] 2xl:text-[1.5rem] 2xl:leading-[2rem] text-left ">
           By combining innovative engineering with a commitment to quality, we help our clients lead the way in&nbsp;
             <span className="px-[2.5px] bg-[#435FE1] rounded-sm">energy controls</span>{" "}
             and&nbsp;

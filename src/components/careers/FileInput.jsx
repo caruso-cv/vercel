@@ -6,7 +6,7 @@ export default function FileInput({ id, name, accept, onChange, fileName }) {
     <div className="mt-1">
       <label
         htmlFor={id}
-        className="cursor-pointer inline-block rounded-md bg-gray-100 hover:bg-gray-200 px-3 py-2 text-sm md:text-base font-medium text-gray-700 mt-1"
+        className="cursor-pointer inline-block rounded-md bg-gray-100 hover:bg-gray-200 px-3 py-2 text-[0.875rem] leading-[1.25rem] font-medium text-gray-700 mt-1"
       >
         Choose File
       </label>

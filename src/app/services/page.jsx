@@ -1,3 +1,5 @@
+'use client'
+
 import Link from 'next/link';
 import { CheckIcon } from '@heroicons/react/20/solid';
 import Battery from '@/components/icons/Battery';
@@ -5,6 +7,7 @@ import Design from '@/components/icons/Design';
 import Safety from '@/components/icons/SafetyIcon';
 import InfineonSection from '@/components/services/InfineonSection';
 import Infineon from '@/components/services/Infineon';
+import { motion } from 'framer-motion';
 
 const tiers = [
   {
@@ -56,20 +59,30 @@ const tiers = [
 export default function Page() {
   return (
     <div className="overflow-hidden bg-[#090A0B]">
-      {/* Header / Services Section */}
-      <div className="mx-auto max-w-8xl px-6 pb-96 lg:pb-[26rem] text-center pt-44 2xl:px-0 lg:pt-64">
+      {/* Header / Services Section with separate title and subtitle animations */}
+      <div className="mx-auto max-w-8xl px-6 pb-96 lg:pb-[416px] text-center pt-44 2xl:px-0 lg:pt-64">
         <div className="mx-auto max-w-4xl relative z-30">
-          <h2 className="mt-2 uppercase lg:mt-6 text-pretty text-4xl font-bold text-white sm:text-balance sm:text-[3.5rem] md:mt-4 leading-[1.1]">
+          <motion.h2
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="mt-2 uppercase lg:mt-6 text-pretty text-4xl font-bold text-white sm:text-balance sm:text-[56px] md:mt-4 leading-[1.1]"
+          >
             Smarter Energy Solutions
-          </h2>
+          </motion.h2>
         </div>
         <div className="relative mt-6 2xl:mt-10">
-          <p className="mx-auto max-w-2xl text-pretty text-lg font-medium text-gray-200 sm:text-xl/8 lg:text-2xl 2xl:text-[1.6rem] lg:max-w-4xl">
+          <motion.p
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.8 }}
+            className="mx-auto max-w-2xl text-pretty font-medium text-gray-200 text-[0.875rem] sm:text-[1.25rem]/[2rem] lg:max-w-4xl"
+          >
             Advanced BMS and ESS solutions designed for efficiency, safety, and seamless integration—optimizing performance and reliability.
-          </p>
+          </motion.p>
           <svg
             viewBox="0 0 1208 1024"
-            className="absolute -top-10 left-1/2 h-[64rem] -translate-x-1/2 [mask-image:radial-gradient(closest-side,white,transparent)] sm:-top-12 md:-top-20 lg:-top-12 xl:top-0"
+            className="absolute -top-10 left-1/2 h-[1024px] -translate-x-1/2 [mask-image:radial-gradient(closest-side,white,transparent)] sm:-top-12 md:-top-20 lg:-top-12 xl:top-0"
           >
             <ellipse cx={604} cy={512} rx={604} ry={512} fill="url(#6d1bd035-0dd1-437e-93fa-59d316231eb0)" />
             <defs>
@@ -82,25 +95,28 @@ export default function Page() {
         </div>
       </div>
 
-      {/* Tier Cards Section */}
+      {/* Tier Cards Section with staggered fade-in and hover scale */}
       <div className="flow-root bg-white pb-24 sm:pb-32 relative z-10">
         <div className="-mt-80">
           <div className="mx-auto max-w-8xl px-6 2xl:px-0">
             <div className="mx-auto grid max-w-8xl grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-              {tiers.map((tier) => (
-                <div
+              {tiers.map((tier, index) => (
+                <motion.div
                   key={tier.id}
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.2, duration: 0.5 }}
                   className="flex flex-col justify-between rounded-3xl bg-white p-6 shadow-lg ring-1 ring-gray-900/10 sm:p-8 w-full"
                 >
                   <div>
-                    <h3 id={tier.id} className="text-base/7 sm:text-lg font-semibold text-[#425ACA] pb-8">
+                    <h3 id={tier.id} className="text-[1rem] leading-[1.75rem] font-semibold text-[#425ACA] pb-8">
                       {tier.name}
                     </h3>
                     <div className="mt-4 sm:mt-6 flex items-center justify-center">
                       {tier.icon}
                     </div>
-                    <p className="mt-6 sm:mt-12 text-lg text-gray-600 sm:text-xl">{tier.description}</p>
-                    <ul role="list" className="mt-10 space-y-4 text-base sm:text-lg text-gray-600">
+                    <p className="mt-6 sm:mt-12 text-[1rem] leading-[1.75rem] text-gray-600">{tier.description}</p>
+                    <ul role="list" className="mt-10 space-y-4 text-[0.875rem] leading-[1.25rem]  text-gray-600">
                       {tier.features.map((feature) => (
                         <li key={feature} className="flex gap-x-3">
                           <CheckIcon aria-hidden="true" className="h-6 w-5 flex-none text-[#425ACA]" />
@@ -112,35 +128,45 @@ export default function Page() {
                   <Link
                     href={tier.href}
                     aria-describedby={tier.id}
-                    className="mt-8 uppercase block rounded-md bg-[#425ACA] px-3.5 py-2 text-center text-sm/6 font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#425ACA] md:text-base"
+                    className="mt-8 uppercase block rounded-md bg-[#425ACA] px-3.5 py-2 text-center text-[0.875rem] leading-[1.5rem] font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#425ACA]"
                   >
                     {tier.buttonText}
                   </Link>
-                </div>
+                </motion.div>
               ))}
-              <div className="flex flex-col items-start gap-x-8 gap-y-6 rounded-md p-8 ring-1 ring-gray-900/10 sm:gap-y-10 sm:p-10 lg:col-span-3 lg:flex-row lg:items-center">
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: tiers.length * 0.2, duration: 0.5 }}
+                className="flex flex-col items-start gap-x-8 gap-y-6 rounded-md p-8 ring-1 ring-gray-900/10 sm:gap-y-10 sm:p-10 lg:col-span-3 lg:flex-row lg:items-center"
+              >
                 <div className="lg:min-w-0 lg:flex-1">
-                  <h3 className="text-lg font-semibold text-[#425ACA] md:text-xl">Our AURIX Expertise</h3>
-                  <p className="mt-4 text-lg text-gray-600 md:text-xl">
+                  <h3 className="text-[1rem] leading-[1.75rem] font-semibold text-[#425ACA]">Our AURIX Expertise</h3>
+                  <p className="mt-4 text-[1rem] leading-[1.75rem] text-gray-600">
                     Unleash the full potential of Infineon’s AURIX™-MCUs with expert design support and tailored training, equipping you to harness cutting-edge technology for maximum performance and reliability.
                   </p>
                 </div>
                 <Link
                   href="/solutions/ecu8tr"
-                  className="rounded-md px-3.5 py-2 text-sm/6 font-semibold text-[#425ACA] ring-1 ring-inset ring-indigo-200 hover:ring-indigo-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#425ACA] md:text-base"
+                  className="rounded-md px-3.5 py-2 text-sm/6 font-semibold text-[#425ACA] ring-1 ring-inset ring-indigo-200 hover:ring-indigo-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#425ACA] md:text-[1rem] md:leading-[1.75rem]"
                 >
                   See our solutions <span aria-hidden="true">&rarr;</span>
                 </Link>
-              </div>
+              </motion.div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Render the Infineon Section */}
-      <InfineonSection />
-      <Infineon/>
-      {/* <Bullets/> */}
+      {/* Fade in Infineon Section and Infineon */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1, duration: 0.5 }}
+      >
+        <InfineonSection />
+        <Infineon />
+      </motion.div>
     </div>
   );
 }

@@ -11,6 +11,28 @@ export async function POST(request) {
     const body = await request.json();
     console.log('Received payload:', body);
     
+    // Verify reCAPTCHA v3 token
+    const captchaToken = body.captchaToken;
+    if (!captchaToken) {
+      console.error('Captcha token missing');
+      return NextResponse.json({ error: 'Captcha token missing' }, { status: 400 });
+    }
+    
+    const secretKey = process.env.RECAPTCHA_SECRET || '6LckOa0UAAAAAOMMuPXGDlrRg1GgXVgBAZ1Q27Fy';
+    const captchaRes = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: `secret=${secretKey}&response=${captchaToken}`
+    });
+    
+    const captchaResult = await captchaRes.json();
+    console.log('Captcha verification result:', captchaResult);
+    // For v3, you may choose a score threshold; here we use 0.5 as an example.
+    if (!captchaResult.success || (captchaResult.score && captchaResult.score < 0.5)) {
+      console.error('Captcha verification failed');
+      return NextResponse.json({ error: 'Captcha verification failed' }, { status: 400 });
+    }
+
     // Destructure expected values from the payload
     const { 'first-name': firstName, 'last-name': lastName, email, 'phone-number': phoneNumber, message } = body;
 

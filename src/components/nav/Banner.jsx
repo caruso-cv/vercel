@@ -20,7 +20,7 @@ export default function Example() {
         animate ? 'opacity-100' : 'opacity-0'
       }`}
     >
-      <p className="text-base text-white">
+      <p className="text-[0.875rem] leading-[1.25rem] text-white">
         <a
           href="https://www.conferenceharvester.com/floorplan/v2/index.asp?EventKey=NKBNQWPK"
           className="hover:underline"

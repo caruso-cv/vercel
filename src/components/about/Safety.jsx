@@ -12,7 +12,7 @@ export default function InfineonSections() {
         <p className="text-lg font-semibold text-[#425ACA] lg:text-xl">
           We're commited to our
         </p>
-        <h2 className="mt-4 uppercase lg:mt-6 text-pretty text-2xl xs:text-3xl font-bold text-white sm:text-balance sm:text-[2.3rem] max-w-xl !leading-[1.2] ">
+        <h2 className="mt-4 uppercase lg:mt-6 text-pretty text-2xl xs:text-3xl font-bold text-white sm:text-balance sm:text-[36.8px] max-w-xl !leading-[1.2] ">
           Environmental and Quality Management System
         </h2>
         <div className="mt-10 grid grid-cols-1 gap-4 sm:mt-16 lg:grid-cols-6 lg:grid-rows-1">
@@ -43,10 +43,10 @@ export default function InfineonSections() {
                 <div className="pointer-events-none absolute inset-px rounded-lg shadow ring-1 ring-black/5 lg:rounded-tl-[2rem]" />
               </motion.div>
               <div className="p-6 xs:p-10">
-                <p className="mt-2 text-xl font-bold tracking-tight text-white uppercase 2xl:text-xl">
+                <p className="mt-2 text-[1.10rem] leading-[1.65rem] font-bold tracking-tight text-white uppercase ">
                   Quality
                 </p>
-                <p className="mt-2 text-lg lg:text-xl text-gray-300 font-medium 2xl:text-xl">
+                <p className="mt-2 text-[1.10rem] leading-[1.65rem] text-gray-300 font-medium ">
                   Equally, its ISO9001 certification affirms Neutron Controls’ dedication to quality, maintaining high operational standards that consistently satisfy customers, shareholders, and other key stakeholders.
                 </p>
               </div>
@@ -80,10 +80,10 @@ export default function InfineonSections() {
                 <div className="pointer-events-none absolute inset-px rounded-lg shadow ring-1 ring-black/5 lg:rounded-tr-[2rem]" />
               </motion.div>
               <div className="p-6 xs:p-10">
-                <p className="mt-2 text-xl font-bold tracking-tight 2xl:text-xl text-white uppercase">
+                <p className="mt-2 text-[1.10rem] leading-[1.65rem] font-bold tracking-tight text-white uppercase">
                   Environmental
                 </p>
-                <p className="mt-2 text-lg lg:text-xl 2xl:text-xl text-gray-300 font-medium">
+                <p className="mt-2 text-[1.10rem] leading-[1.65rem] text-gray-300 font-medium">
                   Neutron Controls shows its commitment to sustainability with ISO14001 certification, ensuring its operations not only meet environmental standards but also support stakeholder needs.
                 </p>
               </div>
