@@ -14,15 +14,12 @@ export default function Contact() {
     message: '',
   })
 
-  // Add 'contact-page' class to body so that the badge shows only here.
+  // Add 'contact-page' class to body when this page mounts.
   useEffect(() => {
     document.body.classList.add('contact-page')
-    return () => {
-      document.body.classList.remove('contact-page')
-    }
+    return () => document.body.classList.remove('contact-page')
   }, [])
 
-  // Pull the executeRecaptcha function from the hook
   const { executeRecaptcha } = useGoogleReCaptcha()
 
   function showNotification(type, title, message) {
@@ -33,7 +30,6 @@ export default function Contact() {
     setNotif((prev) => ({ ...prev, show: false }))
   }
 
-  // Basic form validation
   const validateForm = (data) => {
     const newErrors = {}
     if (!data['first-name']) newErrors.firstName = 'Required *'
@@ -55,23 +51,19 @@ export default function Contact() {
     event.preventDefault()
     setErrors({})
 
-    // Honeypot check
     const honeypot = event.target.honeypot.value
     if (honeypot) return
 
-    // Convert form to object
     const formData = new FormData(event.target)
     formData.delete('honeypot')
     const data = Object.fromEntries(formData.entries())
 
-    // Validate
     const validationErrors = validateForm(data)
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors)
       return
     }
 
-    // Execute reCAPTCHA v3 to get token
     let recaptchaToken = ''
     if (executeRecaptcha) {
       try {
@@ -82,7 +74,6 @@ export default function Contact() {
     }
     data.captchaToken = recaptchaToken
 
-    // POST data to your API
     try {
       const response = await fetch('/api/contact', {
         method: 'POST',
@@ -114,9 +105,30 @@ export default function Contact() {
   }
 
 
-
   return (
-    <div className="relative overflow-x-hidden z-30">
+    <div className="contact-page relative overflow-x-hidden z-30">
+
+      {/* Page-specific global style to animate the reCAPTCHA badge on this page */}
+      <style jsx global>{`
+        .contact-page .grecaptcha-badge {
+          z-index: 999999 !important;
+          position: fixed !important;
+          bottom: 12px !important;
+          right: 12px !important;
+          animation: slideInFromRight 0.5s ease-out;
+        }
+        @keyframes slideInFromRight {
+          from {
+            transform: translateX(100%);
+            opacity: 0;
+          }
+          to {
+            transform: translateX(0);
+            opacity: 1;
+          }
+        }
+      `}</style>
+
       {/* Sliding Notification in bottom-right */}
       <Notification
         show={notif.show}
@@ -318,27 +330,6 @@ export default function Contact() {
                   <input id="honeypot" name="honeypot" type="text" autoComplete="off" />
                 </div>
               </div>
-
-              {/* Page-specific global style to style the badge only here */}
-              <style jsx global>{`
-                @keyframes slideInFromRight {
-                  from {
-                    transform: translateX(100%);
-                    opacity: 0;
-                  }
-                  to {
-                    transform: translateX(0);
-                    opacity: 1;
-                  }
-                }
-                body.contact-page .grecaptcha-badge {
-                  z-index: 999999 !important;
-                  position: fixed !important;
-                  bottom: 12px !important;
-                  right: 12px !important;
-                  animation: slideInFromRight 0.5s ease-out;
-                }
-              `}</style>
 
               <div className="mt-8 flex justify-end">
                 <button
