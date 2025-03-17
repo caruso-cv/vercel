@@ -1,11 +1,10 @@
-// layout.jsx
+
 import '@/styles/tailwind.css'
 import { Montserrat } from 'next/font/google'
-import localFont from 'next/font/local'
 import Nav from '@/components/nav/Nav'
 import BackgroundHero from '@/components/BackgroundHero'
 import Footer from '@/components/Footer'
-import CookieBanner from '../components/CookieBanner'
+import CookieBanner from '@/components/CookieBanner'
 import Script from 'next/script'
 
 const montserrat = Montserrat({
@@ -15,7 +14,6 @@ const montserrat = Montserrat({
   variable: '--font-montserrat',
   display: 'swap',
 })
-
 
 export const metadata = {
   title: {
@@ -65,13 +63,6 @@ export default function RootLayout({ children }) {
             gtag('config', 'G-ZZQ44F7P76');
           `}
         </Script>
-
-        {/* Google reCAPTCHA v3 Script */}
-        <Script
-          id="recaptcha-v3"
-          strategy="afterInteractive"
-          src="https://www.google.com/recaptcha/api.js?render=6LckOa0UAAAAACD_wTWVwlf61u8PNBk-tMMs8DP0"
-        />
 
         <div className="bg-[#090A0B]">
           <Nav />
