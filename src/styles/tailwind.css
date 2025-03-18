@@ -137,5 +137,19 @@ body {
 }
 
 .grecaptcha-badge {
-  z-index: 999999 !important;
+  z-index: 50 !important;
+  transition: opacity 0.3s ease; /* Adjust duration/easing as needed */
+  opacity: 1; /* Default opacity when visible */
+}
+
+/* On pages that don't have the necessary class, hide the badge by fading it out */
+body:not(.contact-page):not(.careers-page) .grecaptcha-badge {
+  opacity: 0 !important;
+  pointer-events: none; /* Prevent interactions when hidden */
+}
+
+/* Ensure that on pages with these classes, the badge is visible */
+.contact-page .grecaptcha-badge,
+.careers-page .grecaptcha-badge {
+  opacity: 1 !important;
 }

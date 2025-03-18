@@ -1,12 +1,19 @@
 'use client'
+import { useEffect, useState } from 'react'
 import ReCaptchaProvider from '@/components/contact/ReCaptchaProvider'
-import { useState } from 'react'
 import ModalTrigger from '@/components/careers/ModalTrigger'
 import Notification from '@/components/careers/Notification'
 import Faq from '@/components/careers/Faq'
 import AnimatedImagesSection from '@/components/services/AnimatedImagesSection'
 
 export default function CareersPage() {
+  useEffect(() => {
+    document.body.classList.add('careers-page')
+    return () => {
+      document.body.classList.remove('careers-page')
+    }
+  }, [])
+
   const [notif, setNotif] = useState({
     show: false,
     type: 'success',

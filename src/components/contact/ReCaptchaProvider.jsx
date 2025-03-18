@@ -1,37 +1,41 @@
 'use client'
-
 import React, { useEffect } from 'react'
+import { usePathname } from 'next/navigation'
 import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3'
 
 export default function ReCaptchaProvider({ children }) {
   const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY
-  if (!siteKey) {
-    console.error('NEXT_PUBLIC_RECAPTCHA_SITE_KEY is not defined')
-    return null
-  }
+  const pathname = usePathname()
+  const shouldLoad = pathname.includes('/contact') || pathname.includes('/careers')
+  const scriptId = 'recaptcha-v3'
 
   useEffect(() => {
-    const scriptId = 'recaptcha-v3'
-    // Check if the script is already present
-    let script = document.getElementById(scriptId)
-    if (!script) {
-      script = document.createElement('script')
-      script.id = scriptId
-      script.src = `https://www.google.com/recaptcha/api.js?render=${siteKey}`
-      script.async = true
-      document.body.appendChild(script)
-    }
-    // Cleanup: remove the script when this provider unmounts
-    return () => {
+    if (shouldLoad) {
+      // Append the script if not present
+      let script = document.getElementById(scriptId)
+      if (!script) {
+        script = document.createElement('script')
+        script.id = scriptId
+        script.src = `https://www.google.com/recaptcha/api.js?render=${siteKey}`
+        script.async = true
+        document.body.appendChild(script)
+      }
+    } else {
+      // Remove the script if it exists
+      const script = document.getElementById(scriptId)
       if (script && script.parentNode) {
         script.parentNode.removeChild(script)
       }
     }
-  }, [siteKey])
+  }, [shouldLoad, siteKey])
 
-  return (
-    <GoogleReCaptchaProvider reCaptchaKey={siteKey}>
-      {children}
-    </GoogleReCaptchaProvider>
-  )
+  // Only wrap children with the GoogleReCaptchaProvider if needed.
+  if (shouldLoad) {
+    return (
+      <GoogleReCaptchaProvider reCaptchaKey={siteKey}>
+        {children}
+      </GoogleReCaptchaProvider>
+    )
+  }
+  return <>{children}</>
 }
