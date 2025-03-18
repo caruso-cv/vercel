@@ -13,6 +13,8 @@ export default function ContactForm() {
     title: '',
     message: '',
   })
+  // Track loading state for the submit
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   // Ensure the document body gets the proper class
   useEffect(() => {
@@ -20,7 +22,6 @@ export default function ContactForm() {
     return () => document.body.classList.remove('contact-page')
   }, [])
 
-  // Use the hook – don't log immediately on render since it might be undefined at first.
   const { executeRecaptcha } = useGoogleReCaptcha()
 
   function showNotification(type, title, message) {
@@ -51,61 +52,56 @@ export default function ContactForm() {
   const handleSubmit = async (event) => {
     event.preventDefault()
     setErrors({})
-
-    const honeypot = event.target.honeypot.value
-    if (honeypot) return
-
-    const formData = new FormData(event.target)
-    formData.delete('honeypot')
-    const data = Object.fromEntries(formData.entries())
-
-    const validationErrors = validateForm(data)
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors)
-      return
-    }
-
-    let recaptchaToken = ''
-    // Check executeRecaptcha at submission time
-    if (executeRecaptcha) {
-      try {
-        recaptchaToken = await executeRecaptcha('contact_form')
-        // console.log('Recaptcha token:', recaptchaToken)
-      } catch (err) {
-        console.error('reCAPTCHA error:', err)
-      }
-    } else {
-      console.error('executeRecaptcha is not available at submission time.')
-    }
-    data.captchaToken = recaptchaToken
+    setIsSubmitting(true)
 
     try {
+      const honeypot = event.target.honeypot.value
+      if (honeypot) {
+        // If the honeypot is filled, it's likely spam; stop processing
+        return
+      }
+
+      const formData = new FormData(event.target)
+      formData.delete('honeypot')
+      const data = Object.fromEntries(formData.entries())
+
+      const validationErrors = validateForm(data)
+      if (Object.keys(validationErrors).length > 0) {
+        setErrors(validationErrors)
+        return
+      }
+
+      // Obtain reCAPTCHA token
+      let recaptchaToken = ''
+      if (executeRecaptcha) {
+        try {
+          recaptchaToken = await executeRecaptcha('contact_form')
+        } catch (err) {
+          console.error('reCAPTCHA error:', err)
+        }
+      } else {
+        console.error('executeRecaptcha is not available at submission time.')
+      }
+      data.captchaToken = recaptchaToken
+
+      // Send data to API
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
       })
+
       if (response.ok) {
         event.target.reset()
-        showNotification(
-          'success',
-          'Message Sent!',
-          'Thank you, we will get in touch soon.'
-        )
+        showNotification('success', 'Message Sent!', 'Thank you, we will get in touch soon.')
       } else {
-        showNotification(
-          'error',
-          'Error Sending Message',
-          'Please try again later.'
-        )
+        showNotification('error', 'Error Sending Message', 'Please try again later.')
       }
     } catch (err) {
       console.error('Submission error:', err)
-      showNotification(
-        'error',
-        'Oops!',
-        'Something went wrong. Please try again.'
-      )
+      showNotification('error', 'Oops!', 'Something went wrong. Please try again.')
+    } finally {
+      setIsSubmitting(false)
     }
   }
 
@@ -224,7 +220,10 @@ export default function ContactForm() {
               <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
                 {/* First Name */}
                 <div>
-                  <label htmlFor="first-name" className="block text-[0.875rem] leading-[1.5rem] font-semibold text-white">
+                  <label
+                    htmlFor="first-name"
+                    className="block text-[0.875rem] leading-[1.5rem] font-semibold text-white"
+                  >
                     First name
                   </label>
                   <div className="mt-2.5">
@@ -235,7 +234,8 @@ export default function ContactForm() {
                       placeholder={errors.firstName || ''}
                       className={`
                         block w-full rounded-md bg-white/5 px-3.5 py-2 text-base text-white
-                        outline outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500
+                        outline outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500
+                        focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500
                         ${errors.firstName ? 'placeholder:text-red-400 border border-red-500' : ''}
                       `}
                     />
@@ -244,7 +244,10 @@ export default function ContactForm() {
 
                 {/* Last Name */}
                 <div>
-                  <label htmlFor="last-name" className="block text-[0.875rem] leading-[1.5rem] font-semibold text-white">
+                  <label
+                    htmlFor="last-name"
+                    className="block text-[0.875rem] leading-[1.5rem] font-semibold text-white"
+                  >
                     Last name
                   </label>
                   <div className="mt-2.5">
@@ -255,7 +258,8 @@ export default function ContactForm() {
                       placeholder={errors.lastName || ''}
                       className={`
                         block w-full rounded-md bg-white/5 px-3.5 py-2 text-base text-white
-                        outline outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500
+                        outline outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500
+                        focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500
                         ${errors.lastName ? 'placeholder:text-red-400 border border-red-500' : ''}
                       `}
                     />
@@ -264,7 +268,10 @@ export default function ContactForm() {
 
                 {/* Email */}
                 <div className="sm:col-span-2">
-                  <label htmlFor="email" className="block text-[0.875rem] leading-[1.5rem] font-semibold text-white">
+                  <label
+                    htmlFor="email"
+                    className="block text-[0.875rem] leading-[1.5rem] font-semibold text-white"
+                  >
                     Email
                     {errors.email && errors.email !== 'Required *' && (
                       <span className="ml-2 text-red-400">({errors.email})</span>
@@ -278,7 +285,8 @@ export default function ContactForm() {
                       placeholder={errors.email === 'Required *' ? errors.email : ''}
                       className={`
                         block w-full rounded-md bg-white/5 px-3.5 py-2 text-base text-white
-                        outline outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500
+                        outline outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500
+                        focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500
                         ${errors.email ? 'placeholder:text-red-400 border border-red-500' : ''}
                       `}
                     />
@@ -287,7 +295,10 @@ export default function ContactForm() {
 
                 {/* Message */}
                 <div className="sm:col-span-2">
-                  <label htmlFor="message" className="block text-[0.875rem] leading-[1.5rem] font-semibold text-white">
+                  <label
+                    htmlFor="message"
+                    className="block text-[0.875rem] leading-[1.5rem] font-semibold text-white"
+                  >
                     Message
                     {errors.message && errors.message !== 'Required *' && (
                       <span className="ml-2 text-red-400">({errors.message})</span>
@@ -302,7 +313,8 @@ export default function ContactForm() {
                       placeholder={errors.message === 'Required *' ? errors.message : ''}
                       className={`
                         block w-full rounded-md bg-white/5 px-3.5 py-2 text-base text-white
-                        outline outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500
+                        outline outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500
+                        focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500
                         ${errors.message ? 'placeholder:text-red-400 border border-red-500' : ''}
                       `}
                     />
@@ -316,13 +328,21 @@ export default function ContactForm() {
                 </div>
               </div>
 
+              {/* Submit Button or Spinner */}
               <div className="mt-8 flex justify-end">
-                <button
-                  type="submit"
-                  className="uppercase rounded-md bg-[#425ACA] px-3.5 py-2.5 text-center text-[0.875rem] font-semibold text-white shadow-sm hover:bg-indigo-500 focus:outline-indigo-500"
-                >
-                  Send message
-                </button>
+                {isSubmitting ? (
+                  <div className="flex items-center px-3.5 py-2.5 bg-gray-300 text-white rounded-md">
+                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
+                    <span>Sending...</span>
+                  </div>
+                ) : (
+                  <button
+                    type="submit"
+                    className="uppercase rounded-md bg-[#425ACA] px-3.5 py-2.5 text-center text-[0.875rem] font-semibold text-white shadow-sm hover:bg-indigo-500 focus:outline-indigo-500"
+                  >
+                    Send message
+                  </button>
+                )}
               </div>
             </div>
           </form>
