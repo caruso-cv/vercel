@@ -20,11 +20,8 @@ export default function ContactForm() {
     return () => document.body.classList.remove('contact-page')
   }, [])
 
-  // Use the hook – it should now work because this component is wrapped by our provider
+  // Use the hook – don't log immediately on render since it might be undefined at first.
   const { executeRecaptcha } = useGoogleReCaptcha()
-  if (!executeRecaptcha) {
-    console.error('executeRecaptcha is not available – the component may not be wrapped by ReCaptchaProvider')
-  }
 
   function showNotification(type, title, message) {
     setNotif({ show: true, type, title, message })
@@ -69,13 +66,16 @@ export default function ContactForm() {
     }
 
     let recaptchaToken = ''
+    // Check executeRecaptcha at submission time
     if (executeRecaptcha) {
       try {
         recaptchaToken = await executeRecaptcha('contact_form')
-        console.log('Recaptcha token:', recaptchaToken)
+        // console.log('Recaptcha token:', recaptchaToken)
       } catch (err) {
         console.error('reCAPTCHA error:', err)
       }
+    } else {
+      console.error('executeRecaptcha is not available at submission time.')
     }
     data.captchaToken = recaptchaToken
 
