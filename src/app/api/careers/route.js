@@ -7,6 +7,31 @@ export async function POST(request) {
     // Parse incoming FormData
     const formData = await request.formData()
 
+    // Extract and verify the captcha token
+    const captchaToken = formData.get('captchaToken')
+    console.log('Captcha token received:', captchaToken)
+    if (!captchaToken) {
+      console.error('Captcha token missing')
+      return NextResponse.json({ error: 'Captcha token missing' }, { status: 400 })
+    }
+
+    // Verify reCAPTCHA v3 token with Google
+    const secretKey = process.env.RECAPTCHA_SECRET_KEY
+    const captchaRes = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: `secret=${encodeURIComponent(secretKey)}&response=${encodeURIComponent(captchaToken)}`
+    })
+    const captchaResult = await captchaRes.json()
+    console.log('Captcha verification result:', captchaResult)
+    if (
+      !captchaResult.success ||
+      (typeof captchaResult.score === 'number' && captchaResult.score < 0.5)
+    ) {
+      console.error('Captcha verification failed', captchaResult)
+      return NextResponse.json({ error: 'Captcha verification failed' }, { status: 400 })
+    }
+
     // Gather text fields
     const name = formData.get('name') || 'Unknown'
     const email = formData.get('email') || 'No email'
@@ -59,9 +84,7 @@ Phone: ${phone}
 Position: ${position}
 
 Attached File(s): ${
-        attachments.length
-          ? attachments.map((att) => att.filename).join(', ')
-          : 'None'
+        attachments.length ? attachments.map((att) => att.filename).join(', ') : 'None'
       }
       `,
       attachments,

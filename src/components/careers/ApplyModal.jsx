@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import { Dialog, DialogTitle, DialogBody } from '@/components/careers/Dialog'
 import FileInput from '@/components/careers/FileInput'
+import { useGoogleReCaptcha } from 'react-google-recaptcha-v3'
 
 export default function ApplyModal({ isOpen, onClose, showNotification }) {
   const jobOptions = [
@@ -90,6 +91,8 @@ export default function ApplyModal({ isOpen, onClose, showNotification }) {
     return newErrors
   }
 
+  const { executeRecaptcha } = useGoogleReCaptcha()
+
   // =========================
   // SUBMIT HANDLER
   // =========================
@@ -104,7 +107,20 @@ export default function ApplyModal({ isOpen, onClose, showNotification }) {
       return
     }
 
-    // Build form for POST
+    // Obtain reCAPTCHA token
+    let recaptchaToken = ''
+    if (executeRecaptcha) {
+      try {
+        recaptchaToken = await executeRecaptcha('careers_form')
+        console.log('Recaptcha token:', recaptchaToken)
+      } catch (error) {
+        console.error('Error executing reCAPTCHA:', error)
+      }
+    } else {
+      console.error('executeRecaptcha not available')
+    }
+
+    // Build form data for POST
     const data = new FormData()
     data.append('name', formData.name)
     data.append('email', formData.email)
@@ -113,7 +129,9 @@ export default function ApplyModal({ isOpen, onClose, showNotification }) {
     if (formData.coverLetter) {
       data.append('coverLetter', formData.coverLetter)
     }
-    data.append('resume', formData.resume) // guaranteed to exist now
+    data.append('resume', formData.resume)
+    // Append the captcha token
+    data.append('captchaToken', recaptchaToken)
 
     // Attempt fetch
     try {
@@ -129,7 +147,7 @@ export default function ApplyModal({ isOpen, onClose, showNotification }) {
           message: 'Thanks for applying at Neutron Controls!',
         })
 
-        // Reset form
+        // Reset form and close modal
         setFormData({
           name: '',
           email: '',
@@ -138,8 +156,6 @@ export default function ApplyModal({ isOpen, onClose, showNotification }) {
           coverLetter: null,
           resume: null,
         })
-
-        // Close modal
         onClose()
       } else {
         showNotification?.({
