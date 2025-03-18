@@ -107,25 +107,6 @@ export default function ContactForm() {
 
   return (
     <div className="contact-page relative overflow-x-hidden z-30">
-      <style jsx global>{`
-        .contact-page .grecaptcha-badge {
-          z-index: 999999 !important;
-          position: fixed !important;
-          bottom: 12px !important;
-          right: 12px !important;
-          animation: slideInFromRight 0.5s ease-out;
-        }
-        @keyframes slideInFromRight {
-          from {
-            transform: translateX(100%);
-            opacity: 0;
-          }
-          to {
-            transform: translateX(0);
-            opacity: 1;
-          }
-        }
-      `}</style>
 
       <Notification
         show={notif.show}
