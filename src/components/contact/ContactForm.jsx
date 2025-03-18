@@ -312,8 +312,8 @@ export default function ContactForm() {
               {/* Submit Button or Spinner */}
               <div className="mt-8 flex justify-end">
                 {isSubmitting ? (
-                  <div className="flex items-center px-3.5 py-2.5 bg-gray-300 text-white rounded-md">
-                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
+                  <div className="flex items-center px-3.5 py-2.5 bg-indigo-500 text-white font-semibold uppercase text-[0.875rem] rounded-md">
+                    <div className="w-4 h-4 border-2 border-indigo-200 border-t-transparent rounded-full animate-spin mr-2"></div>
                     <span>Sending...</span>
                   </div>
                 ) : (
