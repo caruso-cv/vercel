@@ -136,19 +136,35 @@ body {
   background-color: #090A0B;
 }
 
+/* Reset the badge’s default appearance */
 .grecaptcha-badge {
   z-index: 50 !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-  transition: opacity .3s ease , visibility .3s ease !important;
   border: none !important;
   background: transparent !important;
-  pointer-events: auto !important;
   box-shadow: none !important;
+  /* Remove any forced opacity so that our animation can take over */
 }
 
+/* On pages without the proper class, hide the badge completely */
 body:not(.contact-page):not(.careers-page) .grecaptcha-badge {
-  opacity: 0 !important;
-  visibility: hidden !important;
-  pointer-events: none !important;
+  display: none !important;
+}
+
+/* On contact or careers pages, force a fade‐in animation */
+body.contact-page .grecaptcha-badge,
+body.careers-page .grecaptcha-badge {
+  display: block !important;
+  animation: captchaFadeIn 0.5s ease forwards !important;
+}
+
+/* Define the keyframes for fading in */
+@keyframes captchaFadeIn {
+  from {
+    opacity: 0;
+    visibility: hidden;
+  }
+  to {
+    opacity: 1;
+    visibility: visible;
+  }
 }
