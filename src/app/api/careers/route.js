@@ -76,19 +76,19 @@ export async function POST(request) {
       to: process.env.TO_EMAIL,
       subject: `New Job Application (${position}) from ${name}`,
       text: `
-You have received a new job application.
+        You have received a new job application.
 
-Name: ${name}
-Email: ${email}
-Phone: ${phone}
-Position: ${position}
+        Name: ${name}
+        Email: ${email}
+        Phone: ${phone}
+        Position: ${position}
 
-Attached File(s): ${
-        attachments.length ? attachments.map((att) => att.filename).join(', ') : 'None'
-      }
-      `,
-      attachments,
-    })
+        Attached File(s): ${
+                attachments.length ? attachments.map((att) => att.filename).join(', ') : 'None'
+              }
+              `,
+              attachments,
+            })
 
     return NextResponse.json({ success: true })
   } catch (error) {

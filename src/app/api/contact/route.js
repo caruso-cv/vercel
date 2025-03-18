@@ -20,7 +20,7 @@ export async function POST(request) {
     }
 
     // Verify reCAPTCHA v3 token with Google
-    const secretKey = process.env.RECAPTCHA_SECRET_KEY || '6LckOa0UAAAAAOMMuPXGDlrRg1GgXVgBAZ1Q27Fy';
+    const secretKey = process.env.RECAPTCHA_SECRET_KEY;
     const captchaRes = await fetch('https://www.google.com/recaptcha/api/siteverify', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -44,8 +44,8 @@ export async function POST(request) {
       port: process.env.SMTP_PORT ? Number(process.env.SMTP_PORT) : 587,
       secure: false, // false for port 587
       auth: {
-        user: process.env.SMTP_USER || 'B24BF96D8CC04566E1B7199C1277C733',
-        pass: process.env.SMTP_PASS || '3397FED8ABF34A629EE77A7F64F072B4'
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS
       }
     });
 
@@ -59,7 +59,6 @@ export async function POST(request) {
 
         Name: ${firstName} ${lastName}
         Email: ${email}
-        Phone: ${phoneNumber}
 
         Message:
         ${message}

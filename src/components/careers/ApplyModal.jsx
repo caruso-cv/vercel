@@ -28,13 +28,14 @@ export default function ApplyModal({ isOpen, onClose, showNotification }) {
     resume: null,       // required, max 5MB
   })
 
-  // Validation errors, e.g., errors.resume = 'File too large. Max 5MB'
+  // Validation errors
   const [errors, setErrors] = useState({})
+  // Loading state for the submit button
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
-  // Find the job object for the description
+  // For dynamic job descriptions
   const selectedJob = jobOptions.find((job) => job.name === formData.position)
 
-  // Handle changes for text/select/file
   const handleChange = (e) => {
     const { name, value, files } = e.target
     if (files) {
@@ -44,25 +45,15 @@ export default function ApplyModal({ isOpen, onClose, showNotification }) {
     }
   }
 
-  // =========================
-  // VALIDATION FUNCTION
-  // =========================
+  // Basic validation
   const validateForm = (data) => {
     const newErrors = {}
-
-    // 1) Name required
-    if (!data.name) {
-      newErrors.name = 'Required *'
-    }
-
-    // 2) Email required, basic format
+    if (!data.name) newErrors.name = 'Required *'
     if (!data.email) {
       newErrors.email = 'Required *'
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(data.email)) {
       newErrors.email = 'Invalid email'
     }
-
-    // 3) Phone required, only digits/dashes, >= 10 digits ignoring dashes
     if (!data.phone) {
       newErrors.phone = 'Required *'
     } else {
@@ -75,52 +66,44 @@ export default function ApplyModal({ isOpen, onClose, showNotification }) {
         }
       }
     }
-
-    // 4) Resume required & must not exceed 5 MB
     if (!data.resume) {
       newErrors.resume = 'Required *'
-    } else {
-      // Check size if we have a File object
-      if (data.resume.size > 5 * 1024 * 1024) {
-        newErrors.resume = 'File too large. Max 5MB'
-      }
+    } else if (data.resume.size > 5 * 1024 * 1024) {
+      newErrors.resume = 'File too large. Max 5MB'
     }
-
-    // Cover letter is optional, no validation
-
     return newErrors
   }
 
+  // reCAPTCHA
   const { executeRecaptcha } = useGoogleReCaptcha()
 
-  // =========================
-  // SUBMIT HANDLER
-  // =========================
   const handleSubmit = async (e) => {
     e.preventDefault()
     setErrors({})
+    setIsSubmitting(true)
 
     // Validate fields
     const validationErrors = validateForm(formData)
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors)
+      setIsSubmitting(false)
       return
     }
 
-    // Obtain reCAPTCHA token
+    // reCAPTCHA token
     let recaptchaToken = ''
     if (executeRecaptcha) {
       try {
         recaptchaToken = await executeRecaptcha('careers_form')
         console.log('Recaptcha token:', recaptchaToken)
-      } catch (error) {
-        console.error('Error executing reCAPTCHA:', error)
+      } catch (err) {
+        console.error('Error executing reCAPTCHA:', err)
       }
     } else {
       console.error('executeRecaptcha not available')
     }
 
-    // Build form data for POST
+    // Build FormData
     const data = new FormData()
     data.append('name', formData.name)
     data.append('email', formData.email)
@@ -130,10 +113,9 @@ export default function ApplyModal({ isOpen, onClose, showNotification }) {
       data.append('coverLetter', formData.coverLetter)
     }
     data.append('resume', formData.resume)
-    // Append the captcha token
     data.append('captchaToken', recaptchaToken)
 
-    // Attempt fetch
+    // POST request
     try {
       const response = await fetch('/api/careers', {
         method: 'POST',
@@ -146,8 +128,7 @@ export default function ApplyModal({ isOpen, onClose, showNotification }) {
           title: 'Application submitted!',
           message: 'Thanks for applying at Neutron Controls!',
         })
-
-        // Reset form and close modal
+        // Reset form
         setFormData({
           name: '',
           email: '',
@@ -156,7 +137,6 @@ export default function ApplyModal({ isOpen, onClose, showNotification }) {
           coverLetter: null,
           resume: null,
         })
-        onClose()
       } else {
         showNotification?.({
           type: 'error',
@@ -171,20 +151,24 @@ export default function ApplyModal({ isOpen, onClose, showNotification }) {
         title: 'Submission failed',
         message: 'An unexpected error occurred. Please try again.',
       })
+    } finally {
+      // Always close the modal after submission attempt
+      onClose()
+      setIsSubmitting(false)
     }
   }
 
   return (
     <Dialog open={isOpen} onClose={onClose}>
       <div className="p-6">
-        <DialogTitle className="mb-4 uppercase ">Join Our Team</DialogTitle>
+        <DialogTitle className="mb-4 uppercase">Join Our Team</DialogTitle>
         <DialogBody>
           <form onSubmit={handleSubmit} className="space-y-4">
             {/* Name */}
             <div>
               <label
                 htmlFor="name"
-                className="block text-[0.875rem] leading-[1.25rem] font-medium text-gray-700 "
+                className="block text-[0.875rem] leading-[1.25rem] font-medium text-gray-700"
               >
                 Name
               </label>
@@ -205,7 +189,7 @@ export default function ApplyModal({ isOpen, onClose, showNotification }) {
             <div>
               <label
                 htmlFor="email"
-                className="block text-[0.875rem] leading-[1.25rem] font-medium text-gray-700 "
+                className="block text-[0.875rem] leading-[1.25rem] font-medium text-gray-700"
               >
                 Email
                 {errors.email && errors.email !== 'Required *' && (
@@ -229,7 +213,7 @@ export default function ApplyModal({ isOpen, onClose, showNotification }) {
             <div>
               <label
                 htmlFor="phone"
-                className="block text-[0.875rem] leading-[1.25rem] font-medium text-gray-700 "
+                className="block text-[0.875rem] leading-[1.25rem] font-medium text-gray-700"
               >
                 Phone Number
                 {errors.phone && errors.phone !== 'Required *' && (
@@ -253,7 +237,7 @@ export default function ApplyModal({ isOpen, onClose, showNotification }) {
             <div>
               <label
                 htmlFor="position"
-                className="block text-[0.875rem] leading-[1.25rem] font-medium text-gray-700 "
+                className="block text-[0.875rem] leading-[1.25rem] font-medium text-gray-700"
               >
                 Position
               </label>
@@ -272,7 +256,7 @@ export default function ApplyModal({ isOpen, onClose, showNotification }) {
                 ))}
               </select>
               {selectedJob?.description && (
-                <div className="mt-2 text-[0.875rem] leading-[1.25rem] text-gray-600  md:pb-4">
+                <div className="mt-2 text-[0.875rem] leading-[1.25rem] text-gray-600 md:pb-4">
                   {selectedJob.description}
                 </div>
               )}
@@ -282,7 +266,7 @@ export default function ApplyModal({ isOpen, onClose, showNotification }) {
             <div>
               <label
                 htmlFor="coverLetter"
-                className="block text-[0.875rem] leading-[1.25rem] font-medium text-gray-700 "
+                className="block text-[0.875rem] leading-[1.25rem] font-medium text-gray-700"
               >
                 Upload Cover Letter
               </label>
@@ -295,11 +279,11 @@ export default function ApplyModal({ isOpen, onClose, showNotification }) {
               />
             </div>
 
-            {/* Resume (Required, max 5MB) */}
+            {/* Resume (Required) */}
             <div>
               <label
                 htmlFor="resume"
-                className="block text-[0.875rem] leading-[1.25rem] font-medium text-gray-700 "
+                className="block text-[0.875rem] leading-[1.25rem] font-medium text-gray-700"
               >
                 Upload Resume
                 {errors.resume && (
@@ -324,12 +308,21 @@ export default function ApplyModal({ isOpen, onClose, showNotification }) {
               >
                 Cancel
               </button>
-              <button
-                type="submit"
-                className="rounded-md uppercase bg-[#425ACA] px-3.5 py-2.5 text-[0.875rem] leading-[1.25rem] font-semibold text-white shadow-sm hover:bg-indigo-500 "
-              >
-                Submit <span aria-hidden="true">&rarr;</span>
-              </button>
+
+              {/* If isSubmitting is true, show a spinner instead */}
+              {isSubmitting ? (
+                <div className="flex items-center px-3.5 py-2.5 bg-gray-300 text-white rounded-md">
+                  <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
+                  <span>Submitting...</span>
+                </div>
+              ) : (
+                <button
+                  type="submit"
+                  className="rounded-md uppercase bg-[#425ACA] px-3.5 py-2.5 text-[0.875rem] leading-[1.25rem] font-semibold text-white shadow-sm hover:bg-indigo-500"
+                >
+                  Submit <span aria-hidden="true">&rarr;</span>
+                </button>
+              )}
             </div>
           </form>
         </DialogBody>
