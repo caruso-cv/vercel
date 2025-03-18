@@ -1,13 +1,12 @@
 'use client'
+import ReCaptchaProvider from '@/components/contact/ReCaptchaProvider'
 import { useState } from 'react'
 import ModalTrigger from '@/components/careers/ModalTrigger'
 import Notification from '@/components/careers/Notification'
 import Faq from '@/components/careers/Faq'
 import AnimatedImagesSection from '@/components/services/AnimatedImagesSection'
-import ReCaptchaProvider from '@/components/contact/ReCaptchaProvider' // reuse your existing provider
 
 export default function CareersPage() {
-  // For the Notification
   const [notif, setNotif] = useState({
     show: false,
     type: 'success',
@@ -15,17 +14,10 @@ export default function CareersPage() {
     message: '',
   })
 
-  // Helper function to show the notification
   function showNotification({ type, title, message }) {
-    setNotif({
-      show: true,
-      type,
-      title,
-      message,
-    })
+    setNotif({ show: true, type, title, message })
   }
 
-  // We'll hide it by resetting show = false
   function hideNotification() {
     setNotif((prev) => ({ ...prev, show: false }))
   }
@@ -33,7 +25,6 @@ export default function CareersPage() {
   return (
     <ReCaptchaProvider>
       <div>
-        {/* The Notification ALWAYS mounts at top-level */}
         <Notification
           show={notif.show}
           onClose={hideNotification}
@@ -59,12 +50,9 @@ export default function CareersPage() {
                       Collaborate in a supportive environment using cutting-edge technologies.
                     </p>
                     <div className="mt-10 flex">
-                      {/* Passing "showNotification" down to the ModalTrigger so it can call it */}
                       <ModalTrigger showNotification={showNotification} />
                     </div>
                   </div>
-
-                  {/* Insert the client component for images */}
                   <AnimatedImagesSection />
                 </div>
               </div>
