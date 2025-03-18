@@ -20,7 +20,7 @@ export async function POST(request) {
     }
 
     // Verify reCAPTCHA v3 token with Google
-    const secretKey = process.env.RECAPTCHA_SECRET || '6LckOa0UAAAAAOMMuPXGDlrRg1GgXVgBAZ1Q27Fy';
+    const secretKey = process.env.RECAPTCHA_SECRET_KEY || '6LckOa0UAAAAAOMMuPXGDlrRg1GgXVgBAZ1Q27Fy';
     const captchaRes = await fetch('https://www.google.com/recaptcha/api/siteverify', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },

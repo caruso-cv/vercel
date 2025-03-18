@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react'
 import { useGoogleReCaptcha } from 'react-google-recaptcha-v3'
 import Notification from '@/components/contact/Notifications'
 import { BuildingOffice2Icon } from '@heroicons/react/24/outline'
-import ReCaptchaLayout from '@/components/contact/ReCaptchaLayout' // import your provider wrapper
+import ReCaptchaLayout from '@/components/contact/ReCaptchaProvider' // import your provider wrapper
 
 export default function Contact() {
   const [errors, setErrors] = useState({})
@@ -69,6 +69,7 @@ export default function Contact() {
     if (executeRecaptcha) {
       try {
         recaptchaToken = await executeRecaptcha('contact_form')
+        console.log('Recaptcha token:', recaptchaToken);
       } catch (err) {
         console.error('reCAPTCHA error:', err)
       }
@@ -108,30 +109,17 @@ export default function Contact() {
   return (
     // Wrap your entire Contact page in ReCaptchaLayout to provide the context
     <ReCaptchaLayout>
-      <div className="contact-page relative overflow-x-hidden z-30">
-
-        {/* Page-specific global style to animate the reCAPTCHA badge on this page */}
+      <div className="relative overflow-x-hidden z-30">
         <style jsx global>{`
-          .contact-page .grecaptcha-badge {
+          .grecaptcha-badge {
             z-index: 999999 !important;
             position: fixed !important;
             bottom: 12px !important;
             right: 12px !important;
-            animation: slideInFromRight 0.5s ease-out;
           }
-          @keyframes slideInFromRight {
-            from {
-              transform: translateX(100%);
-              opacity: 0;
-            }
-            to {
-              transform: translateX(0);
-              opacity: 1;
-            }
-          }
+          
         `}</style>
 
-        {/* Sliding Notification in bottom-right */}
         <Notification
           show={notif.show}
           onClose={hideNotification}
