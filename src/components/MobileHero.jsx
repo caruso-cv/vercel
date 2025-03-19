@@ -9,7 +9,7 @@ export default function Example() {
     <div className="bg-gray-900 relative isolate overflow-hidden block md:hidden">
       <Image
         alt="Sunset with solar panels"
-        src="/hero/energy.jpg"
+        src="/hero/energy.webp"
         fill
         sizes="100vw"
         quality={70}
@@ -53,18 +53,6 @@ export default function Example() {
           </div>
         </div>
       </div>
-      
-      {/* <div className="absolute right-[80px] top-1/2 transform -translate-y-1/2 z-30">
-        <Image 
-          src="/vertical/energ8te-box-hero.png"
-          width={1000}
-          height={600} 
-          quality={70}
-          priority
-          alt="energ8te box"
-          className="w-[900px] h-auto"
-        />
-      </div> */}
       
       <div
         aria-hidden="true"
