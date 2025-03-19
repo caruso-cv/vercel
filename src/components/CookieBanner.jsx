@@ -1,5 +1,4 @@
 'use client'
-
 import { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
 import Link from "next/link";
@@ -15,18 +14,39 @@ export default function CookieBanner() {
     }
   }, []);
 
-  // Accept cookies: set a cookie and hide the banner
+  // Accept cookies: set cookie, update Consent Mode, and hide banner
   const handleAccept = () => {
     Cookies.set('cookieConsent', 'accepted', { expires: 365 });
+    if (typeof window !== 'undefined') {
+      // Ensure dataLayer exists
+      window.dataLayer = window.dataLayer || [];
+      // Push an event to the dataLayer for GTM
+      window.dataLayer.push({ event: 'analytics_consent', consent: 'granted' });
+      // Update gtag Consent Mode
+      if (window.gtag) {
+        window.gtag('consent', 'update', { 
+          'analytics_storage': 'granted', 
+          'ad_storage': 'granted' 
+        });
+      }
+    }
     setShowBanner(false);
-    // Additional logic for enabling cookies or loading scripts can go here
   };
 
-  // Reject cookies: set a cookie and hide the banner
+  // Reject cookies: set cookie, update Consent Mode, and hide banner
   const handleReject = () => {
     Cookies.set('cookieConsent', 'rejected', { expires: 365 });
+    if (typeof window !== 'undefined') {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: 'analytics_consent', consent: 'denied' });
+      if (window.gtag) {
+        window.gtag('consent', 'update', { 
+          'analytics_storage': 'denied', 
+          'ad_storage': 'denied' 
+        });
+      }
+    }
     setShowBanner(false);
-    // Additional logic for handling rejection can go here
   };
 
   if (!showBanner) return null;
@@ -35,7 +55,7 @@ export default function CookieBanner() {
     <div className="pointer-events-none fixed inset-x-0 bottom-0 sm:px-6 sm:pb-6 z-50">
       <div className="pointer-events-auto ml-auto sm:max-w-xl sm:rounded-xl rounded-t-xl bg-white p-6 shadow-lg ring-1 ring-gray-900/10">
         <p className="text-sm/6 sm:text-base/6 text-gray-900">
-        We use cookies to enhance your browsing experience, analyze site traffic, and deliver personalized content. By clicking “Accept all”, you consent to our use of cookies. See our{' '}
+          We use cookies to enhance your browsing experience, analyze site traffic, and deliver personalized content. By clicking “Accept all”, you consent to our use of cookies. See our{' '}
           <Link href="/policy" className="font-semibold text-[#435FE1] hover:underline">
             cookie policy
           </Link>

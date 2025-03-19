@@ -311,7 +311,7 @@ export default function ApplyModal({ isOpen, onClose, showNotification }) {
 
               {/* If isSubmitting is true, show a spinner instead */}
               {isSubmitting ? (
-                <div className="flex items-center px-3.5 py-2.5 bg-indigo-500font-semibold uppercase text-[0.875rem] text-white rounded-md">
+                <div className="flex items-center px-3.5 py-2.5 bg-indigo-500 font-semibold uppercase text-[0.875rem] text-white rounded-md">
                   <div className="w-4 h-4 border-2 border-indigo-200 border-t-transparent rounded-full animate-spin mr-2"></div>
                   <span>Submitting...</span>
                 </div>

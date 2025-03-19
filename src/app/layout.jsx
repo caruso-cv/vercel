@@ -1,4 +1,3 @@
-
 import '@/styles/tailwind.css'
 import { Montserrat } from 'next/font/google'
 import Nav from '@/components/nav/Nav'
@@ -50,7 +49,7 @@ export default function RootLayout({ children }) {
           `}
         </Script>
 
-        {/* Existing Google Analytics Scripts */}
+        {/* Google Analytics Script with Consent Mode initialization */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-ZZQ44F7P76"
           strategy="afterInteractive"
@@ -59,6 +58,11 @@ export default function RootLayout({ children }) {
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
+            // Initialize Consent Mode with default settings (denied)
+            gtag('consent', 'default', {
+              'analytics_storage': 'denied',
+              'ad_storage': 'denied'
+            });
             gtag('js', new Date());
             gtag('config', 'G-ZZQ44F7P76');
           `}

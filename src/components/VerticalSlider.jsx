@@ -47,7 +47,7 @@ const pinnedSections = [
     },
     imageClasses:'px-2 max-w-3xl',
     image: {
-      src: "/vertical/energ8te-box.png",
+      src: "/vertical/energ8te-box-hero.webp",
       alt: "Emula8tr ESS Controller",
     },
   },
@@ -90,7 +90,7 @@ const pinnedSections = [
     },
     imageClasses:'max-w-3xl',
     image: {
-      src: "/vertical/ecu8tr-box.png",
+      src: "/vertical/ecu8tr-box.webp",
       alt: "Emula8tr ESS Controller",
     },
   },
@@ -131,7 +131,7 @@ const pinnedSections = [
     },
     imageClasses:'',
     image: {
-      src: "/vertical/elev8tr.png",
+      src: "/vertical/elev8tr.webp",
       alt: "Emula8tr ESS Controller",
     },
   },

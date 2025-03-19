@@ -175,3 +175,7 @@ body.careers-page .grecaptcha-badge {
 .grecaptcha-badge:hover {
   transform: scale(1.05); /* Slightly enlarge for a smoother feel */
 }
+
+.rc-anchor {
+  filter: grayscale(100%) !important;
+}

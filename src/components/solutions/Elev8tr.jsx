@@ -39,8 +39,8 @@ export default function ProductPage() {
               {/* Invisible placeholder to reserve space until the image loads */}
               {!imageLoaded && <div style={{ paddingBottom: `${aspectRatio}%` }} />}
               <Image
-                src="/vertical/elev8tr.png"
-                alt="Emula8tr ESS Controller"
+                src="/vertical/elev8tr.webp"
+                alt="Elev8tr ESS Controller"
                 width={1916}
                 height={1145}
                 quality={70}
@@ -62,7 +62,7 @@ export default function ProductPage() {
               </p>
              
               <div className="mt-10 flex gap-6 relative flex-col 4sm:flex-row items-start">
-                <Link
+                <a
                   href="/pdf/ELEV8TR.pdf"
                   alt="Ecu8tr Battery Point Tester"
                   target="_blank"
@@ -70,7 +70,7 @@ export default function ProductPage() {
                 >
                   View product brief{" "}
                   <ArrowUpRight className="w-5 h-5 text-gray-500" />
-                </Link>
+                </a>
               </div>
             </div>
           </div>
@@ -81,7 +81,7 @@ export default function ProductPage() {
               {/* Invisible placeholder to reserve space until the image loads */}
               {!imageLoaded && <div style={{ paddingBottom: `${aspectRatio}%` }} />}
               <Image
-                src="/vertical/elev8tr.png"
+                src="/vertical/elev8tr.webp"
                 alt="Emula8tr ESS Controller"
                 width={1916}
                 height={1145}

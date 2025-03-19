@@ -39,7 +39,7 @@ export default function ProductPage() {
               {/* Invisible placeholder to reserve space until the image loads */}
               {!imageLoaded && <div style={{ paddingBottom: `${aspectRatio}%` }} />}
               <Image
-                src="/vertical/energ8te.png"
+                src="/vertical/energ8te.webp"
                 alt="Emula8tr ESS Controller"
                 width={1916}
                 height={1145}
@@ -62,7 +62,7 @@ export default function ProductPage() {
               </p>
              
               <div className="mt-10 flex gap-6 relative flex-col 4sm:flex-row items-start">
-                <Link
+                <a
                   href="/pdf/ENERG8TE.pdf"
                   alt="Energ8te BMS Controls for energy storage"
                   target="_blank"
@@ -70,7 +70,7 @@ export default function ProductPage() {
                 >
                   View product brief{" "}
                   <ArrowUpRight className="w-5 h-5 text-gray-500" />
-                </Link>
+                </a>
               </div>
             </div>
           </div>
@@ -81,7 +81,7 @@ export default function ProductPage() {
               {/* Invisible placeholder to reserve space until the image loads */}
               {!imageLoaded && <div style={{ paddingBottom: `${aspectRatio}%` }} />}
               <Image
-                src="/vertical/energ8te.png"
+                src="/vertical/energ8te.webp"
                 alt="Emula8tr ESS Controller"
                 width={1916}
                 height={1145}

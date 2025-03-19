@@ -65,22 +65,24 @@ export default function HeroNew() {
         <div className="keen-slider__slide h-full">
           <div className="bg-gray-900 relative isolate overflow-hidden h-full">
             <Image
-              alt="Sunset with solar panels"
-              src="/hero/energy.jpg"
+              src="/hero/energy.webp"
+              alt="energy storage systems, solar panels, and wind turbines."
               fill
-              sizes="100vw"
-              quality={70}
-              className="absolute inset-0 -z-20 object-cover object-bottom md:object-center"
+              className='object-cover'
+              sizes="(max-width: 600px) 100vw, 
+              (max-width: 1200px) 100vw, 
+              100vw"
               priority
+              quality={80}
             />
             <div
               aria-hidden="true"
               className="absolute inset-x-0 -top-40 -z-20 transform-gpu overflow-hidden blur-3xl"
             ></div>
-            <div className="absolute inset-0 bg-black bg-opacity-70 -z-10"></div>
+            <div className="absolute inset-0 bg-black bg-opacity-70 z-10"></div>
             <div className="mx-auto max-w-8xl px-6 lg:px-8 2xl:px-0">
               <div className="flex h-full items-start pt-[calc(192px+env(safe-area-inset-top))] pb-32 sm:pt-[calc(14rem+env(safe-area-inset-top))] sm:pb-48 lg:py-56">
-                <div className="max-w-2xl select-text">
+                <div className="max-w-2xl select-text z-20">
                   <div className="text-left">
                   <h1 className="text-balance uppercase text-5xl font-bold text-white sm:mt-12 sm:text-[83.2px] 3xl:mt-28 whitespace-pre-line">
                       Contain your energy
@@ -128,22 +130,24 @@ export default function HeroNew() {
         <div className="keen-slider__slide h-full">
           <div className="bg-gray-900 relative isolate overflow-hidden h-full">
             <Image
-              alt="Sunset with solar panels"
-              src="/hero/test.jpg"
+              src="/hero/test.webp"
+              alt="Battery factory point tester robot"
               fill
-              sizes="100vw"
-              quality={70}
-              className="absolute inset-0 -z-20 object-cover object-bottom md:object-center"
+              className='object-cover'
+              sizes="(max-width: 600px) 100vw, 
+              (max-width: 1200px) 100vw, 
+              100vw"
               priority
+              quality={80}
             />
             <div
               aria-hidden="true"
               className="absolute inset-x-0 -top-40 -z-20 transform-gpu overflow-hidden blur-3xl"
             ></div>
-            <div className="absolute inset-0 bg-black bg-opacity-70 -z-10"></div>
+            <div className="absolute inset-0 bg-black bg-opacity-70 z-10"></div>
             <div className="mx-auto max-w-8xl px-6 lg:px-8 2xl:px-0">
               <div className="flex h-full items-start pt-[calc(192px+env(safe-area-inset-top))] pb-32 sm:pt-[calc(14rem+env(safe-area-inset-top))] sm:pb-48 lg:py-56">
-                <div className="max-w-2xl select-text">
+                <div className="max-w-2xl select-text z-20">
                   <div className="text-left">
                   <h1 className="text-balance uppercase text-5xl font-bold text-white sm:mt-12 sm:text-[83.2px] 3xl:mt-28 whitespace-pre-line">
                       Test your limits
