@@ -239,7 +239,7 @@ export default function Slider() {
         />
 
         {/* Title */}
-        <h2 className="w-full text-center text-white lg:text-4xl text-2xl font-bold z-10 absolute lg:top-24 top-8">
+        <h2 className="w-full text-center text-white text-[24px] leading-[32px] lg:text-[36px] lg:leading-[40px] font-bold z-10 absolute lg:top-24 top-8">
           OUR INDUSTRY FOCUS
         </h2>
 
@@ -269,11 +269,11 @@ export default function Slider() {
 
                   {/* Video Info Box */}
                   <div className="hidden lg:block absolute top-12 right-6 xl:-right-24 border border-white/10 bg-gradient-to-tr from-[#0C0D0F] to-[#111214] via-[#111214]/85 backdrop-blur-sm text-white p-5 pt-7 w-[90%] max-w-[460px] rounded-lg shadow-lg">
-                    <h3 className="text-lg 2xl:text-xl uppercase font-bold flex items-center mb-4">
+                    <h3 className="text-[18px] leading-[26px] 2xl:text-[20px] 2xl:leading-[28px] uppercase font-bold flex items-center mb-4">
                       {slide.desktop.headingIcon}
                       {slide.desktop.headingText}
                     </h3>
-                    <p className="text-lg 2xl:text-xl text-gray-200 mb-6 tracking-wide">
+                    <p className="text-[18px] leading-[26px] 2xl:text-[20px] 2xl:leading-[28px] text-gray-200 mb-6 tracking-wide">
                       {slide.desktop.bodyTextBeforeSpan}
                       <span className="text-[#8CD6FF] bg-[#1C445D] rounded-sm px-1">
                         {slide.desktop.bodyTextSpan}
@@ -311,11 +311,11 @@ export default function Slider() {
                     )}
                   </div>
                   <div className="text-white p-5 pt-7">
-                    <h3 className="text-lg font-bold flex items-center mb-4">
+                    <h3 className="text-[18px] leading-[26px] font-bold flex items-center mb-4">
                       {slide.mobile.headingIcon}
                       {slide.mobile.headingText}
                     </h3>
-                    <p className="text-base text-gray-200 mb-6 tracking-wide">
+                    <p className="text-[16px] leading-[24px] text-gray-200 mb-6 tracking-wide">
                       {slide.mobile.bodyTextBeforeSpan}
                       <span className="text-[#8CD6FF] bg-[#1C445D] rounded-sm px-1">
                         {slide.mobile.bodyTextSpan}

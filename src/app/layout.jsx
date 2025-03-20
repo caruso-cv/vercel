@@ -5,6 +5,7 @@ import BackgroundHero from '@/components/BackgroundHero'
 import Footer from '@/components/Footer'
 import CookieBanner from '@/components/CookieBanner'
 import Script from 'next/script'
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const montserrat = Montserrat({
   subsets: ['latin'],
@@ -75,6 +76,7 @@ export default function RootLayout({ children }) {
         </div>
         {children}
         <Footer />
+        <SpeedInsights/>
       </body>
     </html>
   )
