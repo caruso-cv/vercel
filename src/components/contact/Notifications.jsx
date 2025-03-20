@@ -26,17 +26,17 @@ export default function Notification({
   return (
     <div
       aria-live="assertive"
-      className="pointer-events-none fixed inset-0 flex items-end justify-end px-4 py-6 sm:p-6 z-50"
+      className="pointer-events-none fixed inset-0 flex items-end justify-start px-4 py-6 sm:p-6 z-50"
     >
-      <div className="flex w-full flex-col items-center space-y-4 sm:items-end">
+      <div className="flex w-full flex-col items-center space-y-4 sm:items-start">
         <Transition
           show={show}
           enter="transform ease-out duration-300 transition"
-          enterFrom="translate-x-full opacity-0"
+          enterFrom="-translate-x-full opacity-0"
           enterTo="translate-x-0 opacity-100"
           leave="transform ease-in duration-100 transition"
           leaveFrom="translate-x-0 opacity-100"
-          leaveTo="translate-x-full opacity-0"
+          leaveTo="-translate-x-full opacity-0"
         >
           <div className="pointer-events-auto w-full max-w-sm overflow-hidden rounded-lg bg-white shadow-lg ring-1 ring-black/5">
             <div className="p-4">
