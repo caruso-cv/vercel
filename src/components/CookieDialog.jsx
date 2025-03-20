@@ -159,7 +159,7 @@ export default function CookieDialog({
   }
 
   return (
-    <Dialog open={open} onClose={onClose} size="lg">
+    <Dialog open={open} onClose={() => {}} size="lg">
       <DialogTitle className="pt-4 px-4">Privacy Preferences</DialogTitle>
       <DialogBody>
         <p className="text-gray-700 px-4 mb-2">

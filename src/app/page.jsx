@@ -9,7 +9,7 @@ import MobileHero from '@/components/MobileHero'
 export default function Home() {
   return (
     <div>
-      <main>
+      <main className='pb-24'>
         <div className="lg:h-full relative overflow-x-hidden bg-[#090A0B]">
             <Hero />
             <MobileHero />
