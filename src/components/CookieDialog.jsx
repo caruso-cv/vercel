@@ -6,6 +6,7 @@ import { Switch } from '@headlessui/react'
 import clsx from 'clsx'
 import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation' // <-- For App Router navigation
 
 // -----------------------------------
 // 1) Dialog component and related exports
@@ -67,7 +68,7 @@ export function Dialog({ size = 'lg', className, children, ...props }) {
                 transition={animation.transition}
                 className={clsx(
                   className,
-                  sizes[size],
+                  sizes[props.size || 'lg'],
                   'row-start-2 w-full min-w-0 rounded-t-3xl bg-white p-4 ring-1 shadow-lg ring-gray-950/10 sm:mb-auto sm:rounded-2xl',
                   'mx-0 sm:mx-auto'
                 )}
@@ -109,6 +110,8 @@ export default function CookieDialog({
   onRejectAll,
   userId,
 }) {
+  const router = useRouter() // <-- Use Next.js App Router
+
   // Local states for cookie toggles (defaulted to true)
   const [performanceCookies, setPerformanceCookies] = useState(true)
   const [functionalCookies, setFunctionalCookies] = useState(true)
@@ -169,7 +172,11 @@ export default function CookieDialog({
         <Link
           href="/policy"
           className="px-4 font-semibold text-[#435FE1] hover:underline text-sm"
-          onClick={() => onClose()}
+          onClick={(e) => {
+            e.preventDefault()
+            onClose()
+            router.push('/policy') // Programmatic navigation in the same tab
+          }}
         >
           Learn more
         </Link>

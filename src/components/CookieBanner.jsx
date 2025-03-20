@@ -28,7 +28,16 @@ export default function CookieBanner() {
     }
   }, [])
 
-  // Reject cookies (using existing logic)
+  // Listen for the "open-cookie-dialog" event (dispatched in Footer.jsx)
+  useEffect(() => {
+    const openDialog = () => {
+      setShowSettingsModal(true)
+    }
+    window.addEventListener('open-cookie-dialog', openDialog)
+    return () => window.removeEventListener('open-cookie-dialog', openDialog)
+  }, [])
+
+  // Reject cookies
   const handleReject = () => {
     Cookies.set('cookieConsent', 'rejected', { expires: 365 })
     if (typeof window !== 'undefined') {
@@ -44,13 +53,7 @@ export default function CookieBanner() {
     setShowBanner(false)
   }
 
-  // Open cookie settings dialog
-  const openSettings = () => {
-    setShowSettingsModal(true)
-  }
-
-  // Called when user clicks "Confirm My Choices" in CookieDialog.
-  // This now enables cookies with GTM/GA.
+  // Called when user clicks "Confirm My Choices" in CookieDialog
   const handleConfirmChoices = (choices) => {
     console.log('User choices:', choices)
     // Set cookie consent to accepted
@@ -69,7 +72,7 @@ export default function CookieBanner() {
     setShowBanner(false)
   }
 
-  // Called when user clicks "Reject All" in CookieDialog.
+  // Called when user clicks "Reject All" in CookieDialog
   const handleRejectAllFromModal = () => {
     handleReject()
     setShowSettingsModal(false)
@@ -82,11 +85,11 @@ export default function CookieBanner() {
         <div className="pointer-events-auto mb-8 ml-6 fixed bottom-0 z-50">
           <button
             type="button"
-            onClick={openSettings}
+            onClick={() => setShowSettingsModal(true)}
             className="relative group w-14 h-14 flex items-center justify-center rounded-full bg-white"
             style={{ boxShadow: '0 2px 8px rgba(0, 0, 0, 0.25)' }}
           >
-            <Image 
+            <Image
               src="/logo/Cookies_logo.png"
               alt="Cookies logo"
               width={60}
@@ -96,20 +99,20 @@ export default function CookieBanner() {
             <span
               className="
                 pointer-events-none
-                absolute 
+                absolute
                 left-[70px]
                 bottom-[8px]
-                mb-2 
-                px-2 
-                py-1 
-                bg-black 
-                text-white 
-                text-xs 
-                rounded 
-                opacity-0 
+                mb-2
+                px-2
+                py-1
+                bg-black
+                text-white
+                text-xs
+                rounded
+                opacity-0
                 transform translate-x-3
-                group-hover:opacity-100 
-                group-hover:translate-x-0 
+                group-hover:opacity-100
+                group-hover:translate-x-0
                 transition-all duration-300 ease-out
                 whitespace-nowrap
               "
