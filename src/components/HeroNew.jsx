@@ -32,7 +32,7 @@ export default function HeroNew() {
       slidesPerView: 1,
       duration: 1000,
       drag: false,
-      created(s) {
+      created() {
         setSliderLoaded(true);
       },
     },
@@ -41,16 +41,14 @@ export default function HeroNew() {
 
   return (
     <div
-      className="hidden md:block"
+      className="block"
       style={{
-        // Disabling text scaling
         WebkitTextSizeAdjust: 'none',
         MozTextSizeAdjust: 'none',
         msTextSizeAdjust: 'none',
         textSizeAdjust: 'none',
       }}
     >
-      {/* Remove fixed height from this container */}
       <div
         ref={sliderRef}
         className={`keen-slider relative transition-opacity duration-500 ${
@@ -59,27 +57,27 @@ export default function HeroNew() {
       >
         {/* Slide 1 */}
         <div className="keen-slider__slide">
-          {/* Use min-h instead of forcing h-full */}
-          <div className="relative isolate overflow-hidden min-h-[calc(100vh-100px)] bg-gray-900">
+          <div className="relative isolate overflow-hidden bg-gray-900 min-h-full">
             <Image
               src="/hero/energy.webp"
               alt="energy storage systems"
               fill
               className="object-cover"
-              sizes="(max-width: 600px) 100vw,
-                      (max-width: 1200px) 100vw, 
-                      100vw"
+              sizes="(max-width: 600px) 100vw, (max-width: 1200px) 100vw, 100vw"
               priority
               quality={80}
             />
-            {/* Dark overlay */}
+
+            {/* Shader for hero image */}
             <div className="absolute inset-0 bg-black bg-opacity-70 z-10" />
-            
-            {/* Content container */}
-            <div className="relative mx-auto max-w-8xl px-6 lg:px-8 2xl:px-0 z-20">
-              {/* Instead of h-full + items-start, consider items-center if you want vertical centering */}
-              <div className="flex flex-col justify-center h-full py-12 sm:py-24 lg:py-32 z-20 mt-[10%] 3xl:mt-[20%]">
-                <div className="max-w-2xl select-text">
+
+            <div className="relative mx-auto max-w-8xl px-6 lg:px-8 2xl:px-0 z-20 h-full">
+
+              {/* Spacer for Navbar */}
+              <div className='pt-[150px]'></div>
+
+              <div className="flex flex-col h-full z-20 justify-center py-[100px]">
+                <div className="max-w-2xl select-text ">   
                   <h1 className="text-balance uppercase text-5xl font-bold text-white sm:text-[83.2px] whitespace-pre-line">
                     Contain your energy
                   </h1>
@@ -112,27 +110,27 @@ export default function HeroNew() {
 
         {/* Slide 2 */}
         <div className="keen-slider__slide">
-          {/* Use min-h instead of forcing h-full */}
-          <div className="relative isolate overflow-hidden min-h-[calc(100vh-100px)] bg-gray-900">
+          <div className="relative isolate overflow-hidden bg-gray-900 min-h-full">
             <Image
               src="/hero/test.webp"
-              alt="Battory factory point tester robot"
+              alt="Battery factory point tester robot"
               fill
               className="object-cover"
-              sizes="(max-width: 600px) 100vw,
-                      (max-width: 1200px) 100vw, 
-                      100vw"
+              sizes="(max-width: 600px) 100vw, (max-width: 1200px) 100vw, 100vw"
               priority
               quality={80}
             />
-            {/* Dark overlay */}
+
+            {/* Shader for hero image */}
             <div className="absolute inset-0 bg-black bg-opacity-70 z-10" />
-            
-            {/* Content container */}
-            <div className="relative mx-auto max-w-8xl px-6 lg:px-8 2xl:px-0 z-20">
-              {/* Instead of h-full + items-start, consider items-center if you want vertical centering */}
-              <div className="flex flex-col justify-center h-full py-12 sm:py-24 lg:py-32 z-20 mt-[10%] 3xl:mt-[20%]">
-                <div className="max-w-2xl select-text">
+
+            <div className="relative mx-auto max-w-8xl px-6 lg:px-8 2xl:px-0 z-20 h-full">
+
+              {/* Spacer for Navbar */}
+              <div className='pt-[150px]'></div>
+
+              <div className="flex flex-col h-full z-20 justify-center py-[100px]">
+                <div className="max-w-2xl select-text ">   
                   <h1 className="text-balance uppercase text-5xl font-bold text-white sm:text-[83.2px] whitespace-pre-line">
                     Test your limits
                   </h1>
