@@ -146,7 +146,7 @@ export default function HeroNew() {
                       scroll={false}
                       onClick={(e) => {
                         e.preventDefault();
-                        const target = document.getElementById('get-started');
+                        const target = document.getElementById('ecu8tr');
                         if (target) {
                           target.scrollIntoView({ behavior: 'smooth' });
                         }

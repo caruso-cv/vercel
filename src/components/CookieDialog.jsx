@@ -8,7 +8,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 
 // -----------------------------------
-// 1) Your exact dialog code (Named Exports)
+// 1) Dialog component and related exports
 // -----------------------------------
 
 const sizes = {
@@ -99,9 +99,7 @@ export function DialogBody({ className, ...props }) {
 }
 
 // -----------------------------------
-// 2) The default export: CookieDialog
-//    with cookie toggles using switches, collapsible sections (entire section is clickable),
-//    and "Confirm" / "Reject All" logic
+// 2) CookieDialog component
 // -----------------------------------
 
 export default function CookieDialog({
@@ -111,12 +109,12 @@ export default function CookieDialog({
   onRejectAll,
   userId,
 }) {
-  // Local states for switches (defaulted to true)
+  // Local states for cookie toggles (defaulted to true)
   const [performanceCookies, setPerformanceCookies] = useState(true)
   const [functionalCookies, setFunctionalCookies] = useState(true)
   const [targetingCookies, setTargetingCookies] = useState(true)
 
-  // Local states for dropdowns
+  // Local states for dropdown sections
   const [performanceOpen, setPerformanceOpen] = useState(false)
   const [functionalOpen, setFunctionalOpen] = useState(false)
   const [necessaryOpen, setNecessaryOpen] = useState(false)
@@ -130,7 +128,7 @@ export default function CookieDialog({
     onClose()
   }
 
-  // "Reject All" => reset toggles, call parent's reject, close
+  // "Reject All" => reset toggles, call parent's reject, then close
   const handleRejectAll = () => {
     setPerformanceCookies(false)
     setFunctionalCookies(false)
@@ -141,17 +139,14 @@ export default function CookieDialog({
     onClose()
   }
 
-  // Switch base classes
   const switchBaseClasses =
     'group relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-[#425ACA] focus:ring-offset-2'
   const getSwitchClasses = (checked) =>
     clsx(switchBaseClasses, checked ? 'bg-[#425ACA]' : 'bg-gray-200')
 
-  // Container classes for each section (entire section is clickable)
   const sectionContainerClasses =
     'border-t py-4 hover:bg-gray-50 transition-colors duration-200 cursor-pointer'
 
-  // Animation variants for dropdown content
   const dropVariants = {
     hidden: { opacity: 0, height: 0 },
     visible: { opacity: 1, height: 'auto' },
@@ -169,11 +164,12 @@ export default function CookieDialog({
           When you visit any website, it may store or retrieve information on your browser,
           mostly in the form of cookies. This information does not usually directly identify you,
           but it can give you a more personalized web experience. Because we respect your right to privacy,
-          you can choose not to allow some types of cookies.{' '}
+          you can choose not to allow some types of cookies.
         </p>
         <Link
           href="/policy"
           className="px-4 font-semibold text-[#435FE1] hover:underline text-sm"
+          onClick={() => onClose()}
         >
           Learn more
         </Link>
