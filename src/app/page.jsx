@@ -34,7 +34,6 @@ export default function Home() {
         </div>
         <div>
           <VerticalSlider/>
-          {/* <Slider/> */}
         </div>
       </main>
     </div>

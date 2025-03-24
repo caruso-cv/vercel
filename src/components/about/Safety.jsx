@@ -32,7 +32,7 @@ export default function InfineonSections() {
                     style={{ transform: 'translate(-50%, 50%)', height: '80%' }}
                   />
                   <Image
-                    src="/logo/Orion9001.png"
+                    src="/logo/Orion9001.webp"
                     alt="Certification Badge"
                     width={250}
                     height={250}
@@ -69,7 +69,7 @@ export default function InfineonSections() {
                     style={{ transform: 'translateX(25%)' }}
                   />
                   <Image
-                    src="/logo/Orion14001.png"
+                    src="/logo/Orion14001.webp"
                     alt="Certification Badge"
                     width={250}
                     height={250}
