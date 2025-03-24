@@ -112,21 +112,6 @@ export default function MainNav({ isOpen, setIsOpen, secondaryNavReady }) {
         className="fixed lg:absolute top-0 left-0 w-full z-50 lg:pt-0"
         suppressHydrationWarning
       >
-        {/* Overlay behind the nav if mobile menu is open */}
-        <AnimatePresence>
-          {isOpen && (
-            <motion.div
-              key="overlay"
-              className="fixed inset-0 bg-black/80 z-40"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              onClick={() => setIsOpen(false)}
-            />
-          )}
-        </AnimatePresence>
-
         {/* Main nav container */}
         <motion.div
           initial={{

@@ -7,9 +7,9 @@ export default function Partners() {
     "/partners/infineon.webp",
     "/partners/mathworks.webp",
     "/partners/tasking.webp",
+    "/partners/npx.webp",
     "/partners/infineon.webp",
     "/partners/jabil.webp",
-    "/partners/tasking.webp",
     "/partners/analog.webp",
   ];
 

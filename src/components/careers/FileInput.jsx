@@ -1,5 +1,4 @@
 'use client'
-import clsx from 'clsx'
 
 export default function FileInput({ id, name, accept, onChange, fileName }) {
   return (

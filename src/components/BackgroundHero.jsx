@@ -43,7 +43,7 @@ export default function BackgroundHero() {
       `}
     >
      <Image
-        src="/bg/bg-hero.png"
+        src="/bg/bg-hero.webp"
         alt="Neutron red background"
         fill
         priority

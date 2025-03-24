@@ -1,5 +1,3 @@
-'use client'
-
 import React from "react";
 import Logo from "@/components/logos/Logo";
 import Elev8tr from "@/components/logos/ELEV8TR";
@@ -7,27 +5,24 @@ import Equ8ter from "@/components/logos/ECU8TR";
 import Energate from "@/components/logos/ENERG8TE";
 import BackgroundFooter from "@/components/BackgroundFooter";
 import LinkedIn from "@/components/icons/LinkedIn";
-import { motion } from "framer-motion";
 import Link from "next/link";
+import CookieLink from "@/components/CookieLink.client";
 
 export default function Footer() {
   return (
     <footer
       className="relative text-white overflow-x-hidden"
       style={{ paddingTop: "clamp(100px, calc(100vw * 0.23 + 13.79px), 200px)" }}
-      suppressHydrationWarning
     >
-      {/* Render BackgroundFooter only if NOT on About or Careers pages */}
+      {/* Background */}
       <BackgroundFooter />
 
-      {/* Content container */}
       <div
         className="relative mx-auto z-10 w-full bg-gradient-to-t from-[#07080a] to-black/70 shadow-[0px_-4px_4px_0px_rgba(0,0,0,0.25)] border-t border-[#111213] backdrop-blur-[72px] md:pb-40 pb-12 pt-28"
         style={{ willChange: "transform, opacity" }}
       >
-        {/* TOP ROW: 3 Columns */}
+        {/* TOP ROW */}
         <div className="grid grid-cols-2 md:grid-cols-3 gap-12 max-w-8xl mx-auto px-6 2xl:px-0">
-          
           {/* LOCATIONS Column */}
           <div>
             <h3 className="uppercase tracking-[7px] font-semibold mb-3 text-white lg:text-base">
@@ -72,33 +67,33 @@ export default function Footer() {
               Company
             </h3>
             <ul className="space-y-[2px] leading-relaxed text-white/60 lg:text-[1rem] lg:leading-[1.5rem] lg:space-y-[4px] 2xl:space-y-[6px] text-[1rem]">
-              <li><Link href="/services" className="hover:text-white">Services</Link></li>
-              <li><Link href="/about" className="hover:text-white">About</Link></li>
-              <li><Link href="/careers" className="hover:text-white">Careers</Link></li>
-              <li><Link href="/contact" className="hover:text-white">Contact</Link></li>
-              
-              {/*
-                Replaced the old Link to /policy with a normal <a> tag
-                that dispatches an event to open the CookieDialog instead.
-              */}
               <li>
-                <a
-                  href="#"
-                  className="hover:text-white"
-                  onClick={(e) => {
-                    e.preventDefault()
-                    // Dispatch an event that CookieBanner will listen for
-                    window.dispatchEvent(new Event('open-cookie-dialog'))
-                  }}
-                >
-                  Cookies
-                </a>
+                <Link href="/services" className="hover:text-white">
+                  Services
+                </Link>
+              </li>
+              <li>
+                <Link href="/about" className="hover:text-white">
+                  About
+                </Link>
+              </li>
+              <li>
+                <Link href="/careers" className="hover:text-white">
+                  Careers
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact" className="hover:text-white">
+                  Contact
+                </Link>
+              </li>
+              <li>
+                <CookieLink />
               </li>
             </ul>
           </div>
-
         </div>
-        
+
         {/* BOTTOM ROW */}
         <div className="mt-14 flex flex-col xs:flex-row items-center justify-between gap-4 max-w-8xl mx-auto px-6 2xl:px-0">
           <div className="flex-shrink-0">
@@ -112,21 +107,16 @@ export default function Footer() {
             rel="noopener noreferrer"
             className="block"
           >
-            <motion.div
-              className="flex items-center space-x-4 group cursor-pointer"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.2 }}
+            <div
+              className="flex items-center space-x-4 group cursor-pointer transition-opacity duration-200 delay-200 animate-fadeIn"
             >
-              <motion.p
-                className="hidden xs:block text-[#BABABA] group-hover:text-white transition-colors duration-50 font-medium lg:text-lg"
-              >
+              <p className="hidden xs:block text-[#BABABA] group-hover:text-white transition-colors duration-50 font-medium lg:text-lg">
                 Follow us
-              </motion.p>
+              </p>
               <div className="bg-white/5 rounded-[4px] p-1 group-hover:bg-white/10 transition-colors duration-50">
                 <LinkedIn className="w-5" />
               </div>
-            </motion.div>
+            </div>
           </a>
         </div>
       </div>

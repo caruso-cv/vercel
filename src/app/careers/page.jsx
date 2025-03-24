@@ -4,7 +4,7 @@ import ReCaptchaProvider from '@/components/contact/ReCaptchaProvider'
 import ModalTrigger from '@/components/careers/ModalTrigger'
 import Notification from '@/components/careers/Notification'
 import Faq from '@/components/careers/Faq'
-import AnimatedImagesSection from '@/components/services/AnimatedImagesSection'
+import AnimatedImagesSection from '@/components/careers/AnimatedImagesSection'
 
 export default function CareersPage() {
   useEffect(() => {

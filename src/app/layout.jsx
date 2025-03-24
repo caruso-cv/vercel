@@ -29,8 +29,17 @@ export default function RootLayout({ children }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
       <body>
-        {/* Google Tag Manager (noscript fallback) */}
-        <noscript>
+        <div className="bg-[#090A0B]">
+          <Nav />
+          <BackgroundHero />
+          <CookieBanner />
+        </div>
+        {children}
+        <Footer />
+        <SpeedInsights/>
+
+         {/* Google Tag Manager (noscript fallback) */}
+         <noscript>
           <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-5C24BMW"
             height="0"
@@ -69,14 +78,6 @@ export default function RootLayout({ children }) {
           `}
         </Script>
 
-        <div className="bg-[#090A0B]">
-          <Nav />
-          <BackgroundHero />
-          <CookieBanner />
-        </div>
-        {children}
-        <Footer />
-        <SpeedInsights/>
       </body>
     </html>
   )

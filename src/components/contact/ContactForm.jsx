@@ -117,7 +117,8 @@ export default function ContactForm() {
       />
 
       <div className="relative pt-32 sm:pt-40 lg:pt-48 3xl:pt-52">
-        <div className="mx-auto grid max-w-8xl grid-cols-1 lg:grid-cols-2 z-30">
+        <div className="mx-auto grid max-w-8xl grid-cols-1 lg:grid-cols-2">
+
           {/* Left Side – Contact Info */}
           <div className="relative px-6 pb-2 pt-24 lg:static 2xl:px-0 3xl:py-48">
             <div className="mx-auto lg:mx-0 lg:max-w-lg">
@@ -154,44 +155,46 @@ export default function ContactForm() {
                   />
                 </svg>
               </div>
-              <h2 className="text-pretty text-5xl font-bold text-white relative z-30 md:text-6xl uppercase">
-                Get in touch
-              </h2>
-              <p className="mt-6 text-[1.25rem] leading-[1.75rem] md:text-[1.5rem] md:leading-[2rem] text-white">
-                Our team is here to help with any questions you might have.
-              </p>
-              <p className="mt-6 text-[1.125rem] leading-[1.75rem] md:text-[1.25rem] md:leading-[1.75rem] text-white">
-                Feel free to reach out, we look forward to connecting with you.
-              </p>
-              <dl className="mt-10 space-y-4 text-[1rem] leading-[1.75rem] text-gray-300 relative z-30">
-                <div className="flex gap-x-4">
-                  <dt className="flex-none">
-                    <span className="sr-only">Address</span>
-                    <BuildingOffice2Icon
-                      aria-hidden="true"
-                      className="h-7 w-6 text-gray-400"
-                    />
-                  </dt>
-                  <dd>
-                    1145 Innovation Drive, Suite 101
-                    <br />
-                    Kanata, Ontario, K2K 3G8
-                  </dd>
-                </div>
-                <div className="flex gap-x-4">
-                  <dt className="flex-none">
-                    <BuildingOffice2Icon
-                      aria-hidden="true"
-                      className="h-7 w-6 text-gray-400"
-                    />
-                  </dt>
-                  <dd>
-                    5270 Solar Drive, Unit 21
-                    <br />
-                    Mississauga, Ontario, L4W 0G7
-                  </dd>
-                </div>
-              </dl>
+              <div className='relative z-30'>
+                <h2 className="text-pretty text-5xl font-bold text-white relative z-30 md:text-6xl uppercase">
+                  Get in touch
+                </h2>
+                <p className="mt-6 text-[1.25rem] leading-[1.75rem] md:text-[1.5rem] md:leading-[2rem] text-white">
+                  Our team is here to help with any questions you might have.
+                </p>
+                <p className="mt-6 text-[1.125rem] leading-[1.75rem] md:text-[1.25rem] md:leading-[1.75rem] text-white">
+                  Feel free to reach out, we look forward to connecting with you.
+                </p>
+                <dl className="mt-10 space-y-4 text-[1rem] leading-[1.75rem] text-gray-300 relative z-30">
+                  <div className="flex gap-x-4">
+                    <dt className="flex-none">
+                      <span className="sr-only">Address</span>
+                      <BuildingOffice2Icon
+                        aria-hidden="true"
+                        className="h-7 w-6 text-gray-400"
+                      />
+                    </dt>
+                    <dd>
+                      1145 Innovation Drive, Suite 101
+                      <br />
+                      Kanata, Ontario, K2K 3G8
+                    </dd>
+                  </div>
+                  <div className="flex gap-x-4">
+                    <dt className="flex-none">
+                      <BuildingOffice2Icon
+                        aria-hidden="true"
+                        className="h-7 w-6 text-gray-400"
+                      />
+                    </dt>
+                    <dd>
+                      5270 Solar Drive, Unit 21
+                      <br />
+                      Mississauga, Ontario, L4W 0G7
+                    </dd>
+                  </div>
+                </dl>
+              </div>
             </div>
           </div>
 

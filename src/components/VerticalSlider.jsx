@@ -16,13 +16,14 @@ const pinnedSections = [
   {
     id: "get-started",
     sectionClasses:
-    "lg:sticky top-[65px] lg:h-[calc(100vh-80px)] bg-white text-black z-20 flex flex-col-reverse lg:flex-row-reverse items-center justify-center lg:rounded-4xl lg:mx-4 py-20 xl:py-0 2xl:px-[90px] 3xl:px-40",
-    containerClasses: "lg:w-2/3 3xl:w-1/2 text-left px-8 pt-12 lg:pt-0",
+    "lg:sticky top-[65px] lg:h-[calc(100vh-80px)] bg-[#F3F4F6] lg:bg-white text-black z-20 flex flex-col-reverse lg:flex-row-reverse items-center justify-center lg:rounded-4xl lg:mx-4 py-20 xl:py-0 2xl:px-[90px] 3xl:px-40",
+    containerClasses: "lg:w-2/3 3xl:w-1/2 text-left px-8 pt-0 sm:pt-4 lg:pt-0",
     topNote: {
       className:
         "",
     },
-    logo: <Energate className="h-14 sm:h-24 3xl:h-28 md:mb-1" />,
+    logo: <Energate className="h-14 xs:h-16 sm:h-24 3xl:h-28 md:mb-1" />,
+    logoClasses: 'mb-12',
     heading: (
       <>
        BMS CONTROLLER FOR BESS/ESS
@@ -56,20 +57,18 @@ const pinnedSections = [
   {
     id: "ecu8tr",
     sectionClasses:
-    "lg:sticky top-[85px] lg:h-[calc(100vh-112px)] bg-gray-100 text-black z-30 flex flex-col-reverse lg:flex-row items-center justify-center lg:rounded-4xl lg:mx-8 py-20 xl:py-0 lg:mb-4 2xl:px-[90px] 3xl:px-40",
-    containerClasses: "lg:w-1/2 text-left px-8 pt-12 lg:pt-0",
+    "lg:sticky top-[85px] lg:h-[calc(100vh-112px)] bg-[#F3F4F6] lg:bg-gray-100 text-black z-30 flex flex-col-reverse lg:flex-row items-center justify-center lg:rounded-4xl lg:mx-8 py-20 xl:py-0 lg:mb-4 2xl:px-[90px] 3xl:px-40 mt-4 lg:mt-0",
+    containerClasses: "lg:w-1/2 text-left px-8 pt-0 sm:pt-4 lg:pt-0 ",
     topNote: {
       className:
         "text-[#E00000] font-bold lg:text-[14px] text-[.75rem] tracking-[6px] mb-6 3xl:text-lg",
     },
-    logo: <Equ8ter className="h-14 sm:h-24 3xl:h-28 md:mb-1" />,
+    logo: <Equ8ter className="h-14 xs:h-16 sm:h-24 3xl:h-28 md:mb-1" />,
+    logoClasses: '',
     heading: (
       <>
-        <span className="hidden sm:inline">
-        Battery factory point tester
-        </span>{" "}
-  
-      </>
+      Battery factory point tester
+     </>
     ),
     headingClasses:
       "",
@@ -99,13 +98,14 @@ const pinnedSections = [
   {
     id: "elev8tr",
     sectionClasses:
-    "lg:sticky top-[105px] lg:h-[calc(100vh-144px)] bg-[#E2E2E2] text-black z-40 flex flex-col-reverse lg:flex-row-reverse items-center justify-center lg:rounded-4xl lg:mx-12 py-20 xl:py-0 lg:mb-8 2xl:px-[90px] 3xl:px-40",
-    containerClasses: "lg:w-2/3 3xl:w-1/2 text-left px-8 pt-12 lg:pt-0",
+    "lg:sticky top-[105px] lg:h-[calc(100vh-144px)] bg-[#F3F4F6] lg:bg-[#E2E2E2] text-black z-40 flex flex-col-reverse lg:flex-row-reverse items-center justify-center lg:rounded-4xl lg:mx-12 py-20 xl:py-0 lg:mb-8 2xl:px-[90px] 3xl:px-40 mt-4 lg:mt-0",
+    containerClasses: "lg:w-2/3 3xl:w-1/2 text-left px-8 pt-0 sm:pt-4 lg:pt-0",
     topNote: {
       className:
         "",
     },
-    logo: <Elev8tr className="h-14 sm:h-24 3xl:h-28 md:mb-1" />,
+    logo: <Elev8tr className="h-14 xs:h-16 sm:h-24 3xl:h-28 md:mb-1" />,
+    logoClasses: 'mb-12',
     heading: (
       <>
         <span className="hidden sm:inline">
@@ -139,7 +139,7 @@ const pinnedSections = [
 
 export default function VerticalSlider() {
   return (
-    <div className="relative w-full lg:h-[calc(350vh-144px)] bg-[#090A0B] lg:rounded-t-4xl">
+    <div className="relative w-full lg:h-[calc(350vh-144px)] bg-white lg:bg-[#090A0B] lg:rounded-t-4xl">
       {/* -----------------------
           BLACK LAYER (pinned)
           ----------------------- */}
@@ -193,63 +193,76 @@ export default function VerticalSlider() {
       {/* -----------------------------------------
           MAP OVER THE OTHER PINNED SECTIONS
          ----------------------------------------- */}
-      {pinnedSections.map((item) => (
+    {pinnedSections.map((item) => (
       <section key={item.id} id={item.id} className={item.sectionClasses}>
-      <div className="max-w-8xl mx-auto flex flex-col lg:flex-row items-center justify-center">
-        {/* Image side */}
-        {item.image && (
-          <div className={`${item.imageClasses} order-first lg:order-last flex justify-center mb-[24px] lg:mb-0`}>
-            <Image
-              src={item.image.src}
-              alt={item.image.alt}
-              width={1200}
-              height={800}
-              className="w-full max-w-full lg:max-w-[50vw] h-auto"
-            />
-          </div>
-        )}
+        
+        
+        
+        <div className="max-w-8xl mx-auto flex flex-col lg:flex-row lg:items-center justify-center">
 
-        {/* Text side */}
-        <div className={`${item.containerClasses} order-last lg:order-first`}>
-          {item.logo && item.logo}
-          {item.topNote && (
-            <p className={`${item.topNote.className} text-[#E00000] font-bold lg:text-[14px] text-[12px] tracking-[6px] mb-[24px] 2xl:text-[18px] leading-[18px]`}>
-              {item.topNote.text}
-            </p>
+          {/* Mobile-only logo – placed at the very top for mobile */}
+          <div className={`${item.logoClasses} order-first lg:hidden px-[32px]`}>
+            {item.logo}
+          </div>
+
+
+          {/* Image side remains in its original mobile order */}
+          {item.image && (
+            <div className={`${item.imageClasses} order-first lg:order-last flex justify-center mb-[24px] lg:mb-0`}>
+              <Image
+                src={item.image.src}
+                alt={item.image.alt}
+                width={1200}
+                height={800}
+                quality={20}
+                className="w-full max-w-full lg:max-w-[50vw] h-auto"
+              />
+            </div>
           )}
-          <h2
-            style={{ lineHeight: "1.2" }}
-            className={`${item.headingClasses} 2xl:text-[30px] text-[24px] sm:text-[30px] font-bold mb-[24px] uppercase text-pretty`}
-          >
-            {item.heading}
-          </h2>
-          {item.paragraphs?.map((para, idx) => (
-            <p
-              key={idx}
-              style={{ lineHeight: "1.5" }}
-              className={`${para.className} font-medium text-[20px] md:text-[24px] 2xl:text-[24px] xl:mb-[40px] mb-[24px] leading-[30px] md:leading-[36px]`}
+          
+          {/* Text side – logo hidden on mobile so it doesn’t duplicate */}
+          <div className={`${item.containerClasses} order-last lg:order-first`}>
+            <div className="hidden lg:block">
+              {item.logo}
+            </div>
+            {item.topNote && (
+              <p className={`${item.topNote.className} text-[#E00000] font-bold lg:text-[14px] text-[12px] tracking-[6px] mb-[24px] 2xl:text-[18px] leading-[18px]`}>
+                {item.topNote.text}
+              </p>
+            )}
+            <h2
+              style={{ lineHeight: "1.2" }}
+              className={`${item.headingClasses} 2xl:text-[30px] text-[1.3rem] sm:text-[30px] font-bold mb-[24px] uppercase text-pretty`}
             >
-              {para.text}
-            </p>
-          ))}
-          {item.bullets && item.bullets.length > 0 && (
-            <ul className="list-disc font-base text-[18px] md:text-[20px] xl:text-[24px] 2xl:text-[24px] pl-[16px] leading-[32px] mb-[32px] lg:mb-[56px] xl:space-y-[12px] md:space-y-[4px]">
-              {item.bullets.map((bullet, i) => (
-                <li key={i}>{bullet}</li>
-              ))}
-            </ul>
-          )}
-          {item.link && (
-            <Link href={item.link.href} passHref>
-              <motion.div className="inline-flex items-center justify-center gap-[8px] min-h-[40px] sm:min-h-[48px] px-[12px] sm:px-[24px] py-[6px] text-[16px] sm:text-[18px] 2xl:text-[18px] font-semibold leading-[16px] tracking-[0.2px] whitespace-nowrap cursor-pointer border-none rounded-md transition-colors duration-200 ease-in-out bg-[#000] hover:bg-[#343434] shadow-[0_0_2px_rgba(0,0,0,0.5),_0_0_14px_rgba(255,255,255,0.19),_inset_0_-1px_0.4px_rgba(0,0,0,0.2)] opacity-90 hover:opacity-100 text-white uppercase">
-                <span>{item.link.label}</span>
-              </motion.div>
-            </Link>
-          )}
+              {item.heading}
+            </h2>
+            {item.paragraphs?.map((para, idx) => (
+              <p
+                key={idx}
+                style={{ lineHeight: "1.5" }}
+                className={`${para.className} font-light text-[1.1rem] sm:text-[20px] md:text-[24px] 2xl:text-[24px] xl:mb-[40px] mb-[24px] leading-[30px] md:leading-[36px]`}
+              >
+                {para.text}
+              </p>
+            ))}
+            {item.bullets && item.bullets.length > 0 && (
+              <ul className="list-disc font-base text-[1.1rem] md:text-[20px] xl:text-[24px] 2xl:text-[24px] pl-[16px] sm:leading-[32px] mb-[32px] lg:mb-[56px] xl:space-y-[12px] md:space-y-[4px]">
+                {item.bullets.map((bullet, i) => (
+                  <li key={i}>{bullet}</li>
+                ))}
+              </ul>
+            )}
+            {item.link && (
+              <Link href={item.link.href} passHref>
+                <motion.div className="inline-flex items-center justify-center gap-[8px] min-h-[40px] sm:min-h-[48px] px-[12px] sm:px-[24px] py-[6px] text-[16px] sm:text-[18px] 2xl:text-[18px] font-semibold leading-[16px] tracking-[0.2px] whitespace-nowrap cursor-pointer border-none rounded-md transition-colors duration-200 ease-in-out bg-[#000] hover:bg-[#343434] shadow-[0_0_2px_rgba(0,0,0,0.5),_0_0_14px_rgba(255,255,255,0.19),_inset_0_-1px_0.4px_rgba(0,0,0,0.2)] opacity-90 hover:opacity-100 text-white uppercase">
+                  <span>{item.link.label}</span>
+                </motion.div>
+              </Link>
+            )}
+          </div>
         </div>
-      </div>
-    </section>
-))}
+      </section>
+    ))}
     </div>
   );
 }

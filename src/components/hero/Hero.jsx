@@ -41,14 +41,7 @@ export default function HeroNew() {
 
   return (
     <div
-      className="block"
-      style={{
-        WebkitTextSizeAdjust: 'none',
-        MozTextSizeAdjust: 'none',
-        msTextSizeAdjust: 'none',
-        textSizeAdjust: 'none',
-      }}
-    >
+      className="block">
       <div
         ref={sliderRef}
         className={`keen-slider relative transition-opacity duration-500 ${
@@ -65,7 +58,7 @@ export default function HeroNew() {
               className="object-cover"
               sizes="(max-width: 600px) 100vw, (max-width: 1200px) 100vw, 100vw"
               priority
-              quality={80}
+              quality={50}
             />
 
             {/* Shader for hero image */}
@@ -117,8 +110,7 @@ export default function HeroNew() {
               fill
               className="object-cover"
               sizes="(max-width: 600px) 100vw, (max-width: 1200px) 100vw, 100vw"
-              priority
-              quality={80}
+              quality={50}
             />
 
             {/* Shader for hero image */}

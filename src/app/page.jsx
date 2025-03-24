@@ -1,27 +1,40 @@
 import Partners from '@/components/Partners'
-import Slider from '@/components/Slider'
-import Hero from '@/components/HeroNew'
+import Slider from '@/components/slider/SliderWrapper'
+import Hero from '@/components/hero/Hero'
 import VerticalSlider from '@/components/VerticalSlider'
 import DigitalBackground from '@/components/DigitalBackground'
 import NoiseOverlay from '@/components/NoiseOverlay'
+import HeroMobile from '@/components/hero/HeroMobile'
+
 
 export default function Home() {
   return (
     <div>
       <main className='pb-24'>
         <div className="lg:h-full relative overflow-x-hidden bg-[#090A0B]">
+          <div className="hidden lg:block">
             <Hero />
+          </div>
+          <div className="lg:hidden">
+            <HeroMobile />
+          </div>
         </div>
-        <div className="pt-24 lg:py-24 overflow-x-hidden relative bg-white">
-          <div className='relative z-30'>
-            <Partners/>
+        <div className="lg:pt-24 lg:py-24 pt-4 overflow-x-hidden relative bg-white">
+          <div className='relative z-30 '>
+            <div className='hidden lg:block'>
+              <Partners/>
+            </div>
             <Slider/>
           </div>
-          <DigitalBackground />
-          <NoiseOverlay />
+          <div className='hidden lg:block'>
+            <DigitalBackground />
+            <NoiseOverlay />
+          </div>
+
         </div>
         <div>
           <VerticalSlider/>
+          {/* <Slider/> */}
         </div>
       </main>
     </div>

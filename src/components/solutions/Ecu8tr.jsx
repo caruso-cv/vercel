@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import DigitalBackground from "@/components/DigitalBackground";
 import NoiseOverlay from "@/components/NoiseOverlay";
 import Elev8tr from "@/components/logos/ECU8TR";
-import Link from "next/link";
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import Bullets from "@/components/solutions/Ecu8trBullet";
@@ -41,8 +40,8 @@ export default function ProductPage() {
               <Image
                 src="/vertical/ecu8tr.webp"
                 alt="Emula8tr ESS Controller"
-                width={1916}
-                height={1145}
+                width={500}
+                height={500}
                 quality={70}
                 priority
                 onLoad={() => setImageLoaded(true)}
@@ -77,14 +76,14 @@ export default function ProductPage() {
 
           {/* Main Image for desktop */}
           <div className="justify-center mb-6 xl:mb-0 hidden xl:flex">
-            <div className="relative w-full xs:max-w-xs xl:max-w-3xl z-30">
+            <div className="relative w-full xs:max-w-xs xl:max-w-3xl z-30 aspect-[1916/1145]">
               {/* Invisible placeholder to reserve space until the image loads */}
               {!imageLoaded && <div style={{ paddingBottom: `${aspectRatio}%` }} />}
               <Image
                 src="/vertical/ecu8tr.webp"
                 alt="Emula8tr ESS Controller"
-                width={1916}
-                height={1145}
+                width={500}
+                height={500}
                 quality={70}
                 priority
                 onLoad={() => setImageLoaded(true)}
