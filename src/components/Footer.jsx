@@ -45,7 +45,7 @@ export default function Footer() {
 
           {/* SOLUTIONS Column */}
           <div>
-            <h3 className="uppercase tracking-[7px] font-semibold mb-4 text-white lg:text-base">
+            <h3 className="uppercase tracking-[7px] font-semibold mb-4 text-white hidden xs:block lg:text-base">
               Solutions
             </h3>
             <div>

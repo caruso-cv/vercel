@@ -75,20 +75,13 @@ export default function NavLinks() {
 
           {/* Dropdown */}
           <motion.ul
-            className={`
-              absolute top-10 -left-6 
-              text-white
-              border-[#222326] border
-              bg-gradient-to-tr from-[#090909] to-[#181818]
-              shadow-[0px_-4px_4px_0px_rgba(0,0,0,0.25)]
-              backdrop-blur-[40px] 
-              text-base
-              w-64
-              rounded-xl
-              transition-all 
-              duration-150
-              ${isOpen ? "block" : "hidden"}
-            `}
+            initial="closed"
+            animate={isOpen ? "open" : "closed"}
+            variants={{
+              closed: { opacity: 0, y: -10, transition: { duration: 0.15 } },
+              open: { opacity: 1, y: 0, transition: { duration: 0.15 } }
+            }}
+            className="absolute top-10 -left-6 text-white border-[#222326] border bg-gradient-to-tr from-[#090909] to-[#181818] shadow-[0px_-4px_4px_0px_rgba(0,0,0,0.25)] backdrop-blur-[40px] text-base w-64 rounded-xl"
           >
             <li>
               <Link
