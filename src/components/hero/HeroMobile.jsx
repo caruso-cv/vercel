@@ -28,7 +28,7 @@ export default function HeroMobile() {
               <div className="relative mx-auto max-w-8xl px-6 lg:px-8 2xl:px-0 z-20 h-full">
 
                 {/* Spacer for Navbar */}
-                <div className='pt-[100px]'></div>
+                <div className='pt-[85px]'></div>
 
                 <div className="flex flex-col h-full z-20 justify-center py-[100px]">
                   <div className="max-w-2xl select-text ">   
@@ -69,8 +69,6 @@ export default function HeroMobile() {
 
             <div className="relative mx-auto max-w-8xl px-6 lg:px-8 2xl:px-0 z-20 h-full">
 
-              {/* Spacer for Navbar */}
-              <div className='pt-[50px]'></div>
 
               <div className="flex flex-col h-full z-20 justify-center py-[100px]">
                 <div className="max-w-2xl select-text ">   

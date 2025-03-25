@@ -116,7 +116,7 @@ export default function ContactForm() {
         message={notif.message}
       />
 
-      <div className="relative pt-32 sm:pt-40 lg:pt-48 3xl:pt-52">
+      <div className="relative pt-20 sm:pt-28 lg:pt-48 3xl:pt-52">
         <div className="mx-auto grid max-w-8xl grid-cols-1 lg:grid-cols-2">
 
           {/* Left Side – Contact Info */}

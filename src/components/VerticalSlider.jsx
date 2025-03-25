@@ -16,7 +16,7 @@ const pinnedSections = [
   {
     id: "get-started",
     sectionClasses:
-    "lg:sticky top-[65px] lg:h-[calc(100vh-80px)] bg-[#F3F4F6] lg:bg-white text-black z-20 flex flex-col-reverse lg:flex-row-reverse items-center justify-center lg:rounded-4xl lg:mx-4 py-20 xl:py-0 2xl:px-[90px] 3xl:px-40",
+    "lg:sticky top-[65px] lg:h-[calc(100vh-80px)] bg-[#E8E8E8] lg:bg-white text-black z-20 flex flex-col-reverse lg:flex-row-reverse items-center justify-center lg:rounded-4xl lg:mx-4 py-20 xl:py-0 2xl:px-[90px] 3xl:px-40",
     containerClasses: "lg:w-2/3 3xl:w-1/2 text-left px-8 pt-0 sm:pt-4 lg:pt-0",
     topNote: {
       className:
@@ -57,7 +57,7 @@ const pinnedSections = [
   {
     id: "ecu8tr",
     sectionClasses:
-    "lg:sticky top-[85px] lg:h-[calc(100vh-112px)] bg-[#F3F4F6] lg:bg-gray-100 text-black z-30 flex flex-col-reverse lg:flex-row items-center justify-center lg:rounded-4xl lg:mx-8 py-20 xl:py-0 lg:mb-4 2xl:px-[90px] 3xl:px-40 mt-4 lg:mt-0",
+    "lg:sticky top-[85px] lg:h-[calc(100vh-112px)] bg-[#E8E8E8] lg:bg-gray-100 text-black z-30 flex flex-col-reverse lg:flex-row items-center justify-center lg:rounded-4xl lg:mx-8 py-20 xl:py-0 lg:mb-4 2xl:px-[90px] 3xl:px-40 mt-4 lg:mt-0",
     containerClasses: "lg:w-1/2 text-left px-8 pt-0 sm:pt-4 lg:pt-0 ",
     topNote: {
       className:
@@ -98,7 +98,7 @@ const pinnedSections = [
   {
     id: "elev8tr",
     sectionClasses:
-    "lg:sticky top-[105px] lg:h-[calc(100vh-144px)] bg-[#F3F4F6] lg:bg-[#E2E2E2] text-black z-40 flex flex-col-reverse lg:flex-row-reverse items-center justify-center lg:rounded-4xl lg:mx-12 py-20 xl:py-0 lg:mb-8 2xl:px-[90px] 3xl:px-40 mt-4 lg:mt-0",
+    "lg:sticky top-[105px] lg:h-[calc(100vh-144px)] bg-[#E8E8E8] lg:bg-[#E2E2E2] text-black z-40 flex flex-col-reverse lg:flex-row-reverse items-center justify-center lg:rounded-4xl lg:mx-12 py-20 xl:py-0 lg:mb-8 2xl:px-[90px] 3xl:px-40 mt-4 lg:mt-0",
     containerClasses: "lg:w-2/3 3xl:w-1/2 text-left px-8 pt-0 sm:pt-4 lg:pt-0",
     topNote: {
       className:
@@ -240,13 +240,13 @@ export default function VerticalSlider() {
               <p
                 key={idx}
                 style={{ lineHeight: "1.5" }}
-                className={`${para.className} font-light text-[1.1rem] sm:text-[20px] md:text-[24px] 2xl:text-[24px] xl:mb-[40px] mb-[24px] leading-[30px] md:leading-[36px]`}
+                className={`${para.className} font-base text-[1.1rem] sm:text-[20px] md:text-[24px] 2xl:text-[24px] xl:mb-[40px] mb-[24px] leading-[30px] md:leading-[36px]`}
               >
                 {para.text}
               </p>
             ))}
             {item.bullets && item.bullets.length > 0 && (
-              <ul className="list-disc font-base text-[1.1rem] md:text-[20px] xl:text-[24px] 2xl:text-[24px] pl-[16px] sm:leading-[32px] mb-[32px] lg:mb-[56px] xl:space-y-[12px] md:space-y-[4px]">
+              <ul className="list-disc font-light text-[1.1rem] md:text-[20px] xl:text-[24px] 2xl:text-[24px] pl-[16px] sm:leading-[32px] mb-[32px] lg:mb-[56px] xl:space-y-[12px] md:space-y-[4px]">
                 {item.bullets.map((bullet, i) => (
                   <li key={i}>{bullet}</li>
                 ))}

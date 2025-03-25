@@ -24,7 +24,7 @@ const cards = [
 
 export default function Example() {
   return (
-    <div className="relative isolate overflow-hidden bg-[#090A0B] py-24 pt-48 lg:pt-64 z-30">
+    <div className="relative isolate overflow-hidden bg-[#090A0B] py-24 pt-44 lg:pt-64 z-30">
       <img
         alt=""
         src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=focalpoint&fp-y=.8&w=2830&h=1500&q=80&blend=111827&sat=-100&exp=15&blend-mode=multiply"
@@ -55,7 +55,7 @@ export default function Example() {
       <div className="mx-auto max-w-8xl px-6 2xl:px-0">
         <div className="mx-auto max-w-3xl 2xl:max-w-3xl lg:mx-0">
           <h1 className="font-bold text-white text-5xl sm:text-6xl uppercase">Our Story</h1>
-          <p className="mt-8 text-pretty text-2xl font-medium text-gray-300 ">
+          <p className="mt-8 text-pretty text-xl sm:text-2xl font-medium text-gray-300 ">
             Neutron Controls traces its roots back to our proud Canadian heritage and a deep understanding of the semiconductor industry.
           </p>
         </div>

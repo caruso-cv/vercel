@@ -10,7 +10,7 @@ import HeroMobile from '@/components/hero/HeroMobile'
 export default function Home() {
   return (
     <div>
-      <main className='pb-24'>
+      <main>
         <div className="lg:h-full relative overflow-x-hidden bg-[#090A0B]">
           <div className="hidden lg:block">
             <Hero />

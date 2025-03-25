@@ -60,7 +60,7 @@ export default function Page() {
   return (
     <div className="overflow-hidden bg-[#090A0B]">
       {/* Header / Services Section with separate title and subtitle animations */}
-      <div className="mx-auto max-w-8xl px-6 pb-96 lg:pb-[416px] text-center pt-44 2xl:px-0 lg:pt-64">
+      <div className="mx-auto max-w-8xl px-6 pb-96 lg:pb-[416px] text-center pt-36 2xl:px-0 sm:pt-52">
         <div className="mx-auto max-w-4xl relative z-30">
           <motion.h2
             initial={{ opacity: 0, y: 50 }}
@@ -76,9 +76,9 @@ export default function Page() {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.8 }}
-            className="mx-auto max-w-2xl text-pretty font-medium text-gray-200 text-[0.875rem] sm:text-[1.25rem]/[2rem] lg:max-w-4xl"
+            className="mx-auto max-w-2xl text-pretty font-medium text-gray-200 text-[1rem] sm:text-[1.25rem]/[2rem] lg:max-w-4xl"
           >
-            Advanced BMS and ESS solutions designed for efficiency, safety, and seamless integration—optimizing performance and reliability.
+            Advanced BMS and ESS solutions designed for efficiency, safety, and <span className='hidden sm:inline'>seamless integration—optimizing performance and</span> reliability.
           </motion.p>
           <svg
             viewBox="0 0 1208 1024"
@@ -115,8 +115,8 @@ export default function Page() {
                     <div className="mt-4 sm:mt-6 flex items-center justify-center">
                       {tier.icon}
                     </div>
-                    <p className="mt-6 sm:mt-12 text-[1rem] leading-[1.75rem] text-gray-600">{tier.description}</p>
-                    <ul role="list" className="mt-10 space-y-4 text-[0.875rem] leading-[1.25rem]  text-gray-600">
+                    <p className="mt-6 sm:mt-12 text-[1rem] leading-[1.65rem] text-black">{tier.description}</p>
+                    <ul role="list" className="mt-10 space-y-2 sm:space-y-4 text-[1rem] leading-[1.5rem]  text-gray-600">
                       {tier.features.map((feature) => (
                         <li key={feature} className="flex gap-x-3">
                           <CheckIcon aria-hidden="true" className="h-6 w-5 flex-none text-[#425ACA]" />
@@ -142,7 +142,7 @@ export default function Page() {
               >
                 <div className="lg:min-w-0 lg:flex-1">
                   <h3 className="text-[1rem] leading-[1.75rem] font-semibold text-[#425ACA]">Our AURIX Expertise</h3>
-                  <p className="mt-4 text-[1rem] leading-[1.75rem] text-gray-600">
+                  <p className="mt-4 text-[1rem] leading-[1.75rem] text-black">
                     Unleash the full potential of Infineon’s AURIX™-MCUs with expert design support and tailored training, equipping you to harness cutting-edge technology for maximum performance and reliability.
                   </p>
                 </div>

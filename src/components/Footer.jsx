@@ -11,7 +11,7 @@ import CookieLink from "@/components/CookieLink.client";
 export default function Footer() {
   return (
     <footer
-      className="relative text-white overflow-x-hidden"
+      className="relative text-white overflow-x-hidden mt-20"
       style={{ paddingTop: "clamp(100px, calc(100vw * 0.23 + 13.79px), 200px)" }}
     >
       {/* Background */}

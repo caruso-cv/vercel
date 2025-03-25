@@ -19,7 +19,7 @@ export default function ProductPage() {
   return (
     <div className="relative min-h-screen">
       {/* Header with logo inside max-w-8xl container */}
-      <div className="max-w-8xl mx-auto px-6 2xl:px-0 pt-48 lg:pt-64 relative z-30">
+      <div className="max-w-8xl mx-auto px-6 2xl:px-0 pt-36 lg:pt-52 relative z-30">
         <Elev8tr className="h-16 sm:h-28 3xl:h-32" />
       </div>
 
@@ -98,7 +98,7 @@ export default function ProductPage() {
       </motion.div>
 
       {/* Static SPECIFICATIONS Section */}
-      <div className="max-w-8xl w-full mx-auto text-black pt-20 lg:pt-24 pb-28 px-6 2xl:px-0">
+      <div className="max-w-8xl w-full mx-auto text-black pt-20 lg:pt-24 pb-20 px-6 2xl:px-0">
         <h2 className=" text-2xl sm:text-4xl font-bold mb-10 ">
           SPECIFICATIONS
         </h2>

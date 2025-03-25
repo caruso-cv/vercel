@@ -18,7 +18,7 @@ export default function ProductPage() {
   return (
     <div className="relative min-h-screen">
       {/* Header with logo inside max-w-8xl container */}
-      <div className="max-w-8xl mx-auto px-6 2xl:px-0 pt-48 lg:pt-64 relative z-30">
+      <div className="max-w-8xl mx-auto px-6 2xl:px-0 pt-36 lg:pt-52 relative z-30">
         <Elev8tr className="h-16 sm:h-28 3xl:h-32" />
       </div>
 
@@ -30,15 +30,15 @@ export default function ProductPage() {
         transition={{ duration: 0.4, ease: "easeInOut" }}
         className="relative w-full"
       >
-        <div className="h-full text-black flex flex-col xl:flex-row items-center justify-center max-w-8xl mx-auto lg:pt-8">
+        <div className="h-full text-black flex flex-col xl:flex-row items-center justify-between max-w-8xl mx-auto lg:pt-8">
 
         {/* Main image for mobile */}
-        <div className="flex justify-center sm:justify-start item-start align-left self-start  xl:mb-0 xl:hidden">
-            <div className="relative w-full xs:max-w-xl z-30 mt-8">
+        <div className="flex justify-center sm:justify-start item-start align-left self-start xl:mb-0 xl:hidden">
+            <div className="relative w-full z-30 mt-8">
               {/* Invisible placeholder to reserve space until the image loads */}
               {!imageLoaded && <div style={{ paddingBottom: `${aspectRatio}%` }} />}
               <Image
-                src="/vertical/ecu8tr.webp"
+                src="/vertical/ecu8tr-mobile.webp"
                 alt="Emula8tr ESS Controller"
                 width={500}
                 height={500}
@@ -51,7 +51,7 @@ export default function ProductPage() {
           </div>
 
           {/* Text Section */}
-          <div className="xl:max-w-[50vw] mx-auto xl:w-2/3 text-left px-6 2xl:px-0 flex ">
+          <div className=" text-left px-6 2xl:px-0 flex">
             <div className="text-left pt-12 xl:pt-0 ">
               <h2 className=" text-2xl sm:text-4xl font-bold xl:mb-6 mb-4 ">
                 ABOUT ECU8TR™
@@ -97,7 +97,7 @@ export default function ProductPage() {
       </motion.div>
 
       {/* Static SPECIFICATIONS Section */}
-      <div className="max-w-8xl w-full mx-auto text-black pt-20 lg:pt-24 pb-28 px-6 2xl:px-0">
+      <div className="max-w-8xl w-full mx-auto text-black pt-20 lg:pt-24 pb-20 px-6 2xl:px-0">
         <h2 className=" text-2xl sm:text-4xl font-bold mb-10 ">
           SPECIFICATIONS
         </h2>

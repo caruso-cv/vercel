@@ -4,19 +4,17 @@ import Parameter from "@/components/icons/Parameter"
 
 export default function InfineonSections() {
   return (
-    <div className="2xl:py-12">
+    <div className="2xl:py-12 pb-12">
       <div className="mx-auto 2xl:max-w-8xl 2xl:pb-32 relative z-20"> 
-        <div className="relative isolate overflow-hidden bg-gradient-to-b from-gray-900 to-[#090A0B] py-12 text-left shadow-2xl 2xl:rounded-3xl px-8 xl:px-16">
-          <div className='flex md:mb-6 mx-auto max-w-8xl justify-between flex-wrap pb-12 2xl:pb-0'>
+        <div className="relative isolate overflow-hidden bg-gradient-to-b from-gray-900 to-[#090A0B] py-12 text-left shadow-2xl 2xl:rounded-3xl px-8 xl:px-16 mx-6 rounded-2xl">
+          <div className="flex md:mb-6 mx-auto max-w-8xl justify-between flex-wrap pb-12 2xl:pb-0">
             <div className="py-8">
               <Purpose className="w-12 h-auto mb-8" />
               <p className="text-white uppercase text-[32px] font-bold leading-[1.2] my-3 max-w-[240px]">
                 Technology Agnostic
               </p>
-              <p className="text-white/60 max-w-sm text-[1rem] leading-[1.5rem] lg:text-[1.125rem] lg:leading-[1.75rem]">
-                Designed with multiple
-                interfaces in mind, ECU8TR™
-                boasts extensive compatibility.
+              <p className="text-white/60 max-w-sm text-[1.1rem] leading-[1.5rem] lg:text-[1.125rem] lg:leading-[1.75rem]">
+                Designed with multiple interfaces in mind, ECU8TR™ boasts extensive compatibility.
               </p>
             </div>
             <div className="py-8">
@@ -24,21 +22,17 @@ export default function InfineonSections() {
               <p className="text-white uppercase text-[32px] font-bold leading-[1.2] my-3 max-w-[240px]">
                 Command Functions
               </p>
-              <p className="text-white/60 max-w-sm text-[1rem] leading-[1.5rem] lg:text-[1.125rem] lg:leading-[1.75rem]">
-                ECU8TR™ is used to initiate
-                functions such as balancing,
-                register writes, and diagnostics.
+              <p className="text-white/60 max-w-sm text-[1.1rem] leading-[1.5rem] lg:text-[1.125rem] lg:leading-[1.75rem]">
+                ECU8TR™ is used to initiate functions such as balancing, register writes, and diagnostics.
               </p>
             </div>
             <div className="py-8">
               <Parameter className="w-[72px] h-auto mb-8" />
-              <p className="text-white uppercase text-[32px]  font-bold leading-[1.2] my-3 max-w-[240px]">
+              <p className="text-white uppercase text-[32px] font-bold leading-[1.2] my-3 max-w-[240px]">
                 Real-Time Detection
               </p>
-              <p className="text-white/60 max-w-sm text-[1rem] leading-[1.5rem] lg:text-[1.125rem] lg:leading-[1.75rem]">
-                Use the ECU8TR™ to find
-                issues before they manifest,
-                optimizing your QA operations.
+              <p className="text-white/60 max-w-sm text-[1.1rem] leading-[1.5rem] lg:text-[1.125rem] lg:leading-[1.75rem]">
+                Use the ECU8TR™ to find issues before they manifest, optimizing your QA operations.
               </p>
             </div>
           </div>
