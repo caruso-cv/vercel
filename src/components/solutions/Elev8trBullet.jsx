@@ -6,7 +6,7 @@ export default function InfineonSections() {
   return (
     <div className="2xl:py-12 pb-12">
       <div className="mx-auto 2xl:max-w-8xl 2xl:pb-32 relative z-20"> 
-        <div className="relative isolate overflow-hidden bg-gradient-to-b from-gray-900 to-[#090A0B] py-12 text-left shadow-2xl 2xl:rounded-3xl px-8 xl:px-16 mx-6 rounded-2xl">
+        <div className="relative isolate overflow-hidden bg-gradient-to-b from-gray-900 to-[#090A0B] py-6 text-left shadow-2xl 2xl:rounded-3xl px-8 xl:px-16 mx-6 rounded-2xl 2xl:mx-0">
           <div className="flex md:mb-6 mx-auto max-w-8xl justify-between flex-wrap pb-12 2xl:pb-0">
             <div className="py-8">
               <Purpose className="w-12 h-auto mb-8" />

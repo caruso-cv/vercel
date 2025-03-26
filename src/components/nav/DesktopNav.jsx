@@ -66,15 +66,13 @@ export default function DesktopNav() {
         >
           <div className="mx-auto max-w-8xl w-full px-6 2xl:px-0">
             <div className="flex items-center relative">
-              <Link href="/">
-                <motion.div
-                  className="w-44 absolute -top-3 left-0 lg:static lg:top-auto lg:left-auto"
-                  animate={{ opacity: [0, 1] }}
-                  transition={{ duration: 0.3, delay: 0.1 }}
-                >
-                  <NavLogo className='text-white'/>
-                </motion.div>
-              </Link>
+            <Link 
+              href="/" 
+              className="w-44 absolute -top-3 left-0 lg:static lg:top-auto lg:left-auto" 
+              aria-label="Neutron Controls Logo"
+            >
+              <NavLogo className="text-white" />
+            </Link>
               <div className="hidden lg:flex flex-1 justify-center">
                 <NavLinks />
               </div>

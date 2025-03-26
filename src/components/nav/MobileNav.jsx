@@ -43,8 +43,8 @@ export default function MobileNav({ isOpen, setIsOpen }) {
         <div className="mx-auto max-w-8xl w-full px-6 2xl:px-0">
           <div className="flex items-center relative">
             {/* Logo */}
-            <Link href="/" onClick={() => setIsOpen(false)}>
-              <div className="w-44 absolute -top-3 left-0 text-white transition-opacity duration-100 ease-in-out" style={ isOpen ? { opacity: 0}: {}}>
+            <Link href="/" onClick={() => setIsOpen(false)} aria-label="Neutron Controls Logo">
+              <div className="w-44 absolute -top-3 left-0 text-white transition-opacity duration-100 ease-in-out" style={isOpen ? { opacity: 0 } : {}}>
                 <NavLogo />
               </div>
             </Link>
@@ -96,13 +96,13 @@ export default function MobileNav({ isOpen, setIsOpen }) {
                 Solutions
               </p>
               <div className="flex flex-col gap-3 -ml-2">
-                <Link href="/solutions/ecu8tr" onClick={() => setIsOpen(false)}>
+                <Link href="/solutions/ecu8tr" onClick={() => setIsOpen(false)} aria-label="Navigate to ECU8TR solution">
                   <Equ8tr className="h-10 text-white sm:opacity-60 hover:opacity-100 transition-all" />
                 </Link>
-                <Link href="/solutions/elev8tr" onClick={() => setIsOpen(false)}>
+                <Link href="/solutions/elev8tr" onClick={() => setIsOpen(false)} aria-label="Navigate to ELEV8TR solution">
                   <Elev8tr className="h-10 text-white sm:opacity-60 hover:opacity-100 transition-all" />
                 </Link>
-                <Link href="/solutions/energ8te" onClick={() => setIsOpen(false)}>
+                <Link href="/solutions/energ8te" onClick={() => setIsOpen(false)} aria-label="Navigate to ENERG8TE solution">
                   <Energate className="h-10 text-white sm:opacity-60 hover:opacity-100 transition-all" />
                 </Link>
               </div>

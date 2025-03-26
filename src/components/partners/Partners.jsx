@@ -4,23 +4,23 @@ import PartnersLogo from "./PartnersLogo";
 export default function Partners() {
   // list of images
   const images = [
-    "/partners/infineon.webp",
-    "/partners/mathworks.webp",
-    "/partners/tasking.webp",
-    "/partners/npx.webp",
-    "/partners/infineon.webp",
-    "/partners/jabil.webp",
-    "/partners/analog.webp",
+    { src: "/partners/infineon.webp", alt: "Infineon" },
+    { src: "/partners/mathworks.webp", alt: "MathWorks" },
+    { src: "/partners/tasking.webp", alt: "Tasking" },
+    { src: "/partners/npx.webp", alt: "NPX" },
+    { src: "/partners/infineon.webp", alt: "Infineon" },
+    { src: "/partners/jabil.webp", alt: "Jabil" },
+    { src: "/partners/analog.webp", alt: "Analog Devices" },
   ];
 
   // Duplicate images statically for seamless scrolling
   const duplicatedImages = [...images, ...images];
 
   return (
-    <div className="pb-28 relative flex flex-col items-center justify-center">
-      <p className="text-center mb-1 text-[24px] leading-[32px] lg:text-[30px] lg:leading-[38px] 3xl:text-[30px] 3xl:leading-[38px] font-bold uppercase pb-3 sm:pb-1 px-4">
+    <section aria-labelledby="partners-heading" className="pb-28 relative flex flex-col items-center justify-center">
+      <h2 id="partners-heading" className="text-center mb-1 text-[24px] leading-[32px] lg:text-[30px] lg:leading-[38px] 3xl:text-[30px] 3xl:leading-[38px] font-bold uppercase pb-3 sm:pb-1 px-4">
         Trusted by partners worldwide
-      </p>
+      </h2>
       <p className="text-center mb-12 text-[20px] leading-[28px] lg:text-[24px] lg:leading-[32px] 3xl:text-[24px] 3xl:leading-[32px] font-medium ">
         We build relationships rooted in trust, respect, and shared success.
       </p>
@@ -33,7 +33,7 @@ export default function Partners() {
       >
         <div className="scroller__inner flex flex-nowrap gap-8">
           {duplicatedImages.map((img, idx) => (
-            <PartnersLogo image={img} key={idx} />
+            <PartnersLogo image={img.src} alt={img.alt} key={idx} />
           ))}
         </div>
       </div>
@@ -89,6 +89,6 @@ export default function Partners() {
           }
         }
       `}</style>
-    </div>
+    </section>
   );
 }

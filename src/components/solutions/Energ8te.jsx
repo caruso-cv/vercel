@@ -2,8 +2,8 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import DigitalBackground from "@/components/DigitalBackground";
-import NoiseOverlay from "@/components/NoiseOverlay";
+import DigitalBackground from "@/components/backgrounds/DigitalBackground";
+import NoiseOverlay from "@/components/backgrounds/NoiseOverlay";
 import Elev8tr from "@/components/logos/ENERG8TE";
 import Link from "next/link";
 import Image from "next/image";

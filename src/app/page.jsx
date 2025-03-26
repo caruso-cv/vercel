@@ -1,9 +1,9 @@
-import Partners from '@/components/Partners'
+import Partners from '@/components/partners/Partners'
 import Slider from '@/components/slider/SliderWrapper'
 import Hero from '@/components/hero/Hero'
 import VerticalSlider from '@/components/VerticalSlider'
-import DigitalBackground from '@/components/DigitalBackground'
-import NoiseOverlay from '@/components/NoiseOverlay'
+import DigitalBackground from '@/components/backgrounds/DigitalBackground'
+import NoiseOverlay from '@/components/backgrounds/NoiseOverlay'
 import HeroMobile from '@/components/hero/HeroMobile'
 
 

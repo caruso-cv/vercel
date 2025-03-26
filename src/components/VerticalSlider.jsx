@@ -4,11 +4,9 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import Equ8ter from "@/components/logos/ECU8TR";
-import Energate from "@/components/logos/ENERG8TE";
-import Elev8tr from "@/components/logos/ELEV8TR";
-
-
+import ECU8TR from "@/components/logos/ECU8TR";
+import ENERG8TE from "@/components/logos/ENERG8TE";
+import ELEV8TR from "@/components/logos/ELEV8TR";
 
 const pinnedSections = [
 
@@ -22,7 +20,7 @@ const pinnedSections = [
       className:
         "",
     },
-    logo: <Energate className="h-14 xs:h-16 sm:h-24 3xl:h-28 md:mb-1" />,
+    logo: <span role="img" aria-label="ENERG8TE logo"><ENERG8TE className="h-14 xs:h-16 sm:h-24 3xl:h-28 md:mb-1" /></span>,
     logoClasses: 'mb-12',
     heading: (
       <>
@@ -49,7 +47,7 @@ const pinnedSections = [
     imageClasses:'px-2 max-w-3xl',
     image: {
       src: "/vertical/energ8te-box-hero.webp",
-      alt: "Emula8tr ESS Controller",
+      alt: "ENERG8TE BMS Controls for Energy Storage",
     },
   },
 
@@ -63,7 +61,7 @@ const pinnedSections = [
       className:
         "text-[#E00000] font-bold lg:text-[14px] text-[.75rem] tracking-[6px] mb-6 3xl:text-lg",
     },
-    logo: <Equ8ter className="h-14 xs:h-16 sm:h-24 3xl:h-28 md:mb-1" />,
+    logo: <span role="img" aria-label="ECU8TR logo"><ECU8TR className="h-14 xs:h-16 sm:h-24 3xl:h-28 md:mb-1" /></span>,
     logoClasses: '',
     heading: (
       <>
@@ -90,7 +88,7 @@ const pinnedSections = [
     imageClasses:'max-w-3xl',
     image: {
       src: "/vertical/ecu8tr-box.webp",
-      alt: "Emula8tr ESS Controller",
+      alt: "ECU8TR Battery Factory Point Tester",
     },
   },
 
@@ -104,7 +102,7 @@ const pinnedSections = [
       className:
         "",
     },
-    logo: <Elev8tr className="h-14 xs:h-16 sm:h-24 3xl:h-28 md:mb-1" />,
+    logo: <span role="img" aria-label="ELEV8TR logo"><ELEV8TR className="h-14 xs:h-16 sm:h-24 3xl:h-28 md:mb-1" /></span>,
     logoClasses: 'mb-12',
     heading: (
       <>
@@ -132,7 +130,7 @@ const pinnedSections = [
     imageClasses:'',
     image: {
       src: "/vertical/elev8tr.webp",
-      alt: "Emula8tr ESS Controller",
+      alt: "ELEV8TR Battery Algorithm Simulator",
     },
   },
 ];
@@ -195,16 +193,12 @@ export default function VerticalSlider() {
          ----------------------------------------- */}
     {pinnedSections.map((item) => (
       <section key={item.id} id={item.id} className={item.sectionClasses}>
-        
-        
-        
         <div className="max-w-8xl mx-auto flex flex-col lg:flex-row lg:items-center justify-center">
 
           {/* Mobile-only logo – placed at the very top for mobile */}
           <div className={`${item.logoClasses} order-first lg:hidden px-[32px]`}>
             {item.logo}
           </div>
-
 
           {/* Image side remains in its original mobile order */}
           {item.image && (

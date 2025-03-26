@@ -5,8 +5,8 @@ import "keen-slider/keen-slider.min.css";
 import { useKeenSlider } from "keen-slider/react";
 import { motion, useAnimationControls } from "framer-motion";
 import Link from "next/link";
-import Energate from "@/components/logos/Energate";
-import Equ8ter from "@/components/logos/Equ8ter";
+import ENERG8TE from "@/components/logos/Energate";
+import ECU8TR from "@/components/logos/ECU8TR-slider";
 import Energy from "@/components/icons/Energy";
 import Manage from "@/components/icons/BatteryManage";
 
@@ -26,7 +26,7 @@ const slidesData = [
         " designed to maximize efficiency, safety, and reliability in industrial power systems.",
       ctaHref: "/solutions/energ8te",
       ctaLabel: "Learn more",
-      logo: <Energate className="h-8 w-auto" />,
+      logo: <ENERG8TE className="h-8 w-auto" />,
       logoContainerClasses:
         "absolute bottom-36 right-20 bg-white/85 backdrop-blur-sm px-4 py-[70px] rounded-lg shadow-md border-white/30",
     },
@@ -46,7 +46,7 @@ const slidesData = [
         " that enhance performance and ensure safety across automotive and industrial applications.",
       ctaHref: "/solutions/ecu8tr",
       ctaLabel: "Learn More",
-      logo: <Equ8ter className="h-12 w-auto" />,
+      logo: <ECU8TR className="h-12 w-auto" />,
       logoContainerClasses:
         "absolute bottom-44 right-16 bg-white/85 backdrop-blur-sm px-8 py-[60px] rounded-lg shadow-md border-white/30",
     },
@@ -203,7 +203,14 @@ export default function DesktopSlider() {
         {/* Keen Slider */}
         <div ref={sliderRef} className="keen-slider h-full w-full relative z-10">
           {slidesData.map((slide, index) => (
-            <div key={slide.slideId} className="keen-slider__slide relative">
+            <section
+              key={slide.slideId}
+              className="keen-slider__slide relative"
+              role="group"
+              aria-roledescription="slide"
+              aria-label={slide.desktop.headingText}
+              aria-hidden={currentSlide !== index}
+            >
               <div className="flex flex-col items-center lg:flex-row lg:justify-center px-4 pt-44 pb-20 w-full h-full">
                 <div className="relative">
                   <div className="w-[800px] h-[450px] mr-44 mb-20">
@@ -215,6 +222,7 @@ export default function DesktopSlider() {
                         muted
                         playsInline
                         preload="auto"
+                        aria-label={`Background video for ${slide.desktop.headingText}`}
                         className="w-full h-full object-cover rounded-lg shadow-xl"
                       >
                         {slide.desktop.videoSources.map((srcObj, i) => (
@@ -247,12 +255,15 @@ export default function DesktopSlider() {
 
                 {/* Desktop Logo Overlay */}
                 {slide.desktop.logo && (
-                  <div className={slide.desktop.logoContainerClasses}>
+                  <div
+                    className={slide.desktop.logoContainerClasses}
+                    aria-label={slide.slideId === 0 ? "ENERG8TE logo" : "ECU8TR logo"}
+                  >
                     {slide.desktop.logo}
                   </div>
                 )}
               </div>
-            </div>
+            </section>
           ))}
         </div>
 

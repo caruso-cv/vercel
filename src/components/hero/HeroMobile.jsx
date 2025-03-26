@@ -7,8 +7,7 @@ export default function HeroMobile() {
     <div className="bg-white">
 
       {/* Slide 1 */}
-      <div
-        className="block">
+      <section className="block" aria-label="Energy Storage Section">
         <div>
           <div>
             <div className="relative isolate overflow-hidden bg-gray-900 min-h-full">
@@ -47,11 +46,10 @@ export default function HeroMobile() {
             </div>
           </div>
         </div> 
-      </div>
+      </section>
 
       {/* Slide 2 */}
-      <div
-      className="block mt-4">
+      <section className="block mt-4" aria-label="Battery Testing Section">
       <div>
         <div>
           <div className="relative isolate overflow-hidden bg-gray-900 min-h-full">
@@ -72,9 +70,9 @@ export default function HeroMobile() {
 
               <div className="flex flex-col h-full z-20 justify-center py-[100px]">
                 <div className="max-w-2xl select-text ">   
-                  <h1 className="text-balance uppercase text-5xl font-bold text-white sm:text-[83.2px] whitespace-pre-line">
-                  Test your limits
-                  </h1>
+                  <h2 className="text-balance uppercase text-5xl font-bold text-white sm:text-[83.2px] whitespace-pre-line">
+                    Test your limits
+                  </h2>
                   <p className="mt-8 text-xl sm:text-4xl font-medium text-gray-100">
                   Battery factory point tester.
                   </p>
@@ -87,7 +85,7 @@ export default function HeroMobile() {
           </div>
         </div>
       </div> 
+      </section>
     </div>
-  </div>
   );
 }

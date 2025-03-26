@@ -26,6 +26,7 @@ function AutoSlider(slider) {
 
 export default function HeroNew() {
   const [sliderLoaded, setSliderLoaded] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
   const [sliderRef] = useKeenSlider(
     {
       loop: true,
@@ -35,6 +36,9 @@ export default function HeroNew() {
       created() {
         setSliderLoaded(true);
       },
+      slideChanged(slider) {
+        setCurrentSlide(slider.track.details.rel);
+      }
     },
     [AutoSlider]
   );
@@ -49,7 +53,13 @@ export default function HeroNew() {
         }`}
       >
         {/* Slide 1 */}
-        <div className="keen-slider__slide">
+        <section
+          className="keen-slider__slide"
+          role="group"
+          aria-roledescription="slide"
+          aria-label="Slide 1 of 2"
+          aria-hidden={currentSlide !== 0}
+        >
           <div className="relative isolate overflow-hidden bg-gray-900 min-h-full">
             <Image
               src="/hero/energy.webp"
@@ -99,10 +109,16 @@ export default function HeroNew() {
               </div>
             </div>
           </div>
-        </div>
+        </section>
 
         {/* Slide 2 */}
-        <div className="keen-slider__slide">
+        <section
+          className="keen-slider__slide"
+          role="group"
+          aria-roledescription="slide"
+          aria-label="Slide 2 of 2"
+          aria-hidden={currentSlide !== 1}
+        >
           <div className="relative isolate overflow-hidden bg-gray-900 min-h-full">
             <Image
               src="/hero/test.webp"
@@ -151,7 +167,7 @@ export default function HeroNew() {
               </div>
             </div>
           </div>
-        </div>
+        </section>
       </div> 
     </div>
   );

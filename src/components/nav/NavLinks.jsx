@@ -81,12 +81,14 @@ export default function NavLinks() {
               closed: { opacity: 0, y: -10, transition: { duration: 0.15 } },
               open: { opacity: 1, y: 0, transition: { duration: 0.15 } }
             }}
-            className="absolute top-10 -left-6 text-white border-[#222326] border bg-gradient-to-tr from-[#090909] to-[#181818] shadow-[0px_-4px_4px_0px_rgba(0,0,0,0.25)] backdrop-blur-[40px] text-base w-64 rounded-xl"
+            className={`absolute top-10 -left-6 text-white border-[#222326] border bg-gradient-to-tr from-[#090909] to-[#181818] shadow-[0px_-4px_4px_0px_rgba(0,0,0,0.25)] backdrop-blur-[40px] text-base w-64 rounded-xl ${isOpen ? 'pointer-events-auto' : 'pointer-events-none'}`}
+            aria-hidden={!isOpen}
           >
             <li>
               <Link
                 href="/solutions/ecu8tr"
                 onClick={() => setIsOpen(false)}
+                aria-label="Go to ECU8TR solution"
               >
                 <motion.div
                   initial="rest"
@@ -117,6 +119,7 @@ export default function NavLinks() {
               <Link
                 href="/solutions/elev8tr"
                 onClick={() => setIsOpen(false)}
+                aria-label="Go to ELEV8TR solution"
               >
                 <motion.div
                   initial="rest"
@@ -147,6 +150,7 @@ export default function NavLinks() {
               <Link
                 href="/solutions/energ8te"
                 onClick={() => setIsOpen(false)}
+                aria-label="Go to ENERG8TE solution"
               >
                 <motion.div
                   initial="rest"

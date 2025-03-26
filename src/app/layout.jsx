@@ -1,9 +1,9 @@
 import '@/styles/tailwind.css'
 import { Montserrat } from 'next/font/google'
 import Nav from '@/components/nav/Nav'
-import BackgroundHero from '@/components/BackgroundHero'
+import BackgroundHero from '@/components/backgrounds/BackgroundHero'
 import Footer from '@/components/Footer'
-import CookieBanner from '@/components/CookieBanner'
+import CookieBanner from '@/components/cookies/CookieBanner'
 import Script from 'next/script'
 import { SpeedInsights } from "@vercel/speed-insights/next"
 

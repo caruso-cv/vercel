@@ -1,4 +1,3 @@
-// MinimalNav.jsx (or define inside the same file)
 import React from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
@@ -18,9 +17,12 @@ export default function MinimalNav() {
   <div className="mx-auto max-w-8xl w-full px-6 2xl:px-0 relative flex items-center justify-between">
     {/* Logo on left */}
     <div className="flex items-center">
-      <Link href="/">
-        <NavLogo className="h-8 w-auto text-[#CFCFCF] hover:text-white hover:cursor-pointer" />
-      </Link>
+    <Link 
+      href="/" 
+      aria-label="Neutron Controls Logo"
+    >
+      <NavLogo className="h-8 w-auto text-[#CFCFCF] hover:text-white hover:cursor-pointer" />
+    </Link>
     </div>
 
     {/* Centered Nav links */}
