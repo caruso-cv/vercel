@@ -6,6 +6,10 @@ import DigitalBackground from '@/components/backgrounds/DigitalBackground'
 import NoiseOverlay from '@/components/backgrounds/NoiseOverlay'
 import HeroMobile from '@/components/hero/HeroMobile'
 
+export const metadata = {
+  title: 'Neutron Controls | Advanced BMS & Energy Control Solutions',
+  description: 'Neutron Controls delivers advanced BMS controllers and energy management solutions for ESS/BESS installations, prioritizing efficiency, safety, and sustainability in industrial automation.',
+};
 
 export default function Home() {
   return (

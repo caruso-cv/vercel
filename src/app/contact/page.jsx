@@ -1,19 +1,15 @@
-'use client'
-import { useEffect } from 'react'
-import ReCaptchaProvider from '@/components/contact/ReCaptchaProvider'
-import ContactForm from '@/components/contact/ContactForm'
+import Contact from "@/components/contact/Contact";
 
-export default function Contact() {
-  useEffect(() => {
-    document.body.classList.add('contact-page')
-    return () => {
-      document.body.classList.remove('contact-page')
-    }
-  }, [])
+export const metadata = {
+  title: 'Contact Us',
+  description: 'Our team is here to help with any questions you might have. Feel free to reach out, we look forward to connecting with you.',
+};
+
+export default function Home() {
 
   return (
-    <ReCaptchaProvider>
-      <ContactForm />
-    </ReCaptchaProvider>
+    <main>
+      <Contact />
+    </main>
   )
 }

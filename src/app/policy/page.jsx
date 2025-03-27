@@ -1,8 +1,13 @@
 import { CheckCircleIcon, InformationCircleIcon } from '@heroicons/react/20/solid'
 
+export const metadata = {
+  title: 'Cookies',
+  description: 'Cookie Policy – Understanding Our Use of Cookies',
+};
+
 export default function Example() {
   return (
-    <div className="pb-12 pt-36 lg:pt-52 relative z-30">
+    <main className="pb-12 pt-36 lg:pt-52 relative z-30">
       <div className="mx-auto max-w-8xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-none">
           <p className="text-lg font-semibold text-[#425ACA] lg:text-2xl">Cookie Policy</p>
@@ -59,6 +64,6 @@ export default function Example() {
           </div>
         </div>
       </div>
-    </div>
+    </main>
   )
 }

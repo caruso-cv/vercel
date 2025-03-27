@@ -97,29 +97,48 @@ export default function CookieBanner() {
               className="opacity-70 hover:opacity-100"
             />
             <span
-              className="
-                pointer-events-none
-                absolute
-                left-[70px]
-                bottom-[8px]
-                mb-2
-                px-2
-                py-1
-                bg-black
-                text-white
-                text-xs
-                rounded
-                opacity-0
-                transform translate-x-3
-                group-hover:opacity-100
-                group-hover:translate-x-0
-                transition-all duration-300 ease-out
-                whitespace-nowrap
-              "
-            >
-              Cookies Settings
-              <span className="absolute left-[-4px] top-1/2 transform -translate-y-1/2 w-2 h-2 bg-black rotate-45"></span>
-            </span>
+                aria-hidden="true"
+                className="
+                  pointer-events-none
+                  absolute
+                  left-[70px]
+                  bottom-[8px]
+                  mb-2
+                  px-2
+                  py-1
+                  bg-black
+                  text-white
+                  text-xs
+                  rounded
+                  whitespace-nowrap
+                  transition-all
+                  duration-300
+                  ease-out
+                  invisible
+                  opacity-0
+                  translate-x-3
+
+                  /* On hover, make it visible, fade in, slide in */
+                  group-hover:visible
+                  group-hover:opacity-100
+                  group-hover:translate-x-0
+                "
+              >
+                Cookies Settings
+                <span
+                  className="
+                    absolute
+                    left-[-4px]
+                    top-1/2
+                    transform
+                    -translate-y-1/2
+                    w-2
+                    h-2
+                    bg-black
+                    rotate-45
+                  "
+                />
+          </span>
           </button>
         </div>
       )}

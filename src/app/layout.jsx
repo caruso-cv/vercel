@@ -17,10 +17,10 @@ const montserrat = Montserrat({
 
 export const metadata = {
   title: {
-    template: 'Neutron Controls',
     default: 'Neutron Controls',
   },
-}
+  description: 'Contain Your Energy, Test Your Limits.',
+};
 
 export default function RootLayout({ children }) {
   return (
@@ -29,12 +29,15 @@ export default function RootLayout({ children }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
       <body>
-        <div className="bg-[#090A0B]">
+
+        <header className="bg-[#090A0B]">
           <Nav />
           <BackgroundHero />
           <CookieBanner />
-        </div>
-        {children}
+        </header>
+
+          {children}
+
         <Footer />
         <SpeedInsights/>
 

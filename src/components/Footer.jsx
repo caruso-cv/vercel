@@ -134,8 +134,8 @@ export default function Footer() {
         </div>
         
       </div>
-      <div className="text-white/30 text-sm px-6 pb-6 2xl:px-0 max-w-8xl mx-auto">
-        © Neutron Controls 2025
+      <div className="text-white/50 text-sm px-6 pb-6 2xl:px-0 max-w-8xl mx-auto">
+        © Neutron Controls {new Date().getFullYear()}
       </div>
     </footer>
   );
