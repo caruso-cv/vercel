@@ -1,4 +1,4 @@
-import Elev8tr from "@/components/solutions/Energ8te";
+import Elev8tr from "@/components/solutions/energ8te/Energ8te";
 
 export const metadata = {
   title: 'ENERG8TE™ BMS Controller for BESS/ESS Installations',

@@ -6,7 +6,7 @@ import NoiseOverlay from "@/components/backgrounds/NoiseOverlay";
 import ECU8TR from "@/components/logos/ECU8TR";
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
-import Bullets from "@/components/solutions/Ecu8trBullet";
+import Bullets from "@/components/solutions/ecu8tr/Ecu8trBullet";
 
 export default function ProductPage() {
   // State to track when the main image has loaded
@@ -107,7 +107,7 @@ export default function ProductPage() {
               INTERFACES
             </div>
             <div className="p-4 lg:p-6 border-b border-[#2F79F8] md:border-l md:border-[#2F79F8] xs:text-[1.125rem] xs:leading-[1.75rem] text-black/70 ">
-              <p className="mb-1">ISO COMM (Analog Devices ISO SPI, Infineon ISO UART, Texas Instruments BMS Devices) analog frontend
+              <p className="mb-1">ISO COMM (Analog Devices ISO SPI BMS Devices, Infineon ISO UART BMS Devices, NXP BMS Devices, and Texas Instruments BMS Devices) analog frontend
                 Ethernet network interface - 10/100 baseT
                 CAN FD Interface via 9-pin DSub connector
                 12V Power Input via Barrel Jack</p>

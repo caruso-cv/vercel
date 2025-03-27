@@ -4,11 +4,11 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import DigitalBackground from "@/components/backgrounds/DigitalBackground";
 import NoiseOverlay from "@/components/backgrounds/NoiseOverlay";
-import Elev8tr from "@/components/logos/ENERG8TE";
+import Elev8tr from "@/components/logos/ELEV8TR";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
-import Bullets from "@/components/solutions/Energ8teBullet";
+import Bullets from "@/components/solutions/elev8tr/Elev8trBullet";
 
 export default function ProductPage() {
   // State to track when the main image has loaded
@@ -39,8 +39,8 @@ export default function ProductPage() {
               {/* Invisible placeholder to reserve space until the image loads */}
               {!imageLoaded && <div style={{ paddingBottom: `${aspectRatio}%` }} />}
               <Image
-                src="/vertical/energ8te.webp"
-                alt="Emula8tr ESS Controller"
+                src="/vertical/elev8tr.webp"
+                alt="Elev8tr ESS Controller"
                 width={1916}
                 height={1145}
                 quality={70}
@@ -55,16 +55,16 @@ export default function ProductPage() {
           <div className="xl:max-w-[50vw] mx-auto xl:w-2/3 text-left px-6 2xl:px-0 flex ">
             <div className="text-left pt-12 xl:pt-0 ">
               <h2 className=" text-2xl sm:text-4xl font-bold xl:mb-6 mb-4 ">
-                ABOUT ENERG8TE™
+                ABOUT ELEV8TR™
               </h2>
-              <p className="mt-4  text-gray-600 text-[1.125rem] md:text-[1.25rem] xl:max-w-[42rem]">
-              ENERG8TE™ is rated the highest level of Function Safety, targeted for UL9540 and tailored for use in diverse energy environments, the ENERG8TE™ seamlessly integrates with various energy sources.
+              <p className="mt-4 text-[1.125rem] md:text-[1.25rem] xl:max-w-[42rem] text-gray-600 ">
+              ELEV8TR™ is an automotive toolkit for OEMs aiming to accelerate their Battery Management Systems with advanced algorithms. It integrates real-time battery interaction, simulation, and MATLAB/Simulink compatibility.
               </p>
              
               <div className="mt-10 flex gap-6 relative flex-col 4sm:flex-row items-start">
                 <a
-                  href="/pdf/ENERG8TE.pdf"
-                  alt="Energ8te BMS Controls for energy storage"
+                  href="/pdf/ELEV8TR.pdf"
+                  alt="Ecu8tr Battery Point Tester"
                   target="_blank"
                   className="inline-flex items-center justify-center gap-2 min-h-[40px] sm:min-h-[48px] px-3 sm:px-6 py-1.5 text-[1rem] sm:text-lg font-bold whitespace-nowrap cursor-pointer border-none rounded-md transition-colors duration-200 ease-in-out bg-gray-100 hover:bg-gray-200 opacity-90 hover:opacity-100 text-black uppercase"
                 >
@@ -81,7 +81,7 @@ export default function ProductPage() {
               {/* Invisible placeholder to reserve space until the image loads */}
               {!imageLoaded && <div style={{ paddingBottom: `${aspectRatio}%` }} />}
               <Image
-                src="/vertical/energ8te.webp"
+                src="/vertical/elev8tr.webp"
                 alt="Emula8tr ESS Controller"
                 width={1916}
                 height={1145}
@@ -103,29 +103,27 @@ export default function ProductPage() {
           SPECIFICATIONS
         </h2>
         <div className="border-2 border-[#2F79F8] rounded-md overflow-hidden">
-          <div className="grid grid-cols-1">
+          <div className="grid grid-cols-1 md:grid-cols-[240px_minmax(0,1fr)] ">
             {/* DIMENSIONS */}
-            <div className="p-4 lg:p-6 pb-0 md:pb-4 md:border-b md:border-b-gray-200 border-[#2F79F8] font-semibold xs:text-xl 3xl:text-[22.4px] ">
-              ADVANCED CHARGING AND DISCHARGING CONTROL
+            <div className="p-4 lg:p-6 pb-0 md:pb-4 md:border-b border-[#2F79F8] font-semibold xs:text-xl 3xl:text-[22.4px] ">
+              INTERFACES
             </div>
-            <div className="p-4 lg:p-6 border-b border-[#2F79F8]  md:border-[#2F79F8] xs:text-[1.125rem] xs:leading-[1.75rem] text-black/70 ">
-              <p className="mb-1">ENERG8TE™ manages charging and discharging cycles with precision, ensuring optimal battery performance and an extended lifespan. This is crucial for maximizing your energy storage investment.</p>
+            <div className="p-4 lg:p-6 border-b border-[#2F79F8] md:border-l md:border-[#2F79F8] xs:text-[1.125rem] xs:leading-[1.75rem] text-black/70 ">
+                <p className="mb-1">Integrated 800W Bi-directional Power Supply, configurable up to 15kW</p>
+                <p className="mb-1">Multi-IO Terminal Blocks</p>
+                <p className="mb-1">so COMM (ISO SPI, ISO UART) analog frontend</p>
+                <p className="mb-1">Ethernet network interface - 10/100 baseT</p>
+                <p className="mb-1">CAN FD Interface via 9-pin DSub connector</p>
+                <p className="mb-1">12V Power Input via Barrel Jack</p>
             </div>
-            {/* DIMENSIONS */}
-            <div className="p-4 lg:p-6 pb-0 md:pb-4 md:border-b md:border-b-gray-200 border-[#2F79F8] font-semibold xs:text-xl 3xl:text-[22.4px] ">
-              GRID INTERACTION AND COMPLIANCE
+            {/* POWER*/}
+            <div className="p-4 lg:p-6 pb-0 md:pb-4 md:border-b border-[#2F79F8] font-semibold xs:text-xl 3xl:text-[22.4px] ">
+              POWER
             </div>
-            <div className="p-4 lg:p-6 border-b border-[#2F79F8]  md:border-[#2F79F8] xs:text-[1.125rem] xs:leading-[1.75rem] text-black/70">
+            <div className="p-4 lg:p-6 border-b border-[#2F79F8] md:border-l md:border-[#2F79F8] xs:text-[1.125rem] xs:leading-[1.75rem] text-black/70">
               <p className="mb-1">
-              ENERG8TE™ includes advanced grid management features like peak shaving, time-of-use management, and reactive power control. These features ensure your energy storage system complies with local regulations while optimizing energy costs.
+              12V/36W AC/DC External Desktop (Class 1) Adapter International, 90 ~ 264 VAC
               </p>
-            </div>
-            {/* POWER */}
-            <div className="p-4 lg:p-6 pb-0 md:pb-4 md:border-b md:border-b-gray-200 border-[#2F79F8] font-semibold xs:text-xl 3xl:text-[22.4px] ">
-            ADVANCED CHARGING AND DISCHARGING CONTROL
-            </div>
-            <div className="p-4 lg:p-6 border-b border-[#2F79F8]  md:border-[#2F79F8] xs:text-[1.125rem] xs:leading-[1.75rem] text-black/70 ">
-              <p className="mb-1">Easily integrate with various energy sources, including solar, wind, and grid power, making ENERG8TE™ adaptable for both small-scale installations and large industrial applications.</p>
             </div>
           </div>
         </div>

@@ -1,4 +1,4 @@
-import Elev8tr from "@/components/solutions/Elev8tr";
+import Elev8tr from "@/components/solutions/elev8tr/Elev8tr";
 
 export const metadata = {
   title: 'ELEV8TR™ Battery Algorithm Simulator for OEM BMS Development',
