@@ -21,6 +21,7 @@ const slidesData = [
       headingIcon: <Energy className="mr-3 w-10 h-6" />,
       headingText: "BATTERY MANAGEMENT FOR ESS/BESS INSTALLATIONS",
       bodyTextBeforeSpan: "We deliver a customizable ",
+      bodyTextBeforeSpan2: "", // Added new field
       bodyTextSpan: "BMS called ENERG8TE™ for energy storage",
       bodyTextAfterSpan:
         " designed to maximize efficiency, safety, and reliability in industrial power systems.",
@@ -40,15 +41,16 @@ const slidesData = [
       ],
       headingIcon: <Manage className="w-7 mr-3" />,
       headingText: "BATTERY FACTORY LINE TESTERS",
-      bodyTextBeforeSpan: "We specialize in ",
-      bodyTextSpan: "advanced Battery Management Systems (BMS)",
+      bodyTextBeforeSpan: "Tailored for verifying cell monitor operations within modules and packs.",
+      bodyTextBeforeSpan2: "Flexible Communication:",
+      bodyTextSpan: "Infineon ISO UART, Analog Devices ISO SPI, and Texas Instruments UART/SPI.",
       bodyTextAfterSpan:
-        " that enhance performance and ensure safety across automotive and industrial applications.",
+        "",
       ctaHref: "/solutions/ecu8tr",
       ctaLabel: "Learn More",
       logo: <ECU8TR className="h-12 w-auto" />,
       logoContainerClasses:
-        "absolute bottom-44 right-16 bg-white/85 backdrop-blur-sm px-8 py-[60px] rounded-lg shadow-md border-white/30",
+        "absolute bottom-40 right-16 bg-white/85 backdrop-blur-sm px-8 py-[60px] rounded-lg shadow-md border-white/30",
     },
   },
 ];
@@ -240,6 +242,11 @@ export default function DesktopSlider() {
                     </h3>
                     <p className="text-[18px] leading-[26px] text-gray-200 mb-6 tracking-wide">
                       {slide.desktop.bodyTextBeforeSpan}
+                      {slide.desktop.bodyTextBeforeSpan2 && (
+                        <span className="block mt-[10px] font-semibold">
+                          {slide.desktop.bodyTextBeforeSpan2}
+                        </span>
+                      )}
                       <span className="text-[#8CD6FF] bg-[#1C445D] rounded-sm px-1">
                         {slide.desktop.bodyTextSpan}
                       </span>{" "}

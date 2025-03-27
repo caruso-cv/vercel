@@ -11,15 +11,17 @@ export default function HeroMobile() {
         <div>
           <div>
             <div className="relative isolate overflow-hidden bg-gray-900 min-h-full">
-              <Image
-                src="/hero/energy.webp"
-                alt="energy storage systems"
-                fill
-                className="object-cover"
-                sizes="(max-width: 600px) 100vw, (max-width: 1200px) 100vw, 100vw"
-                priority
-                quality={20}
-              />
+              <div className="absolute inset-0 z-0">
+                <Image
+                  src="/hero/energy.webp"
+                  alt="energy storage systems"
+                  fill
+                  className="object-cover"
+                  sizes="100vw"
+                  quality={20}
+                  priority
+                />
+              </div>
 
               {/* Shader for hero image */}
               <div className="absolute inset-0 bg-black bg-opacity-70 z-10" />
@@ -53,14 +55,17 @@ export default function HeroMobile() {
       <div>
         <div>
           <div className="relative isolate overflow-hidden bg-gray-900 min-h-full">
-          <Image
-              src="/hero/test.webp"
-              alt="Battery factory point tester robot"
-              fill
-              className="object-cover"
-              sizes="(max-width: 600px) 100vw, (max-width: 1200px) 100vw, 100vw"
-              quality={20}
-            />
+            <div className="absolute inset-0 z-0">
+              <Image
+                src="/hero/test.webp"
+                alt="Battery factory point tester robot"
+                fill
+                className="object-cover"
+                sizes="100vw"
+                quality={20}
+                loading="lazy"
+              />
+            </div>
 
             {/* Shader for hero image */}
             <div className="absolute inset-0 bg-black bg-opacity-70 z-10" />

@@ -8,7 +8,7 @@ export default function Partners() {
     { src: "/partners/mathworks.webp", alt: "MathWorks" },
     { src: "/partners/tasking.webp", alt: "Tasking" },
     { src: "/partners/npx.webp", alt: "NPX" },
-    { src: "/partners/infineon.webp", alt: "Infineon" },
+    { src: "/partners/texas-instruments.webp", alt: "Texas Instruments" },
     { src: "/partners/jabil.webp", alt: "Jabil" },
     { src: "/partners/analog.webp", alt: "Analog Devices" },
   ];

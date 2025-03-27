@@ -14,7 +14,7 @@ const pinnedSections = [
   {
     id: "get-started",
     sectionClasses:
-    "lg:sticky top-[65px] lg:h-[calc(100vh-80px)] bg-[#E8E8E8] lg:bg-white text-black z-20 flex flex-col-reverse lg:flex-row-reverse items-center justify-center lg:rounded-4xl lg:mx-4 py-20 xl:py-0 2xl:px-[90px] 3xl:px-40",
+    "lg:sticky top-[65px] lg:h-[calc(100dvh-80px)] bg-[#E8E8E8] lg:bg-white text-black z-20 flex flex-col-reverse lg:flex-row-reverse items-center justify-center lg:rounded-4xl lg:mx-4 py-20 xl:py-0 2xl:px-[90px] 3xl:px-40",
     containerClasses: "lg:w-2/3 3xl:w-1/2 text-left px-8 pt-0 sm:pt-4 lg:pt-0",
     topNote: {
       className:
@@ -55,7 +55,7 @@ const pinnedSections = [
   {
     id: "ecu8tr",
     sectionClasses:
-    "lg:sticky top-[85px] lg:h-[calc(100vh-112px)] bg-[#E8E8E8] lg:bg-gray-100 text-black z-30 flex flex-col-reverse lg:flex-row items-center justify-center lg:rounded-4xl lg:mx-8 py-20 xl:py-0 lg:mb-4 2xl:px-[90px] 3xl:px-40 mt-4 lg:mt-0",
+    "lg:sticky top-[85px] lg:h-[calc(100dvh-112px)] bg-[#E8E8E8] lg:bg-gray-100 text-black z-30 flex flex-col-reverse lg:flex-row items-center justify-center lg:rounded-4xl lg:mx-8 py-20 xl:py-0 lg:mb-4 2xl:px-[90px] 3xl:px-40 mt-4 lg:mt-0",
     containerClasses: "lg:w-1/2 text-left px-8 pt-0 sm:pt-4 lg:pt-0 ",
     topNote: {
       className:
@@ -78,7 +78,14 @@ const pinnedSections = [
     ],
     bullets: [
       "Precision Monitoring",
-      "ISO SPI and ISO UART Compatible",
+      <>
+        Flexible interfaces:
+        <ul className='md:pl-2 pl-0 md:mt-2 md:mb-0 mb-1 2xl:text-[20px] md:text-[18px] text-[16px] md:leading-[28px]  2xl:leading-[28px] text-black/60'>
+          <li>- Infineon ISO UART</li>
+          <li>- Analog Devices ISO SPI</li>
+          <li>- Texas Instruments UART/SPI</li>
+        </ul>
+      </>,
       "Quality Management",
     ],
     link: {
@@ -96,7 +103,7 @@ const pinnedSections = [
   {
     id: "elev8tr",
     sectionClasses:
-    "lg:sticky top-[105px] lg:h-[calc(100vh-144px)] bg-[#E8E8E8] lg:bg-[#E2E2E2] text-black z-40 flex flex-col-reverse lg:flex-row-reverse items-center justify-center lg:rounded-4xl lg:mx-12 py-20 xl:py-0 lg:mb-8 2xl:px-[90px] 3xl:px-40 mt-4 lg:mt-0",
+    "lg:sticky top-[105px] lg:h-[calc(100dvh-144px)] bg-[#E8E8E8] lg:bg-[#E2E2E2] text-black z-40 flex flex-col-reverse lg:flex-row-reverse items-center justify-center lg:rounded-4xl lg:mx-12 py-20 xl:py-0 lg:mb-8 2xl:px-[90px] 3xl:px-40 mt-4 lg:mt-0",
     containerClasses: "lg:w-2/3 3xl:w-1/2 text-left px-8 pt-0 sm:pt-4 lg:pt-0",
     topNote: {
       className:
@@ -137,15 +144,15 @@ const pinnedSections = [
 
 export default function VerticalSlider() {
   return (
-    <div className="relative w-full lg:h-[calc(350vh-144px)] bg-white lg:bg-[#090A0B] lg:rounded-t-4xl">
+    <div className="relative w-full lg:h-[calc(350dvh-144px)] bg-white lg:bg-[#090A0B] lg:rounded-t-4xl">
       {/* -----------------------
           BLACK LAYER (pinned)
           ----------------------- */}
       <section
         className="
-          3xl:h-[50vh] 
-          2xl:h-[55vh]
-          lg:h-[50vh] 
+          3xl:h-[50dvh] 
+          2xl:h-[55dvh]
+          lg:h-[50dvh] 
           top-0 
           text-white 
           z-10 
