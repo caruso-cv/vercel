@@ -3,14 +3,16 @@ import ECU8TR from "@/components/solutions/ecu8tr/Ecu8tr";
 
 export const metadata = {
   title: 'ECU8TR™ Battery Factory Point Tester',
-  description: 'ECU8TR™ supports advanced BMS interfaces including Analog Devices ISO SPI, Infineon ISO UART, XMP, and Texas Instruments BMS devices — ensuring high-performance battery production testing.',
+  description:
+    'ECU8TR™ supports advanced BMS interfaces including Analog Devices ISO SPI, Infineon ISO UART, XMP, and Texas Instruments BMS devices — ensuring high-performance battery production testing.',
   openGraph: {
     title: 'ECU8TR™ Battery Factory Point Tester',
-    description: 'Supports Analog Devices ISO SPI, Infineon ISO UART, XMP, and Texas Instruments BMS interfaces.',
+    description:
+      'Supports Analog Devices ISO SPI, Infineon ISO UART, XMP, and Texas Instruments BMS interfaces.',
     url: 'https://www.neutroncontrols.com/solutions/ecu8tr',
     images: [
       {
-        url: '/slider/7.jpg',
+        url: 'https://www.neutroncontrols.com/meta/ecu8tr.jpg', 
         alt: 'ECU8TR product photo',
       },
     ],
@@ -18,8 +20,9 @@ export const metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'ECU8TR™ Battery Factory Point Tester',
-    description: 'Supports Analog Devices ISO SPI, Infineon ISO UART, XMP, and Texas Instruments BMS interfaces.',
-    images: ['/slider/7.jpg'],
+    description:
+      'Supports Analog Devices ISO SPI, Infineon ISO UART, XMP, and Texas Instruments BMS interfaces.',
+    images: ['https://www.neutroncontrols.com/meta/ecu8tr.jpg'], 
   },
 };
 
