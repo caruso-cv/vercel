@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Cookies from 'js-cookie'
-import CookieDialog from '@/components/cookies/CookieDialog'
+import CookieDialog from '@/components/tools/CookieDialog'
 import Image from 'next/image'
 
 export default function CookieBanner() {

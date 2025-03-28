@@ -4,8 +4,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import DigitalBackground from "@/components/backgrounds/DigitalBackground";
 import NoiseOverlay from "@/components/backgrounds/NoiseOverlay";
-import Elev8tr from "@/components/logos/ENERG8TE";
-import Link from "next/link";
+import ENERG8TE from "@/components/logos/ENERG8TE";
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import Bullets from "@/components/solutions/energ8te/Energ8teBullet";
@@ -20,7 +19,7 @@ export default function ProductPage() {
     <div className="relative min-h-screen">
       {/* Header with logo inside max-w-8xl container */}
       <div className="max-w-8xl mx-auto px-6 2xl:px-0 pt-36 lg:pt-52 relative z-30">
-        <Elev8tr className="h-16 sm:h-28 3xl:h-32" />
+        <ENERG8TE className="h-16 sm:h-28 3xl:h-32" />
       </div>
 
       <motion.div
@@ -40,7 +39,7 @@ export default function ProductPage() {
               {!imageLoaded && <div style={{ paddingBottom: `${aspectRatio}%` }} />}
               <Image
                 src="/vertical/energ8te.webp"
-                alt="Emula8tr ESS Controller"
+                alt="ENERG8TE™ BMS Controller for Energy Storage"
                 width={1916}
                 height={1145}
                 quality={70}
@@ -64,7 +63,7 @@ export default function ProductPage() {
               <div className="mt-10 flex gap-6 relative flex-col 4sm:flex-row items-start">
                 <a
                   href="/pdf/ENERG8TE.pdf"
-                  alt="Energ8te BMS Controls for energy storage"
+                  alt="ENERG8TE™ BMS Controller for Energy Storage Product Brief"
                   target="_blank"
                   className="inline-flex items-center justify-center gap-2 min-h-[40px] sm:min-h-[48px] px-3 sm:px-6 py-1.5 text-[1rem] sm:text-lg font-bold whitespace-nowrap cursor-pointer border-none rounded-md transition-colors duration-200 ease-in-out bg-gray-100 hover:bg-gray-200 opacity-90 hover:opacity-100 text-black uppercase"
                 >
@@ -82,7 +81,7 @@ export default function ProductPage() {
               {!imageLoaded && <div style={{ paddingBottom: `${aspectRatio}%` }} />}
               <Image
                 src="/vertical/energ8te.webp"
-                alt="Emula8tr ESS Controller"
+                alt="ENERG8TE™ BMS Controller for Energy Storage"
                 width={1916}
                 height={1145}
                 quality={70}

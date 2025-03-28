@@ -5,15 +5,26 @@ export const metadata = {
   title: 'ENERG8TE™ BMS Controller for BESS/ESS Installations',
   description:
     'ENERG8TE™ is an advanced BMS controller designed to optimize performance, reliability, and energy efficiency in Battery Energy Storage System (BESS) and ESS installations.',
+  keywords: [
+    'ENERG8TE',
+    'BMS Controller',
+    'BESS Controller',
+    'ESS Management',
+    'Battery Energy Storage',
+    'Energy Optimization',
+    'Neutron Controls',
+    'Battery Monitoring System',
+    'Industrial Energy Systems',
+  ],
   openGraph: {
     title: 'ENERG8TE™ BMS Controller for BESS/ESS Installations',
     description:
-      'ENERG8TE™ is an advanced BMS controller designed to optimize performance, reliability, and energy efficiency in Battery Energy Storage System (BESS) and ESS installations.',
+      'Optimize energy performance and reliability in Battery Energy Storage System (BESS) and ESS applications with the ENERG8TE™ advanced BMS controller.',
     url: 'https://www.neutroncontrols.com/solutions/energ8te',
     images: [
       {
-        url: 'https://www.neutroncontrols.com/meta/energ8te.jpg', 
-        alt: 'ELEV8TR™ product photo',
+        url: 'https://www.neutroncontrols.com/meta/energ8te.jpg',
+        alt: 'ENERG8TE™ product photo',
       },
     ],
   },
@@ -21,8 +32,16 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'ENERG8TE™ BMS Controller for BESS/ESS Installations',
     description:
-      'ENERG8TE™ is an advanced BMS controller designed to optimize performance, reliability, and energy efficiency in Battery Energy Storage System (BESS) and ESS installations.',
-    images: ['https://www.neutroncontrols.com/meta/energ8te.jpg'], 
+      'Optimize energy performance and reliability in BESS and ESS applications with ENERG8TE™, the advanced BMS controller by Neutron Controls.',
+    images: ['https://www.neutroncontrols.com/meta/energ8te.jpg'],
+  },
+  alternates: {
+    canonical: 'https://www.neutroncontrols.com/solutions/energ8te',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    nocache: false,
   },
 };
 

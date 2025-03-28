@@ -38,7 +38,7 @@ export default function ProductPage() {
               {!imageLoaded && <div style={{ paddingBottom: `${aspectRatio}%` }} />}
               <Image
                 src="/vertical/ecu8tr-mobile.webp"
-                alt="Emula8tr ESS Controller"
+                alt="ECU8TR™ Battery Factory Point Tester"
                 width={500}
                 height={500}
                 quality={70}
@@ -62,7 +62,7 @@ export default function ProductPage() {
               <div className="mt-10 flex gap-6 relative flex-col 4sm:flex-row items-start">
                 <a
                   href="/pdf/ECU8TR.pdf"
-                  alt="Ecu8tr Battery Point Tester"
+                  alt="ECU8TR™ Battery Point Tester"
                   target="_blank"
                   className="inline-flex items-center justify-center gap-2 min-h-[40px] sm:min-h-[48px] px-3 sm:px-6 py-1.5 text-[1rem] sm:text-lg font-bold whitespace-nowrap cursor-pointer border-none rounded-md transition-colors duration-200 ease-in-out bg-gray-100 hover:bg-gray-200 opacity-90 hover:opacity-100 text-black uppercase"
                 >
@@ -80,7 +80,7 @@ export default function ProductPage() {
               {!imageLoaded && <div style={{ paddingBottom: `${aspectRatio}%` }} />}
               <Image
                 src="/vertical/ecu8tr.webp"
-                alt="Emula8tr ESS Controller"
+                alt="ECU8TR™ Batter Factory Point Tester"
                 width={500}
                 height={500}
                 quality={70}

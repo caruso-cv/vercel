@@ -66,7 +66,7 @@ export default function HeroNew() {
               alt="energy storage systems"
               fill
               className="object-cover"
-              sizes="(max-width: 600px) 100vw, (max-width: 1200px) 100vw, 100vw"
+              sizes="100vw"
               priority
               quality={50}
             />
@@ -125,7 +125,7 @@ export default function HeroNew() {
               alt="Battery factory point tester robot"
               fill
               className="object-cover"
-              sizes="(max-width: 600px) 100vw, (max-width: 1200px) 100vw, 100vw"
+              sizes="100vw"
               quality={50}
             />
 

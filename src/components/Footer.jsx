@@ -6,7 +6,7 @@ import ENERG8TE from "@/components/logos/ENERG8TE";
 import BackgroundFooter from "@/components/backgrounds/BackgroundFooter";
 import LinkedIn from "@/components/icons/LinkedIn";
 import Link from "next/link";
-import CookieLink from "@/components/cookies/CookieLink.client";
+import CookieLink from "@/components/tools/CookieLink.client";
 
 export default function Footer() {
   return (
