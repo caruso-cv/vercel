@@ -9,7 +9,7 @@ export default function InfineonSections() {
         <div className="relative isolate overflow-hidden bg-gradient-to-b from-gray-900 to-[#090A0B] py-6 text-left shadow-2xl 2xl:rounded-3xl px-8 xl:px-16 mx-6 rounded-2xl 2xl:mx-0">
           <div className="flex md:mb-6 mx-auto max-w-8xl justify-between flex-wrap pb-12 2xl:pb-0">
             <div className="py-8">
-              <Purpose className="w-12 h-auto mb-8" />
+              <Purpose className="w-12 h-auto mb-8" aria-hidden="true" />
               <h3 className="text-white uppercase text-[32px] font-bold leading-[1.2] my-3 max-w-[240px]">
                 Technology Agnostic
               </h3>
@@ -18,7 +18,7 @@ export default function InfineonSections() {
               </p>
             </div>
             <div className="py-8">
-              <Quality className="w-12 h-auto mb-8" />
+              <Quality className="w-12 h-auto mb-8" aria-hidden="true"/>
               <h3 className="text-white uppercase text-[32px] font-bold leading-[1.2] my-3 max-w-[240px]">
                 Command Functions
               </h3>
@@ -27,7 +27,7 @@ export default function InfineonSections() {
               </p>
             </div>
             <div className="py-8">
-              <Parameter className="w-[72px] h-auto mb-8" />
+              <Parameter className="w-[72px] h-auto mb-8" aria-hidden="true"/>
               <h3 className="text-white uppercase text-[32px] font-bold leading-[1.2] my-3 max-w-[240px]">
                 Real-Time Detection
               </h3>

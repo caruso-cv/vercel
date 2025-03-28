@@ -20,7 +20,24 @@ export default function JsonLdProduct() {
             name: "Neutron Controls™"
           },
           sku: "ENERG8TE",
-          mpn: "ENERG8TE-001"
+          mpn: "ENERG8TE-001",
+          additionalProperty: [
+            {
+              "@type": "PropertyValue",
+              name: "Advanced Charging and Discharging Control",
+              value: "Manages charging/discharging cycles with precision to extend battery lifespan and optimize performance."
+            },
+            {
+              "@type": "PropertyValue",
+              name: "Grid Interaction and Compliance",
+              value: "Includes peak shaving, time-of-use management, and reactive power control for compliance and efficiency."
+            },
+            {
+              "@type": "PropertyValue",
+              name: "Energy Source Compatibility",
+              value: "Integrates easily with solar, wind, and grid power for small to large-scale energy systems."
+            }
+          ]
         }),
       }}
     />
