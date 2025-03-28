@@ -12,7 +12,7 @@ export default function HeroMobile() {
           <div>
             <div className="relative isolate overflow-hidden bg-gray-900 min-h-full">
               <Image
-                src="/hero/energy-mobile.webp"
+                src="/hero/energy.webp"
                 alt="energy storage systems"
                 fill
                 className="object-cover"
