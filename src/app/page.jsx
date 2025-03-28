@@ -1,9 +1,10 @@
 import Partners from '@/components/partners/Partners'
 import Slider from '@/components/slider/SliderWrapper'
-import ResponsiveHero from '@/components/hero/ResponsiveHero'
+import Hero from '@/components/hero/Hero'
 import VerticalSlider from '@/components/VerticalSlider'
 import DigitalBackground from '@/components/backgrounds/DigitalBackground'
 import NoiseOverlay from '@/components/backgrounds/NoiseOverlay'
+import HeroMobile from '@/components/hero/HeroMobile'
 import JsonLdProduct from '@/components/hero/JsonLdProduct'
 
 export const metadata = {
@@ -65,7 +66,12 @@ export default function Home() {
       <JsonLdProduct />
       <main>
         <div className="lg:h-full relative overflow-x-hidden bg-[#090A0B]">
-          <ResponsiveHero />
+          <div className="hidden lg:block">
+            <Hero />
+          </div>
+          <div className="lg:hidden">
+            <HeroMobile />
+          </div>
         </div>
         <div className="lg:pt-24 lg:py-24 pt-4 overflow-x-hidden relative bg-white">
           <div className='relative z-30 '>
