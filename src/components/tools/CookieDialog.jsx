@@ -188,6 +188,15 @@ export default function CookieDialog({
         <div
           className={sectionContainerClasses}
           onClick={() => setPerformanceOpen(!performanceOpen)}
+          role="button"
+          aria-expanded={performanceOpen}
+          aria-controls="performance-description"
+          tabIndex={0}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              setPerformanceOpen(!performanceOpen)
+            }
+          }}
         >
           <div className="flex items-center justify-between px-4 py-2">
             <div className="flex items-center">
@@ -209,6 +218,7 @@ export default function CookieDialog({
               checked={performanceCookies}
               onChange={setPerformanceCookies}
               className={getSwitchClasses(performanceCookies)}
+              aria-label="Toggle performance cookies"
               onClick={(e) => e.stopPropagation()}
             >
               <span
@@ -223,6 +233,7 @@ export default function CookieDialog({
           <AnimatePresence>
             {performanceOpen && (
               <motion.div
+                id="performance-description"
                 className="px-4 pb-2"
                 variants={dropVariants}
                 initial="hidden"
@@ -242,6 +253,15 @@ export default function CookieDialog({
         <div
           className={sectionContainerClasses}
           onClick={() => setFunctionalOpen(!functionalOpen)}
+          role="button"
+          aria-expanded={functionalOpen}
+          aria-controls="functional-description"
+          tabIndex={0}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              setFunctionalOpen(!functionalOpen)
+            }
+          }}
         >
           <div className="flex items-center justify-between px-4 py-2">
             <div className="flex items-center">
@@ -263,6 +283,7 @@ export default function CookieDialog({
               checked={functionalCookies}
               onChange={setFunctionalCookies}
               className={getSwitchClasses(functionalCookies)}
+              aria-label="Toggle functional cookies"
               onClick={(e) => e.stopPropagation()}
             >
               <span
@@ -277,6 +298,7 @@ export default function CookieDialog({
           <AnimatePresence>
             {functionalOpen && (
               <motion.div
+                id="functional-description"
                 className="px-4 pb-2"
                 variants={dropVariants}
                 initial="hidden"
@@ -296,6 +318,15 @@ export default function CookieDialog({
         <div
           className={sectionContainerClasses}
           onClick={() => setNecessaryOpen(!necessaryOpen)}
+          role="button"
+          aria-expanded={necessaryOpen}
+          aria-controls="necessary-description"
+          tabIndex={0}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              setNecessaryOpen(!necessaryOpen)
+            }
+          }}
         >
           <div className="flex items-center justify-between px-4 py-2">
             <div className="flex items-center">
@@ -318,6 +349,7 @@ export default function CookieDialog({
                 checked={true}
                 onChange={() => {}}
                 className="group relative inline-flex h-6 w-11 shrink-0 cursor-not-allowed rounded-full border-2 border-transparent bg-[#425ACA]"
+                aria-label="Strictly necessary cookies (always enabled)"
                 onClick={(e) => e.stopPropagation()}
               >
                 <span
@@ -330,6 +362,7 @@ export default function CookieDialog({
           <AnimatePresence>
             {necessaryOpen && (
               <motion.div
+                id="necessary-description"
                 className="px-4 pb-2"
                 variants={dropVariants}
                 initial="hidden"
@@ -349,6 +382,15 @@ export default function CookieDialog({
         <div
           className={sectionContainerClasses}
           onClick={() => setTargetingOpen(!targetingOpen)}
+          role="button"
+          aria-expanded={targetingOpen}
+          aria-controls="targeting-description"
+          tabIndex={0}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              setTargetingOpen(!targetingOpen)
+            }
+          }}
         >
           <div className="flex items-center justify-between px-4 py-2">
             <div className="flex items-center">
@@ -370,6 +412,7 @@ export default function CookieDialog({
               checked={targetingCookies}
               onChange={setTargetingCookies}
               className={getSwitchClasses(targetingCookies)}
+              aria-label="Toggle targeting cookies"
               onClick={(e) => e.stopPropagation()}
             >
               <span
@@ -384,6 +427,7 @@ export default function CookieDialog({
           <AnimatePresence>
             {targetingOpen && (
               <motion.div
+                id="targeting-description"
                 className="px-4 pb-2"
                 variants={dropVariants}
                 initial="hidden"

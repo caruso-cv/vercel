@@ -48,7 +48,7 @@ export default function ProductPage() {
             </div>
 
             {/* Text Section */}
-            <div className="xl:max-w-[50vw] mx-auto xl:w-2/3 text-left px-6 2xl:px-0 flex" aria-labelledby="about-heading">
+            <div className="xl:max-w-[50vw] mx-auto xl:w-2/3 text-left px-6 2xl:px-0 flex">
               <div className="text-left pt-12 xl:pt-0 ">
                 <h2 className=" text-2xl sm:text-4xl font-bold xl:mb-6 mb-4 ">
                   ABOUT ENERG8TE™
@@ -96,7 +96,6 @@ export default function ProductPage() {
         animate={imageLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
         transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
         className="max-w-8xl w-full mx-auto text-black pt-20 lg:pt-24 pb-20 px-6 2xl:px-0"
-        aria-labelledby="specs-heading"
       >
         <h2 className=" text-2xl sm:text-4xl font-bold mb-10 ">
           SPECIFICATIONS
