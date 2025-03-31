@@ -1,5 +1,5 @@
 import Contact from "@/components/contact/Contact";
-import JsonLdContactPage from "@/components/schema/JsonLdContactPage"
+import JsonLdContactPage from "@/components/contact/JsonLdContactPage"
 
 export const metadata = {
   title: 'Contact Us | Get in touch',

@@ -12,8 +12,6 @@ import Bullets from "@/components/solutions/elev8tr/Elev8trBullet";
 export default function ProductPage() {
   // State to track when the main image has loaded
   const [imageLoaded, setImageLoaded] = useState(false);
-  // Calculate aspect ratio percentage for the image placeholder
-  const aspectRatio = (1145 / 1916) * 100;
 
   return (
     <div className="relative min-h-screen">
@@ -36,18 +34,16 @@ export default function ProductPage() {
 
           {/* Main image for mobile */}
           <div className="flex justify-center sm:justify-start item-start align-left self-start  xl:mb-0 xl:hidden">
-              <div className="relative w-full xs:max-w-xl z-30 mt-8">
-                {/* Invisible placeholder to reserve space until the image loads */}
-                {!imageLoaded && <div style={{ paddingBottom: `${aspectRatio}%` }} />}
+              <div className="w-full z-30 mt-8">
                 <Image
                   src="/vertical/elev8tr.webp"
                   alt="ELEV8TR™ Battery Algorithm Simulator"
-                  width={1916}
-                  height={1145}
+                  width={960}
+                  height={574}
                   quality={70}
                   priority
                   onLoad={() => setImageLoaded(true)}
-                  className={`w-full h-auto ${!imageLoaded ? "invisible" : "visible"}`}
+                  className="w-full h-auto"
                 />
               </div>
             </div>
@@ -78,18 +74,16 @@ export default function ProductPage() {
 
             {/* Main Image for desktop */}
             <div className="justify-center mb-6 xl:mb-0 hidden xl:flex">
-              <div className="relative w-full xs:max-w-xs xl:max-w-3xl z-30">
-                {/* Invisible placeholder to reserve space until the image loads */}
-                {!imageLoaded && <div style={{ paddingBottom: `${aspectRatio}%` }} />}
+              <div className="w-full xs:max-w-xs xl:max-w-3xl z-30">
                 <Image
                   src="/vertical/elev8tr.webp"
                   alt="ELEV8TR™ Battery Algorithm Simulator"
-                  width={1916}
-                  height={1145}
+                  width={960}
+                  height={574}
                   quality={70}
                   priority
                   onLoad={() => setImageLoaded(true)}
-                  className={`w-full h-auto ${!imageLoaded ? "invisible" : "visible"}`}
+                  className="w-full h-auto"
                 />
               </div>
             </div>     
@@ -98,8 +92,14 @@ export default function ProductPage() {
       </section>
 
       {/* Static SPECIFICATIONS Section */}
-      <section className="max-w-8xl w-full mx-auto text-black pt-20 lg:pt-24 pb-20 px-6 2xl:px-0" aria-labelledby="specs-heading">
-        <h2 className=" text-2xl sm:text-4xl font-bold mb-10 ">
+      <motion.section
+        initial={{ opacity: 0, y: 30 }}
+        animate={imageLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+        transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
+        className="max-w-8xl w-full mx-auto text-black pt-20 lg:pt-24 pb-20 px-6 2xl:px-0"
+        aria-labelledby="specs-heading"
+      >
+        <h2 className=" text-2xl smotion.div font-bold mb-10 ">
           SPECIFICATIONS
         </h2>
         <div className="border-2 border-[#2F79F8] rounded-md overflow-hidden">
@@ -127,7 +127,7 @@ export default function ProductPage() {
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       <Bullets />
       <DigitalBackground />

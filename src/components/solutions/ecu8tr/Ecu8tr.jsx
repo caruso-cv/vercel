@@ -36,21 +36,19 @@ export default function ProductPage() {
 
           {/* Main image for mobile */}
           <div className="flex justify-center sm:justify-start item-start align-left self-start xl:mb-0 xl:hidden">
-              <div className="relative w-full z-30 mt-8">
-                {/* Invisible placeholder to reserve space until the image loads */}
-                {!imageLoaded && <div style={{ paddingBottom: `${aspectRatio}%` }} />}
-                <Image
-                  src="/vertical/ecu8tr-mobile.webp"
-                  alt="ECU8TR™ Battery Factory Point Tester"
-                  width={500}
-                  height={500}
-                  quality={70}
-                  priority
-                  onLoad={() => setImageLoaded(true)}
-                  className={`w-full h-auto ${!imageLoaded ? "invisible" : "visible"}`}
-                />
-              </div>
+            <div className="w-full z-30 mt-8">
+              <Image
+                src="/vertical/ecu8tr-mobile.webp"
+                alt="ECU8TR™ Battery Factory Point Tester"
+                width={960}
+                height={574}
+                quality={70}
+                priority
+                onLoad={() => setImageLoaded(true)}
+                className="w-full h-auto"
+              />
             </div>
+          </div>
 
             {/* Text Section */}
             <div className=" text-left px-6 2xl:px-0 flex">
@@ -78,18 +76,17 @@ export default function ProductPage() {
 
             {/* Main Image for desktop */}
             <div className="justify-center mb-6 xl:mb-0 hidden xl:flex">
-              <div className="relative w-full xs:max-w-xs xl:max-w-3xl z-30 aspect-[1916/1145]">
-                {/* Invisible placeholder to reserve space until the image loads */}
-                {!imageLoaded && <div style={{ paddingBottom: `${aspectRatio}%` }} />}
+              <div className="w-full xs:max-w-xs xl:max-w-2xl z-30">
+                {!imageLoaded && <div className="absolute inset-0 bg-white" />}
                 <Image
                   src="/vertical/ecu8tr.webp"
-                  alt="ECU8TR™ Batter Factory Point Tester"
-                  width={500}
-                  height={500}
+                  alt="ECU8TR™ Battery Factory Point Tester"
+                  width={960}
+                  height={574}
                   quality={70}
                   priority
                   onLoad={() => setImageLoaded(true)}
-                  className={`w-full h-auto ${!imageLoaded ? "invisible" : "visible"}`}
+                  className="w-full h-auto"
                 />
               </div>
             </div>
@@ -98,7 +95,13 @@ export default function ProductPage() {
       </section>
 
       {/* Static SPECIFICATIONS Section */}
-      <section className="max-w-8xl w-full mx-auto text-black pt-20 lg:pt-24 pb-20 px-6 2xl:px-0" aria-labelledby="specs-heading">
+      <motion.section
+        initial={{ opacity: 0, y: 30 }}
+        animate={imageLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+        transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
+        className="max-w-8xl w-full mx-auto text-black pt-20 lg:pt-24 pb-20 px-6 2xl:px-0"
+        aria-labelledby="specs-heading"
+      >
         <h2 className=" text-2xl sm:text-4xl font-bold mb-10" id="specs-heading">
           SPECIFICATIONS
         </h2>
@@ -151,7 +154,7 @@ export default function ProductPage() {
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       <Bullets />
       <DigitalBackground />

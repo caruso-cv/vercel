@@ -1,5 +1,5 @@
 import Careers from "@/components/careers/Careers";
-import JsonLdCareersPage from "@/components/schema/JsonLdCareersPage";
+import JsonLdCareersPage from "@/components/careers/JsonLdCareersPage";
 
 export const metadata = {
   title: 'Careers | Become a Neutron',
