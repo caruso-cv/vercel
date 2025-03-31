@@ -9,19 +9,21 @@ export default function useReCaptcha(siteKey) {
     }
 
     const scriptId = 'recaptcha-v3'
-    let script = document.getElementById(scriptId)
-
-    if (!script) {
-      script = document.createElement('script')
-      script.id = scriptId
-      script.src = `https://www.google.com/recaptcha/api.js?render=${siteKey}`
-      script.async = true
-      document.body.appendChild(script)
+    if (document.getElementById(scriptId)) {
+      console.warn('⚠️ reCAPTCHA script already present, skipping inject.')
+      return
     }
 
-    const badgeObserver = new MutationObserver((mutations) => {
+    const script = document.createElement('script')
+    script.id = scriptId
+    script.src = `https://www.google.com/recaptcha/api.js?render=${siteKey}`
+    script.async = true
+    document.body.appendChild(script)
+
+    const observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
         mutation.addedNodes.forEach((node) => {
+          // Style reCAPTCHA badge
           if (
             node.nodeType === 1 &&
             node.classList.contains('grecaptcha-badge')
@@ -37,23 +39,35 @@ export default function useReCaptcha(siteKey) {
       })
     })
 
-    badgeObserver.observe(document.body, { childList: true, subtree: true })
+    observer.observe(document.body, { childList: true, subtree: true })
+
+    // Fix missing form label warning for hidden g-recaptcha input
+    const fixInvisibleCaptchaInputs = () => {
+      const inputs = document.querySelectorAll('input[name="g-recaptcha-response"]')
+      inputs.forEach((input) => {
+        input.setAttribute('aria-hidden', 'true')
+        input.setAttribute('tabindex', '-1')
+        input.setAttribute('role', 'presentation')
+      })
+    }
+
+    // Run fix repeatedly for 5 seconds while reCAPTCHA loads
+    const interval = setInterval(fixInvisibleCaptchaInputs, 500)
+    setTimeout(() => clearInterval(interval), 5000)
 
     return () => {
-      badgeObserver.disconnect()
+      observer.disconnect()
 
       const script = document.getElementById(scriptId)
       if (script) script.remove()
 
       const badge = document.querySelector('.grecaptcha-badge')
-      if (badge && badge.parentNode) {
-        badge.parentNode.removeChild(badge)
-      }
+      if (badge?.parentNode) badge.parentNode.removeChild(badge)
 
       const noscript = document.querySelector('noscript')
-      if (noscript && noscript.parentNode) {
-        noscript.parentNode.removeChild(noscript)
-      }
+      if (noscript?.parentNode) noscript.parentNode.removeChild(noscript)
+
+      fixInvisibleCaptchaInputs() // Cleanup just in case
     }
   }, [siteKey])
 }
