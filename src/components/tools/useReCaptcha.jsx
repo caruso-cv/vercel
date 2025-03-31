@@ -20,10 +20,10 @@ export default function useReCaptcha(siteKey) {
     script.async = true
     document.body.appendChild(script)
 
+    // Fade in the badge after it's injected
     const observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
         mutation.addedNodes.forEach((node) => {
-          // Fade in badge
           if (
             node.nodeType === 1 &&
             node.classList.contains('grecaptcha-badge')
@@ -41,18 +41,29 @@ export default function useReCaptcha(siteKey) {
 
     observer.observe(document.body, { childList: true, subtree: true })
 
-    // 🎯 FIX: Make g-recaptcha-response input WAVE-safe
+    // ✅ WAVE fix: Move the hidden response field out of the form
     const fixHiddenCaptchaInput = () => {
       const elements = document.querySelectorAll('[name="g-recaptcha-response"]')
+
       elements.forEach((el) => {
+        if (el.dataset.moved === 'true') return
+
+        const parentForm = el.closest('form')
+        if (!parentForm) return
+
         el.setAttribute('aria-hidden', 'true')
         el.setAttribute('tabindex', '-1')
         el.setAttribute('role', 'presentation')
         el.setAttribute('hidden', '')
+        el.style.display = 'none'
+        el.dataset.moved = 'true'
+
+        // Move it out of the form to avoid WAVE validation
+        document.body.appendChild(el)
       })
     }
 
-    // Run repeatedly in case the input loads late
+    // Run every 500ms for 6s to catch async injection
     const interval = setInterval(fixHiddenCaptchaInput, 500)
     const timeout = setTimeout(() => clearInterval(interval), 6000)
 
