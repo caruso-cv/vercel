@@ -17,22 +17,18 @@ export default function ApplyModal({ isOpen, onClose, showNotification }) {
 
   const defaultPosition = jobOptions.length > 0 ? jobOptions[0].name : ''
 
-  // Local state for form fields
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
     position: defaultPosition,
-    coverLetter: null,  // optional
-    resume: null,       // required, max 5MB
+    coverLetter: null,
+    resume: null,
   })
 
-  // Validation errors
   const [errors, setErrors] = useState({})
-  // Loading state for the submit button
   const [isSubmitting, setIsSubmitting] = useState(false)
 
-  // For dynamic job descriptions
   const selectedJob = jobOptions.find((job) => job.name === formData.position)
 
   const handleChange = (e) => {
@@ -44,7 +40,6 @@ export default function ApplyModal({ isOpen, onClose, showNotification }) {
     }
   }
 
-  // Basic validation
   const validateForm = (data) => {
     const newErrors = {}
     if (!data.name) newErrors.name = 'Required *'
@@ -78,7 +73,6 @@ export default function ApplyModal({ isOpen, onClose, showNotification }) {
     setErrors({})
     setIsSubmitting(true)
 
-    // Validate fields
     const validationErrors = validateForm(formData)
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors)
@@ -86,7 +80,26 @@ export default function ApplyModal({ isOpen, onClose, showNotification }) {
       return
     }
 
-    // Build FormData
+    let recaptchaToken
+    try {
+      await new Promise((resolve) => {
+        window.grecaptcha.ready(resolve)
+      })
+      recaptchaToken = await window.grecaptcha.execute(
+        process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY,
+        { action: 'submit' }
+      )
+    } catch (err) {
+      console.error('reCAPTCHA error', err)
+      showNotification?.({
+        type: 'error',
+        title: 'reCAPTCHA failed',
+        message: 'Please try again later.',
+      })
+      setIsSubmitting(false)
+      return
+    }
+
     const data = new FormData()
     data.append('name', formData.name)
     data.append('email', formData.email)
@@ -98,7 +111,6 @@ export default function ApplyModal({ isOpen, onClose, showNotification }) {
     data.append('resume', formData.resume)
     data.append('captchaToken', recaptchaToken)
 
-    // POST request
     try {
       const response = await fetch('/api/careers', {
         method: 'POST',
@@ -111,7 +123,7 @@ export default function ApplyModal({ isOpen, onClose, showNotification }) {
           title: 'Application submitted!',
           message: 'Thanks for applying at Neutron Controls!',
         })
-        // Reset form
+
         setFormData({
           name: '',
           email: '',
@@ -135,7 +147,6 @@ export default function ApplyModal({ isOpen, onClose, showNotification }) {
         message: 'An unexpected error occurred. Please try again.',
       })
     } finally {
-      // Always close the modal after submission attempt
       onClose()
       setIsSubmitting(false)
     }
@@ -149,10 +160,7 @@ export default function ApplyModal({ isOpen, onClose, showNotification }) {
           <form onSubmit={handleSubmit} className="space-y-4">
             {/* Name */}
             <div>
-              <label
-                htmlFor="name"
-                className="block text-[0.875rem] leading-[1.25rem] font-medium text-gray-700"
-              >
+              <label htmlFor="name" className="block text-sm font-medium text-gray-700">
                 Name
               </label>
               <input
@@ -170,10 +178,7 @@ export default function ApplyModal({ isOpen, onClose, showNotification }) {
 
             {/* Email */}
             <div>
-              <label
-                htmlFor="email"
-                className="block text-[0.875rem] leading-[1.25rem] font-medium text-gray-700"
-              >
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
                 Email
                 {errors.email && errors.email !== 'Required *' && (
                   <span className="ml-2 text-red-400">({errors.email})</span>
@@ -194,10 +199,7 @@ export default function ApplyModal({ isOpen, onClose, showNotification }) {
 
             {/* Phone */}
             <div>
-              <label
-                htmlFor="phone"
-                className="block text-[0.875rem] leading-[1.25rem] font-medium text-gray-700"
-              >
+              <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
                 Phone Number
                 {errors.phone && errors.phone !== 'Required *' && (
                   <span className="ml-2 text-red-400">({errors.phone})</span>
@@ -218,10 +220,7 @@ export default function ApplyModal({ isOpen, onClose, showNotification }) {
 
             {/* Position */}
             <div>
-              <label
-                htmlFor="position"
-                className="block text-[0.875rem] leading-[1.25rem] font-medium text-gray-700"
-              >
+              <label htmlFor="position" className="block text-sm font-medium text-gray-700">
                 Position
               </label>
               <select
@@ -229,7 +228,7 @@ export default function ApplyModal({ isOpen, onClose, showNotification }) {
                 name="position"
                 value={formData.position}
                 onChange={handleChange}
-                className="mt-1 block w-full border border-gray-300 rounded-md p-2 pr-12 appearance-none md:mb-4"
+                className="mt-1 block w-full border border-gray-300 rounded-md p-2 pr-12 appearance-none"
                 style={{ backgroundPosition: 'right 1rem center' }}
               >
                 {jobOptions.map((job) => (
@@ -239,13 +238,11 @@ export default function ApplyModal({ isOpen, onClose, showNotification }) {
                 ))}
               </select>
               {selectedJob?.description && (
-                <div className="mt-2 text-[0.875rem] leading-[1.25rem] text-gray-600 md:pb-4">
-                  {selectedJob.description}
-                </div>
+                <div className="mt-2 text-sm text-gray-600">{selectedJob.description}</div>
               )}
             </div>
 
-            {/* Cover Letter (Optional) */}
+            {/* Cover Letter */}
             <div>
               <FileInput
                 id="coverLetter"
@@ -256,7 +253,7 @@ export default function ApplyModal({ isOpen, onClose, showNotification }) {
               />
             </div>
 
-            {/* Resume (Required) */}
+            {/* Resume */}
             <div>
               <FileInput
                 id="resume"
@@ -272,31 +269,29 @@ export default function ApplyModal({ isOpen, onClose, showNotification }) {
                   {errors.resume}
                 </p>
               )}
-          </div>
+            </div>
 
             {/* Buttons */}
             <div className="flex justify-end gap-3 mt-2">
               <button
                 type="button"
                 onClick={onClose}
-                className="uppercase rounded-md text-[0.875rem] leading-[1.25rem] px-4 py-2 text-black/70 font-semibold hover:bg-gray-100"
+                className="uppercase rounded-md text-sm px-4 py-2 text-black/70 font-semibold hover:bg-gray-100"
               >
                 Cancel
               </button>
-
-              {/* If isSubmitting is true, show a spinner instead */}
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className={`rounded-md uppercase px-3.5 py-2.5 text-[0.875rem] leading-[1.25rem] font-semibold text-white shadow-sm ${
+                className={`rounded-md uppercase px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm ${
                   isSubmitting ? 'bg-indigo-500 opacity-70 cursor-not-allowed' : 'bg-[#425ACA] hover:bg-indigo-500'
                 }`}
               >
                 {isSubmitting ? (
                   <span className="flex items-center">
-                  <span className="mr-2">Submitting...</span>
-                  <span className="w-4 h-4 border-2 border-indigo-200 border-t-transparent rounded-full animate-spin" />
-                </span>
+                    <span className="mr-2">Submitting...</span>
+                    <span className="w-4 h-4 border-2 border-indigo-200 border-t-transparent rounded-full animate-spin" />
+                  </span>
                 ) : (
                   <>
                     Submit <span aria-hidden="true">&rarr;</span>
