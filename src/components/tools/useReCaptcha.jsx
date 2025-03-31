@@ -23,7 +23,7 @@ export default function useReCaptcha(siteKey) {
     const observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
         mutation.addedNodes.forEach((node) => {
-          // Style reCAPTCHA badge
+          // Fade in badge
           if (
             node.nodeType === 1 &&
             node.classList.contains('grecaptcha-badge')
@@ -41,23 +41,25 @@ export default function useReCaptcha(siteKey) {
 
     observer.observe(document.body, { childList: true, subtree: true })
 
-    // Fix missing form label warning for hidden g-recaptcha input
-    const fixInvisibleCaptchaInputs = () => {
-      const inputs = document.querySelectorAll('input[name="g-recaptcha-response"]')
-      inputs.forEach((input) => {
-        input.setAttribute('aria-hidden', 'true')
-        input.setAttribute('tabindex', '-1')
-        input.setAttribute('role', 'presentation')
-        input.setAttribute('style', 'display:none !important')
+    // 🎯 FIX: Make g-recaptcha-response input WAVE-safe
+    const fixHiddenCaptchaInput = () => {
+      const elements = document.querySelectorAll('[name="g-recaptcha-response"]')
+      elements.forEach((el) => {
+        el.setAttribute('aria-hidden', 'true')
+        el.setAttribute('tabindex', '-1')
+        el.setAttribute('role', 'presentation')
+        el.setAttribute('style', 'display: none !important;')
       })
     }
 
-    // Run fix repeatedly for 5 seconds while reCAPTCHA loads
-    const interval = setInterval(fixInvisibleCaptchaInputs, 500)
-    setTimeout(() => clearInterval(interval), 5000)
+    // Run repeatedly in case the input loads late
+    const interval = setInterval(fixHiddenCaptchaInput, 500)
+    const timeout = setTimeout(() => clearInterval(interval), 6000)
 
     return () => {
       observer.disconnect()
+      clearInterval(interval)
+      clearTimeout(timeout)
 
       const script = document.getElementById(scriptId)
       if (script) script.remove()
@@ -67,8 +69,6 @@ export default function useReCaptcha(siteKey) {
 
       const noscript = document.querySelector('noscript')
       if (noscript?.parentNode) noscript.parentNode.removeChild(noscript)
-
-      fixInvisibleCaptchaInputs() // Cleanup just in case
     }
   }, [siteKey])
 }
