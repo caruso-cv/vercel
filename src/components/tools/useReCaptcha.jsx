@@ -48,6 +48,7 @@ export default function useReCaptcha(siteKey) {
         input.setAttribute('aria-hidden', 'true')
         input.setAttribute('tabindex', '-1')
         input.setAttribute('role', 'presentation')
+        input.setAttribute('style', 'display:none !important')
       })
     }
 
