@@ -48,7 +48,7 @@ export default function useReCaptcha(siteKey) {
         el.setAttribute('aria-hidden', 'true')
         el.setAttribute('tabindex', '-1')
         el.setAttribute('role', 'presentation')
-        el.setAttribute('style', 'display: none !important;')
+        el.setAttribute('hidden', '')
       })
     }
 
