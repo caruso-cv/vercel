@@ -7,7 +7,7 @@ import Quality from '@/components/icons/QualityIcon'
 
 export default function InfineonSections() {
   return (
-    <div className="bg-gradient-to-b from-gray-900 ">
+    <section className="bg-gradient-to-b from-gray-900 ">
       <div className="mx-auto max-w-8xl lg:pb-12 px-6 2xl:px-0">
         <p className="text-lg font-semibold text-[#425ACA] lg:text-xl">
           We're commited to our
@@ -33,7 +33,7 @@ export default function InfineonSections() {
                   />
                   <Image
                     src="/logo/Orion9001.webp"
-                    alt="Certification Badge"
+                    alt="Orion9001 Certification Badge"
                     width={250}
                     height={250}
                     priority
@@ -43,9 +43,9 @@ export default function InfineonSections() {
                 <div className="pointer-events-none absolute inset-px rounded-lg shadow ring-1 ring-black/5 lg:rounded-tl-[2rem]" />
               </motion.div>
               <div className="p-6 xs:p-10">
-                <p className="mt-2 text-[1.10rem] leading-[1.65rem] font-bold tracking-tight text-white uppercase ">
+                <h3 className="mt-2 text-[1.10rem] leading-[1.65rem] font-bold tracking-tight text-white uppercase ">
                   Quality
-                </p>
+                </h3>
                 <p className="mt-2 text-[1.10rem] leading-[1.65rem] text-gray-300 font-medium ">
                   Equally, its ISO9001 certification affirms Neutron Controls’ dedication to quality, maintaining high operational standards that consistently satisfy customers, shareholders, and other key stakeholders.
                 </p>
@@ -70,7 +70,7 @@ export default function InfineonSections() {
                   />
                   <Image
                     src="/logo/Orion14001.webp"
-                    alt="Certification Badge"
+                    alt="Orion14001 Certification Badge"
                     width={250}
                     height={250}
                     priority
@@ -80,9 +80,9 @@ export default function InfineonSections() {
                 <div className="pointer-events-none absolute inset-px rounded-lg shadow ring-1 ring-black/5 lg:rounded-tr-[2rem]" />
               </motion.div>
               <div className="p-6 xs:p-10">
-                <p className="mt-2 text-[1.10rem] leading-[1.65rem] font-bold tracking-tight text-white uppercase">
+                <h3 className="mt-2 text-[1.10rem] leading-[1.65rem] font-bold tracking-tight text-white uppercase">
                   Environmental
-                </p>
+                </h3>
                 <p className="mt-2 text-[1.10rem] leading-[1.65rem] text-gray-300 font-medium">
                   Neutron Controls shows its commitment to sustainability with ISO14001 certification, ensuring its operations not only meet environmental standards but also support stakeholder needs.
                 </p>
@@ -92,6 +92,6 @@ export default function InfineonSections() {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

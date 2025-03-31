@@ -23,32 +23,26 @@ const features = [
 ];
 
 export default function InfineonSection() {
-  // 1) All hooks are declared at the top (so they always run in the same order).
   const [hasMounted, setHasMounted] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const infineonRef = useRef(null);
 
-  // 2) On the very first effect, mark that we've mounted. We do nothing else yet.
   useEffect(() => {
     setHasMounted(true);
   }, []);
 
-  // 3) In a second effect, only run once we know we’re mounted, to avoid SSR mismatch.
   useEffect(() => {
     if (!hasMounted) return;
 
-    // Now we can safely check window.innerWidth
     const mobile = window.innerWidth < 768;
     setIsMobile(mobile);
 
-    // If on mobile, show the section statically (no animations).
     if (mobile) {
       setIsVisible(true);
       return;
     }
 
-    // On desktop, observe intersection for “animate in” behavior.
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -65,19 +59,16 @@ export default function InfineonSection() {
     return () => observer.disconnect();
   }, [hasMounted]);
 
-  // If not mounted yet, return nothing — but we’ve still run the same number of hooks
   if (!hasMounted) {
     return null;
   }
 
-  // Transition classes only apply on desktop
   const transitionClasses = !isMobile ? 'transition-all duration-1000' : '';
   const opacityTransitionClasses = !isMobile ? 'transition-opacity duration-1000' : {};
   const gradientStyle = !isMobile ? { transitionDelay: '0ms' } : {};
   const svgStyle = !isMobile ? { transitionDelay: '200ms' } : {};
   const logoStyle = !isMobile ? { transitionDelay: '200ms' } : {};
 
-  // Force static (fully visible) on mobile; animate if isVisible on desktop
   const visibilityClasses = isMobile || isVisible
     ? 'opacity-100 translate-y-0'
     : 'opacity-0 translate-y-10';
@@ -86,10 +77,10 @@ export default function InfineonSection() {
     <div ref={infineonRef} className="bg-gradient-to-b from-gray-900 py-24 sm:py-32">
       <div className="mx-auto max-w-8xl px-6 2xl:px-0">
         <div className="mx-auto max-w-2xl sm:text-center lg:max-w-3xl">
-          <h2 className="text-lg font-semibold text-[#425ACA] lg:text-2xl">Custom design</h2>
-          <p className="mt-2 uppercase lg:mt-6 text-pretty text-4xl font-bold text-white sm:text-balance sm:text-[43.2px] md:mt-4 leading-[1.1]">
+          <p className="text-lg font-semibold text-[#425ACA] lg:text-2xl">Custom design</p>
+          <h2 className="mt-2 uppercase lg:mt-6 text-pretty text-4xl font-bold text-white sm:text-balance sm:text-[43.2px] md:mt-4 leading-[1.1]">
             Infineon's Premier Design House
-          </p>
+          </h2>
           <p className="mt-6 text-gray-300 text-[1.25rem] leading-[1.75rem] md:mt-8">
             Unlock your design potential with Neutron Controls, your Infineon Premier Design House for North America.
           </p>
@@ -99,13 +90,11 @@ export default function InfineonSection() {
       <div className="relative py-16 md:py-20">
         <div className="mx-auto flex max-w-8xl justify-center px-6 2xl:px-0">
           <div className="relative w-[342px] h-[343px]">
-            {/* Gradient Shadow Effect */}
             <div
               className={`absolute inset-0 bg-gradient-to-tr from-[#4DE9FE] to-[#0419AE] blur-2xl ${visibilityClasses} ${opacityTransitionClasses}`}
               style={gradientStyle}
             ></div>
 
-            {/* Computer Chip SVG */}
             <svg
               viewBox="0 0 342 344"
               fill="none"
@@ -122,15 +111,11 @@ export default function InfineonSection() {
               <rect width="342" height="343" fill="url(#gradient)" />
             </svg>
 
-            {/* Centered container for logo and text */}
             <div
               className={`absolute inset-0 flex flex-col items-center justify-center ${visibilityClasses} ${transitionClasses}`}
               style={logoStyle}
             >
               <InfineonLogo className="w-60 h-auto text-white" />
-              {/* <p className="mt-6 text-4xl font-semibold bg-gradient-to-tr from-[#4DE9FE] to-[#0419AE] bg-clip-text text-transparent opacity-70">
-                TriCore
-              </p> */}
             </div>
           </div>
         </div>

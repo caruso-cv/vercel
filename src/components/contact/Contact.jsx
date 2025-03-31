@@ -1,9 +1,13 @@
 'use client'
 import { useEffect } from 'react'
-import ReCaptchaProvider from '@/components/contact/ReCaptchaProvider'
+import useReCaptcha from '@/components/tools/useReCaptcha'
 import ContactForm from '@/components/contact/ContactForm'
 
 export default function Contact() {
+  const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY
+
+  useReCaptcha(siteKey)
+
   useEffect(() => {
     document.body.classList.add('contact-page')
     return () => {
@@ -11,9 +15,5 @@ export default function Contact() {
     }
   }, [])
 
-  return (
-      <ReCaptchaProvider>
-        <ContactForm />
-      </ReCaptchaProvider>
-  )
+  return <ContactForm />
 }

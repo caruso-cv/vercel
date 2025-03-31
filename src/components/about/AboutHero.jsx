@@ -52,7 +52,7 @@ export default function Example() {
           className="aspect-[1097/845] w-[68.5625rem] bg-gradient-to-tr from-[#4652ff] to-[#776fff] opacity-20"
         />
       </div>
-      <div className="mx-auto max-w-8xl px-6 2xl:px-0">
+      <section className="mx-auto max-w-8xl px-6 2xl:px-0">
         <div className="mx-auto max-w-3xl 2xl:max-w-3xl lg:mx-0">
           <h1 className="font-bold text-white text-5xl sm:text-6xl uppercase">Our Story</h1>
           <p className="mt-8 text-pretty text-xl sm:text-2xl font-medium text-gray-300 ">
@@ -64,13 +64,13 @@ export default function Example() {
             <div key={card.name} className="flex gap-x-4 rounded-xl bg-white/5 p-6 ring-1 ring-inset ring-white/10">
               <card.icon aria-hidden="true" className="h-7 w-5 flex-none text-indigo-400" />
               <div className="text-[1.10rem] leading-[1.65rem]">
-                <p className="font-semibold text-white">{card.name}</p>
+                <h2 className="font-semibold text-white">{card.name}</h2>
                 <p className="mt-2 text-gray-300 ">{card.description}</p>
               </div>
             </div>
           ))}
         </div>
-      </div>
+      </section>
     </div>
   )
 }

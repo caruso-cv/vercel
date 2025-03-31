@@ -1,7 +1,6 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import { useGoogleReCaptcha } from 'react-google-recaptcha-v3'
 import Notification from '@/components/contact/Notifications'
 import { BuildingOffice2Icon } from '@heroicons/react/24/outline'
 
@@ -13,16 +12,12 @@ export default function ContactForm() {
     title: '',
     message: '',
   })
-  // Track loading state for the submit
   const [isSubmitting, setIsSubmitting] = useState(false)
 
-  // Ensure the document body gets the proper class
   useEffect(() => {
     document.body.classList.add('contact-page')
     return () => document.body.classList.remove('contact-page')
   }, [])
-
-  const { executeRecaptcha } = useGoogleReCaptcha()
 
   function showNotification(type, title, message) {
     setNotif({ show: true, type, title, message })
@@ -56,10 +51,7 @@ export default function ContactForm() {
 
     try {
       const honeypot = event.target.honeypot.value
-      if (honeypot) {
-        // If the honeypot is filled, it's likely spam; stop processing
-        return
-      }
+      if (honeypot) return
 
       const formData = new FormData(event.target)
       formData.delete('honeypot')
@@ -71,20 +63,23 @@ export default function ContactForm() {
         return
       }
 
-      // Obtain reCAPTCHA token
+      // 👇 reCAPTCHA Token using grecaptcha global
       let recaptchaToken = ''
-      if (executeRecaptcha) {
+      if (window.grecaptcha && window.grecaptcha.execute) {
         try {
-          recaptchaToken = await executeRecaptcha('contact_form')
+          recaptchaToken = await window.grecaptcha.execute(
+            process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY,
+            { action: 'contact_form' }
+          )
         } catch (err) {
           console.error('reCAPTCHA error:', err)
         }
       } else {
-        console.error('executeRecaptcha is not available at submission time.')
+        console.error('grecaptcha not available on submit')
       }
+
       data.captchaToken = recaptchaToken
 
-      // Send data to API
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

@@ -32,9 +32,9 @@ export const metadata = {
     'BESS',
   ],
   openGraph: {
-    title: 'Neutron Controls – Energy Storage Systems & Battery Testing',
+    title: 'Neutron Controls | Advanced BMS & Energy Control Solutions',
     description:
-      'Explore cutting-edge solutions for energy storage, battery production, and embedded control systems.',
+      'BMS controllers and energy management solutions for ESS/BESS installations, prioritizing efficiency, safety, and sustainability in industrial automation.',
     url: 'https://www.neutroncontrols.com',
     images: [
       {
@@ -45,9 +45,9 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Neutron Controls – Contain Your Energy, Test Your Limits',
+    title: 'Neutron Controls | Advanced BMS & Energy Control Solutions',
     description:
-      'Advanced BMS and battery testing solutions for high-performance industrial applications.',
+      'BMS controllers and energy management solutions for ESS/BESS installations, prioritizing efficiency, safety, and sustainability in industrial automation.',
     images: ['https://www.neutroncontrols.com/meta/homepage.jpg'],
   },
   alternates: {

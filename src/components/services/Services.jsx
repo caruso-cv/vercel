@@ -6,7 +6,6 @@ import Battery from '@/components/icons/Battery';
 import Design from '@/components/icons/Design';
 import Safety from '@/components/icons/SafetyIcon';
 import InfineonSection from '@/components/services/InfineonSection';
-import Infineon from '@/components/services/Infineon';
 import { motion } from 'framer-motion';
 
 const tiers = [
@@ -101,8 +100,7 @@ export default function Page() {
       </section>
 
       {/* Tier Cards Section with staggered fade-in and hover scale */}
-      <section aria-labelledby="tier-cards-heading" className="flow-root bg-white pb-24 sm:pb-32 relative z-10">
-        <h2 id="tier-cards-heading" className="sr-only">Service Tiers</h2>
+      <section className="flow-root bg-white pb-24 sm:pb-32 relative z-10">
         <div className="-mt-80">
           <div className="mx-auto max-w-8xl px-6 2xl:px-0">
             <div className="mx-auto grid max-w-8xl grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -115,9 +113,9 @@ export default function Page() {
                   className="flex flex-col justify-between rounded-3xl bg-white p-6 shadow-lg ring-1 ring-gray-900/10 sm:p-8 w-full"
                 >
                   <div>
-                    <h3 id={tier.id} className="text-[1rem] leading-[1.75rem] font-semibold text-[#425ACA] pb-8">
+                    <h2 id={tier.id} className="text-[1rem] leading-[1.75rem] font-semibold text-[#425ACA] pb-8">
                       {tier.name}
-                    </h3>
+                    </h2>
                     <div className="mt-4 sm:mt-6 flex items-center justify-center" aria-label={`Icon representing ${tier.name}`} role="img">
                       {tier.icon}
                     </div>
@@ -147,7 +145,7 @@ export default function Page() {
                 className="flex flex-col gap-y-6 rounded-md p-8 ring-1 ring-gray-900/10 sm:gap-y-10 sm:p-10 lg:col-span-3 lg:flex-row lg:items-center"
               >
                 <div className="lg:flex-1">
-                  <h3 className="text-[1rem] leading-[1.75rem] font-semibold text-[#425ACA]">Our AURIX Expertise</h3>
+                  <h2 className="text-[1rem] leading-[1.75rem] font-semibold text-[#425ACA]">Our AURIX Expertise</h2>
                   <p className="mt-4 text-[1rem] leading-[1.75rem] text-black">
                     Unleash the full potential of Infineon’s AURIX™-MCUs with expert design support and tailored training, equipping you to harness cutting-edge technology for maximum performance and reliability.
                   </p>
@@ -167,15 +165,13 @@ export default function Page() {
       </section>
 
       {/* Fade in Infineon Section and Infineon */}
-      <section aria-labelledby="infineon-heading">
-        <h2 id="infineon-heading" className="sr-only">Infineon Services</h2>
+      <section>
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1, duration: 0.5 }}
         >
           <InfineonSection />
-          <Infineon />
         </motion.div>
       </section>
     </div>

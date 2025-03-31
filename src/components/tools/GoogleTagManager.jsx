@@ -1,10 +1,9 @@
 'use client'
 import Script from 'next/script'
-
 export default function GoogleTagManager() {
+
   return (
     <>
-      {/* Google Tag Manager (noscript fallback) */}
       <noscript>
         <iframe
           src="https://www.googletagmanager.com/ns.html?id=GTM-5C24BMW"
@@ -14,7 +13,6 @@ export default function GoogleTagManager() {
         ></iframe>
       </noscript>
 
-      {/* Google Tag Manager Script */}
       <Script id="gtm-script" strategy="lazyOnload">
         {`
           (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':

@@ -2,7 +2,6 @@
 import { useState } from 'react'
 import { Dialog, DialogTitle, DialogBody } from '@/components/careers/Dialog'
 import FileInput from '@/components/careers/FileInput'
-import { useGoogleReCaptcha } from 'react-google-recaptcha-v3'
 
 export default function ApplyModal({ isOpen, onClose, showNotification }) {
   const jobOptions = [
@@ -74,9 +73,6 @@ export default function ApplyModal({ isOpen, onClose, showNotification }) {
     return newErrors
   }
 
-  // reCAPTCHA
-  const { executeRecaptcha } = useGoogleReCaptcha()
-
   const handleSubmit = async (e) => {
     e.preventDefault()
     setErrors({})
@@ -88,19 +84,6 @@ export default function ApplyModal({ isOpen, onClose, showNotification }) {
       setErrors(validationErrors)
       setIsSubmitting(false)
       return
-    }
-
-    // reCAPTCHA token
-    let recaptchaToken = ''
-    if (executeRecaptcha) {
-      try {
-        recaptchaToken = await executeRecaptcha('careers_form')
-        console.log('Recaptcha token:', recaptchaToken)
-      } catch (err) {
-        console.error('Error executing reCAPTCHA:', err)
-      }
-    } else {
-      console.error('executeRecaptcha not available')
     }
 
     // Build FormData
@@ -264,12 +247,6 @@ export default function ApplyModal({ isOpen, onClose, showNotification }) {
 
             {/* Cover Letter (Optional) */}
             <div>
-              <label
-                htmlFor="coverLetter"
-                className="block text-[0.875rem] leading-[1.25rem] font-medium text-gray-700"
-              >
-                Upload Cover Letter
-              </label>
               <FileInput
                 id="coverLetter"
                 name="coverLetter"
@@ -281,23 +258,21 @@ export default function ApplyModal({ isOpen, onClose, showNotification }) {
 
             {/* Resume (Required) */}
             <div>
-              <label
-                htmlFor="resume"
-                className="block text-[0.875rem] leading-[1.25rem] font-medium text-gray-700"
-              >
-                Upload Resume
-                {errors.resume && (
-                  <span className="ml-2 text-red-400">({errors.resume})</span>
-                )}
-              </label>
               <FileInput
                 id="resume"
                 name="resume"
                 accept=".pdf,.doc,.docx"
                 onChange={handleChange}
                 fileName={formData.resume ? formData.resume.name : ''}
+                error={errors.resume}
+                errorId="resume-error"
               />
-            </div>
+              {errors.resume && (
+                <p id="resume-error" className="mt-1 text-sm text-red-500">
+                  {errors.resume}
+                </p>
+              )}
+          </div>
 
             {/* Buttons */}
             <div className="flex justify-end gap-3 mt-2">
@@ -310,19 +285,24 @@ export default function ApplyModal({ isOpen, onClose, showNotification }) {
               </button>
 
               {/* If isSubmitting is true, show a spinner instead */}
-              {isSubmitting ? (
-                <div className="flex items-center px-3.5 py-2.5 bg-indigo-500 font-semibold uppercase text-[0.875rem] text-white rounded-md">
-                  <div className="w-4 h-4 border-2 border-indigo-200 border-t-transparent rounded-full animate-spin mr-2"></div>
-                  <span>Submitting...</span>
-                </div>
-              ) : (
-                <button
-                  type="submit"
-                  className="rounded-md uppercase bg-[#425ACA] px-3.5 py-2.5 text-[0.875rem] leading-[1.25rem] font-semibold text-white shadow-sm hover:bg-indigo-500"
-                >
-                  Submit <span aria-hidden="true">&rarr;</span>
-                </button>
-              )}
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className={`rounded-md uppercase px-3.5 py-2.5 text-[0.875rem] leading-[1.25rem] font-semibold text-white shadow-sm ${
+                  isSubmitting ? 'bg-indigo-500 opacity-70 cursor-not-allowed' : 'bg-[#425ACA] hover:bg-indigo-500'
+                }`}
+              >
+                {isSubmitting ? (
+                  <span className="flex items-center">
+                  <span className="mr-2">Submitting...</span>
+                  <span className="w-4 h-4 border-2 border-indigo-200 border-t-transparent rounded-full animate-spin" />
+                </span>
+                ) : (
+                  <>
+                    Submit <span aria-hidden="true">&rarr;</span>
+                  </>
+                )}
+              </button>
             </div>
           </form>
         </DialogBody>
