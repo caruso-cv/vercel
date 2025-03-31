@@ -1,11 +1,12 @@
 import Contact from "@/components/contact/Contact";
+import JsonLdContactPage from "@/components/schema/JsonLdContactPage"
 
 export const metadata = {
-  title: 'Contact Us| Get in touch',
+  title: 'Contact Us | Get in touch',
   description:
     'Our team is here to help with any questions you might have. Feel free to reach out, we look forward to connecting with you.',
   openGraph: {
-    title: 'Contact Us| Get in touch',
+    title: 'Contact Us | Get in touch',
     description:
       'Our team is here to help with any questions you might have. Feel free to reach out, we look forward to connecting with you.',
     url: 'https://www.neutroncontrols.com/contact',
@@ -18,7 +19,7 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Contact Us| Get in touch',
+    title: 'Contact Us | Get in touch',
     description:
       'Our team is here to help with any questions you might have. Feel free to reach out, we look forward to connecting with you.',
     images: ['https://www.neutroncontrols.com/meta/general.jpg'],
@@ -34,10 +35,10 @@ export const metadata = {
 };
 
 export default function Home() {
-
   return (
     <main>
+      <JsonLdContactPage />
       <Contact />
     </main>
-  )
+  );
 }

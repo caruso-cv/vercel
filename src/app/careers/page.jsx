@@ -1,4 +1,5 @@
 import Careers from "@/components/careers/Careers";
+import JsonLdCareersPage from "@/components/schema/JsonLdCareersPage";
 
 export const metadata = {
   title: 'Careers | Become a Neutron',
@@ -33,12 +34,11 @@ export const metadata = {
   },
 };
 
-
 export default function Home() {
-
   return (
     <main>
-      <Careers/>
+      <JsonLdCareersPage />
+      <Careers />
     </main>
-  )
+  );
 }

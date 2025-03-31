@@ -112,7 +112,7 @@ export default function ContactForm() {
       />
 
       <div className="relative pt-20 sm:pt-28 lg:pt-48 3xl:pt-52">
-        <div className="mx-auto grid max-w-8xl grid-cols-1 lg:grid-cols-2">
+        <section className="mx-auto grid max-w-8xl grid-cols-1 lg:grid-cols-2">
 
           {/* Left Side – Contact Info */}
           <div className="relative px-6 pb-2 pt-24 lg:static 2xl:px-0 3xl:py-48">
@@ -151,12 +151,12 @@ export default function ContactForm() {
                 </svg>
               </div>
               <div className='relative z-30'>
-                <h2 className="text-pretty text-5xl font-bold text-white relative z-30 md:text-6xl uppercase">
+                <h1 className="text-pretty text-5xl font-bold text-white relative z-30 md:text-6xl uppercase">
                   Get in touch
-                </h2>
-                <p className="mt-6 text-[1.25rem] leading-[1.75rem] md:text-[1.5rem] md:leading-[2rem] text-white">
+                </h1>
+                <h2 className="mt-6 text-[1.25rem] leading-[1.75rem] md:text-[1.5rem] md:leading-[2rem] text-white">
                   Our team is here to help with any questions you might have.
-                </p>
+                </h2>
                 <p className="mt-6 text-[1.125rem] leading-[1.75rem] md:text-[1.25rem] md:leading-[1.75rem] text-white">
                   Feel free to reach out, we look forward to connecting with you.
                 </p>
@@ -325,7 +325,7 @@ export default function ContactForm() {
               </div>
             </div>
           </form>
-        </div>
+        </section>
       </div>
     </div>
   )
