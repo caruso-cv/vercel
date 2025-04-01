@@ -99,6 +99,7 @@ export default function HeroNew() {
                           target.scrollIntoView({ behavior: 'smooth' });
                         }
                       }}
+                      tabIndex={currentSlide === 0 ? 0 : -1}
                     >
                       <motion.div className="inline-flex py-3 px-3.5 text-sm sm:text-base font-bold tracking-[0.2px] cursor-pointer border-none rounded-[5px] transition-colors duration-200 ease-in-out bg-[#E6E6E6] hover:bg-[#FFF] shadow-md opacity-90 hover:opacity-100 text-black">
                         <span>GET STARTED</span>
@@ -157,6 +158,7 @@ export default function HeroNew() {
                           target.scrollIntoView({ behavior: 'smooth' });
                         }
                       }}
+                      tabIndex={currentSlide === 1 ? 0 : -1}
                     >
                       <motion.div className="inline-flex py-3 px-3.5 text-sm sm:text-base font-bold tracking-[0.2px] cursor-pointer border-none rounded-[5px] transition-colors duration-200 ease-in-out bg-[#E6E6E6] hover:bg-[#FFF] shadow-md opacity-90 hover:opacity-100 text-black">
                         <span>GET STARTED</span>

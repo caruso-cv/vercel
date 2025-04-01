@@ -17,7 +17,7 @@ export default function Partners() {
   const duplicatedImages = [...images, ...images];
 
   return (
-    <section aria-labelledby="partners-heading" className="pb-28 relative flex flex-col items-center justify-center">
+    <section aria-labelledby="partners-heading" className="pb-16 lg:pb-28 relative flex flex-col items-center justify-center">
       <h2 id="partners-heading" className="text-center mb-1 text-[24px] leading-[32px] lg:text-[30px] lg:leading-[38px] 3xl:text-[30px] 3xl:leading-[38px] font-bold uppercase pb-3 sm:pb-1 px-4">
         Trusted by partners worldwide
       </h2>

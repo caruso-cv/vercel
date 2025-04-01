@@ -53,12 +53,14 @@ export default function NavLinks() {
       <ul className="flex justify-center gap-12 list-none m-0 p-0 text-[#C7C2BE]">
         {/* Wrap "Solutions" + Dropdown in a single <li> with a ref */}
         <li ref={dropdownContainerRef} className="relative">
-          <div
+          <button
+            type="button"
             className="text-[0.75rem] 4xl:text-[0.875rem] uppercase tracking-[3px] font-semibold hover:text-white inline-flex items-center cursor-pointer"
             onClick={(e) => {
               e.preventDefault();
               setIsOpen(!isOpen);
             }}
+            aria-expanded={isOpen}
           >
             Solutions
             <motion.div
@@ -71,7 +73,7 @@ export default function NavLinks() {
             >
               <Down className="w-full h-full fill-current" />
             </motion.div>
-          </div>
+          </button>
 
           {/* Dropdown */}
           <motion.ul
@@ -82,13 +84,13 @@ export default function NavLinks() {
               open: { opacity: 1, y: 0, transition: { duration: 0.15 } }
             }}
             className={`absolute top-10 -left-6 text-white border-[#222326] border bg-gradient-to-tr from-[#090909] to-[#181818] shadow-[0px_-4px_4px_0px_rgba(0,0,0,0.25)] backdrop-blur-[40px] text-base w-64 rounded-xl ${isOpen ? 'pointer-events-auto' : 'pointer-events-none'}`}
-            aria-hidden={!isOpen}
           >
             <li>
               <Link
                 href="/solutions/ecu8tr"
                 onClick={() => setIsOpen(false)}
                 aria-label="Go to ECU8TR solution"
+                tabIndex={isOpen ? 0 : -1}
               >
                 <motion.div
                   initial="rest"
@@ -103,14 +105,14 @@ export default function NavLinks() {
                     transition={{ duration: 0.2 }}
                     className="mr-2"
                   >
-                    <Equ8ter className="h-8" />
+                    <Equ8ter className="h-8"/>
                   </motion.div>
                   <motion.div
                     variants={arrowVariants}
                     transition={{ duration: 0.2 }}
                     className="ml-auto"
                   >
-                    <RightArrow className="w-4 h-4" />
+                    <RightArrow className="w-4 h-4"/>
                   </motion.div>
                 </motion.div>
               </Link>
@@ -120,6 +122,7 @@ export default function NavLinks() {
                 href="/solutions/elev8tr"
                 onClick={() => setIsOpen(false)}
                 aria-label="Go to ELEV8TR solution"
+                tabIndex={isOpen ? 0 : -1}
               >
                 <motion.div
                   initial="rest"
@@ -151,6 +154,7 @@ export default function NavLinks() {
                 href="/solutions/energ8te"
                 onClick={() => setIsOpen(false)}
                 aria-label="Go to ENERG8TE solution"
+                tabIndex={isOpen ? 0 : -1}
               >
                 <motion.div
                   initial="rest"
