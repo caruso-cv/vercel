@@ -1,12 +1,16 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import ECU8TR from "@/components/logos/ECU8TR";
 import ENERG8TE from "@/components/logos/ENERG8TE";
 import ELEV8TR from "@/components/logos/ELEV8TR";
+
+const removeDesktopClasses = (str) => {
+  return str.replace(/\b(?:lg|xl|2xl|3xl):[^\s]+/g, '');
+};
 
 const pinnedSections = [
 
@@ -143,8 +147,23 @@ const pinnedSections = [
 ];
 
 export default function VerticalSlider() {
+  const [isHighZoom, setIsHighZoom] = useState(false);
+
+  useEffect(() => {
+    const checkZoom = () => {
+      // Use outerWidth/innerWidth ratio as a simple approximation
+      if (window.outerWidth && window.innerWidth) {
+        const zoomLevel = window.outerWidth / window.innerWidth;
+        setIsHighZoom(zoomLevel >= 2);
+      }
+    };
+    checkZoom();
+    window.addEventListener('resize', checkZoom);
+    return () => window.removeEventListener('resize', checkZoom);
+  }, []);
+
   return (
-    <div className="relative w-full lg:h-[calc(350dvh-144px)] bg-white lg:bg-[#090A0B] lg:rounded-t-4xl">
+    <div className="relative w-full lg:h-[calc(350dvh-144px)] bg-white lg:bg-[#090A0B] lg:rounded-t-4xl z-10">
       {/* -----------------------
           BLACK LAYER (pinned)
           ----------------------- */}
@@ -199,17 +218,17 @@ export default function VerticalSlider() {
           MAP OVER THE OTHER PINNED SECTIONS
          ----------------------------------------- */}
     {pinnedSections.map((item) => (
-      <section key={item.id} id={item.id} className={item.sectionClasses}>
+      <section key={item.id} id={item.id} className={isHighZoom ? removeDesktopClasses(item.sectionClasses) : item.sectionClasses}>
         <div className="max-w-8xl mx-auto flex flex-col lg:flex-row lg:items-center justify-center">
 
           {/* Mobile-only logo – placed at the very top for mobile */}
-          <div className={`${item.logoClasses} order-first lg:hidden px-[32px]`}>
+          <div className={`${isHighZoom ? removeDesktopClasses(item.logoClasses) : item.logoClasses} order-first lg:hidden px-[32px]`}>
             {item.logo}
           </div>
 
           {/* Image side remains in its original mobile order */}
           {item.image && (
-            <div className={`${item.imageClasses} order-first lg:order-last flex justify-center mb-[24px] lg:mb-0`}>
+            <div className={`${isHighZoom ? removeDesktopClasses(item.imageClasses) : item.imageClasses} order-first lg:order-last flex justify-center mb-[24px] lg:mb-0`}>
               <Image
                 src={item.image.src}
                 alt={item.image.alt}
@@ -222,7 +241,7 @@ export default function VerticalSlider() {
           )}
           
           {/* Text side – logo hidden on mobile so it doesn’t duplicate */}
-          <div className={`${item.containerClasses} order-last lg:order-first`}>
+          <div className={`${isHighZoom ? removeDesktopClasses(item.containerClasses) : item.containerClasses} order-last lg:order-first`}>
             <div className="hidden lg:block">
               {item.logo}
             </div>

@@ -173,7 +173,7 @@ export default function Slider() {
           {slidesData.map((slide, index) => (
             <div key={slide.slideId} className="keen-slider__slide relative">
               {/* DESKTOP */}
-              <div className="hidden lg:flex flex-col items-center lg:flex-row lg:justify-center px-4 pt-44 pb-20 w-full h-full">
+              <div className="hidden lg:flex flex-col items-center lg:flex-row lg:justify-center px-4 pt-56 pb-20 w-full h-full">
                 <div className="relative">
                   <div className="w-[800px] h-[450px] mr-44 mb-20">
                     {visitedSlides.has(index) && (

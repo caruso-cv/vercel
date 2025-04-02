@@ -10,26 +10,14 @@ export const metadata = {
   title: 'Neutron Controls | Advanced BMS & Energy Control Solutions',
   description:
     'Neutron Controls delivers advanced BMS controllers and energy management solutions for ESS/BESS installations, prioritizing efficiency, safety, and sustainability in industrial automation.',
-  keywords: [
-    'Neutron Controls',
-    'Battery Management Systems',
-    'ESS',
-    'BMS Testing',
-    'Energy Storage',
-    'Industrial Automation',
-    'Battery Factory Testing',
-    'BESS controls for energy storage',
-    'Battery point tester',
-    'Battery algorithm simulator',
-    'BESS controller',
-    'ESS controller',
-    'BMS controller',
-    'Energy storage controller',
-    'Battery management system',
-    'BMS',
-    'ESS',
-    'BESS',
-  ],
+    keywords: [
+      'Battery Management Systems (BMS)',
+      'Battery Energy Storage Systems (BESS)',
+      'Battery Factory Line Testers',
+      'ESS Controllers',
+      'Industrial Battery Testing Solutions',
+      'Automotive Battery Quality Assurance'
+    ],
   openGraph: {
     title: 'Neutron Controls | Advanced BMS & Energy Control Solutions',
     description:

@@ -5,17 +5,14 @@ export const metadata = {
   title: 'ELEV8TR™ Battery Algorithm Simulator for OEM BMS Development',
   description:
     'ELEV8TR™ accelerates OEM Battery Management System development with real-time simulation, hardware interaction, and MATLAB/Simulink integration — ideal for testing advanced BMS algorithms.',
-  keywords: [
-    'ELEV8TR',
-    'Battery Algorithm Simulator',
-    'BMS Testing',
-    'BMS Development',
-    'OEM BMS',
-    'Simulink BMS Integration',
-    'MATLAB Hardware-in-the-Loop',
-    'Real-Time Simulation',
-    'Neutron Controls',
-  ],
+    keywords: [
+      'Battery Factory Line Testers',
+      'Industrial Battery Testing Solutions',
+      'Flexible Battery Communication Interfaces',
+      'Advanced Battery Test Equipment',
+      'Battery Production Line Testing',
+      'ISO UART Battery Tester'
+    ],
   openGraph: {
     title: 'ELEV8TR™ Battery Algorithm Simulator for OEM BMS Development',
     description:

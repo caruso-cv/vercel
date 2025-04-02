@@ -5,17 +5,14 @@ export const metadata = {
   title: 'ENERG8TE™ BMS Controller for BESS/ESS Installations',
   description:
     'ENERG8TE™ is an advanced BMS controller designed to optimize performance, reliability, and energy efficiency in Battery Energy Storage System (BESS) and ESS installations.',
-  keywords: [
-    'ENERG8TE',
-    'BMS Controller',
-    'BESS Controller',
-    'ESS Management',
-    'Battery Energy Storage',
-    'Energy Optimization',
-    'Neutron Controls',
-    'Battery Monitoring System',
-    'Industrial Energy Systems',
-  ],
+    keywords: [
+      'Battery Energy Storage Systems (BESS)',
+      'ESS Controllers',
+      'EV Battery Production Testing',
+      'ESS/BESS Manufacturing Quality Control',
+      'Battery Monitoring and Quality Control',
+      'Automotive Battery Quality Assurance'
+    ],
   openGraph: {
     title: 'ENERG8TE™ BMS Controller for BESS/ESS Installations',
     description:

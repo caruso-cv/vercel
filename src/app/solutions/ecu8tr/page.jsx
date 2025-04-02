@@ -5,17 +5,14 @@ export const metadata = {
   title: 'ECU8TR™ Battery Factory Point Tester',
   description:
     'ECU8TR™ supports advanced BMS interfaces including Analog Devices ISO SPI, Infineon ISO UART, XMP, and Texas Instruments BMS devices — ensuring high-performance battery production testing.',
-  keywords: [
-    'ECU8TR',
-    'Battery Factory Tester',
-    'BMS Interface Testing',
-    'ISO SPI',
-    'ISO UART',
-    'XMP Protocol',
-    'Texas Instruments BMS',
-    'Battery Production Line',
-    'Neutron Controls',
-  ],
+    keywords: [
+      'Battery Management Systems (BMS)',
+      'ISO UART/SPI BMS Integration',
+      'TI UART SPI Battery Management',
+      'Battery Monitoring Systems',
+      'Advanced Battery Communication Interfaces',
+      'Battery Quality Control Systems'
+    ],
   openGraph: {
     title: 'ECU8TR™ Battery Factory Point Tester',
     description:
