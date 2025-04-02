@@ -27,8 +27,8 @@ const slidesData = [
       bodyTextAfterSpan:
         " designed to maximize efficiency, safety, and reliability in industrial power systems.",
       ctaHref: "/solutions/energ8te",
-      ctaLabel: "Learn More",
-      ctaAriaLabel: "Learn More about ENERG8TE",
+      ctaLabel: "Explore solutions",
+      ctaAriaLabel: "Explore details and specifications about ENERG8TE",
       logo: <ENERG8TE className="h-8 w-auto"/>,
       logoContainerClasses:
         "absolute bottom-36 right-20 bg-white/85 backdrop-blur-sm px-4 py-[70px] rounded-lg shadow-md border-white/30",
@@ -42,8 +42,8 @@ const slidesData = [
       bodyTextAfterSpan:
         " designed to maximize efficiency, safety, and reliability in industrial power systems.",
       ctaHref: "/solutions/energ8te",
-      ctaLabel: "Learn More",
-      ctaAriaLabel: "Learn More about ENERG8TE",
+      ctaLabel: "Optimize Energy Storage",
+      ctaAriaLabel: "Optimize energy storage solutions and learn more about ENERG8TE",
     },
   },
   {
@@ -60,8 +60,8 @@ const slidesData = [
       bodyTextAfterSpan:
         "",
       ctaHref: "/solutions/ecu8tr",
-      ctaLabel: "Learn More",
-      ctaAriaLabel: "Learn More about ECU8TR",
+      ctaLabel: "SEE SPECIFICATIONS",
+      ctaAriaLabel: "See Battery Management Specifications for ECU8TR",
       logo: <ECU8TR className="h-12 w-auto" />,
       logoContainerClasses:
         "absolute bottom-40 right-16 bg-white/85 backdrop-blur-sm px-8 py-[60px] rounded-lg shadow-md border-white/30",
@@ -76,7 +76,7 @@ const slidesData = [
       bodyTextAfterSpan:
         "",
       ctaHref: "/solutions/ecu8tr",
-      ctaLabel: "Learn More",
+      ctaLabel: "Learn More about ECU8TR",
       ctaAriaLabel: "Learn More about ECU8TR",
     },
   },
