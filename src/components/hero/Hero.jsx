@@ -69,7 +69,7 @@ export default function HeroNew() {
         muted
         playsInline
         style={{ willChange: 'transform' }}
-        className="absolute inset-0 w-full h-full object-cover object-center transform scale-110 sm:scale-125 xl:scale-100"
+        className="absolute inset-0 w-full h-full object-cover object-center transform scale-100 sm:scale-125 xl:scale-100"
       >
         <source src="/vids/hero.webm" type="video/webm" />
         Your browser does not support the video tag.
