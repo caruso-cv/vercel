@@ -42,26 +42,27 @@ export default function DesktopNav() {
           initial={{
             opacity: 0,
             height: DESKTOP_NAV_HEIGHT,
-            background: isSolutionsPage
-              ? "linear-gradient(to bottom, #0f0e0e, #0f0e0e)"
-              : desktopBackground,
-            boxShadow: "0 4px 4px rgba(0,0,0,0.25)",
+            background: pathname === '/' 
+              ? 'transparent'
+              : isSolutionsPage 
+                  ? "linear-gradient(to bottom, #0f0e0e, #0f0e0e)"
+                  : desktopBackground,
           }}
           animate={{
             opacity: 1,
             height: DESKTOP_NAV_HEIGHT,
-            background: isSolutionsPage
-              ? "linear-gradient(to bottom, #0f0e0e, #0f0e0e)"
-              : desktopBackground,
-            boxShadow: "0 4px 4px rgba(0,0,0,0.25)",
+            background: pathname === '/' 
+              ? 'transparent'
+              : isSolutionsPage 
+                  ? "linear-gradient(to bottom, #0f0e0e, #0f0e0e)"
+                  : desktopBackground,
           }}
           transition={{
             opacity: { duration: 0.3, ease: "easeOut" },
             height: { duration: 0.3, ease: "easeOut" },
             background: { duration: 0 },
-            boxShadow: { duration: 0.3, ease: "easeOut" },
           }}
-          className="backdrop-blur-[200px] w-full py-6 flex flex-col relative z-50 border-b border-[#111213]"
+          className={`${pathname === '/' ? '' : 'backdrop-blur-[200px]'} w-full py-6 flex flex-col relative z-50`}
           style={{ willChange: "transform, opacity" }}
         >
           <div className="mx-auto max-w-8xl w-full px-6 2xl:px-0">

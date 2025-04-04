@@ -17,7 +17,7 @@ const slidesData = [
     slideId: 0,
     desktop: {
       videoSources: [
-        { src: "/vids/storage.mp4", type: "video/mp4" },
+        { src: "/vids/storage.webm", type: "video/webm" },
       ],
       headingIcon: <Energy className="mr-3 w-10 h-6"/>,
       headingText: "BATTERY MANAGEMENT FOR ESS/BESS INSTALLATIONS",
@@ -50,7 +50,7 @@ const slidesData = [
     slideId: 1,
     desktop: {
       videoSources: [
-        { src: "/vids/output.mp4", type: "video/mp4" },
+        { src: "/vids/output.webm", type: "video/webm" },
       ],
       headingIcon: <Manage className="w-7 mr-3" />,
       headingText: "BATTERY FACTORY LINE TESTERS",
