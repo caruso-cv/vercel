@@ -100,7 +100,7 @@ export default function HeroNew() {
             <div className={`mt-8 text-xl sm:text-4xl font-medium text-gray-100 transition-opacity duration-500 ${paraVisible ? 'opacity-100' : 'opacity-0'} h-[6rem] overflow-hidden`} 
                dangerouslySetInnerHTML={{ __html: paraText }}
             />
-            <div className="mt-10 flex items-left justify-start gap-x-6">
+            <div className="sm:mt-10 flex items-left justify-start gap-x-6">
               <Link
                 passHref
                 href="#get-started"
