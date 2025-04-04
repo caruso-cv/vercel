@@ -6,6 +6,7 @@ export default function DropButton() {
   return (
           <Link href="/contact" passHref>
             <motion.div
+              aria-label="Contact us"
               className="
                 items-center 
                 justify-center
