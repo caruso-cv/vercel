@@ -104,6 +104,7 @@ export default function HeroNew() {
               <Link
                 passHref
                 href="#get-started"
+                aria-label="Get started"
                 scroll={false}
                 onClick={(e) => {
                   e.preventDefault();
