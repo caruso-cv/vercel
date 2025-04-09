@@ -5,7 +5,8 @@ import BackgroundHero from '@/components/backgrounds/BackgroundHero'
 import Footer from '@/components/Footer'
 import CookieBanner from '@/components/tools/CookieBanner'
 import GoogleTagManager from '@/components/tools/GoogleTagManager';
-import { SpeedInsights } from "@vercel/speed-insights/next"
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import ServiceWorkerRegister from "@/components/tools/ServiceWorkerRegister";
 
 export const metadata = {
   title: {
@@ -21,19 +22,16 @@ export default function RootLayout({ children }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
       <body>
-
         <header className="bg-[#090A0B]">
           <Nav />
           <BackgroundHero />
           <CookieBanner />
         </header>
-
+          <ServiceWorkerRegister />
           {children}
-
         <Footer />
         <SpeedInsights/>
         <GoogleTagManager />
-
       </body>
     </html>
   )
