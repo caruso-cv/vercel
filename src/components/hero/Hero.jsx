@@ -71,8 +71,9 @@ export default function HeroNew() {
         style={{ willChange: 'transform' }}
         className="absolute inset-0 w-full h-full object-cover object-center hidden sm:block transform scale-100 sm:scale-125 xl:scale-100"
       >
-        <source src="/vids/hero.webm" type="video/webm" />
         <source src="/vids/hero.mp4" type="video/mp4" />
+        <source src="/vids/hero.webm" type="video/webm" />
+ 
         Your browser does not support the video tag.
       </video>
       <div
