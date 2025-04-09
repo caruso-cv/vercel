@@ -72,6 +72,7 @@ export default function HeroNew() {
         className="absolute inset-0 w-full h-full object-cover object-center hidden sm:block transform scale-100 sm:scale-125 xl:scale-100"
       >
         <source src="/vids/hero.webm" type="video/webm" />
+        <source src="/vids/hero.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
       <div
@@ -81,8 +82,7 @@ export default function HeroNew() {
           willChange: 'opacity',
           WebkitBackfaceVisibility: 'hidden',
           transform: 'translateZ(0)'
-        }}
-      />
+        }}      />
       <div
         className={`absolute inset-0 w-full h-full bg-cover bg-center sm:hidden transition-opacity duration-500 ${firstText === 'Contain' ? 'opacity-0' : 'opacity-100'}`}
         style={{

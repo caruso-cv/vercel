@@ -7,7 +7,7 @@ import NoiseOverlay from '@/components/backgrounds/NoiseOverlay'
 import JsonLdProduct from '@/components/hero/JsonLdProduct'
 
 export const metadata = {
-  title: 'Neutron Controls | Advanced BMS & Energy Control Solutions',
+  title: 'Neutron Controls',
   description:
     'Neutron Controls delivers advanced BMS controllers and energy management solutions for ESS/BESS installations, prioritizing efficiency, safety, and sustainability in industrial automation.',
     keywords: [
@@ -19,23 +19,23 @@ export const metadata = {
       'Automotive Battery Quality Assurance'
     ],
   openGraph: {
-    title: 'Neutron Controls | Advanced BMS & Energy Control Solutions',
+    title: 'Neutron Controls',
     description:
       'BMS controllers and energy management solutions for ESS/BESS installations, prioritizing efficiency, safety, and sustainability in industrial automation.',
     url: 'https://www.neutroncontrols.com',
     images: [
       {
-        url: 'https://www.neutroncontrols.com/meta/homepage.jpg',
+        url: 'https://www.neutroncontrols.com/meta/general.jpg',
         alt: 'Battery container and robot arm testing batteries',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Neutron Controls | Advanced BMS & Energy Control Solutions',
+    title: 'Neutron Controls',
     description:
       'BMS controllers and energy management solutions for ESS/BESS installations, prioritizing efficiency, safety, and sustainability in industrial automation.',
-    images: ['https://www.neutroncontrols.com/meta/homepage.jpg'],
+    images: ['https://www.neutroncontrols.com/meta/general.jpg'],
   },
   alternates: {
     canonical: 'https://www.neutroncontrols.com',
