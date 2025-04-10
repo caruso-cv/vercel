@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react'
 import useReCaptcha from '@/components/tools/useReCaptcha'
 import ModalTrigger from '@/components/careers/ModalTrigger'
-import Notification from '@/components/careers/Notification'
+import Notification from '@/components/tools/Notification'
 import Faq from '@/components/careers/Faq'
 import AnimatedImagesSection from '@/components/careers/AnimatedImagesSection'
 

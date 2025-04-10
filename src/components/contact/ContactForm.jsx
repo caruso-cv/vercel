@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import Notification from '@/components/contact/Notifications'
+import Notification from '@/components/tools/Notification'
 import { BuildingOffice2Icon } from '@heroicons/react/24/outline'
 
 export default function ContactForm() {

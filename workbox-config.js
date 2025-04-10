@@ -1,20 +1,15 @@
 module.exports = {
-	globDirectory: 'src/',
-	globPatterns: [
-		'**/*.{jsx,js,ico,css,webm,mp4}'
-	],
-	swDest: 'src/sw.js',
+	globDirectory: 'public/',
+	globPatterns: ['**/*.{js,css,webm,mp4,ico}'],
+	swDest: 'public/sw.js',
 	runtimeCaching: [
-		{
-		  "urlPattern": "/videos/.*",
-		  "handler": "CacheFirst",
-		  "options": {
-			"cacheName": "my-video-cache"
-		  }
-		}
-	  ],
-	ignoreURLParametersMatching: [
-		/^utm_/,
-		/^fbclid$/
-	]
-};
+	  {
+		urlPattern: /\/videos\/.*\.(mp4|webm)$/,
+		handler: 'CacheFirst',
+		options: {
+		  cacheName: 'my-video-cache',
+		},
+	  },
+	],
+	ignoreURLParametersMatching: [/^utm_/, /^fbclid$/],
+  };

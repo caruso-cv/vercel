@@ -92,8 +92,7 @@ export default function Slider() {
   const videoRefs = useRef([])
 
   // Track slides that have been visited so once a video/image is loaded, we keep it in the DOM.
-  const [visitedSlides, setVisitedSlides] = useState(() => new Set([0]));
-  const [videoBlobUrls, setVideoBlobUrls] = useState({});
+  const [visitedSlides, setVisitedSlides] = useState(() => new Set([0]))
 
   // Keep track of the previous slide index
   const prevSlide = useRef(currentSlide)
@@ -156,38 +155,6 @@ export default function Slider() {
     return () => clearInterval(timer);
   }, []);
 
-  useEffect(() => {
-    // Check for WebM support in the browser
-    const testVideo = document.createElement('video');
-    const supportsWebM = testVideo.canPlayType && testVideo.canPlayType('video/webm').length > 0;
-    
-    // For each slide, fetch the appropriate video source
-    const fetchPromises = slidesData.map((slide, index) => {
-      const chosenSource = supportsWebM
-        ? slide.desktop.videoSources.find(srcObj => srcObj.type === 'video/webm')
-        : slide.desktop.videoSources.find(srcObj => srcObj.type === 'video/mp4');
-      if (chosenSource) {
-        return fetch(chosenSource.src)
-          .then(response => response.blob())
-          .then(blob => ({ index, blobUrl: URL.createObjectURL(blob) }))
-          .catch(error => {
-            console.error(`Error fetching video for slide ${index}:`, error);
-            return { index, blobUrl: null };
-          });
-      } else {
-        return Promise.resolve({ index, blobUrl: null });
-      }
-    });
-    
-    Promise.all(fetchPromises).then(results => {
-      const newVideoBlobUrls = {};
-      results.forEach(({ index, blobUrl }) => {
-        newVideoBlobUrls[index] = blobUrl;
-      });
-      setVideoBlobUrls(newVideoBlobUrls);
-    });
-  }, []);
-
   // RENDER
   return (
     <section className="mx-auto w-full flex justify-center">
@@ -219,9 +186,10 @@ export default function Slider() {
                         playsInline
                         preload="auto"
                         className="w-full h-full object-cover rounded-lg shadow-xl"
-                        src={videoBlobUrls[index] || undefined}
                       >
-                        Your browser does not support the video tag.
+                        {slide.desktop.videoSources.map((srcObj, i) => (
+                          <source key={i} src={srcObj.src} type={srcObj.type} />
+                        ))}
                       </video>
                     )}
                   </div>

@@ -11,7 +11,6 @@ export default function HeroNew() {
   // New state for paragraph text and its visibility
   const [paraText, setParaText] = useState('Advanced BMS controllers for <br /> ESS/BESS installations.');
   const [paraVisible, setParaVisible] = useState(true);
-  const [videoSrc, setVideoSrc] = useState(null);
 
   // This effect triggers the animation cycle every 6 seconds
   useEffect(() => {
@@ -54,23 +53,6 @@ export default function HeroNew() {
     return () => clearInterval(interval);
   }, []);
 
-  useEffect(() => {
-    // Create a temporary video element to test WebM support
-    const testVideo = document.createElement('video');
-    const supportsWebM = testVideo.canPlayType && testVideo.canPlayType('video/webm').length > 0;
-    const videoFormat = supportsWebM ? 'webm' : 'mp4';
-    
-    fetch(`/vids/hero.${videoFormat}`)
-      .then(response => response.blob())
-      .then(blob => {
-        const blobUrl = URL.createObjectURL(blob);
-        setVideoSrc(blobUrl);
-      })
-      .catch(error => {
-        console.error('Error fetching the video:', error);
-      });
-  }, []);
-
   // Determine the Tailwind classes based on animation state for headline lines
   const getClass = (animState) => {
     if (animState === 'visible') return 'translate-y-0 opacity-100';
@@ -88,8 +70,10 @@ export default function HeroNew() {
         playsInline
         style={{ willChange: 'transform' }}
         className="absolute inset-0 w-full h-full object-cover object-center hidden sm:block transform scale-100 sm:scale-125 xl:scale-100"
-        src={videoSrc}
       >
+        <source src="/vids/hero.mp4" type="video/mp4" />
+        <source src="/vids/hero.webm" type="video/webm" />
+ 
         Your browser does not support the video tag.
       </video>
       <div
