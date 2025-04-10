@@ -18,7 +18,6 @@ const slidesData = [
     desktop: {
       videoSources: [
         { src: "/vids/storage.mp4", type: "video/mp4" },
-        { src: "/vids/storage.webm", type: "video/webm" },
       ],
       headingIcon: <Energy className="mr-3 w-10 h-6"/>,
       headingText: "BATTERY MANAGEMENT FOR ESS/BESS INSTALLATIONS",
@@ -51,8 +50,8 @@ const slidesData = [
     slideId: 1,
     desktop: {
       videoSources: [
-        { src: "/vids/output.mp4", type: "video/mp4" },
-        { src: "/vids/output.webm", type: "video/webm" },
+        { src: "/vids/battery.mp4", type: "video/mp4" },
+
       ],
       headingIcon: <Manage className="w-7 mr-3" />,
       headingText: "BATTERY FACTORY LINE TESTERS",
@@ -185,6 +184,14 @@ export default function Slider() {
                         muted
                         playsInline
                         preload="auto"
+                        poster={
+                          slide.desktop.videoSources && slide.desktop.videoSources.length > 0 &&
+                          slide.desktop.videoSources[0].src.includes('storage.mp4') ? 
+                            "/slider/storage-thumbnail.webp" :
+                          slide.desktop.videoSources && slide.desktop.videoSources.length > 0 &&
+                          slide.desktop.videoSources[0].src.includes('battery.mp4') ? 
+                            "/slider/battery-thumbnail.webp" : ""
+                        }
                         className="w-full h-full object-cover rounded-lg shadow-xl"
                       >
                         {slide.desktop.videoSources.map((srcObj, i) => (
