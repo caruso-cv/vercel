@@ -7,6 +7,18 @@ const withPWA = require('next-pwa')({
       urlPattern: /\.(mp4|webm)$/i,
       handler: 'NetworkOnly',
       method: 'GET',
+      options: {
+        plugins: [
+          {
+            // This plugin removes the Range header before making the fetch, forcing a full (200) response.
+            requestWillFetch: async ({ request }) => {
+              const newHeaders = new Headers(request.headers);
+              newHeaders.delete('range'); // Remove any Range header
+              return new Request(request, { headers: newHeaders });
+            },
+          },
+        ],
+      },
     },
   ],
 });

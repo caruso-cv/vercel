@@ -83,11 +83,25 @@ export default function HeroNew() {
           type="video/webm"
           media="(min-width: 640px)"
         />
+        <link
+          rel="preload"
+          as="image"
+          href="/hero/hero-thumbanil.webp"
+          type="image/webp"
+          media="(min-width: 640px)"
+        />
         {/* Mobile hero image */}
         <link
           rel="preload"
           as="image"
           href="/hero/energy-mobile.webp"
+          type="image/webp"
+          media="(max-width: 639px)"
+        />
+        <link
+          rel="preload"
+          as="image"
+          href="/hero/test-mobile.webp"
           type="image/webp"
           media="(max-width: 639px)"
         />
