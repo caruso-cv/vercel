@@ -31,7 +31,7 @@ const slidesData = [
       ctaAriaLabel: "Explore details and specifications about ENERG8TE",
       logo: <ENERG8TE className="h-8 w-auto"/>,
       logoContainerClasses:
-        "absolute bottom-36 right-20 bg-white/85 backdrop-blur-sm px-4 py-[70px] rounded-lg shadow-md border-white/30",
+        "absolute bottom-36 right-6 xl:right-12 2xl:right-20 bg-white/85 backdrop-blur-sm px-4 py-[70px] rounded-lg shadow-md border-white/30",
     },
     mobile: {
       image: "/slider/12.webp",
@@ -65,7 +65,7 @@ const slidesData = [
       ctaAriaLabel: "See Battery Management Specifications for ECU8TR",
       logo: <ECU8TR className="h-12 w-auto" />,
       logoContainerClasses:
-        "absolute bottom-40 right-16 bg-white/85 backdrop-blur-sm px-8 py-[60px] rounded-lg shadow-md border-white/30",
+        "absolute bottom-40 right-6 xl:right-10 2xl:right-20 bg-white/85 backdrop-blur-sm px-8 py-[60px] rounded-lg shadow-md border-white/30",
     },
     mobile: {
       image: "/slider/7.webp",
@@ -86,6 +86,7 @@ const slidesData = [
 export default function Slider() {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [mounted, setMounted] = useState(false)
+  const [isDesktop, setIsDesktop] = useState(() => typeof window !== 'undefined' && window.innerWidth >= 1024);
 
   // Store one desktop video ref per slide
   const videoRefs = useRef([])
@@ -100,6 +101,16 @@ export default function Slider() {
   useEffect(() => {
     setMounted(true)
   }, [])
+
+  // Update isDesktop on window resize
+  useEffect(() => {
+    const checkDesktop = () => {
+      setIsDesktop(window.innerWidth >= 1024);
+    };
+    checkDesktop();
+    window.addEventListener('resize', checkDesktop);
+    return () => window.removeEventListener('resize', checkDesktop);
+  }, []);
 
   // Initialize an array of video refs matching slidesData
   useEffect(() => {
@@ -174,116 +185,121 @@ export default function Slider() {
           {slidesData.map((slide, index) => (
             <div key={slide.slideId} className="keen-slider__slide relative">
               {/* DESKTOP */}
-              <div className="hidden lg:flex flex-col items-center lg:flex-row lg:justify-center px-4 pt-56 pb-20 w-full h-full">
-                <div className="relative">
-                  <div className="w-[800px] h-[450px] mr-44 mb-20">
-                    {visitedSlides.has(index) && (
-                      <video
-                        ref={(el) => (videoRefs.current[index] = el)}
-                        loop
-                        muted
-                        playsInline
-                        preload="auto"
-                        poster={
-                          slide.desktop.videoSources && slide.desktop.videoSources.length > 0 &&
-                          slide.desktop.videoSources[0].src.includes('storage.mp4') ? 
-                            "/slider/storage-thumbnail.webp" :
-                          slide.desktop.videoSources && slide.desktop.videoSources.length > 0 &&
-                          slide.desktop.videoSources[0].src.includes('battery.mp4') ? 
-                            "/slider/battery-thumbnail.webp" : ""
-                        }
-                        className="w-full h-full object-cover rounded-lg shadow-xl"
+              {isDesktop && (
+                <div className="flex flex-col items-center lg:flex-row lg:justify-center px-4 pt-56 pb-20 w-full h-full">
+                  <div className="relative">
+                    <div className="w-[800px] h-[450px] mr-44 mb-20">
+                      {visitedSlides.has(index) && (
+                        <video
+                          ref={(el) => (videoRefs.current[index] = el)}
+                          loop
+                          muted
+                          playsInline
+                          preload="auto"
+                          poster={
+                            slide.desktop.videoSources && slide.desktop.videoSources.length > 0 &&
+                            slide.desktop.videoSources[0].src.includes('storage.mp4')
+                              ? "/slider/storage-thumbnail.webp"
+                              : slide.desktop.videoSources && slide.desktop.videoSources.length > 0 &&
+                                slide.desktop.videoSources[0].src.includes('battery.mp4')
+                              ? "/slider/battery-thumbnail.webp"
+                              : ""
+                          }
+                          className="w-full h-full object-cover rounded-lg shadow-xl"
+                        >
+                          {slide.desktop.videoSources.map((srcObj, i) => (
+                            <source key={i} src={srcObj.src} type={srcObj.type} />
+                          ))}
+                        </video>
+                      )}
+                    </div>
+      
+                    {/* Video Info Box */}
+                    <div className="absolute top-12 right-6 xl:-right-24 border border-white/10 bg-gradient-to-tr from-[#0C0D0F] to-[#111214] via-[#111214]/85 backdrop-blur-sm text-white p-5 pt-7 w-[90%] max-w-[460px] rounded-lg shadow-lg">
+                      <h3 className="text-lg uppercase font-bold flex items-center mb-4">
+                        {slide.desktop.headingIcon}
+                        {slide.desktop.headingText}
+                      </h3>
+                      <p className="text-lg text-gray-200 mb-6 tracking-wide">
+                          {slide.desktop.bodyTextBeforeSpan}
+                          {slide.desktop.bodyTextBeforeSpan2 && (
+                              <span className="block mt-[10px] font-semibold">
+                              {slide.desktop.bodyTextBeforeSpan2}
+                              </span>
+                          )}
+                          <span className="text-[#8CD6FF] bg-[#1C445D] rounded-sm px-1">
+                              {slide.desktop.bodyTextSpan}
+                          </span>{" "}
+                          {slide.desktop.bodyTextAfterSpan}
+                      </p>
+                      <Link
+                        href={slide.desktop.ctaHref}
+                        passHref
+                        tabIndex={currentSlide === index ? 0 : -1}
+                        aria-label={slide.desktop.ctaAriaLabel}
                       >
-                        {slide.desktop.videoSources.map((srcObj, i) => (
-                          <source key={i} src={srcObj.src} type={srcObj.type} />
-                        ))}
-                      </video>
-                    )}
+                        <motion.div className="uppercase inline-flex items-center justify-center py-2 px-2.5 md:px-3.5 text-sm font-bold tracking-[0.2px] cursor-pointer border-none rounded-[4px] transition-colors duration-200 ease-in-out bg-[#E6E6E6] hover:bg-[#FFF] shadow-md opacity-90 hover:opacity-100 text-black">
+                          <span>{slide.desktop.ctaLabel}</span>
+                        </motion.div>
+                      </Link>
+                    </div>
                   </div>
-
-                  {/* Video Info Box */}
-                  <div className="hidden lg:block absolute top-12 right-6 xl:-right-24 border border-white/10 bg-gradient-to-tr from-[#0C0D0F] to-[#111214] via-[#111214]/85 backdrop-blur-sm text-white p-5 pt-7 w-[90%] max-w-[460px] rounded-lg shadow-lg">
-                    <h3 className="text-lg uppercase font-bold flex items-center mb-4">
-                      {slide.desktop.headingIcon}
-                      {slide.desktop.headingText}
-                    </h3>
-                    <p className="text-lg text-gray-200 mb-6 tracking-wide">
-                        {slide.desktop.bodyTextBeforeSpan}
-                        {slide.desktop.bodyTextBeforeSpan2 && (
-                            <span className="block mt-[10px] font-semibold">
-                            {slide.desktop.bodyTextBeforeSpan2}
-                            </span>
-                        )}
-                        <span className="text-[#8CD6FF] bg-[#1C445D] rounded-sm px-1">
-                            {slide.desktop.bodyTextSpan}
-                        </span>{" "}
-                        {slide.desktop.bodyTextAfterSpan}
-                    </p>
-                    <Link
-                      href={slide.desktop.ctaHref}
-                      passHref
-                      tabIndex={currentSlide === index ? 0 : -1}
-                      aria-label={slide.desktop.ctaAriaLabel}
-                    >
-                      <motion.div className="uppercase inline-flex items-center justify-center py-2 px-2.5 md:px-3.5 text-sm font-bold tracking-[0.2px] cursor-pointer border-none rounded-[4px] transition-colors duration-200 ease-in-out bg-[#E6E6E6] hover:bg-[#FFF] shadow-md opacity-90 hover:opacity-100 text-black">
-                        <span>{slide.desktop.ctaLabel}</span>
-                      </motion.div>
-                    </Link>
-                  </div>
+      
+                  {/* Desktop Logo Overlay */}
+                  {slide.desktop.logo && (
+                    <div className={slide.desktop.logoContainerClasses}>
+                      {slide.desktop.logo}
+                    </div>
+                  )}
                 </div>
-
-                {/* Desktop Logo Overlay */}
-                {slide.desktop.logo && (
-                  <div className={slide.desktop.logoContainerClasses}>
-                    {slide.desktop.logo}
-                  </div>
-                )}
-              </div>
+              )}
 
               {/* MOBILE */}
-              <div className="lg:hidden flex flex-col items-center w-full px-4 pt-24 pb-8">
-                <div className="border border-white/10 rounded-md bg-gradient-to-tr from-[#0C0D0F] to-[#111214] via-[#111214]/75 backdrop-blur-sm shadow-lg w-full max-w-[700px] overflow-hidden">
-                  <div className="relative w-full aspect-video">
-                    {visitedSlides.has(index) && (
-                      <Image
-                        src={slide.mobile.image}
-                        alt={slide.mobile.headingText}
-                        fill
-                        loading="lazy"
-                        className="object-cover border-b border-white/10"
-                      />
-                    )}
-                  </div>
-                  <div className="text-white p-5 pt-7">
-                    <h3 className="text-lg font-bold flex items-center mb-4">
-                      {slide.mobile.headingIcon}
-                      {slide.mobile.headingText}
-                    </h3>
-                    <p className="text-base text-gray-200 mb-6 tracking-wide">
-                    {slide.desktop.bodyTextBeforeSpan}
+              {!isDesktop && (
+                <div className="flex flex-col items-center w-full px-4 pt-24 pb-8">
+                  <div className="border border-white/10 rounded-md bg-gradient-to-tr from-[#0C0D0F] to-[#111214] via-[#111214]/75 backdrop-blur-sm shadow-lg w-full max-w-[700px] overflow-hidden">
+                    <div className="relative w-full aspect-video">
+                      {visitedSlides.has(index) && (
+                        <Image
+                          src={slide.mobile.image}
+                          alt={slide.mobile.headingText}
+                          fill
+                          loading="lazy"
+                          className="object-cover border-b border-white/10"
+                        />
+                      )}
+                    </div>
+                    <div className="text-white p-5 pt-7">
+                      <h3 className="text-lg font-bold flex items-center mb-4">
+                        {slide.mobile.headingIcon}
+                        {slide.mobile.headingText}
+                      </h3>
+                      <p className="text-base text-gray-200 mb-6 tracking-wide">
+                        {slide.desktop.bodyTextBeforeSpan}
                         {slide.desktop.bodyTextBeforeSpan2 && (
-                            <span className="block mt-[10px] font-semibold">
+                          <span className="block mt-[10px] font-semibold">
                             {slide.desktop.bodyTextBeforeSpan2}
-                            </span>
+                          </span>
                         )}
                         <span className="text-[#8CD6FF] bg-[#1C445D] rounded-sm px-1">
-                            {slide.desktop.bodyTextSpan}
+                          {slide.desktop.bodyTextSpan}
                         </span>{" "}
                         {slide.desktop.bodyTextAfterSpan}
-                    </p>
-                    <Link
-                      href={slide.mobile.ctaHref}
-                      passHref
-                      tabIndex={currentSlide === index ? 0 : -1}
-                      aria-label={slide.mobile.ctaAriaLabel}
-                    >
-                      <motion.div className="inline-flex items-center justify-center uppercase py-2 px-2.5 md:px-3.5 text-sm font-bold tracking-[0.2px] cursor-pointer border-none rounded-[4px] transition-colors duration-200 ease-in-out bg-[#E6E6E6] hover:bg-[#FFF] shadow-md opacity-90 hover:opacity-100 text-black">
-                        <span>{slide.mobile.ctaLabel}</span>
-                      </motion.div>
-                    </Link>
+                      </p>
+                      <Link
+                        href={slide.mobile.ctaHref}
+                        passHref
+                        tabIndex={currentSlide === index ? 0 : -1}
+                        aria-label={slide.mobile.ctaAriaLabel}
+                      >
+                        <motion.div className="inline-flex items-center justify-center uppercase py-2 px-2.5 md:px-3.5 text-sm font-bold tracking-[0.2px] cursor-pointer border-none rounded-[4px] transition-colors duration-200 ease-in-out bg-[#E6E6E6] hover:bg-[#FFF] shadow-md opacity-90 hover:opacity-100 text-black">
+                          <span>{slide.mobile.ctaLabel}</span>
+                        </motion.div>
+                      </Link>
+                    </div>
                   </div>
                 </div>
-              </div>
+              )}
             </div>
           ))}
         </div>

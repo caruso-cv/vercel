@@ -91,23 +91,28 @@ export default function HeroNew() {
           <source src="/vids/hero-vid.mp4" type="video/mp4" />
         </video>
       )}
-      <div
-        className={`absolute inset-0 w-full h-full bg-cover bg-center sm:hidden transition-opacity duration-500 ${firstText === 'Contain' ? 'opacity-100' : 'opacity-0'}`}
-        style={{
-          backgroundImage: 'url(/hero/energy-mobile.webp)',
-          willChange: 'opacity',
-          WebkitBackfaceVisibility: 'hidden',
-          transform: 'translateZ(0)'
-        }}      />
-      <div
-        className={`absolute inset-0 w-full h-full bg-cover bg-center sm:hidden transition-opacity duration-500 ${firstText === 'Contain' ? 'opacity-0' : 'opacity-100'}`}
-        style={{
-          backgroundImage: 'url(/hero/test-mobile.webp)',
-          willChange: 'opacity',
-          WebkitBackfaceVisibility: 'hidden',
-          transform: 'translateZ(0)'
-        }}
-      />
+      {!isDesktop && (
+        <div
+          className={`absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-500 ${firstText === 'Contain' ? 'opacity-100' : 'opacity-0'}`}
+          style={{
+            backgroundImage: 'url(/hero/energy-mobile.webp)',
+            willChange: 'opacity',
+            WebkitBackfaceVisibility: 'hidden',
+            transform: 'translateZ(0)'
+          }}
+        />
+      )}
+      {!isDesktop && (
+        <div
+          className={`absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-500 ${firstText === 'Contain' ? 'opacity-0' : 'opacity-100'}`}
+          style={{
+            backgroundImage: 'url(/hero/test-mobile.webp)',
+            willChange: 'opacity',
+            WebkitBackfaceVisibility: 'hidden',
+            transform: 'translateZ(0)'
+          }}
+        />
+      )}
       <div className="absolute inset-0 z-10 bg-gradient-to-r from-black/80 to-black/30" />
       <div className="relative mx-auto max-w-8xl px-6 lg:px-8 2xl:px-0 z-20 h-full">
         {/* Spacer for Navbar */}
