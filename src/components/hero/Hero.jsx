@@ -86,7 +86,7 @@ export default function HeroNew() {
         <link
           rel="preload"
           as="image"
-          href="/hero/hero-thumbanil.webp"
+          href="/hero/hero-thumbnail.webp"
           type="image/webp"
           media="(min-width: 640px)"
         />
@@ -113,7 +113,7 @@ export default function HeroNew() {
             loop
             muted
             playsInline
-            poster="/hero/hero-thumbanil.webp"
+            poster="/hero/hero-thumbnail.webp"
             style={{ willChange: 'transform' }}
             className="absolute inset-0 w-full h-full object-cover object-center transform scale-100 sm:scale-125 xl:scale-100"
           >

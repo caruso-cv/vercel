@@ -162,6 +162,12 @@ export default function Slider() {
     return () => clearInterval(timer);
   }, []);
 
+  useEffect(() => {
+    if (isLargeScreen && currentSlide === 0) {
+      restartAndPlaySlide(0);
+    }
+  }, [isLargeScreen, currentSlide, restartAndPlaySlide]);
+
   // RENDER
   return (
     <section className="mx-auto w-full flex justify-center">
