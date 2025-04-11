@@ -8,9 +8,23 @@ export default function HeroNew() {
   const [secondText, setSecondText] = useState('Your Energy');
   const [secondAnim, setSecondAnim] = useState('visible');
   
-  // New state for paragraph text and its visibility
+  // State for paragraph text and its visibility
   const [paraText, setParaText] = useState('Advanced BMS controllers for <br /> ESS/BESS installations.');
   const [paraVisible, setParaVisible] = useState(true);
+
+  // State to track screen width
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  // UseEffect to check screen size and update state
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsDesktop(window.innerWidth >= 640);
+    };
+    checkScreenSize(); // initial check
+
+    window.addEventListener("resize", checkScreenSize);
+    return () => window.removeEventListener("resize", checkScreenSize);
+  }, []);
 
   // This effect triggers the animation cycle every 6 seconds
   useEffect(() => {
@@ -63,19 +77,20 @@ export default function HeroNew() {
 
   return (
     <section className="relative block min-h-full overflow-hidden">
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        poster="/hero/hero-thumbanil.webp"
-        style={{ willChange: 'transform' }}
-        className="absolute inset-0 w-full h-full object-cover object-center hidden sm:block transform scale-100 sm:scale-125 xl:scale-100"
-      >
-        <source src="/vids/hero-vid-av1.webm" type="video/webm" />
-        <source src="/vids/hero-vid.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
+      {isDesktop && (
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          poster="/hero/hero-thumbanil.webp"
+          style={{ willChange: 'transform' }}
+          className="absolute inset-0 w-full h-full object-cover object-center transform scale-100 sm:scale-125 xl:scale-100"
+        >
+          <source src="/vids/hero-vid-av1.webm" type="video/webm" />
+          <source src="/vids/hero-vid.mp4" type="video/mp4" />
+        </video>
+      )}
       <div
         className={`absolute inset-0 w-full h-full bg-cover bg-center sm:hidden transition-opacity duration-500 ${firstText === 'Contain' ? 'opacity-100' : 'opacity-0'}`}
         style={{
