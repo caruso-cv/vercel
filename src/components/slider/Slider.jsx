@@ -86,6 +86,14 @@ const slidesData = [
 export default function Slider() {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [mounted, setMounted] = useState(false)
+  const [isLargeScreen, setIsLargeScreen] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => setIsLargeScreen(window.innerWidth >= 640);
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   // Store one desktop video ref per slide
   const videoRefs = useRef([])
@@ -177,7 +185,7 @@ export default function Slider() {
               <div className="hidden lg:flex flex-col items-center lg:flex-row lg:justify-center px-4 pt-56 pb-20 w-full h-full">
                 <div className="relative">
                   <div className="w-[800px] h-[450px] mr-44 mb-20">
-                    {visitedSlides.has(index) && (
+                    {visitedSlides.has(index) && isLargeScreen && (
                       <video
                         ref={(el) => (videoRefs.current[index] = el)}
                         loop
