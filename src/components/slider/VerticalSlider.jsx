@@ -236,6 +236,9 @@ export default function VerticalSlider() {
                 height={800}
                 quality={20}
                 className="w-full max-w-full lg:max-w-[50vw] h-auto"
+                sizes="(max-width: 768px) 100vw,
+                (max-width: 1024px) 50vw,
+                1200px" 
               />
             </div>
           )}

@@ -12,6 +12,16 @@ export default function HeroNew() {
   const [paraText, setParaText] = useState('Advanced BMS controllers for <br /> ESS/BESS installations.');
   const [paraVisible, setParaVisible] = useState(true);
 
+  // New state for screen width
+  const [isLargeScreen, setIsLargeScreen] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => setIsLargeScreen(window.innerWidth >= 640);
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   // This effect triggers the animation cycle every 6 seconds
   useEffect(() => {
     const interval = setInterval(() => {
@@ -63,18 +73,20 @@ export default function HeroNew() {
 
   return (
     <section className="relative block min-h-full overflow-hidden">
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        poster="/hero/hero-thumbanil.webp"
-        style={{ willChange: 'transform' }}
-        className="absolute inset-0 w-full h-full object-cover object-center hidden sm:block transform scale-100 sm:scale-125 xl:scale-100"
-      >
-        <source src="/vids/hero-vid-av1.webm" type="video/webm" />
-        <source src="/vids/hero-vid.mp4" type="video/mp4" />
-      </video>
+      {isLargeScreen && (
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          poster="/hero/hero-thumbanil.webp"
+          style={{ willChange: 'transform' }}
+          className="absolute inset-0 w-full h-full object-cover object-center transform scale-100 sm:scale-125 xl:scale-100"
+        >
+          <source src="/vids/hero-vid-av1.webm" type="video/webm" />
+          <source src="/vids/hero-vid.mp4" type="video/mp4" />
+        </video>
+      )}
       <div
         className={`absolute inset-0 w-full h-full bg-cover bg-center sm:hidden transition-opacity duration-500 ${firstText === 'Contain' ? 'opacity-100' : 'opacity-0'}`}
         style={{
