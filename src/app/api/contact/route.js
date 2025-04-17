@@ -40,7 +40,7 @@ export async function POST(request) {
 
     // Create a Nodemailer transporter using your SMTP settings
     const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST || 'smtp.mailgun.org',
+      host: process.env.SMTP_HOST || 'smtp.sendlayer.net',
       port: process.env.SMTP_PORT ? Number(process.env.SMTP_PORT) : 587,
       secure: false, // false for port 587
       auth: {
@@ -52,7 +52,7 @@ export async function POST(request) {
     // Send the email with the form details
     await transporter.sendMail({
       from: `${process.env.FROM_NAME || 'Contact Form'} <${process.env.FROM_EMAIL}>`,
-      to: process.env.TO_EMAIL || 'webform@neutroncontrols.com',
+      to: process.env.TO_EMAIL || 'testform@neutroncontrols.com',
       subject: `New Contact Form Submission from ${firstName} ${lastName}`,
       text: `
         You have a new message from your website contact form:
