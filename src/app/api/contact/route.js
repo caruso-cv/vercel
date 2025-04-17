@@ -38,6 +38,15 @@ export async function POST(request) {
     // Destructure expected values from the payload
     const { 'first-name': firstName, 'last-name': lastName, email, 'phone-number': phoneNumber, message } = body;
 
+    // Log SMTP environment variables
+    console.log('SMTP ENV CHECK', {
+      host: process.env.SMTP_HOST,
+      port: process.env.SMTP_PORT,
+      user: process.env.SMTP_USER,
+      from: process.env.FROM_EMAIL,
+      to: process.env.TO_EMAIL,
+    });
+
     // Create a Nodemailer transporter using your SMTP settings
     const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST || 'smtp.mailgun.org',
@@ -47,6 +56,14 @@ export async function POST(request) {
         user: process.env.SMTP_USER,
         pass: process.env.SMTP_PASS
       }
+    });
+
+    // Verify SMTP connection
+    await transporter.verify().then(() => {
+      console.log('SMTP connection verified');
+    }).catch((err) => {
+      console.error('SMTP connection failed:', err);
+      throw err;
     });
 
     // Send the email with the form details
@@ -68,6 +85,11 @@ export async function POST(request) {
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error('Error sending email:', error);
-    return NextResponse.json({ error: 'Error sending email' }, { status: 500 });
+    console.error('Error stack trace:', error.stack);
+
+    return NextResponse.json({ 
+      error: error.message || 'Error sending email',
+      stack: error.stack 
+    }, { status: 500 });
   }
 }
