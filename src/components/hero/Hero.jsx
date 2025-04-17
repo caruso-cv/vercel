@@ -88,7 +88,7 @@ export default function HeroNew() {
   return (
     <>
       <Head>
-        {/* Desktop hero video  */}
+        {/* Desktop hero video   */}
         <link
           rel="preload"
           as="image"
