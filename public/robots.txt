@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.neutroncontrols.com/
+
+# Sitemaps
+Sitemap: https://www.neutroncontrols.com/sitemap.xml

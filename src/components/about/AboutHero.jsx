@@ -1,9 +1,15 @@
+// AboutHero.jsx
+// This component renders the 'Our Story' section on the About page.
+// It displays a background image with gradient overlays and a grid of cards,
+// each containing an icon, title, and description.
+
 import {
   LightBulbIcon,
   UserGroupIcon,
   GlobeAmericasIcon,
 } from '@heroicons/react/20/solid'
 
+// Define card details for the 'About' section, including title, description, and corresponding icon.
 const cards = [
   {
     name: 'PIONEERING EXPERTISE',
@@ -22,18 +28,20 @@ const cards = [
   },
 ]
 
-export default function Example() {
+export default function AboutHero() {
+  // Render the About Hero section layout including background image, overlays, and content.
   return (
     <div className="relative isolate overflow-hidden bg-[#090A0B] py-24 pt-44 lg:pt-64 z-30">
+      {/* Background image covering the hero section. */}
       <img
         alt=""
         src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=focalpoint&fp-y=.8&w=2830&h=1500&q=80&blend=111827&sat=-100&exp=15&blend-mode=multiply"
         className="absolute inset-0 -z-10 size-full object-cover object-right md:object-center"
       />
-      {/* Gradient overlay at the bottom */}
+      {/* Gradient overlay at the bottom to create a smooth transition with the background. */}
       <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-gray-900 to-transparent pointer-events-none z-0" />
 
-      {/* Existing gradient shapes */}
+      {/* Decorative gradient shape for visual enhancement on small screens. */}
       <div className="hidden sm:absolute sm:-top-10 sm:right-1/2 sm:-z-10 sm:mr-10 sm:block sm:transform-gpu sm:blur-3xl">
         <div
           style={{
@@ -43,6 +51,7 @@ export default function Example() {
           className="aspect-[1097/845] w-[68.5625rem] bg-gradient-to-tr from-[#4662ff] to-[#776fff] opacity-20"
         />
       </div>
+      {/* Additional decorative gradient shape positioned at the top for design depth. */}
       <div className="absolute -top-52 left-1/2 -z-10 -translate-x-1/2 transform-gpu blur-3xl sm:top-[-28rem] sm:ml-16 sm:translate-x-0 sm:transform-gpu">
         <div
           style={{
@@ -52,13 +61,16 @@ export default function Example() {
           className="aspect-[1097/845] w-[68.5625rem] bg-gradient-to-tr from-[#4652ff] to-[#776fff] opacity-20"
         />
       </div>
+      {/* Main content section with title, description, and cards grid. */}
       <section className="mx-auto max-w-8xl px-6 2xl:px-0">
+        {/* Section heading and introductory paragraph explaining the company's story. */}
         <div className="mx-auto max-w-3xl 2xl:max-w-3xl lg:mx-0">
           <h1 className="font-bold text-white text-5xl sm:text-6xl uppercase">Our Story</h1>
           <p className="mt-8 text-pretty text-xl sm:text-2xl font-medium text-gray-300 ">
             Neutron Controls traces its roots back to our proud Canadian heritage and a deep understanding of the semiconductor industry.
           </p>
         </div>
+        {/* Render cards dynamically based on the predefined card details. */}
         <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-6 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3 lg:gap-8">
           {cards.map((card) => (
             <div key={card.name} className="flex gap-x-4 rounded-xl bg-white/5 p-6 ring-1 ring-inset ring-white/10">
