@@ -221,7 +221,7 @@ export default function Slider() {
                         className="w-full h-full object-cover rounded-lg shadow-xl"
                         muted
                         playsInline
-                        preload="none"
+                        preload="auto"
                         poster={slide.desktop.poster}
                         style={{ willChange: 'transform' }}
                         loop
