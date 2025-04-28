@@ -119,40 +119,19 @@ export default function Slider() {
     videoRefs.current = slidesData.map(() => null)
   }, [])
 
-  // Lazy load HLS videos when about to enter viewport
+  // Immediately initialize HLS for all videos above the fold
   useEffect(() => {
-    const observerOptions = {
-      root: null,
-      rootMargin: "200px",
-      threshold: 0,
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const index = parseInt(entry.target.getAttribute("data-index"), 10);
-          if (videoRefs.current[index] && !videoRefs.current[index].dataset.loaded) {
-            if (Hls.isSupported()) {
-              const hls = new Hls();
-              hls.loadSource(slidesData[index].desktop.videoSrc);
-              hls.attachMedia(videoRefs.current[index]);
-            } else if (videoRefs.current[index].canPlayType('application/vnd.apple.mpegurl')) {
-              videoRefs.current[index].src = slidesData[index].desktop.videoSrc;
-            }
-            videoRefs.current[index].dataset.loaded = true;
-          }
+    slidesData.forEach((slide, index) => {
+      if (videoRefs.current[index]) {
+        if (Hls.isSupported()) {
+          const hls = new Hls();
+          hls.loadSource(slide.desktop.videoSrc);
+          hls.attachMedia(videoRefs.current[index]);
+        } else if (videoRefs.current[index].canPlayType('application/vnd.apple.mpegurl')) {
+          videoRefs.current[index].src = slide.desktop.videoSrc;
         }
-      });
-    }, observerOptions);
-
-    videoRefs.current.forEach((video, idx) => {
-      if (video) {
-        video.setAttribute('data-index', idx);
-        observer.observe(video);
       }
     });
-
-    return () => observer.disconnect();
   }, []);
 
   // Function to restart & play the desktop video at a given slide index
@@ -336,4 +315,4 @@ export default function Slider() {
       </div>
     </section>
   )
-}
+}Link
