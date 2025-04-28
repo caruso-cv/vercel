@@ -127,8 +127,12 @@ export default function Slider() {
           const hls = new Hls();
           hls.loadSource(slide.desktop.videoSrc);
           hls.attachMedia(videoRefs.current[index]);
+          hls.on(Hls.Events.MANIFEST_PARSED, () => {
+            videoRefs.current[index].play().catch(() => {});
+          });
         } else if (videoRefs.current[index].canPlayType('application/vnd.apple.mpegurl')) {
           videoRefs.current[index].src = slide.desktop.videoSrc;
+          videoRefs.current[index].play().catch(() => {});
         }
       }
     });
