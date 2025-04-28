@@ -6,6 +6,7 @@ import "keen-slider/keen-slider.min.css"
 import { useKeenSlider } from "keen-slider/react"
 import { motion } from "framer-motion"
 import Link from "next/link"
+import Hls from 'hls.js';
 import ENERG8TE from "@/components/logos/Energate";
 import ECU8TR from "@/components/logos/ECU8TR-slider";
 import Energy from "@/components/icons/Energy";
@@ -16,6 +17,8 @@ const slidesData = [
   {
     slideId: 0,
     desktop: {
+      videoSrc: "https://d3jn5509arnhlw.cloudfront.net/slider/1/master.m3u8",
+      poster: "/slider/12.webp",
       videoSources: [
         { src: "/vids/storage.mp4", type: "video/mp4" },
       ],
@@ -49,6 +52,8 @@ const slidesData = [
   {
     slideId: 1,
     desktop: {
+      videoSrc: "https://d3jn5509arnhlw.cloudfront.net/slider/2/master.m3u8",
+      poster: "/slider/7.webp",
       videoSources: [
         { src: "/vids/battery.mp4", type: "video/mp4" },
 
@@ -96,7 +101,7 @@ export default function Slider() {
   }, []);
 
   // Store one desktop video ref per slide
-  const videoRefs = useRef([])
+  const videoRefs = useRef([]);
 
   // Track slides that have been visited so once a video/image is loaded, we keep it in the DOM.
   const [visitedSlides, setVisitedSlides] = useState(() => new Set([0]))
@@ -113,6 +118,42 @@ export default function Slider() {
   useEffect(() => {
     videoRefs.current = slidesData.map(() => null)
   }, [])
+
+  // Lazy load HLS videos when about to enter viewport
+  useEffect(() => {
+    const observerOptions = {
+      root: null,
+      rootMargin: "200px",
+      threshold: 0,
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const index = parseInt(entry.target.getAttribute("data-index"), 10);
+          if (videoRefs.current[index] && !videoRefs.current[index].dataset.loaded) {
+            if (Hls.isSupported()) {
+              const hls = new Hls();
+              hls.loadSource(slidesData[index].desktop.videoSrc);
+              hls.attachMedia(videoRefs.current[index]);
+            } else if (videoRefs.current[index].canPlayType('application/vnd.apple.mpegurl')) {
+              videoRefs.current[index].src = slidesData[index].desktop.videoSrc;
+            }
+            videoRefs.current[index].dataset.loaded = true;
+          }
+        }
+      });
+    }, observerOptions);
+
+    videoRefs.current.forEach((video, idx) => {
+      if (video) {
+        video.setAttribute('data-index', idx);
+        observer.observe(video);
+      }
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   // Function to restart & play the desktop video at a given slide index
   const restartAndPlaySlide = useCallback((index) => {
@@ -194,16 +235,15 @@ export default function Slider() {
                     {visitedSlides.has(index) && isLargeScreen && (
                       <video
                         ref={(el) => (videoRefs.current[index] = el)}
-                        loop
+                        className="w-full h-full object-cover rounded-lg shadow-xl"
                         muted
                         playsInline
-                        preload="auto"
-                        className="w-full h-full object-cover rounded-lg shadow-xl"
-                      >
-                        {slide.desktop.videoSources.map((srcObj, i) => (
-                          <source key={i} src={srcObj.src} type={srcObj.type} />
-                        ))}
-                      </video>
+                        preload="none"
+                        poster={slide.desktop.poster}
+                        style={{ willChange: 'transform' }}
+                        loop
+                        autoPlay
+                      />
                     )}
                   </div>
 
