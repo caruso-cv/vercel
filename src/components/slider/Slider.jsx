@@ -119,24 +119,25 @@ export default function Slider() {
     videoRefs.current = slidesData.map(() => null)
   }, [])
 
-  // Immediately initialize HLS for all videos above the fold
+  // Initialize HLS whenever a desktop video is rendered on a large screen
   useEffect(() => {
     slidesData.forEach((slide, index) => {
-      if (videoRefs.current[index]) {
+      const videoEl = videoRefs.current[index];
+      if (videoEl && visitedSlides.has(index)) {
         if (Hls.isSupported()) {
           const hls = new Hls();
           hls.loadSource(slide.desktop.videoSrc);
-          hls.attachMedia(videoRefs.current[index]);
+          hls.attachMedia(videoEl);
           hls.on(Hls.Events.MANIFEST_PARSED, () => {
-            videoRefs.current[index].play().catch(() => {});
+            videoEl.play().catch(() => {});
           });
-        } else if (videoRefs.current[index].canPlayType('application/vnd.apple.mpegurl')) {
-          videoRefs.current[index].src = slide.desktop.videoSrc;
-          videoRefs.current[index].play().catch(() => {});
+        } else if (videoEl.canPlayType('application/vnd.apple.mpegurl')) {
+          videoEl.src = slide.desktop.videoSrc;
+          videoEl.play().catch(() => {});
         }
       }
     });
-  }, []);
+  }, [visitedSlides]);
 
   // Function to restart & play the desktop video at a given slide index
   const restartAndPlaySlide = useCallback((index) => {
@@ -215,7 +216,7 @@ export default function Slider() {
               <div className="hidden lg:flex flex-col items-center lg:flex-row lg:justify-center px-4 pt-56 pb-20 w-full h-full">
                 <div className="relative">
                   <div className="w-[800px] h-[450px] mr-44 mb-20">
-                    {visitedSlides.has(index) && isLargeScreen && (
+                    {visitedSlides.has(index) && (
                       <video
                         ref={(el) => (videoRefs.current[index] = el)}
                         className="w-full h-full object-cover rounded-lg shadow-xl"
