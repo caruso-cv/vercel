@@ -102,6 +102,11 @@ export default function Slider() {
 
   // Store one desktop video ref per slide
   const videoRefs = useRef([]);
+  // Track which slides have had HLS initialized to avoid re-fetching
+  const initializedSlides = useRef(new Set());
+
+  // so we know when the DOM-mounted videoRefs are ready
+  const [refsReady, setRefsReady] = useState(false);
 
   // Track slides that have been visited so once a video/image is loaded, we keep it in the DOM.
   const [visitedSlides, setVisitedSlides] = useState(() => new Set([0]))
@@ -114,6 +119,9 @@ export default function Slider() {
     setMounted(true)
   }, [])
 
+  // Signal that our <video> refs are now in the tree
+  useEffect(() => { setRefsReady(true); }, []);
+
   // Initialize an array of video refs matching slidesData
   useEffect(() => {
     videoRefs.current = slidesData.map(() => null)
@@ -123,7 +131,8 @@ export default function Slider() {
   useEffect(() => {
     slidesData.forEach((slide, index) => {
       const videoEl = videoRefs.current[index];
-      if (videoEl && visitedSlides.has(index)) {
+      // Only initialize HLS once per slide
+      if (videoEl && visitedSlides.has(index) && !initializedSlides.current.has(index)) {
         if (Hls.isSupported()) {
           const hls = new Hls();
           hls.loadSource(slide.desktop.videoSrc);
@@ -135,9 +144,17 @@ export default function Slider() {
           videoEl.src = slide.desktop.videoSrc;
           videoEl.play().catch(() => {});
         }
+        initializedSlides.current.add(index);
       }
     });
-  }, [visitedSlides]);
+  }, [visitedSlides, refsReady]);
+
+  // Ensure the very first slide plays as soon as HLS is attached
+  useEffect(() => {
+    if (visitedSlides.has(0) && initializedSlides.current.has(0)) {
+      restartAndPlaySlide(0);
+    }
+  }, [visitedSlides, mounted, initializedSlides.current]);
 
   // Function to restart & play the desktop video at a given slide index
   const restartAndPlaySlide = useCallback((index) => {
