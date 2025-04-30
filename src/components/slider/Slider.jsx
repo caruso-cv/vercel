@@ -178,6 +178,7 @@ export default function Slider() {
 
   // Load and play HLS for the active slide only, reset on change
   useEffect(() => {
+    if (!refsReady) return;
     const idx = currentSlide;
     const videoEl = videoRefs.current[idx];
     if (!videoEl) return;
@@ -200,6 +201,9 @@ export default function Slider() {
           levelIdx = levels.length - 1;
         }
         hls.startLevel = levelIdx;
+        hls.loadLevel = levelIdx;
+        hls.currentLevel = levelIdx;
+        hls.nextLevel = levelIdx;
         hls.autoLevelEnabled = false;
         videoEl.currentTime = 0;
         videoEl.play().catch(() => {});
@@ -217,7 +221,7 @@ export default function Slider() {
         hlsRef.current = null;
       }
     };
-  }, [currentSlide]);
+  }, [currentSlide, refsReady]);
 
   useEffect(() => {
     if (isLargeScreen && currentSlide === 0) {
