@@ -191,20 +191,22 @@ export default function Slider() {
     if (Hls.isSupported()) {
       const hls = new Hls();
       hlsRef.current = hls;
-      hls.on(Hls.Events.MANIFEST_PARSED, (_, { levels }) => {
+      hls.on(Hls.Events.MANIFEST_PARSED, (_, data) => {
+        const levels = data.levels;
+        // pick highest‐bitrate AV1 variant if available
         const av1Levels = levels.filter(l => /av01/.test(l.attrs.CODECS));
-        let levelIdx;
         if (av1Levels.length) {
-          const firstAv1 = levels.findIndex(l => /av01/.test(l.attrs.CODECS));
-          levelIdx = firstAv1 + av1Levels.length - 1;
+          const highestAv1 = av1Levels.reduce((max, l) => l.bitrate > max.bitrate ? l : max, av1Levels[0]);
+          const idx = levels.indexOf(highestAv1);
+          hls.startLevel = idx;
+          hls.loadLevel = idx;
+          hls.currentLevel = idx;
+          hls.nextLevel = idx;
+          hls.autoLevelEnabled = false;
         } else {
-          levelIdx = levels.length - 1;
+          // fallback to auto‐adaptive
+          hls.autoLevelEnabled = true;
         }
-        hls.startLevel = levelIdx;
-        hls.loadLevel = levelIdx;
-        hls.currentLevel = levelIdx;
-        hls.nextLevel = levelIdx;
-        hls.autoLevelEnabled = false;
         videoEl.currentTime = 0;
         videoEl.play().catch(() => {});
       });
