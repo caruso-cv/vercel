@@ -114,10 +114,6 @@ export default function Slider() {
     setMounted(true)
   }, [])
 
-  // Initialize an array of video refs matching slidesData
-  useEffect(() => {
-    videoRefs.current = slidesData.map(() => null)
-  }, [])
 
   // Initialize Keen Slider
   const [sliderRef, instanceRef] = useKeenSlider({
