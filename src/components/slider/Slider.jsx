@@ -109,9 +109,6 @@ export default function Slider() {
   // so we know when the DOM-mounted videoRefs are ready
   const [refsReady, setRefsReady] = useState(false);
 
-  // Track slides that have been visited so once a video/image is loaded, we keep it in the DOM.
-  const [visitedSlides, setVisitedSlides] = useState(() => new Set([0]))
-
   // Keep track of the previous slide index
   const prevSlide = useRef(currentSlide)
 
@@ -138,7 +135,6 @@ export default function Slider() {
     slideChanged(slider) {
       const nextIndex = slider.track.details.rel
       setCurrentSlide(nextIndex)
-      setVisitedSlides((prev) => new Set([...prev, nextIndex]))
     },
     created(slider) {
       const initialIndex = slider.track.details.rel
@@ -160,11 +156,11 @@ export default function Slider() {
 
   // Restart the new slide's desktop video on slide change
   useEffect(() => {
-    if (visitedSlides.has(currentSlide) && currentSlide !== prevSlide.current) {
+    if (currentSlide !== prevSlide.current) {
       restartAndPlaySlide(currentSlide)
     }
     prevSlide.current = currentSlide
-  }, [currentSlide, visitedSlides, restartAndPlaySlide])
+  }, [currentSlide, restartAndPlaySlide])
 
   // Auto-advance slides
   useEffect(() => {
@@ -254,19 +250,17 @@ export default function Slider() {
               <div className="hidden lg:flex flex-col items-center lg:flex-row lg:justify-center px-4 pt-56 pb-20 w-full h-full">
                 <div className="relative">
                   <div className="w-[800px] h-[450px] mr-44 mb-20">
-                    {visitedSlides.has(index) && (
-                      <video
-                        ref={(el) => (videoRefs.current[index] = el)}
-                        className="w-full h-full object-cover rounded-lg shadow-xl"
-                        muted
-                        playsInline
-                        preload="auto"
-                        poster={slide.desktop.poster}
-                        style={{ willChange: 'transform' }}
-                        loop
-                        autoPlay
-                      />
-                    )}
+                    <video
+                      ref={(el) => (videoRefs.current[index] = el)}
+                      className="w-full h-full object-cover rounded-lg shadow-xl"
+                      muted
+                      playsInline
+                      preload="auto"
+                      poster={slide.desktop.poster}
+                      style={{ willChange: 'transform' }}
+                      loop
+                      autoPlay
+                    />
                   </div>
 
                   {/* Video Info Box */}
@@ -312,15 +306,13 @@ export default function Slider() {
               <div className="lg:hidden flex flex-col items-center w-full px-4 pt-24 pb-8">
                 <div className="border border-white/10 rounded-md bg-gradient-to-tr from-[#0C0D0F] to-[#111214] via-[#111214]/75 backdrop-blur-sm shadow-lg w-full max-w-[700px] overflow-hidden">
                   <div className="relative w-full aspect-video">
-                    {visitedSlides.has(index) && (
-                      <Image
-                        src={slide.mobile.image}
-                        alt={slide.mobile.headingText}
-                        fill
-                        loading="lazy"
-                        className="object-cover border-b border-white/10"
-                      />
-                    )}
+                    <Image
+                      src={slide.mobile.image}
+                      alt={slide.mobile.headingText}
+                      fill
+                      loading="lazy"
+                      className="object-cover border-b border-white/10"
+                    />
                   </div>
                   <div className="text-white p-5 pt-7">
                     <h3 className="text-lg font-bold flex items-center mb-4">
