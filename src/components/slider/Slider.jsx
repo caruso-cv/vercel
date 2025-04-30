@@ -168,6 +168,7 @@ export default function Slider() {
 
   // Initialize HLS for every slide so all playlists/segments load upfront
   useEffect(() => {
+    if (!mounted || !isLargeScreen) return;
     videoRefs.current.forEach((videoEl, idx) => {
       if (videoEl && !hlsInstances.current[idx]) {
         if (Hls.isSupported()) {
@@ -196,7 +197,7 @@ export default function Slider() {
     return () => {
       hlsInstances.current.forEach(hls => hls?.destroy());
     };
-  }, []);
+  }, [mounted, isLargeScreen]);
 
   // Pause all videos except the active slide, and restart it
   useEffect(() => {
