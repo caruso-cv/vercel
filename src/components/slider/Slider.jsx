@@ -103,6 +103,9 @@ export default function Slider() {
   // Store one desktop video ref per slide
   const videoRefs = useRef([]);
 
+  // Single HLS.js instance for the current slide
+  const hlsRef = useRef(null);
+
   // so we know when the DOM-mounted videoRefs are ready
   const [refsReady, setRefsReady] = useState(false);
 
@@ -111,8 +114,6 @@ export default function Slider() {
 
   // Keep track of the previous slide index
   const prevSlide = useRef(currentSlide)
-  // Keep one HLS.js instance per slide to avoid cache-lookups
-  const hlsInstances = useRef([]);
 
   // Mark as mounted after first client render
   useEffect(() => {
@@ -125,15 +126,6 @@ export default function Slider() {
   // Initialize an array of video refs matching slidesData
   useEffect(() => {
     videoRefs.current = slidesData.map(() => null)
-  }, [])
-
-  // Function to restart & play the desktop video at a given slide index
-  const restartAndPlaySlide = useCallback((index) => {
-    const vid = videoRefs.current[index]
-    if (vid) {
-      vid.currentTime = 0
-      vid.play().catch(() => {})
-    }
   }, [])
 
   // Initialize Keen Slider
@@ -157,6 +149,15 @@ export default function Slider() {
     },
   })
 
+  // Function to restart & play the desktop video at a given slide index
+  const restartAndPlaySlide = useCallback((index) => {
+    const vid = videoRefs.current[index]
+    if (vid) {
+      vid.currentTime = 0
+      vid.play().catch(() => {})
+    }
+  }, [])
+
   // Restart the new slide's desktop video on slide change
   useEffect(() => {
     if (visitedSlides.has(currentSlide) && currentSlide !== prevSlide.current) {
@@ -175,48 +176,47 @@ export default function Slider() {
     return () => clearInterval(timer);
   }, []);
 
-  // Manage HLS per slide: detach previous, attach new for zero cache-lookups
+  // Load and play HLS for the active slide only, reset on change
   useEffect(() => {
-    const prev = prevSlide.current;
-    const prevHls = hlsInstances.current[prev];
-    if (prevHls) {
-      prevHls.stopLoad();
-      prevHls.detachMedia();
-    }
     const idx = currentSlide;
     const videoEl = videoRefs.current[idx];
     if (!videoEl) return;
-    let hls = hlsInstances.current[idx];
-    if (!hls) {
-      if (Hls.isSupported()) {
-        hls = new Hls();
-        hlsInstances.current[idx] = hls;
-        hls.loadSource(slidesData[idx].desktop.videoSrc);
-        hls.attachMedia(videoEl);
-        hls.on(Hls.Events.MANIFEST_PARSED, (_, data) => {
-          // choose highest AV1 or fallback
-          const levels = data.levels;
-          const av1Levels = levels.filter(l => /av01/.test(l.attrs.CODECS));
-          let levelIdx;
-          if (av1Levels.length) {
-            const firstAv1 = levels.findIndex(l => /av01/.test(l.attrs.CODECS));
-            levelIdx = firstAv1 + av1Levels.length - 1;
-          } else {
-            levelIdx = levels.length - 1;
-          }
-          hls.startLevel = levelIdx;
-          videoEl.play().catch(() => {});
-        });
-      } else if (videoEl.canPlayType('application/vnd.apple.mpegurl')) {
-        videoEl.src = slidesData[idx].desktop.videoSrc;
+    // Clean up previous HLS instance
+    if (hlsRef.current) {
+      hlsRef.current.destroy();
+      hlsRef.current = null;
+    }
+    // Initialize new HLS instance
+    if (Hls.isSupported()) {
+      const hls = new Hls();
+      hlsRef.current = hls;
+      hls.on(Hls.Events.MANIFEST_PARSED, (_, { levels }) => {
+        const av1Levels = levels.filter(l => /av01/.test(l.attrs.CODECS));
+        let levelIdx;
+        if (av1Levels.length) {
+          const firstAv1 = levels.findIndex(l => /av01/.test(l.attrs.CODECS));
+          levelIdx = firstAv1 + av1Levels.length - 1;
+        } else {
+          levelIdx = levels.length - 1;
+        }
+        hls.startLevel = levelIdx;
+        hls.autoLevelEnabled = false;
+        videoEl.currentTime = 0;
         videoEl.play().catch(() => {});
-      }
-    } else {
-      // re-attach and play
+      });
+      hls.loadSource(slidesData[idx].desktop.videoSrc);
       hls.attachMedia(videoEl);
+    } else if (videoEl.canPlayType('application/vnd.apple.mpegurl')) {
+      videoEl.src = slidesData[idx].desktop.videoSrc;
+      videoEl.currentTime = 0;
       videoEl.play().catch(() => {});
     }
-    prevSlide.current = idx;
+    return () => {
+      if (hlsRef.current) {
+        hlsRef.current.destroy();
+        hlsRef.current = null;
+      }
+    };
   }, [currentSlide]);
 
   useEffect(() => {
@@ -224,13 +224,6 @@ export default function Slider() {
       restartAndPlaySlide(0);
     }
   }, [isLargeScreen, currentSlide, restartAndPlaySlide]);
-
-  // Destroy all HLS instances on unmount
-  useEffect(() => {
-    return () => {
-      hlsInstances.current.forEach(h => h?.destroy());
-    };
-  }, []);
 
   // RENDER
   return (
