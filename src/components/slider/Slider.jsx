@@ -103,11 +103,8 @@ export default function Slider() {
   // Store one desktop video ref per slide
   const videoRefs = useRef([]);
 
-  // Single HLS.js instance for the current slide
-  const hlsRef = useRef(null);
-
-  // so we know when the DOM-mounted videoRefs are ready
-  const [refsReady, setRefsReady] = useState(false);
+  // Keep one HLS.js instance per slide
+  const hlsInstances = useRef([]);
 
   // Keep track of the previous slide index
   const prevSlide = useRef(currentSlide)
@@ -116,9 +113,6 @@ export default function Slider() {
   useEffect(() => {
     setMounted(true)
   }, [])
-
-  // Signal that our <video> refs are now in the tree
-  useEffect(() => { setRefsReady(true); }, []);
 
   // Initialize an array of video refs matching slidesData
   useEffect(() => {
@@ -172,54 +166,50 @@ export default function Slider() {
     return () => clearInterval(timer);
   }, []);
 
-  // Load and play HLS for the active slide only, reset on change
+  // Initialize HLS for every slide so all playlists/segments load upfront
   useEffect(() => {
-    if (!refsReady) return;
-    const idx = currentSlide;
-    const videoEl = videoRefs.current[idx];
-    if (!videoEl) return;
-    // Clean up previous HLS instance
-    if (hlsRef.current) {
-      hlsRef.current.destroy();
-      hlsRef.current = null;
-    }
-    // Initialize new HLS instance
-    if (Hls.isSupported()) {
-      const hls = new Hls();
-      hlsRef.current = hls;
-      hls.on(Hls.Events.MANIFEST_PARSED, (_, data) => {
-        const levels = data.levels;
-        // pick highest‐bitrate AV1 variant if available
-        const av1Levels = levels.filter(l => /av01/.test(l.attrs.CODECS));
-        if (av1Levels.length) {
-          const highestAv1 = av1Levels.reduce((max, l) => l.bitrate > max.bitrate ? l : max, av1Levels[0]);
-          const idx = levels.indexOf(highestAv1);
-          hls.startLevel = idx;
-          hls.loadLevel = idx;
-          hls.currentLevel = idx;
-          hls.nextLevel = idx;
-          hls.autoLevelEnabled = false;
-        } else {
-          // fallback to auto‐adaptive
-          hls.autoLevelEnabled = true;
+    videoRefs.current.forEach((videoEl, idx) => {
+      if (videoEl && !hlsInstances.current[idx]) {
+        if (Hls.isSupported()) {
+          const hls = new Hls();
+          hlsInstances.current[idx] = hls;
+          hls.loadSource(slidesData[idx].desktop.videoSrc);
+          hls.attachMedia(videoEl);
+          hls.on(Hls.Events.MANIFEST_PARSED, (_, { levels }) => {
+            const av1Levels = levels.filter(l => /av01/.test(l.attrs.CODECS));
+            const choose = av1Levels.length
+              ? av1Levels.reduce((max, l) => l.bitrate > max.bitrate ? l : max, av1Levels[0])
+              : levels.reduce((max, l) => l.bitrate > max.bitrate ? l : max, levels[0]);
+            const levelIdx = levels.indexOf(choose);
+            hls.startLevel = levelIdx;
+            hls.loadLevel = levelIdx;
+            hls.currentLevel = levelIdx;
+            hls.nextLevel = levelIdx;
+            hls.autoLevelEnabled = false;
+          });
+        } else if (videoEl.canPlayType('application/vnd.apple.mpegurl')) {
+          videoEl.src = slidesData[idx].desktop.videoSrc;
         }
+      }
+    });
+    // cleanup on unmount
+    return () => {
+      hlsInstances.current.forEach(hls => hls?.destroy());
+    };
+  }, []);
+
+  // Pause all videos except the active slide, and restart it
+  useEffect(() => {
+    videoRefs.current.forEach((videoEl, idx) => {
+      if (!videoEl) return;
+      if (idx === currentSlide) {
         videoEl.currentTime = 0;
         videoEl.play().catch(() => {});
-      });
-      hls.loadSource(slidesData[idx].desktop.videoSrc);
-      hls.attachMedia(videoEl);
-    } else if (videoEl.canPlayType('application/vnd.apple.mpegurl')) {
-      videoEl.src = slidesData[idx].desktop.videoSrc;
-      videoEl.currentTime = 0;
-      videoEl.play().catch(() => {});
-    }
-    return () => {
-      if (hlsRef.current) {
-        hlsRef.current.destroy();
-        hlsRef.current = null;
+      } else {
+        videoEl.pause();
       }
-    };
-  }, [currentSlide, refsReady]);
+    });
+  }, [currentSlide]);
 
   useEffect(() => {
     if (isLargeScreen && currentSlide === 0) {
