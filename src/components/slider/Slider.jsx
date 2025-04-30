@@ -102,8 +102,6 @@ export default function Slider() {
 
   // Store one desktop video ref per slide
   const videoRefs = useRef([]);
-  // Track which slides have had HLS initialized to avoid re-fetching
-  const initializedSlides = useRef(new Set());
 
   // so we know when the DOM-mounted videoRefs are ready
   const [refsReady, setRefsReady] = useState(false);
@@ -113,6 +111,8 @@ export default function Slider() {
 
   // Keep track of the previous slide index
   const prevSlide = useRef(currentSlide)
+  // Keep one HLS.js instance per slide to avoid cache-lookups
+  const hlsInstances = useRef([]);
 
   // Mark as mounted after first client render
   useEffect(() => {
@@ -126,35 +126,6 @@ export default function Slider() {
   useEffect(() => {
     videoRefs.current = slidesData.map(() => null)
   }, [])
-
-  // Initialize HLS whenever a desktop video is rendered on a large screen
-  useEffect(() => {
-    slidesData.forEach((slide, index) => {
-      const videoEl = videoRefs.current[index];
-      // Only initialize HLS once per slide
-      if (videoEl && visitedSlides.has(index) && !initializedSlides.current.has(index)) {
-        if (Hls.isSupported()) {
-          const hls = new Hls();
-          hls.loadSource(slide.desktop.videoSrc);
-          hls.attachMedia(videoEl);
-          hls.on(Hls.Events.MANIFEST_PARSED, () => {
-            videoEl.play().catch(() => {});
-          });
-        } else if (videoEl.canPlayType('application/vnd.apple.mpegurl')) {
-          videoEl.src = slide.desktop.videoSrc;
-          videoEl.play().catch(() => {});
-        }
-        initializedSlides.current.add(index);
-      }
-    });
-  }, [visitedSlides, refsReady]);
-
-  // Ensure the very first slide plays as soon as HLS is attached
-  useEffect(() => {
-    if (visitedSlides.has(0) && initializedSlides.current.has(0)) {
-      restartAndPlaySlide(0);
-    }
-  }, [visitedSlides, mounted, initializedSlides.current]);
 
   // Function to restart & play the desktop video at a given slide index
   const restartAndPlaySlide = useCallback((index) => {
@@ -204,11 +175,62 @@ export default function Slider() {
     return () => clearInterval(timer);
   }, []);
 
+  // Manage HLS per slide: detach previous, attach new for zero cache-lookups
+  useEffect(() => {
+    const prev = prevSlide.current;
+    const prevHls = hlsInstances.current[prev];
+    if (prevHls) {
+      prevHls.stopLoad();
+      prevHls.detachMedia();
+    }
+    const idx = currentSlide;
+    const videoEl = videoRefs.current[idx];
+    if (!videoEl) return;
+    let hls = hlsInstances.current[idx];
+    if (!hls) {
+      if (Hls.isSupported()) {
+        hls = new Hls();
+        hlsInstances.current[idx] = hls;
+        hls.loadSource(slidesData[idx].desktop.videoSrc);
+        hls.attachMedia(videoEl);
+        hls.on(Hls.Events.MANIFEST_PARSED, (_, data) => {
+          // choose highest AV1 or fallback
+          const levels = data.levels;
+          const av1Levels = levels.filter(l => /av01/.test(l.attrs.CODECS));
+          let levelIdx;
+          if (av1Levels.length) {
+            const firstAv1 = levels.findIndex(l => /av01/.test(l.attrs.CODECS));
+            levelIdx = firstAv1 + av1Levels.length - 1;
+          } else {
+            levelIdx = levels.length - 1;
+          }
+          hls.startLevel = levelIdx;
+          videoEl.play().catch(() => {});
+        });
+      } else if (videoEl.canPlayType('application/vnd.apple.mpegurl')) {
+        videoEl.src = slidesData[idx].desktop.videoSrc;
+        videoEl.play().catch(() => {});
+      }
+    } else {
+      // re-attach and play
+      hls.attachMedia(videoEl);
+      videoEl.play().catch(() => {});
+    }
+    prevSlide.current = idx;
+  }, [currentSlide]);
+
   useEffect(() => {
     if (isLargeScreen && currentSlide === 0) {
       restartAndPlaySlide(0);
     }
   }, [isLargeScreen, currentSlide, restartAndPlaySlide]);
+
+  // Destroy all HLS instances on unmount
+  useEffect(() => {
+    return () => {
+      hlsInstances.current.forEach(h => h?.destroy());
+    };
+  }, []);
 
   // RENDER
   return (
