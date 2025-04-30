@@ -103,8 +103,8 @@ export default function Slider() {
   // Store one desktop video ref per slide
   const videoRefs = useRef([]);
 
-  // Keep one HLS.js instance per slide
-  const hlsInstances = useRef([]);
+  // Single HLS.js instance for active slide
+  const hlsRef = useRef(null);
 
   // Keep track of the previous slide index
   const prevSlide = useRef(currentSlide)
@@ -114,6 +114,10 @@ export default function Slider() {
     setMounted(true)
   }, [])
 
+  // Initialize an array of video refs matching slidesData
+  useEffect(() => {
+    videoRefs.current = slidesData.map(() => null)
+  }, [])
 
   // Initialize Keen Slider
   const [sliderRef, instanceRef] = useKeenSlider({
@@ -152,6 +156,51 @@ export default function Slider() {
     prevSlide.current = currentSlide
   }, [currentSlide, restartAndPlaySlide])
 
+  // Load HLS on the active slide only
+  useEffect(() => {
+    if (!mounted) return;
+    const idx = currentSlide;
+    const videoEl = videoRefs.current[idx];
+    if (!videoEl) return;
+    // destroy previous HLS instance
+    if (hlsRef.current) {
+      hlsRef.current.destroy();
+      hlsRef.current = null;
+    }
+    // initialize new HLS
+    if (Hls.isSupported()) {
+      const hls = new Hls();
+      hlsRef.current = hls;
+      hls.on(Hls.Events.MANIFEST_PARSED, (_, data) => {
+        const levels = data.levels;
+        const av1Levels = levels.filter(l => /av01/.test(l.attrs.CODECS));
+        const chosen = av1Levels.length
+          ? av1Levels.reduce((max, l) => (l.bitrate > max.bitrate ? l : max), av1Levels[0])
+          : levels.reduce((max, l) => (l.bitrate > max.bitrate ? l : max), levels[0]);
+        const levelIdx = levels.indexOf(chosen);
+        hls.startLevel = levelIdx;
+        hls.loadLevel = levelIdx;
+        hls.currentLevel = levelIdx;
+        hls.nextLevel = levelIdx;
+        hls.autoLevelEnabled = false;
+        videoEl.currentTime = 0;
+        videoEl.play().catch(() => {});
+      });
+      hls.loadSource(slidesData[idx].desktop.videoSrc);
+      hls.attachMedia(videoEl);
+    } else if (videoEl.canPlayType('application/vnd.apple.mpegurl')) {
+      videoEl.src = slidesData[idx].desktop.videoSrc;
+      videoEl.currentTime = 0;
+      videoEl.play().catch(() => {});
+    }
+  }, [currentSlide, mounted]);
+
+  useEffect(() => {
+    if (isLargeScreen && currentSlide === 0) {
+      restartAndPlaySlide(0);
+    }
+  }, [isLargeScreen, currentSlide, restartAndPlaySlide]);
+
   // Auto-advance slides
   useEffect(() => {
     const timer = setInterval(() => {
@@ -162,57 +211,11 @@ export default function Slider() {
     return () => clearInterval(timer);
   }, []);
 
-  // Initialize HLS for every slide so all playlists/segments load upfront
-  useEffect(() => {
-    if (!mounted || !isLargeScreen) return;
-    videoRefs.current.forEach((videoEl, idx) => {
-      if (videoEl && !hlsInstances.current[idx]) {
-        if (Hls.isSupported()) {
-          const hls = new Hls();
-          hlsInstances.current[idx] = hls;
-          hls.loadSource(slidesData[idx].desktop.videoSrc);
-          hls.attachMedia(videoEl);
-          hls.on(Hls.Events.MANIFEST_PARSED, (_, { levels }) => {
-            const av1Levels = levels.filter(l => /av01/.test(l.attrs.CODECS));
-            const choose = av1Levels.length
-              ? av1Levels.reduce((max, l) => l.bitrate > max.bitrate ? l : max, av1Levels[0])
-              : levels.reduce((max, l) => l.bitrate > max.bitrate ? l : max, levels[0]);
-            const levelIdx = levels.indexOf(choose);
-            hls.startLevel = levelIdx;
-            hls.loadLevel = levelIdx;
-            hls.currentLevel = levelIdx;
-            hls.nextLevel = levelIdx;
-            hls.autoLevelEnabled = false;
-          });
-        } else if (videoEl.canPlayType('application/vnd.apple.mpegurl')) {
-          videoEl.src = slidesData[idx].desktop.videoSrc;
-        }
-      }
-    });
-    // cleanup on unmount
-    return () => {
-      hlsInstances.current.forEach(hls => hls?.destroy());
-    };
-  }, [mounted, isLargeScreen]);
-
-  // Pause all videos except the active slide, and restart it
-  useEffect(() => {
-    videoRefs.current.forEach((videoEl, idx) => {
-      if (!videoEl) return;
-      if (idx === currentSlide) {
-        videoEl.currentTime = 0;
-        videoEl.play().catch(() => {});
-      } else {
-        videoEl.pause();
-      }
-    });
-  }, [currentSlide]);
-
-  useEffect(() => {
-    if (isLargeScreen && currentSlide === 0) {
-      restartAndPlaySlide(0);
+  useEffect(() => () => {
+    if (hlsRef.current) {
+      hlsRef.current.destroy();
     }
-  }, [isLargeScreen, currentSlide, restartAndPlaySlide]);
+  }, []);
 
   // RENDER
   return (
