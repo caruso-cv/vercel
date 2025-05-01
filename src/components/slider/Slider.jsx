@@ -103,8 +103,14 @@ export default function Slider() {
   // Store one desktop video ref per slide
   const videoRefs = useRef([]);
 
-  // Single HLS.js instance for active slide
+  // Single HLS.js instance for the current slide
   const hlsRef = useRef(null);
+
+  // so we know when the DOM-mounted videoRefs are ready
+  const [refsReady, setRefsReady] = useState(false);
+
+  // Track slides that have been visited so once a video/image is loaded, we keep it in the DOM.
+  const [visitedSlides, setVisitedSlides] = useState(() => new Set([0]))
 
   // Keep track of the previous slide index
   const prevSlide = useRef(currentSlide)
@@ -113,6 +119,9 @@ export default function Slider() {
   useEffect(() => {
     setMounted(true)
   }, [])
+
+  // Signal that our <video> refs are now in the tree
+  useEffect(() => { setRefsReady(true); }, []);
 
   // Initialize an array of video refs matching slidesData
   useEffect(() => {
@@ -129,6 +138,7 @@ export default function Slider() {
     slideChanged(slider) {
       const nextIndex = slider.track.details.rel
       setCurrentSlide(nextIndex)
+      setVisitedSlides((prev) => new Set([...prev, nextIndex]))
     },
     created(slider) {
       const initialIndex = slider.track.details.rel
@@ -150,34 +160,46 @@ export default function Slider() {
 
   // Restart the new slide's desktop video on slide change
   useEffect(() => {
-    if (currentSlide !== prevSlide.current) {
+    if (visitedSlides.has(currentSlide) && currentSlide !== prevSlide.current) {
       restartAndPlaySlide(currentSlide)
     }
     prevSlide.current = currentSlide
-  }, [currentSlide, restartAndPlaySlide])
+  }, [currentSlide, visitedSlides, restartAndPlaySlide])
 
-  // Load HLS on the active slide only
+  // Auto-advance slides
   useEffect(() => {
-    if (!mounted) return;
+    const timer = setInterval(() => {
+      if (instanceRef.current) {
+        instanceRef.current.next();
+      }
+    }, 6000);
+    return () => clearInterval(timer);
+  }, []);
+
+  // Load and play HLS for the active slide only, reset on change
+  useEffect(() => {
+    if (!refsReady) return;
     const idx = currentSlide;
     const videoEl = videoRefs.current[idx];
     if (!videoEl) return;
-    // destroy previous HLS instance
+    // Clean up previous HLS instance
     if (hlsRef.current) {
       hlsRef.current.destroy();
       hlsRef.current = null;
     }
-    // initialize new HLS
+    // Initialize new HLS instance
     if (Hls.isSupported()) {
       const hls = new Hls();
       hlsRef.current = hls;
-      hls.on(Hls.Events.MANIFEST_PARSED, (_, data) => {
-        const levels = data.levels;
+      hls.on(Hls.Events.MANIFEST_PARSED, (_, { levels }) => {
         const av1Levels = levels.filter(l => /av01/.test(l.attrs.CODECS));
-        const chosen = av1Levels.length
-          ? av1Levels.reduce((max, l) => (l.bitrate > max.bitrate ? l : max), av1Levels[0])
-          : levels.reduce((max, l) => (l.bitrate > max.bitrate ? l : max), levels[0]);
-        const levelIdx = levels.indexOf(chosen);
+        let levelIdx;
+        if (av1Levels.length) {
+          const firstAv1 = levels.findIndex(l => /av01/.test(l.attrs.CODECS));
+          levelIdx = firstAv1 + av1Levels.length - 1;
+        } else {
+          levelIdx = levels.length - 1;
+        }
         hls.startLevel = levelIdx;
         hls.loadLevel = levelIdx;
         hls.currentLevel = levelIdx;
@@ -193,29 +215,19 @@ export default function Slider() {
       videoEl.currentTime = 0;
       videoEl.play().catch(() => {});
     }
-  }, [currentSlide, mounted]);
+    return () => {
+      if (hlsRef.current) {
+        hlsRef.current.destroy();
+        hlsRef.current = null;
+      }
+    };
+  }, [currentSlide, refsReady]);
 
   useEffect(() => {
     if (isLargeScreen && currentSlide === 0) {
       restartAndPlaySlide(0);
     }
   }, [isLargeScreen, currentSlide, restartAndPlaySlide]);
-
-  // Auto-advance slides
-  useEffect(() => {
-    const timer = setInterval(() => {
-      if (instanceRef.current) {
-        instanceRef.current.next();
-      }
-    }, 6000);
-    return () => clearInterval(timer);
-  }, []);
-
-  useEffect(() => () => {
-    if (hlsRef.current) {
-      hlsRef.current.destroy();
-    }
-  }, []);
 
   // RENDER
   return (
@@ -240,17 +252,19 @@ export default function Slider() {
               <div className="hidden lg:flex flex-col items-center lg:flex-row lg:justify-center px-4 pt-56 pb-20 w-full h-full">
                 <div className="relative">
                   <div className="w-[800px] h-[450px] mr-44 mb-20">
-                    <video
-                      ref={(el) => (videoRefs.current[index] = el)}
-                      className="w-full h-full object-cover rounded-lg shadow-xl"
-                      muted
-                      playsInline
-                      preload="auto"
-                      poster={slide.desktop.poster}
-                      style={{ willChange: 'transform' }}
-                      loop
-                      autoPlay
-                    />
+                    {visitedSlides.has(index) && (
+                      <video
+                        ref={(el) => (videoRefs.current[index] = el)}
+                        className="w-full h-full object-cover rounded-lg shadow-xl"
+                        muted
+                        playsInline
+                        preload="auto"
+                        poster={slide.desktop.poster}
+                        style={{ willChange: 'transform' }}
+                        loop
+                        autoPlay
+                      />
+                    )}
                   </div>
 
                   {/* Video Info Box */}
@@ -296,13 +310,15 @@ export default function Slider() {
               <div className="lg:hidden flex flex-col items-center w-full px-4 pt-24 pb-8">
                 <div className="border border-white/10 rounded-md bg-gradient-to-tr from-[#0C0D0F] to-[#111214] via-[#111214]/75 backdrop-blur-sm shadow-lg w-full max-w-[700px] overflow-hidden">
                   <div className="relative w-full aspect-video">
-                    <Image
-                      src={slide.mobile.image}
-                      alt={slide.mobile.headingText}
-                      fill
-                      loading="lazy"
-                      className="object-cover border-b border-white/10"
-                    />
+                    {visitedSlides.has(index) && (
+                      <Image
+                        src={slide.mobile.image}
+                        alt={slide.mobile.headingText}
+                        fill
+                        loading="lazy"
+                        className="object-cover border-b border-white/10"
+                      />
+                    )}
                   </div>
                   <div className="text-white p-5 pt-7">
                     <h3 className="text-lg font-bold flex items-center mb-4">
