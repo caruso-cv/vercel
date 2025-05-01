@@ -1,7 +1,6 @@
 "use client"
 
 import React, { useState, useEffect, useRef, useCallback } from "react"
-import Image from "next/image"
 import "keen-slider/keen-slider.min.css"
 import { useKeenSlider } from "keen-slider/react"
 import { motion } from "framer-motion"
@@ -19,9 +18,6 @@ const slidesData = [
     desktop: {
       videoSrc: "https://d3jn5509arnhlw.cloudfront.net/slider/1/master.m3u8",
       poster: "/slider/12.webp",
-      videoSources: [
-        { src: "/vids/storage.mp4", type: "video/mp4" },
-      ],
       headingIcon: <Energy className="mr-3 w-10 h-6"/>,
       headingText: "BATTERY MANAGEMENT FOR ESS/BESS INSTALLATIONS",
       bodyTextBeforeSpan: "We deliver a customizable ",
@@ -36,28 +32,12 @@ const slidesData = [
       logoContainerClasses:
         "absolute bottom-36 right-6 xl:right-12 2xl:right-20 bg-white/85 backdrop-blur-sm px-4 py-[70px] rounded-lg shadow-md border-white/30",
     },
-    mobile: {
-      image: "/slider/12.webp",
-      headingIcon: <Energy className="mr-3 w-10 h-6"/>,
-      headingText: "BATTERY MANAGEMENT FOR ESS/BESS INSTALLATIONS",
-      bodyTextBeforeSpan: "We deliver a customizable ",
-      bodyTextSpan: "BMS called ENERG8TE™ for energy storage",
-      bodyTextAfterSpan:
-        " designed to maximize efficiency, safety, and reliability in industrial power systems.",
-      ctaHref: "/solutions/energ8te",
-      ctaLabel: "Optimize Energy Storage",
-      ctaAriaLabel: "Optimize energy storage solutions and learn more about ENERG8TE",
-    },
   },
   {
     slideId: 1,
     desktop: {
       videoSrc: "https://d3jn5509arnhlw.cloudfront.net/slider/2/master.m3u8",
       poster: "/slider/7.webp",
-      videoSources: [
-        { src: "/vids/battery.mp4", type: "video/mp4" },
-
-      ],
       headingIcon: <Manage className="w-7 mr-3" />,
       headingText: "BATTERY FACTORY LINE TESTERS",
       bodyTextBeforeSpan: "Tailored for verifying cell monitor operations within modules and packs.",
@@ -71,19 +51,6 @@ const slidesData = [
       logo: <ECU8TR className="h-12 w-auto" />,
       logoContainerClasses:
         "absolute bottom-40 right-6 xl:right-10 2xl:right-20 bg-white/85 backdrop-blur-sm px-8 py-[60px] rounded-lg shadow-md border-white/30",
-    },
-    mobile: {
-      image: "/slider/7.webp",
-      headingIcon: <Manage className="w-6 mr-3" />,
-      headingText: "BATTERY FACTORY LINE TESTERS",
-      bodyTextBeforeSpan: "Tailored for verifying cell monitor operations within modules and packs.",
-      bodyTextBeforeSpan2: "Flexible Communication:",
-      bodyTextSpan: "Infineon ISO UART, Analog Devices ISO SPI, and Texas Instruments UART/SPI.",
-      bodyTextAfterSpan:
-        "",
-      ctaHref: "/solutions/ecu8tr",
-      ctaLabel: "Learn More about ECU8TR",
-      ctaAriaLabel: "Learn More about ECU8TR",
     },
   },
 ]
@@ -249,13 +216,13 @@ export default function Slider() {
           {slidesData.map((slide, index) => (
             <div key={slide.slideId} className="keen-slider__slide relative">
               {/* DESKTOP */}
-              <div className="hidden lg:flex flex-col items-center lg:flex-row lg:justify-center px-4 pt-56 pb-20 w-full h-full">
-                <div className="relative">
-                  <div className="w-[800px] h-[450px] mr-44 mb-20">
+              <div className="flex flex-col items-center lg:flex-row lg:justify-center px-4 lg:pt-56 lg:pb-20 w-full h-full pt-24 pb-8">
+                <div className="relative ">
+                  <div className="lg:w-[800px] lg:h-[450px] lg:mr-44 lg:mb-20">
                     {visitedSlides.has(index) && (
                       <video
                         ref={(el) => (videoRefs.current[index] = el)}
-                        className="w-full h-full object-cover rounded-lg shadow-xl"
+                        className="w-full h-full object-cover lg:rounded-lg rounded-t-lg shadow-xl"
                         muted
                         playsInline
                         preload="auto"
@@ -267,7 +234,7 @@ export default function Slider() {
                     )}
                   </div>
 
-                  {/* Video Info Box */}
+                  {/* Video Info Box Desktop */}
                   <div className="hidden lg:block absolute top-12 right-6 xl:-right-24 border border-white/10 bg-gradient-to-tr from-[#0C0D0F] to-[#111214] via-[#111214]/85 backdrop-blur-sm text-white p-5 pt-7 w-[90%] max-w-[460px] rounded-lg shadow-lg">
                     <h3 className="text-lg uppercase font-bold flex items-center mb-4">
                       {slide.desktop.headingIcon}
@@ -296,34 +263,12 @@ export default function Slider() {
                       </motion.div>
                     </Link>
                   </div>
-                </div>
 
-                {/* Desktop Logo Overlay */}
-                {slide.desktop.logo && (
-                  <div className={slide.desktop.logoContainerClasses}>
-                    {slide.desktop.logo}
-                  </div>
-                )}
-              </div>
-
-              {/* MOBILE */}
-              <div className="lg:hidden flex flex-col items-center w-full px-4 pt-24 pb-8">
-                <div className="border border-white/10 rounded-md bg-gradient-to-tr from-[#0C0D0F] to-[#111214] via-[#111214]/75 backdrop-blur-sm shadow-lg w-full max-w-[700px] overflow-hidden">
-                  <div className="relative w-full aspect-video">
-                    {visitedSlides.has(index) && (
-                      <Image
-                        src={slide.mobile.image}
-                        alt={slide.mobile.headingText}
-                        fill
-                        loading="lazy"
-                        className="object-cover border-b border-white/10"
-                      />
-                    )}
-                  </div>
-                  <div className="text-white p-5 pt-7">
+                  {/* Video Info Box Mobile */}
+                  <div className="text-white p-5 pt-7 block lg:hidden border border-white/10 bg-gradient-to-tr from-[#0C0D0F] to-[#111214] via-[#111214]/85 backdrop-blur-sm w-[100%] rounded-b-lg shadow-lg">
                     <h3 className="text-lg font-bold flex items-center mb-4">
-                      {slide.mobile.headingIcon}
-                      {slide.mobile.headingText}
+                    {slide.desktop.headingIcon}
+                    {slide.desktop.headingText}
                     </h3>
                     <p className="text-base text-gray-200 mb-6 tracking-wide">
                     {slide.desktop.bodyTextBeforeSpan}
@@ -338,17 +283,29 @@ export default function Slider() {
                         {slide.desktop.bodyTextAfterSpan}
                     </p>
                     <Link
-                      href={slide.mobile.ctaHref}
+                      href={slide.desktop.ctaHref}
                       passHref
                       tabIndex={currentSlide === index ? 0 : -1}
-                      aria-label={slide.mobile.ctaAriaLabel}
+                      aria-label={slide.desktop.ctaAriaLabel}
                     >
                       <motion.div className="inline-flex items-center justify-center uppercase py-2 px-2.5 md:px-3.5 text-sm font-bold tracking-[0.2px] cursor-pointer border-none rounded-[4px] transition-colors duration-200 ease-in-out bg-[#E6E6E6] hover:bg-[#FFF] shadow-md opacity-90 hover:opacity-100 text-black">
-                        <span>{slide.mobile.ctaLabel}</span>
+                        <span>{slide.desktop.ctaLabel}</span>
                       </motion.div>
                     </Link>
                   </div>
+
+                  
                 </div>
+                
+                <div className="hidden lg:block">
+                  {/* Desktop Logo Overlay */}
+                  {slide.desktop.logo && (
+                    <div className={slide.desktop.logoContainerClasses}>
+                      {slide.desktop.logo}
+                    </div>
+                  )}
+                </div>
+
               </div>
             </div>
           ))}
