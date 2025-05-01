@@ -312,20 +312,13 @@ export default function Slider() {
                   <div className="relative w-full aspect-video">
                     {visitedSlides.has(index) && (
                       <video
+                        ref={(el) => (videoRefs.current[index] = el)}
                         className="w-full h-full object-cover border-b border-white/10"
                         muted
                         playsInline
                         loop
-                        autoPlay
                         poster={slide.mobile.image}
-                      >
-                        {/* Native HLS for iOS/Safari */}
-                        <source src={slide.desktop.videoSrc} type="application/vnd.apple.mpegURL" />
-                        {/* MP4 fallback */}
-                        {slide.desktop.videoSources.map((source, i) => (
-                          <source key={i} src={source.src} type={source.type} />
-                        ))}
-                      </video>
+                      />
                     )}
                   </div>
                   <div className="text-white p-5 pt-7">
