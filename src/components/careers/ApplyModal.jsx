@@ -112,6 +112,10 @@ export default function ApplyModal({ isOpen, onClose, showNotification }) {
     data.append('captchaToken', recaptchaToken)
 
     try {
+      // Debug: log all FormData entries
+      for (let [key, value] of data.entries()) {
+        console.log('🗂 FormData:', key, value);
+      }
       const response = await fetch('/api/careers', {
         method: 'POST',
         body: data,

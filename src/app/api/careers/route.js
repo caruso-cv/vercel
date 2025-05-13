@@ -7,6 +7,11 @@ export async function POST(request) {
     // Parse incoming FormData
     const formData = await request.formData()
 
+    // Debug: log all incoming form fields
+    for (const [key, value] of formData.entries()) {
+      console.log('📥 server got:', key, value);
+    }
+
     // Extract and verify the captcha token
     const captchaToken = formData.get('captchaToken')
     console.log('Captcha token received:', captchaToken)
@@ -23,7 +28,10 @@ export async function POST(request) {
       body: `secret=${encodeURIComponent(secretKey)}&response=${encodeURIComponent(captchaToken)}`
     })
     const captchaResult = await captchaRes.json()
-    console.log('Captcha verification result:', captchaResult)
+
+    // Debug: log captcha verification result
+    console.log('🛡️ captchaResult:', captchaResult)
+
     if (
       !captchaResult.success ||
       (typeof captchaResult.score === 'number' && captchaResult.score < 0.5)
@@ -71,24 +79,30 @@ export async function POST(request) {
     })
 
     // Send the email
-    await transporter.sendMail({
-      from: `${process.env.FROM_NAME} <${process.env.FROM_EMAIL}>`,
-      to: process.env.TO_EMAIL,
-      subject: `New Job Application (${position}) from ${name}`,
-      text: `
-        You have received a new job application.
+    try {
+      const info = await transporter.sendMail({
+        from: `${process.env.FROM_NAME} <${process.env.FROM_EMAIL}>`,
+        to: process.env.TO_EMAIL,
+        subject: `New Job Application (${position}) from ${name}`,
+        text: `
+          You have received a new job application.
 
-        Name: ${name}
-        Email: ${email}
-        Phone: ${phone}
-        Position: ${position}
+          Name: ${name}
+          Email: ${email}
+          Phone: ${phone}
+          Position: ${position}
 
-        Attached File(s): ${
-                attachments.length ? attachments.map((att) => att.filename).join(', ') : 'None'
-              }
-              `,
-              attachments,
-            })
+          Attached File(s): ${
+            attachments.length ? attachments.map((att) => att.filename).join(', ') : 'None'
+          }
+          `,
+        attachments,
+      })
+      console.log('✅ Mail sent:', info)
+    } catch (err) {
+      console.error('❌ SMTP error:', err)
+      throw err
+    }
 
     return NextResponse.json({ success: true })
   } catch (error) {

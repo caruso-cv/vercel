@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 export default function BackgroundFooter() {
 
   const pathname = usePathname();
-  const isPages = pathname === "/about" ||  pathname === "/services" ;
+  const isPages = pathname === "/about" ||  pathname === "/services";
 
   return (
     <div
@@ -17,7 +17,7 @@ export default function BackgroundFooter() {
         src="/bg/bg.webp"
         alt="neutron red background"
         className="object-cover"
-        width={1600 }
+        width={1600}
         height={1600}
       />
     </div>
