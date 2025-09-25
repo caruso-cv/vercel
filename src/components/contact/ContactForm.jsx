@@ -170,12 +170,12 @@ export default function ContactForm() {
                       />
                     </dt>
                     <dd>
-                      1145 Innovation Drive, Suite 101
+                      1 Smythe Road
                       <br />
-                      Kanata, Ontario, K2K 3G8
+                      Carleton Place, Ontario, K7C 4J4
                     </dd>
                   </div>
-                  <div className="flex gap-x-4">
+                  {/* <div className="flex gap-x-4">
                     <dt className="flex-none">
                       <BuildingOffice2Icon
                         aria-hidden="true"
@@ -187,7 +187,7 @@ export default function ContactForm() {
                       <br />
                       Mississauga, Ontario, L4W 0G7
                     </dd>
-                  </div>
+                  </div> */}
                 </dl>
               </div>
             </div>

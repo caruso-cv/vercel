@@ -29,18 +29,18 @@ export default function Footer() {
               Ottawa
             </h3>
             <p className="mb-6 leading-[1.8] text-white/60 lg:text-[1rem] lg:leading-[1.5rem] text-[1rem]">
-              1145 Innovation Drive, Suite 101<br />
-              Kanata, Ontario, K2K 3G8<br />
-              Canada
+              1 Smythe Road<br />
+              Carleton Place, Ontario<br />
+              K7C 4J4
             </p>
-            <h3 className="uppercase tracking-[7px] font-semibold mb-3 text-white lg:text-base">
+            {/* <h3 className="uppercase tracking-[7px] font-semibold mb-3 text-white lg:text-base">
               Toronto
             </h3>
             <p className="mb-6 leading-[1.8] text-white/60 text-base lg:text-[1rem] lg:leading-[1.5rem] text-[1rem]">
               5270 Solar Drive, Unit 21<br />
               Mississauga, Ontario, L4W 0G7<br />
               Canada
-            </p>
+            </p> */}
           </div>
 
           {/* SOLUTIONS Column */}
