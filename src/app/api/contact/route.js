@@ -1,5 +1,7 @@
-import nodemailer from 'nodemailer';
+import { Resend } from 'resend';
 import { NextResponse } from 'next/server';
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(request) {
   try {
@@ -38,21 +40,11 @@ export async function POST(request) {
     // Destructure expected values from the payload
     const { 'first-name': firstName, 'last-name': lastName, email, 'phone-number': phoneNumber, message } = body;
 
-    // Create a Nodemailer transporter using your SMTP settings
-    const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST || 'smtp.sendlayer.net',
-      port: process.env.SMTP_PORT ? Number(process.env.SMTP_PORT) : 587,
-      secure: false, // false for port 587
-      auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS
-      }
-    });
-
-    // Send the email with the form details
-    await transporter.sendMail({
-      from: `${process.env.FROM_NAME || 'Contact Form'} <${process.env.FROM_EMAIL}>`,
+    // Send the email using Resend
+    const { data, error } = await resend.emails.send({
+      from: process.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev',
       to: process.env.TO_EMAIL || 'testform@neutroncontrols.com',
+      reply_to: email,
       subject: `New Contact Form Submission from ${firstName} ${lastName}`,
       text: `
         You have a new message from your website contact form:
@@ -62,12 +54,17 @@ export async function POST(request) {
 
         Message:
         ${message}
-      `
+      `,
     });
 
-    return NextResponse.json({ success: true });
+    if (error) {
+      console.error('Resend error:', error);
+      return NextResponse.json({ error: 'Error sending email' }, { status: 500 });
+    }
+
+    return NextResponse.json({ success: true, data });
   } catch (error) {
-    console.error('Error sending email:', error);
-    return NextResponse.json({ error: 'Error sending email' }, { status: 500 });
+    console.error('Error processing request:', error);
+    return NextResponse.json({ error: 'Error processing request' }, { status: 500 });
   }
 }

@@ -1,6 +1,8 @@
 // app/api/careers/route.js
-import nodemailer from 'nodemailer'
+import { Resend } from 'resend'
 import { NextResponse } from 'next/server'
+
+const resend = new Resend(process.env.RESEND_API_KEY)
 
 export async function POST(request) {
   try {
@@ -67,23 +69,13 @@ export async function POST(request) {
       })
     }
 
-    // Nodemailer transporter
-    const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST,
-      port: process.env.SMTP_PORT ? Number(process.env.SMTP_PORT) : 587,
-      secure: false,
-      auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS,
-      },
-    })
-
-    // Send the email
+    // Send the email using Resend
     try {
-      const info = await transporter.sendMail({
-        from: `${process.env.FROM_NAME} <${process.env.FROM_EMAIL}>`,
+      const { data, error } = await resend.emails.send({
+        from: process.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev',
         to: process.env.TO_EMAIL,
         subject: `New Job Application (${position}) from ${name}`,
+        reply_to: email, // Set reply-to so they can reply directly to the applicant
         text: `
           You have received a new job application.
 
@@ -95,12 +87,18 @@ export async function POST(request) {
           Attached File(s): ${
             attachments.length ? attachments.map((att) => att.filename).join(', ') : 'None'
           }
-          `,
+        `,
         attachments,
       })
-      console.log('✅ Mail sent:', info)
+      
+      if (error) {
+        console.error('❌ Resend API error:', error)
+        throw new Error(error.message)
+      }
+
+      console.log('✅ Mail sent:', data)
     } catch (err) {
-      console.error('❌ SMTP error:', err)
+      console.error('❌ Email sending error:', err)
       throw err
     }
 
