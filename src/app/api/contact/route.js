@@ -42,7 +42,7 @@ export async function POST(request) {
 
     // Send the email using Resend
     const { data, error } = await resend.emails.send({
-      from: process.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev',
+      from: `Neutron Controls <${process.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev'}>`,
       to: process.env.TO_EMAIL || 'testform@neutroncontrols.com',
       reply_to: email,
       subject: `New Contact Form Submission from ${firstName} ${lastName}`,
