@@ -20,11 +20,22 @@ export default function CookieBanner() {
     setUserId(existingId)
   }, [])
 
-  // Show banner if no cookieConsent is set
+  // Show banner if no cookieConsent is set; otherwise re-apply the stored
+  // choice so Consent Mode reflects it on every page load (not just the first).
   useEffect(() => {
     const consent = Cookies.get('cookieConsent')
     if (!consent) {
       setShowBanner(true)
+      return
+    }
+    if (typeof window !== 'undefined' && window.gtag) {
+      const granted = consent === 'accepted'
+      window.gtag('consent', 'update', {
+        'analytics_storage': granted ? 'granted' : 'denied',
+        'ad_storage': granted ? 'granted' : 'denied',
+        'ad_user_data': granted ? 'granted' : 'denied',
+        'ad_personalization': granted ? 'granted' : 'denied',
+      })
     }
   }, [])
 
@@ -47,6 +58,8 @@ export default function CookieBanner() {
         window.gtag('consent', 'update', {
           'analytics_storage': 'denied',
           'ad_storage': 'denied',
+          'ad_user_data': 'denied',
+          'ad_personalization': 'denied',
         })
       }
     }
@@ -65,6 +78,8 @@ export default function CookieBanner() {
         window.gtag('consent', 'update', {
           'analytics_storage': 'granted',
           'ad_storage': 'granted',
+          'ad_user_data': 'granted',
+          'ad_personalization': 'granted',
         })
       }
     }
