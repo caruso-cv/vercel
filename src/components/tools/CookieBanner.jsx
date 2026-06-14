@@ -121,8 +121,11 @@ export default function CookieBanner() {
         <div className="pointer-events-auto fixed inset-x-0 bottom-0 z-50 px-4 pb-4 sm:px-6 sm:pb-6">
           <div className="mx-auto flex w-full max-w-4xl flex-col gap-4 rounded-2xl border border-[#1c1d20] bg-[#0b0c0d] p-5 shadow-[0_8px_30px_rgba(0,0,0,0.5)] sm:flex-row sm:items-center sm:justify-between sm:p-6">
             <p className="text-sm leading-relaxed text-white/70">
-              We use cookies to analyze traffic and improve your experience. You can
-              accept all cookies, reject non-essential ones, or choose what to allow.{' '}
+              We use cookies to analyze traffic and improve your experience.{' '}
+              <span className="hidden sm:inline">
+                You can accept all cookies, reject non-essential ones, or choose
+                what to allow.{' '}
+              </span>
               <a
                 href="/policy"
                 className="font-semibold text-[#6f86ff] hover:underline"
@@ -130,7 +133,7 @@ export default function CookieBanner() {
                 Learn more
               </a>
             </p>
-            <div className="flex flex-shrink-0 flex-col gap-2 xs:flex-row">
+            <div className="flex flex-shrink-0 flex-col items-end gap-2 xs:flex-row xs:justify-end">
               <button
                 type="button"
                 onClick={() => setShowSettingsModal(true)}
