@@ -3,12 +3,65 @@
 import { useEffect, useState } from 'react'
 import Cookies from 'js-cookie'
 import CookieDialog from '@/components/tools/CookieDialog'
-import Image from 'next/image'
+
+const CONSENT_COOKIE = 'cookieConsent'
+
+// Map the banner's cookie categories to Google Consent Mode signals and push
+// the resulting state to GTM. Performance => analytics, Targeting => ads,
+// Functional => functionality/personalization. "Necessary" is always allowed.
+function applyConsent(choices) {
+  if (typeof window === 'undefined') return
+  const grant = (on) => (on ? 'granted' : 'denied')
+
+  window.dataLayer = window.dataLayer || []
+  window.dataLayer.push({
+    event: 'analytics_consent',
+    consent: choices.performance ? 'granted' : 'denied',
+  })
+
+  if (window.gtag) {
+    window.gtag('consent', 'update', {
+      analytics_storage: grant(choices.performance),
+      ad_storage: grant(choices.targeting),
+      ad_user_data: grant(choices.targeting),
+      ad_personalization: grant(choices.targeting),
+      functionality_storage: grant(choices.functional),
+      personalization_storage: grant(choices.functional),
+    })
+  }
+}
+
+// Read the stored consent, tolerating the legacy 'accepted'/'rejected' format.
+function readStoredConsent() {
+  const raw = Cookies.get(CONSENT_COOKIE)
+  if (!raw) return null
+  if (raw === 'accepted') {
+    return { performance: true, functional: true, targeting: true }
+  }
+  if (raw === 'rejected') {
+    return { performance: false, functional: false, targeting: false }
+  }
+  try {
+    const parsed = JSON.parse(raw)
+    return {
+      performance: !!parsed.performance,
+      functional: !!parsed.functional,
+      targeting: !!parsed.targeting,
+    }
+  } catch {
+    return null
+  }
+}
+
+function storeConsent(choices) {
+  Cookies.set(CONSENT_COOKIE, JSON.stringify(choices), { expires: 365 })
+}
 
 export default function CookieBanner() {
   const [showBanner, setShowBanner] = useState(false)
   const [showSettingsModal, setShowSettingsModal] = useState(false)
   const [userId, setUserId] = useState(null)
+  const [storedChoices, setStoredChoices] = useState(null)
 
   useEffect(() => {
     // Generate or retrieve a user ID
@@ -20,151 +73,98 @@ export default function CookieBanner() {
     setUserId(existingId)
   }, [])
 
-  // Show banner if no cookieConsent is set; otherwise re-apply the stored
-  // choice so Consent Mode reflects it on every page load (not just the first).
+  // Show the banner if no choice has been made yet; otherwise re-apply the
+  // stored choice so Consent Mode reflects it on every page load.
   useEffect(() => {
-    const consent = Cookies.get('cookieConsent')
-    if (!consent) {
+    const stored = readStoredConsent()
+    if (!stored) {
       setShowBanner(true)
       return
     }
-    if (typeof window !== 'undefined' && window.gtag) {
-      const granted = consent === 'accepted'
-      window.gtag('consent', 'update', {
-        'analytics_storage': granted ? 'granted' : 'denied',
-        'ad_storage': granted ? 'granted' : 'denied',
-        'ad_user_data': granted ? 'granted' : 'denied',
-        'ad_personalization': granted ? 'granted' : 'denied',
-      })
-    }
+    setStoredChoices(stored)
+    applyConsent(stored)
   }, [])
 
   // Listen for the "open-cookie-dialog" event (dispatched in Footer.jsx)
   useEffect(() => {
-    const openDialog = () => {
-      setShowSettingsModal(true)
-    }
+    const openDialog = () => setShowSettingsModal(true)
     window.addEventListener('open-cookie-dialog', openDialog)
     return () => window.removeEventListener('open-cookie-dialog', openDialog)
   }, [])
 
-  // Reject cookies
-  const handleReject = () => {
-    Cookies.set('cookieConsent', 'rejected', { expires: 365 })
-    if (typeof window !== 'undefined') {
-      window.dataLayer = window.dataLayer || []
-      window.dataLayer.push({ event: 'analytics_consent', consent: 'denied' })
-      if (window.gtag) {
-        window.gtag('consent', 'update', {
-          'analytics_storage': 'denied',
-          'ad_storage': 'denied',
-          'ad_user_data': 'denied',
-          'ad_personalization': 'denied',
-        })
-      }
-    }
+  // Persist a choice, update Consent Mode, and close the banner/dialog.
+  const commitChoices = (choices) => {
+    storeConsent(choices)
+    setStoredChoices(choices)
+    applyConsent(choices)
     setShowBanner(false)
-  }
-
-  // Called when user clicks "Confirm My Choices" in CookieDialog
-  const handleConfirmChoices = (choices) => {
-    console.log('User choices:', choices)
-    // Set cookie consent to accepted
-    Cookies.set('cookieConsent', 'accepted', { expires: 365 })
-    if (typeof window !== 'undefined') {
-      window.dataLayer = window.dataLayer || []
-      window.dataLayer.push({ event: 'analytics_consent', consent: 'granted' })
-      if (window.gtag) {
-        window.gtag('consent', 'update', {
-          'analytics_storage': 'granted',
-          'ad_storage': 'granted',
-          'ad_user_data': 'granted',
-          'ad_personalization': 'granted',
-        })
-      }
-    }
-    setShowSettingsModal(false)
-    setShowBanner(false)
-  }
-
-  // Called when user clicks "Reject All" in CookieDialog
-  const handleRejectAllFromModal = () => {
-    handleReject()
     setShowSettingsModal(false)
   }
+
+  const handleAcceptAll = () =>
+    commitChoices({ performance: true, functional: true, targeting: true })
+
+  const handleRejectAll = () =>
+    commitChoices({ performance: false, functional: false, targeting: false })
+
+  // From the settings dialog: respect the individual toggles.
+  const handleConfirmChoices = (choices) =>
+    commitChoices({
+      performance: !!choices.performanceCookies,
+      functional: !!choices.functionalCookies,
+      targeting: !!choices.targetingCookies,
+    })
 
   return (
     <>
-      {/* Cookie Banner */}
       {showBanner && (
-        <div className="pointer-events-auto mb-8 ml-6 fixed bottom-0 z-50">
-          <button
-            type="button"
-            onClick={() => setShowSettingsModal(true)}
-            className="relative group w-14 h-14 flex items-center justify-center rounded-full bg-white"
-            style={{ boxShadow: '0 2px 8px rgba(0, 0, 0, 0.25)' }}
-          >
-            <Image
-              src="/logo/Cookies_logo.png"
-              alt="Cookies logo"
-              width={60}
-              height={60}
-              className="opacity-70 hover:opacity-100"
-            />
-            <span
-                aria-hidden="true"
-                className="
-                  pointer-events-none
-                  absolute
-                  left-[70px]
-                  bottom-[8px]
-                  mb-2
-                  px-2
-                  py-1
-                  bg-black
-                  text-white
-                  text-xs
-                  rounded
-                  whitespace-nowrap
-                  transition-all
-                  duration-300
-                  ease-out
-                  invisible
-                  opacity-0
-                  translate-x-3
-
-                  /* On hover, make it visible, fade in, slide in */
-                  group-hover:visible
-                  group-hover:opacity-100
-                  group-hover:translate-x-0
-                "
+        <div className="pointer-events-auto fixed inset-x-0 bottom-0 z-50 px-4 pb-4 sm:px-6 sm:pb-6">
+          <div className="mx-auto flex w-full max-w-4xl flex-col gap-4 rounded-2xl border border-[#1c1d20] bg-[#0b0c0d] p-5 shadow-[0_8px_30px_rgba(0,0,0,0.5)] sm:flex-row sm:items-center sm:justify-between sm:p-6">
+            <p className="text-sm leading-relaxed text-white/70">
+              We use cookies to analyze traffic and improve your experience. You can
+              accept all cookies, reject non-essential ones, or choose what to allow.{' '}
+              <a
+                href="/policy"
+                className="font-semibold text-[#6f86ff] hover:underline"
               >
-                Cookies Settings
-                <span
-                  className="
-                    absolute
-                    left-[-4px]
-                    top-1/2
-                    transform
-                    -translate-y-1/2
-                    w-2
-                    h-2
-                    bg-black
-                    rotate-45
-                  "
-                />
-          </span>
-          </button>
+                Learn more
+              </a>
+            </p>
+            <div className="flex flex-shrink-0 flex-col gap-2 xs:flex-row">
+              <button
+                type="button"
+                onClick={() => setShowSettingsModal(true)}
+                className="rounded-md border border-white/20 px-4 py-2 text-sm font-semibold text-white/80 transition-colors hover:bg-white/10"
+              >
+                Customize
+              </button>
+              <button
+                type="button"
+                onClick={handleRejectAll}
+                className="rounded-md border border-white/20 px-4 py-2 text-sm font-semibold text-white/80 transition-colors hover:bg-white/10"
+              >
+                Reject All
+              </button>
+              <button
+                type="button"
+                onClick={handleAcceptAll}
+                className="rounded-md bg-[#425ACA] px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-indigo-500"
+              >
+                Accept All
+              </button>
+            </div>
+          </div>
         </div>
       )}
 
-      {/* Cookie Settings Dialog */}
       <CookieDialog
         open={showSettingsModal}
         onClose={() => setShowSettingsModal(false)}
         onConfirm={handleConfirmChoices}
-        onRejectAll={handleRejectAllFromModal}
+        onAcceptAll={handleAcceptAll}
+        onRejectAll={handleRejectAll}
         userId={userId}
+        initialChoices={storedChoices}
       />
     </>
   )

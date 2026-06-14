@@ -107,15 +107,33 @@ export default function CookieDialog({
   open,
   onClose,
   onConfirm,
+  onAcceptAll,
   onRejectAll,
   userId,
+  initialChoices,
 }) {
   const router = useRouter() // <-- Use Next.js App Router
 
-  // Local states for cookie toggles (defaulted to true)
-  const [performanceCookies, setPerformanceCookies] = useState(true)
-  const [functionalCookies, setFunctionalCookies] = useState(true)
-  const [targetingCookies, setTargetingCookies] = useState(true)
+  // Local states for cookie toggles (defaulted to on, or to the stored choice)
+  const [performanceCookies, setPerformanceCookies] = useState(
+    initialChoices ? initialChoices.performance : true
+  )
+  const [functionalCookies, setFunctionalCookies] = useState(
+    initialChoices ? initialChoices.functional : true
+  )
+  const [targetingCookies, setTargetingCookies] = useState(
+    initialChoices ? initialChoices.targeting : true
+  )
+
+  // When the dialog (re)opens, sync toggles to the currently stored choice so
+  // it reflects the visitor's real consent state.
+  useEffect(() => {
+    if (open && initialChoices) {
+      setPerformanceCookies(initialChoices.performance)
+      setFunctionalCookies(initialChoices.functional)
+      setTargetingCookies(initialChoices.targeting)
+    }
+  }, [open, initialChoices])
 
   // Local states for dropdown sections
   const [performanceOpen, setPerformanceOpen] = useState(false)
@@ -127,6 +145,17 @@ export default function CookieDialog({
   const handleConfirm = () => {
     if (onConfirm) {
       onConfirm({ performanceCookies, functionalCookies, targetingCookies })
+    }
+    onClose()
+  }
+
+  // "Accept All" => turn everything on, call parent's accept, then close
+  const handleAcceptAll = () => {
+    setPerformanceCookies(true)
+    setFunctionalCookies(true)
+    setTargetingCookies(true)
+    if (onAcceptAll) {
+      onAcceptAll()
     }
     onClose()
   }
@@ -443,7 +472,7 @@ export default function CookieDialog({
           </AnimatePresence>
         </div>
 
-        <div className="mt-12 flex justify-end gap-4">
+        <div className="mt-12 flex flex-col gap-3 sm:flex-row sm:justify-end sm:gap-4">
           <button
             type="button"
             onClick={handleRejectAll}
@@ -454,9 +483,16 @@ export default function CookieDialog({
           <button
             type="button"
             onClick={handleConfirm}
-            className="rounded-md bg-[#425ACA] px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-500 transition-colors duration-200"
+            className="rounded-md border border-gray-300 px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-100 transition-colors duration-200"
           >
             Confirm My Choices
+          </button>
+          <button
+            type="button"
+            onClick={handleAcceptAll}
+            className="rounded-md bg-[#425ACA] px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-500 transition-colors duration-200"
+          >
+            Accept All
           </button>
         </div>
       </DialogBody>

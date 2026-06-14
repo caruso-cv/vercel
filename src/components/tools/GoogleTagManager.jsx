@@ -26,6 +26,8 @@ export default function GoogleTagManager() {
             'ad_user_data': 'denied',
             'ad_personalization': 'denied',
             'analytics_storage': 'denied',
+            'functionality_storage': 'denied',
+            'personalization_storage': 'denied',
             'wait_for_update': 500
           });
         `}
