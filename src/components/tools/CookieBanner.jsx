@@ -140,13 +140,6 @@ export default function CookieBanner() {
               </button>
               <button
                 type="button"
-                onClick={handleRejectAll}
-                className="rounded-md border border-white/20 px-4 py-2 text-sm font-semibold text-white/80 transition-colors hover:bg-white/10"
-              >
-                Reject All
-              </button>
-              <button
-                type="button"
                 onClick={handleAcceptAll}
                 className="rounded-md bg-[#425ACA] px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-indigo-500"
               >
