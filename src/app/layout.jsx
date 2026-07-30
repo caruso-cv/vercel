@@ -5,6 +5,7 @@ import BackgroundHero from '@/components/backgrounds/BackgroundHero'
 import Footer from '@/components/Footer'
 import CookieBanner from '@/components/tools/CookieBanner'
 import GoogleTagManager from '@/components/tools/GoogleTagManager';
+import Chatbot from '@/components/Chatbot';
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata = {
@@ -30,6 +31,7 @@ export default function RootLayout({ children }) {
         <Footer />
         <SpeedInsights/>
         <GoogleTagManager />
+        <Chatbot />
       </body>
     </html>
   )
