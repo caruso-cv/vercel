@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef, useEffect, use } from 'react'
+import { useState, useRef, useEffect } from 'react'
 
 const knowledgeBase = [
     {
@@ -63,7 +63,26 @@ export default function Chatbot() {
     const [chips, setChips] = useState(starterChips);
     const scrollRef = useRef(null);
 
-    function handleSend(overrideText) {
+
+    async function getAnswer(userText) {
+        try {
+            const res = await fetch('/api/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: userText }),
+            });
+
+            if (res.ok) {
+                const data = await res.json();
+                if (data.reply) return data.reply;
+            }
+        } catch (err) {
+        }
+
+        return findAnswer(userText);
+    }
+
+    async function handleSend(overrideText) {
         const textToSend = overrideText || input;
         if (textToSend.trim() === '') return;
 
@@ -73,14 +92,15 @@ export default function Chatbot() {
         setMessages([...messages, userMessage]);
         setInput('');
         setChips([]);
-        setIsTyping(true);
+        
+       setIsTyping(true);
 
-        setTimeout(() => {
-            const botMessages = { role: 'bot', text: findAnswer(currentInput) };
-            setMessages((prevMessages) => [...prevMessages, botMessages]);
-            setChips(starterChips);
-            setIsTyping (false);
-        }, 1000);
+        const replyText = await getAnswer(currentInput);
+
+        const botMessage = { role: 'bot', text: replyText };
+        setMessages((prevMessages) => [...prevMessages, botMessage]);
+        setChips(starterChips);
+        setIsTyping(false);
     }
 
     useEffect(() => {
