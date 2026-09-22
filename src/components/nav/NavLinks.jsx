@@ -54,7 +54,7 @@ export default function NavLinks() {
         <li ref={dropdownContainerRef} className="relative">
           <button
             type="button"
-            className="text-[0.75rem] 4xl:text-[0.875rem] uppercase tracking-[3px] font-semibold hover:text-white inline-flex items-center cursor-pointer"
+            className="text-[0.75rem] 4xl:text-[0.875rem] uppercase tracking-[3px] font-semibold hover:text-white inline-flex items-center cursor-pointer [filter:drop-shadow(0_1px_2px_rgba(0,0,0,1))_drop-shadow(0_3px_10px_rgba(0,0,0,0.95))]"
             onClick={(e) => {
               e.preventDefault();
               setIsOpen(!isOpen);
@@ -154,7 +154,7 @@ export default function NavLinks() {
         <li>
           <Link
             href="/services"
-            className="text-[0.75rem] 4xl:text-[0.875rem] uppercase tracking-[3px] font-semibold hover:text-white"
+            className="text-[0.75rem] 4xl:text-[0.875rem] uppercase tracking-[3px] font-semibold hover:text-white [filter:drop-shadow(0_1px_2px_rgba(0,0,0,1))_drop-shadow(0_3px_10px_rgba(0,0,0,0.95))]"
           >
             Services
           </Link>
@@ -162,7 +162,7 @@ export default function NavLinks() {
         <li>
           <Link
             href="/about"
-            className="text-[0.75rem] 4xl:text-[0.875rem] uppercase tracking-[3px] font-semibold hover:text-white"
+            className="text-[0.75rem] 4xl:text-[0.875rem] uppercase tracking-[3px] font-semibold hover:text-white [filter:drop-shadow(0_1px_2px_rgba(0,0,0,1))_drop-shadow(0_3px_10px_rgba(0,0,0,0.95))]"
           >
             About
           </Link>
@@ -170,7 +170,7 @@ export default function NavLinks() {
         <li>
           <Link
             href="/careers"
-            className="text-[0.75rem] 4xl:text-[0.875rem] uppercase tracking-[3px] font-semibold hover:text-white"
+            className="text-[0.75rem] 4xl:text-[0.875rem] uppercase tracking-[3px] font-semibold hover:text-white [filter:drop-shadow(0_1px_2px_rgba(0,0,0,1))_drop-shadow(0_3px_10px_rgba(0,0,0,0.95))]"
           >
             Careers
           </Link>

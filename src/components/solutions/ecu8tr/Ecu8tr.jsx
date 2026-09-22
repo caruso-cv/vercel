@@ -20,7 +20,7 @@ export default function ProductPage() {
         {/* Header with logo inside max-w-8xl container */}
         <div className="max-w-8xl mx-auto px-6 2xl:px-0 pt-36 lg:pt-52 relative z-30">
           <h1 role="img" aria-label="ECU8TR™ Battery Point Tester">
-            <ECU8TR className="h-16 sm:h-28 3xl:h-32" />
+            <ECU8TR className="w-full h-auto max-w-[640px] lg:w-auto lg:max-w-none lg:h-32 3xl:h-36 -translate-x-[2.252%]" />
           </h1>
         </div>
 
@@ -108,20 +108,20 @@ export default function ProductPage() {
         <div className="border-2 border-[#2F79F8] rounded-md overflow-hidden">
           <div className="grid grid-cols-1 md:grid-cols-[240px_minmax(0,1fr)] ">
             {/* DIMENSIONS */}
-            <h3 className="p-4 lg:p-6 pb-0 md:pb-4 md:border-b border-[#2F79F8] font-semibold xs:text-xl 3xl:text-[22.4px] ">
+            <h3 className="p-4 lg:p-6 pb-0 md:pb-4 md:border-b border-[#2F79F8] font-semibold xs:text-xl lg:text-[1.375rem] 3xl:text-[22.4px] ">
               INTERFACES
             </h3>
-            <div className="p-4 lg:p-6 border-b border-[#2F79F8] md:border-l md:border-[#2F79F8] xs:text-[1.125rem] xs:leading-[1.75rem] text-black/70 ">
+            <div className="p-4 lg:p-6 border-b border-[#2F79F8] md:border-l md:border-[#2F79F8] xs:text-[1.125rem] xs:leading-[1.75rem] lg:text-[1.1875rem] lg:leading-[1.9rem] text-black/70 ">
               <p className="mb-1">ISO COMM (Analog Devices ISO SPI BMS Devices, Infineon ISO UART BMS Devices, NXP BMS Devices, and Texas Instruments BMS Devices) analog frontend
                 Ethernet network interface - 10/100 baseT
                 CAN FD Interface via 9-pin DSub connector
                 12V Power Input via Barrel Jack</p>
             </div>
             {/* DIMENSIONS */}
-            <h3 className="p-4 lg:p-6 pb-0 md:pb-4 md:border-b border-[#2F79F8] font-semibold xs:text-xl 3xl:text-[22.4px] ">
+            <h3 className="p-4 lg:p-6 pb-0 md:pb-4 md:border-b border-[#2F79F8] font-semibold xs:text-xl lg:text-[1.375rem] 3xl:text-[22.4px] ">
               DIMENSIONS
             </h3>
-            <div className="p-4 lg:p-6 border-b border-[#2F79F8] md:border-l md:border-[#2F79F8] xs:text-[1.125rem] xs:leading-[1.75rem] text-black/70">
+            <div className="p-4 lg:p-6 border-b border-[#2F79F8] md:border-l md:border-[#2F79F8] xs:text-[1.125rem] xs:leading-[1.75rem] lg:text-[1.1875rem] lg:leading-[1.9rem] text-black/70">
               <p className="mb-1">
                 Standard 1U Chassis Size
               </p>
@@ -129,27 +129,27 @@ export default function ProductPage() {
               <p className="mb-1">203.20mm x 421.64mm x 44.45mm</p>
             </div>
             {/* POWER */}
-            <h3 className="p-4 lg:p-6 pb-0 md:pb-4 md:border-b border-[#2F79F8] font-semibold xs:text-xl 3xl:text-[22.4px] ">
+            <h3 className="p-4 lg:p-6 pb-0 md:pb-4 md:border-b border-[#2F79F8] font-semibold xs:text-xl lg:text-[1.375rem] 3xl:text-[22.4px] ">
               POWER
             </h3>
-            <div className="p-4 lg:p-6 border-b border-[#2F79F8] md:border-l md:border-[#2F79F8] xs:text-[1.125rem] xs:leading-[1.75rem] text-black/70 ">
+            <div className="p-4 lg:p-6 border-b border-[#2F79F8] md:border-l md:border-[#2F79F8] xs:text-[1.125rem] xs:leading-[1.75rem] lg:text-[1.1875rem] lg:leading-[1.9rem] text-black/70 ">
               <p className="mb-1">12V/36W AC/DC External Desktop (Class 1)</p>
               <p className="mb-1">Adapter International, 90 ~ 264 VAC</p>
             </div>
             {/* INTERFACES */}
-            <h3 className="p-4 lg:p-6 pb-0 md:pb-4 md:border-b border-[#2F79F8] font-semibold xs:text-xl 3xl:text-[22.4px] ">
+            <h3 className="p-4 lg:p-6 pb-0 md:pb-4 md:border-b border-[#2F79F8] font-semibold xs:text-xl lg:text-[1.375rem] 3xl:text-[22.4px] ">
               INDICATORS
             </h3>
-            <div className="p-4 lg:p-6 border-b border-[#2F79F8] md:border-l md:border-[#2F79F8] xs:text-[1.125rem] xs:leading-[1.75rem] text-black/70 ">
+            <div className="p-4 lg:p-6 border-b border-[#2F79F8] md:border-l md:border-[#2F79F8] xs:text-[1.125rem] xs:leading-[1.75rem] lg:text-[1.1875rem] lg:leading-[1.9rem] text-black/70 ">
               <p className="mb-1">
                 Test mode and results LED indicator
               </p>
             </div>
             {/* CERTIFICATIONS */}
-            <h3 className="p-4 lg:p-6 pb-0 md:pb-4 md:border-b border-[#2F79F8] font-semibold xs:text-xl 3xl:text-[22.4px] ">
+            <h3 className="p-4 lg:p-6 pb-0 md:pb-4 md:border-b border-[#2F79F8] font-semibold xs:text-xl lg:text-[1.375rem] 3xl:text-[22.4px] ">
                CERTIFICATIONS
             </h3>
-            <div className="p-4 lg:p-6 border-b border-[#2F79F8] md:border-l md:border-[#2F79F8] xs:text-[1.125rem] xs:leading-[1.75rem] text-black/70 ">
+            <div className="p-4 lg:p-6 border-b border-[#2F79F8] md:border-l md:border-[#2F79F8] xs:text-[1.125rem] xs:leading-[1.75rem] lg:text-[1.1875rem] lg:leading-[1.9rem] text-black/70 ">
               UL Certified (UL61010)
             </div>
           </div>

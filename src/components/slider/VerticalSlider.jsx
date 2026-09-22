@@ -4,7 +4,9 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import ECU8TR from "@/components/logos/ECU8TR";
+// Tighter crop than logos/ECU8TR: the mark fills 95% of its box instead of 72%,
+// so it reads much larger at the widths this section has to work with
+import ECU8TR from "@/components/logos/ECU8TR-slider";
 import ECU8 from "@/components/logos/ECU8";
 
 const removeDesktopClasses = (str) => {
@@ -23,8 +25,8 @@ const pinnedSections = [
       className:
         "",
     },
-    logo: <span role="img" aria-label="ECU8 logo"><ECU8 className="h-14 xs:h-16 sm:h-24 3xl:h-28 md:mb-1" /></span>,
-    logoClasses: 'mb-12',
+    logo: <span role="img" aria-label="ECU8 logo"><ECU8 className="w-full max-w-[210px] h-auto sm:w-auto sm:max-w-none sm:h-24 3xl:h-28 md:mb-1" /></span>,
+    logoClasses: 'mb-4',
     heading: (
       <>
        EV Battery Management ECU prototype platform
@@ -43,7 +45,7 @@ const pinnedSections = [
       "ISO 26262 Safety, ISO 21434 Security",
       <>
         Customizable interfaces:
-        <ul className='md:pl-2 pl-0 md:mt-2 md:mb-0 mb-1 2xl:text-[20px] md:text-[18px] text-[16px] md:leading-[28px]  2xl:leading-[28px] text-black/60'>
+        <ul className='md:pl-2 pl-0 md:mt-2 md:mb-0 mb-1 2xl:text-[20px] md:text-[18px] text-[17px] md:leading-[28px]  2xl:leading-[28px] text-black/60'>
           <li>- Any BMS interface</li>
           <li>- Ethernet, ISO SPI</li>
           <li>- CAN / CAN FD</li>
@@ -54,12 +56,13 @@ const pinnedSections = [
       href: "/solutions/ecu8",
       label: "Find out more",
     },
-    imageClasses:'px-2 max-w-sm lg:max-w-md',
+    imageClasses:'px-2 max-w-sm lg:max-w-xl',
+    imageReveal: true,
     image: {
-      src: "/vertical/ecu8.webp",
+      src: "/vertical/ecu8-board.webp",
       alt: "ECU8 EV battery management ECU prototype platform",
-      width: 600,
-      height: 630,
+      width: 960,
+      height: 747,
       quality: 75,
     },
   },
@@ -74,7 +77,7 @@ const pinnedSections = [
       className:
         "text-[#E00000] font-bold lg:text-[14px] text-[.75rem] tracking-[6px] mb-6 3xl:text-lg",
     },
-    logo: <span role="img" aria-label="ECU8TR logo"><ECU8TR className="h-14 xs:h-16 sm:h-24 3xl:h-28 md:mb-1" /></span>,
+    logo: <span role="img" aria-label="ECU8TR logo"><ECU8TR className="w-full max-w-[330px] h-auto sm:w-auto sm:max-w-none sm:h-20 3xl:h-[94px] md:mb-1 -translate-x-[2.962%]" /></span>,
     logoClasses: '',
     heading: (
       <>
@@ -93,7 +96,7 @@ const pinnedSections = [
       "Precision Monitoring",
       <>
         Flexible interfaces:
-        <ul className='md:pl-2 pl-0 md:mt-2 md:mb-0 mb-1 2xl:text-[20px] md:text-[18px] text-[16px] md:leading-[28px]  2xl:leading-[28px] text-black/60'>
+        <ul className='md:pl-2 pl-0 md:mt-2 md:mb-0 mb-1 2xl:text-[20px] md:text-[18px] text-[17px] md:leading-[28px]  2xl:leading-[28px] text-black/60'>
           <li>- Infineon ISO UART</li>
           <li>- Analog Devices ISO SPI</li>
           <li>- Texas Instruments UART/SPI</li>
@@ -105,7 +108,7 @@ const pinnedSections = [
       href: "/solutions/ecu8tr",
       label: "Find out more",
     },
-    imageClasses:'max-w-3xl',
+    imageClasses:'max-w-3xl -mt-5 lg:mt-0',
     image: {
       src: "/vertical/ecu8tr-box.webp",
       alt: "ECU8TR Battery Factory Point Tester",
@@ -158,25 +161,21 @@ export default function VerticalSlider() {
             <p className="text-[20px] lg:text-[20px] 2xl:text-[24px] 3xl:text-[28px] leading-[28px] lg:leading-[28px] 2xl:leading-[32px] 3xl:leading-[38px] text-left mb-10 ">
               Our vision is to transform how {" "}
               <span className="px-[2.5px] bg-[#435FE1] rounded-sm">
-                energy is managed
-              </span>{" "}
-                and{" "}
-              <span className="px-[2.5px] bg-[#435FE1] rounded-sm">
-                batteries are produced.
+                EV batteries are managed and produced.
               </span>
             </p>
             <p className="text-[20px] lg:text-[20px] 2xl:text-[24px] 3xl:text-[28px] leading-[28px] lg:leading-[28px] 2xl:leading-[32px] 3xl:leading-[38px] text-left mb-10 ">
             We’re focused on delivering cutting-edge battery management and control solutions that prioritize {" "}
               <span className="px-[2.5px] bg-[#435FE1] rounded-sm">
-              efficiency, safety, and sustainability.
+              safety, security, and reliability.
               </span>
             </p>
             <p className="text-[20px] lg:text-[20px] 2xl:text-[24px] 3xl:text-[28px] leading-[28px] lg:leading-[28px] 2xl:leading-[32px] 3xl:leading-[38px] text-left ">
             By combining innovative engineering with a commitment to quality, we help our clients lead the way in&nbsp;
-              <span className="px-[2.5px] bg-[#435FE1] rounded-sm">energy controls</span>{" "}
+              <span className="px-[2.5px] bg-[#435FE1] rounded-sm">automotive battery management</span>{" "}
               and&nbsp;
               <span className="px-[2.5px] bg-[#435FE1] rounded-sm">
-              industrial automation.
+              battery production testing.
               </span>
             </p>
           </div>
@@ -196,18 +195,30 @@ export default function VerticalSlider() {
 
             {/* Image side remains in its original mobile order */}
             {item.image && (
-              <div className={`${isHighZoom ? removeDesktopClasses(item.imageClasses) : item.imageClasses} order-first lg:order-last flex justify-center mb-[24px] lg:mb-0`}>
-                <Image
-                  src={item.image.src}
-                  alt={item.image.alt}
-                  width={item.image.width ?? 1200}
-                  height={item.image.height ?? 800}
-                  quality={item.image.quality ?? 20}
-                  className="w-full max-w-full lg:max-w-[50vw] h-auto"
-                  sizes="(max-width: 768px) 100vw,
-                  (max-width: 1024px) 50vw,
-                  1200px" 
-                />
+              <div className={`${isHighZoom ? removeDesktopClasses(item.imageClasses) : item.imageClasses} order-first lg:order-last flex justify-center mb-[24px] lg:mb-0 overflow-hidden`}>
+                <motion.div
+                  className="w-full"
+                  {...(item.imageReveal
+                    ? {
+                        initial: { opacity: 0, x: -56 },
+                        whileInView: { opacity: 1, x: 0 },
+                        viewport: { once: true, amount: 0.3 },
+                        transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] },
+                      }
+                    : {})}
+                >
+                  <Image
+                    src={item.image.src}
+                    alt={item.image.alt}
+                    width={item.image.width ?? 1200}
+                    height={item.image.height ?? 800}
+                    quality={item.image.quality ?? 20}
+                    className="w-full max-w-full lg:max-w-[50vw] h-auto"
+                    sizes="(max-width: 768px) 100vw,
+                    (max-width: 1024px) 50vw,
+                    1200px" 
+                  />
+                </motion.div>
               </div>
             )}
             
@@ -223,7 +234,7 @@ export default function VerticalSlider() {
               )}
               <h2
                 style={{ lineHeight: "1.2" }}
-                className={`${item.headingClasses} 2xl:text-[30px] text-[1.3rem] sm:text-[30px] font-bold mb-[24px] uppercase text-pretty`}
+                className={`${item.headingClasses} 2xl:text-[30px] text-[1.5rem] sm:text-[30px] font-bold mb-[24px] uppercase text-pretty`}
               >
                 {item.heading}
               </h2>
@@ -231,13 +242,13 @@ export default function VerticalSlider() {
                 <p
                   key={idx}
                   style={{ lineHeight: "1.5" }}
-                  className={`${para.className} font-base text-[1.1rem] sm:text-[20px] md:text-[24px] 2xl:text-[24px] xl:mb-[40px] mb-[24px] leading-[30px] md:leading-[36px]`}
+                  className={`${para.className} font-base text-[1.25rem] sm:text-[20px] md:text-[24px] 2xl:text-[24px] xl:mb-[40px] mb-[24px] leading-[30px] md:leading-[36px]`}
                 >
                   {para.text}
                 </p>
               ))}
               {item.bullets && item.bullets.length > 0 && (
-                <ul className="list-disc font-light text-[1.1rem] md:text-[20px] xl:text-[24px] 2xl:text-[24px] pl-[16px] sm:leading-[32px] mb-[32px] lg:mb-[56px] xl:space-y-[12px] md:space-y-[4px]">
+                <ul className="list-disc font-light text-[1.25rem] md:text-[20px] xl:text-[24px] 2xl:text-[24px] pl-[16px] sm:leading-[32px] mb-[32px] lg:mb-[56px] xl:space-y-[12px] md:space-y-[4px]">
                   {item.bullets.map((bullet, i) => (
                     <li key={i}>{bullet}</li>
                   ))}

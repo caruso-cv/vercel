@@ -1,10 +1,12 @@
 const withPWA = require('next-pwa')({
   dest: 'public',
   disable: process.env.NODE_ENV === 'development',
-  buildExcludes: [/\/videos\//],
+  buildExcludes: [/\/videos\//, /\/vid\//],
   runtimeCaching: [
     {
-      urlPattern: /\.(mp4|webm)$/i,
+      // Hero video is same-origin and needs real byte-range requests, so it is
+      // left out of this rule and goes straight to the network
+      urlPattern: /^(?!.*\/vid\/).*\.(mp4|webm)$/i,
       handler: 'NetworkOnly',
       method: 'GET',
       options: {
@@ -32,9 +34,13 @@ const nextConfig = {
   },
   async redirects() {
     return [
-      // Retired products. Both were indexed, so send inbound traffic home.
-      { source: '/solutions/energ8te', destination: '/', permanent: true },
-      { source: '/solutions/elev8tr', destination: '/', permanent: true },
+      // Retired products. Both were indexed, so send inbound traffic to ECU8,
+      // including the shortened paths in case they were ever linked.
+      { source: '/solutions/energ8te', destination: '/solutions/ecu8', permanent: true },
+      { source: '/solutions/elev8tr', destination: '/solutions/ecu8', permanent: true },
+      { source: '/energ8te', destination: '/solutions/ecu8', permanent: true },
+      { source: '/elev8tr', destination: '/solutions/ecu8', permanent: true },
+      { source: '/ecu8', destination: '/solutions/ecu8', permanent: true },
     ];
   },
 };

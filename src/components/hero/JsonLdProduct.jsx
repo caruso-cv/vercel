@@ -16,7 +16,7 @@ export default function JsonLdProduct() {
             {
               "@type": "Product",
               "name": "ECU8™ EV Battery Management ECU Prototype Platform",
-              "image": "https://www.neutroncontrols.com/vertical/ecu8.webp",
+              "image": "https://www.neutroncontrols.com/vertical/ecu8-board.webp",
               "description": "An Infineon AURIX™ based prototype platform for EV Battery Management ECUs, emphasizing ISO 26262 safety and ISO 21434 security, and intended as a path to certified production units owned and built by the OEM.",
               "brand": {
                 "@type": "Brand",

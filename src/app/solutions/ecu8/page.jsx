@@ -20,7 +20,7 @@ export const metadata = {
     url: 'https://www.neutroncontrols.com/solutions/ecu8',
     images: [
       {
-        url: 'https://www.neutroncontrols.com/meta/elev8tr.jpg',
+        url: 'https://www.neutroncontrols.com/meta/general.jpg',
         alt: 'ECU8™ product photo',
       },
     ],
@@ -30,7 +30,7 @@ export const metadata = {
     title: 'ECU8™ EV Battery Management ECU Prototype Platform',
     description:
       'An Infineon AURIX™ based prototype platform for EV Battery Management ECUs — a path to certified production units owned and built by the OEM.',
-    images: ['https://www.neutroncontrols.com/meta/elev8tr.jpg'],
+    images: ['https://www.neutroncontrols.com/meta/general.jpg'],
   },
   alternates: {
     canonical: 'https://www.neutroncontrols.com/solutions/ecu8',

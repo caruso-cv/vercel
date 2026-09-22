@@ -74,7 +74,7 @@ export default function InfineonSection() {
     : 'opacity-0 translate-y-10';
 
   return (
-    <div ref={infineonRef} className="bg-gradient-to-b from-gray-900 py-24 sm:py-32">
+    <div ref={infineonRef} className="bg-gradient-to-b from-gray-900 pt-24 sm:pt-32 pb-10 sm:pb-14">
       <div className="mx-auto max-w-8xl px-6 2xl:px-0">
         <div className="mx-auto max-w-2xl sm:text-center lg:max-w-3xl">
           <p className="text-lg font-semibold text-[#425ACA] lg:text-2xl">Custom design</p>

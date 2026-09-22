@@ -5,19 +5,23 @@ import "keen-slider/keen-slider.min.css"
 import { useKeenSlider } from "keen-slider/react"
 import { motion } from "framer-motion"
 import Link from "next/link"
-import Hls from 'hls.js';
+import { ChevronLeft, ChevronRight } from "lucide-react"
 import ECU8 from "@/components/logos/ECU8";
 import ECU8TR from "@/components/logos/ECU8TR-slider";
 import Energy from "@/components/icons/Energy";
 import Manage from "@/components/icons/BatteryManage"
+
+// How long each slide stays up before auto-advancing
+const SLIDE_DURATION = 12000
 
 // CENTRALIZED SLIDE CONTENT
 const slidesData = [
   {
     slideId: 0,
     desktop: {
-      videoSrc: "https://d3jn5509arnhlw.cloudfront.net/slider/1/master.m3u8",
-      poster: "/slider/12.webp",
+      videoSrc: "/vid/ecu8-slider-720.mp4",
+      videoSrcMobile: "/vid/ecu8-slider-480.mp4",
+      poster: "/slider/ecu8-slider-poster.webp",
       headingIcon: <Energy className="mr-3 w-10 h-6"/>,
       headingText: "EV BATTERY MANAGEMENT ECU PROTOTYPE PLATFORM",
       bodyTextBeforeSpan: "Built on Infineon AURIX™ with a focus on ISO 26262 safety and ISO 21434 security. ",
@@ -28,16 +32,17 @@ const slidesData = [
       ctaHref: "/solutions/ecu8",
       ctaLabel: "Explore solutions",
       ctaAriaLabel: "Explore details and specifications about ECU8",
-      logo: <ECU8 className="h-14 w-auto"/>,
+      logo: <ECU8 className="h-[72px] w-auto"/>,
       logoContainerClasses:
-        "absolute bottom-36 right-6 xl:right-12 2xl:right-20 bg-white/85 backdrop-blur-sm px-16 py-14 rounded-lg shadow-md border-white/30",
+        "absolute bottom-[152px] right-6 xl:right-12 2xl:right-20 bg-white/85 backdrop-blur-sm px-[38px] py-[40px] rounded-lg shadow-md border-white/30",
     },
   },
   {
     slideId: 1,
     desktop: {
-      videoSrc: "https://d3jn5509arnhlw.cloudfront.net/slider/2/master.m3u8",
-      poster: "/slider/7.webp",
+      videoSrc: "/vid/ecu8tr-slider-720.mp4",
+      videoSrcMobile: "/vid/ecu8tr-slider-480.mp4",
+      poster: "/slider/ecu8tr-slider-poster.webp",
       headingIcon: <Manage className="w-7 mr-3" />,
       headingText: "BATTERY FACTORY LINE TESTERS",
       bodyTextBeforeSpan: "Tailored for verifying cell monitor operations within modules and packs.",
@@ -48,9 +53,9 @@ const slidesData = [
       ctaHref: "/solutions/ecu8tr",
       ctaLabel: "SEE SPECIFICATIONS",
       ctaAriaLabel: "See Battery Management Specifications for ECU8TR",
-      logo: <ECU8TR className="h-12 w-auto" />,
+      logo: <ECU8TR className="h-14 w-auto" />,
       logoContainerClasses:
-        "absolute bottom-40 right-6 xl:right-10 2xl:right-20 bg-white/85 backdrop-blur-sm px-8 py-[60px] rounded-lg shadow-md border-white/30",
+        "absolute bottom-44 right-6 xl:right-10 2xl:right-20 bg-white/85 backdrop-blur-sm px-[14px] py-14 rounded-lg shadow-md border-white/30",
     },
   },
 ]
@@ -70,14 +75,26 @@ export default function Slider() {
   // Store one desktop video ref per slide
   const videoRefs = useRef([]);
 
-  // Single HLS.js instance for the current slide
-  const hlsRef = useRef(null);
-
-  // so we know when the DOM-mounted videoRefs are ready
-  const [refsReady, setRefsReady] = useState(false);
+  // Bumped whenever a <video> enters or leaves the tree, so video setup always runs
+  // against a mounted element instead of racing the ref callbacks
+  const [videoNodeVersion, setVideoNodeVersion] = useState(0);
+  const videoRefSetters = useRef([]);
+  const setVideoRef = (index) => {
+    if (!videoRefSetters.current[index]) {
+      videoRefSetters.current[index] = (el) => {
+        if (videoRefs.current[index] === el) return;
+        videoRefs.current[index] = el;
+        if (el) setVideoNodeVersion((v) => v + 1);
+      };
+    }
+    return videoRefSetters.current[index];
+  };
 
   // Track slides that have been visited so once a video/image is loaded, we keep it in the DOM.
   const [visitedSlides, setVisitedSlides] = useState(() => new Set([0]))
+
+  // Slides whose video has actually started, used to fade the video in over its poster
+  const [playingSlides, setPlayingSlides] = useState(() => new Set())
 
   // Keep track of the previous slide index
   const prevSlide = useRef(currentSlide)
@@ -87,13 +104,20 @@ export default function Slider() {
     setMounted(true)
   }, [])
 
-  // Signal that our <video> refs are now in the tree
-  useEffect(() => { setRefsReady(true); }, []);
-
-  // Initialize an array of video refs matching slidesData
-  useEffect(() => {
-    videoRefs.current = slidesData.map(() => null)
+  // Auto-advance, restarted on any manual navigation so a click or swipe isn't
+  // immediately followed by the timer firing
+  const keenRef = useRef(null)
+  const autoplayRef = useRef(null)
+  const stopAutoplay = useCallback(() => {
+    if (autoplayRef.current) {
+      clearInterval(autoplayRef.current)
+      autoplayRef.current = null
+    }
   }, [])
+  const startAutoplay = useCallback(() => {
+    stopAutoplay()
+    autoplayRef.current = setInterval(() => keenRef.current?.next(), SLIDE_DURATION)
+  }, [stopAutoplay])
 
   // Initialize Keen Slider
   const [sliderRef, instanceRef] = useKeenSlider({
@@ -101,20 +125,37 @@ export default function Slider() {
     slidesPerView: 1,
     mode: "snap",
     spacing: 10,
-    drag: false,
+    drag: true,
     slideChanged(slider) {
       const nextIndex = slider.track.details.rel
       setCurrentSlide(nextIndex)
       setVisitedSlides((prev) => new Set([...prev, nextIndex]))
     },
     created(slider) {
+      keenRef.current = slider
       const initialIndex = slider.track.details.rel
       setCurrentSlide(initialIndex)
       if (initialIndex === 0) {
         restartAndPlaySlide(0)
       }
+      startAutoplay()
+    },
+    dragStarted() {
+      stopAutoplay()
+    },
+    dragEnded() {
+      startAutoplay()
     },
   })
+
+  const goToSlide = useCallback(
+    (direction) => {
+      if (direction === "prev") instanceRef.current?.prev()
+      else instanceRef.current?.next()
+      startAutoplay()
+    },
+    [instanceRef, startAutoplay]
+  )
 
   // Function to restart & play the desktop video at a given slide index
   const restartAndPlaySlide = useCallback((index) => {
@@ -133,62 +174,40 @@ export default function Slider() {
     prevSlide.current = currentSlide
   }, [currentSlide, visitedSlides, restartAndPlaySlide])
 
-  // Auto-advance slides
-  useEffect(() => {
-    const timer = setInterval(() => {
-      if (instanceRef.current) {
-        instanceRef.current.next();
-      }
-    }, 6000);
-    return () => clearInterval(timer);
-  }, []);
+  useEffect(() => stopAutoplay, [stopAutoplay]);
 
-  // Load and play HLS for the active slide only, reset on change
+  // Load and play the active slide's video only, reset on change
   useEffect(() => {
-    if (!refsReady) return;
     const idx = currentSlide;
     const videoEl = videoRefs.current[idx];
     if (!videoEl) return;
-    // Clean up previous HLS instance
-    if (hlsRef.current) {
-      hlsRef.current.destroy();
-      hlsRef.current = null;
+    // Mobile autoplay only works on a muted, inline video
+    videoEl.muted = true;
+    videoEl.playsInline = true;
+    const tryPlay = () =>
+      videoEl
+        .play()
+        .then(() => setPlayingSlides((prev) => (prev.has(idx) ? prev : new Set([...prev, idx]))))
+        .catch(() => {});
+    videoEl.addEventListener('loadeddata', tryPlay);
+    videoEl.addEventListener('canplay', tryPlay);
+
+    // Phones get the smaller rendition so the first frame arrives on a cellular
+    // connection
+    const { videoSrc, videoSrcMobile } = slidesData[idx].desktop;
+    const src = window.innerWidth < 640 && videoSrcMobile ? videoSrcMobile : videoSrc;
+    if (!videoEl.src.endsWith(src)) {
+      videoEl.src = src;
+      videoEl.load();
     }
-    // Initialize new HLS instance
-    if (Hls.isSupported()) {
-      const hls = new Hls();
-      hlsRef.current = hls;
-      hls.on(Hls.Events.MANIFEST_PARSED, (_, { levels }) => {
-        const av1Levels = levels.filter(l => /av01/.test(l.attrs.CODECS));
-        let levelIdx;
-        if (av1Levels.length) {
-          const firstAv1 = levels.findIndex(l => /av01/.test(l.attrs.CODECS));
-          levelIdx = firstAv1 + av1Levels.length - 1;
-        } else {
-          levelIdx = levels.length - 1;
-        }
-        hls.startLevel = levelIdx;
-        hls.loadLevel = levelIdx;
-        hls.currentLevel = levelIdx;
-        hls.nextLevel = levelIdx;
-        hls.autoLevelEnabled = false;
-        videoEl.currentTime = 0;
-        videoEl.play().catch(() => {});
-      });
-      hls.loadSource(slidesData[idx].desktop.videoSrc);
-      hls.attachMedia(videoEl);
-    } else if (videoEl.canPlayType('application/vnd.apple.mpegurl')) {
-      videoEl.src = slidesData[idx].desktop.videoSrc;
-      videoEl.currentTime = 0;
-      videoEl.play().catch(() => {});
-    }
+    videoEl.currentTime = 0;
+    tryPlay();
+
     return () => {
-      if (hlsRef.current) {
-        hlsRef.current.destroy();
-        hlsRef.current = null;
-      }
+      videoEl.removeEventListener('loadeddata', tryPlay);
+      videoEl.removeEventListener('canplay', tryPlay);
     };
-  }, [currentSlide, refsReady]);
+  }, [currentSlide, videoNodeVersion]);
 
   useEffect(() => {
     if (isLargeScreen && currentSlide === 0) {
@@ -213,29 +232,46 @@ export default function Slider() {
 
         {/* Keen Slider */}
         <div ref={sliderRef} className="keen-slider h-full w-full relative z-10">
-          {slidesData.map((slide, index) => (
+          {slidesData.map((slide, index) => {
+            // Cards reveal each time their slide becomes the active one
+            const isActive = currentSlide === index
+            const reveal = (offset, delay) => ({
+              initial: { opacity: 0, ...offset },
+              animate: isActive ? { opacity: 1, x: 0, y: 0 } : { opacity: 0, ...offset },
+              transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: isActive ? delay : 0 },
+            })
+            return (
             <div key={slide.slideId} className="keen-slider__slide relative">
               {/* DESKTOP */}
-              <div className="flex flex-col items-center lg:flex-row lg:justify-center px-4 lg:pt-56 lg:pb-20 w-full h-full pt-24 pb-8">
+              <div className="flex flex-col items-center lg:flex-row lg:justify-center px-4 lg:pt-56 lg:pb-20 w-full h-full pt-24 pb-20">
                 <div className="relative ">
-                  <div className="lg:w-[800px] lg:h-[450px] lg:mr-44 lg:mb-20">
+                  {/* Poster sits under the video, so a blocked video never leaves
+                      a native play button over the card */}
+                  <motion.div
+                    {...reveal({ x: -36 }, 0)}
+                    className="lg:w-[800px] lg:h-[450px] lg:mr-44 lg:mb-20 bg-cover bg-center lg:rounded-lg rounded-t-lg"
+                    style={{ backgroundImage: `url(${slide.desktop.poster})` }}
+                  >
                     {visitedSlides.has(index) && (
                       <video
-                        ref={(el) => (videoRefs.current[index] = el)}
-                        className="w-full h-full object-cover lg:rounded-lg rounded-t-lg shadow-xl"
+                        ref={setVideoRef(index)}
+                        className={`w-full h-full object-cover lg:rounded-lg rounded-t-lg shadow-xl transition-opacity duration-500 ${playingSlides.has(index) ? 'opacity-100' : 'opacity-0'}`}
                         muted
                         playsInline
                         preload="auto"
                         poster={slide.desktop.poster}
+                        onPlaying={() => setPlayingSlides((prev) => (prev.has(index) ? prev : new Set([...prev, index])))}
                         style={{ willChange: 'transform' }}
                         loop
                         autoPlay
                       />
                     )}
-                  </div>
+                  </motion.div>
 
                   {/* Video Info Box Desktop */}
-                  <div className="hidden lg:block absolute top-12 right-6 xl:-right-24 border border-white/10 bg-gradient-to-tr from-[#0C0D0F] to-[#111214] via-[#111214]/85 backdrop-blur-sm text-white p-5 pt-7 w-[90%] max-w-[460px] rounded-lg shadow-lg">
+                  <motion.div
+                    {...reveal({ x: 44 }, 0.12)}
+                    className="hidden lg:block absolute top-0 right-16 xl:-right-6 2xl:-right-12 border border-white/10 bg-gradient-to-tr from-[#0C0D0F] to-[#111214] via-[#111214]/85 backdrop-blur-sm text-white p-5 pt-7 w-[90%] max-w-[460px] rounded-lg shadow-lg">
                     <h3 className="text-lg uppercase font-bold flex items-center mb-4">
                       {slide.desktop.headingIcon}
                       {slide.desktop.headingText}
@@ -262,10 +298,12 @@ export default function Slider() {
                         <span>{slide.desktop.ctaLabel}</span>
                       </motion.div>
                     </Link>
-                  </div>
+                  </motion.div>
 
                   {/* Video Info Box Mobile */}
-                  <div className="text-white p-5 pt-7 block lg:hidden border border-white/10 bg-gradient-to-tr from-[#0C0D0F] to-[#111214] via-[#111214]/85 backdrop-blur-sm w-[100%] rounded-b-lg shadow-lg">
+                  <motion.div
+                    {...reveal({ y: 24 }, 0.1)}
+                    className="text-white p-5 pt-7 block lg:hidden border border-white/10 bg-gradient-to-tr from-[#0C0D0F] to-[#111214] via-[#111214]/85 backdrop-blur-sm w-[100%] rounded-b-lg shadow-lg">
                     <h3 className="text-lg font-bold flex items-center mb-4">
                     {slide.desktop.headingIcon}
                     {slide.desktop.headingText}
@@ -292,7 +330,7 @@ export default function Slider() {
                         <span>{slide.desktop.ctaLabel}</span>
                       </motion.div>
                     </Link>
-                  </div>
+                  </motion.div>
 
                   
                 </div>
@@ -300,15 +338,37 @@ export default function Slider() {
                 <div className="hidden lg:block">
                   {/* Desktop Logo Overlay */}
                   {slide.desktop.logo && (
-                    <div className={slide.desktop.logoContainerClasses}>
+                    <motion.div {...reveal({ y: 26 }, 0.26)} className={slide.desktop.logoContainerClasses}>
                       {slide.desktop.logo}
-                    </div>
+                    </motion.div>
                   )}
                 </div>
 
               </div>
             </div>
-          ))}
+            )
+          })}
+        </div>
+
+        {/* Manual controls — autoplay restarts after each one so the timer
+            doesn't fire right on top of a click */}
+        <div className="absolute z-30 bottom-5 right-5 lg:right-auto lg:left-10 lg:bottom-10 flex gap-3">
+          <button
+            type="button"
+            aria-label="Previous slide"
+            onClick={() => goToSlide("prev")}
+            className="h-10 w-10 flex items-center justify-center rounded-full border border-white/15 bg-white/10 text-white backdrop-blur-sm transition-colors hover:bg-white/20"
+          >
+            <ChevronLeft className="h-5 w-5" aria-hidden="true" />
+          </button>
+          <button
+            type="button"
+            aria-label="Next slide"
+            onClick={() => goToSlide("next")}
+            className="h-10 w-10 flex items-center justify-center rounded-full border border-white/15 bg-white/10 text-white backdrop-blur-sm transition-colors hover:bg-white/20"
+          >
+            <ChevronRight className="h-5 w-5" aria-hidden="true" />
+          </button>
         </div>
       </div>
     </section>

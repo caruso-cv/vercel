@@ -19,7 +19,7 @@ export default function ProductPage() {
       <section>
         {/* Header with logo inside max-w-8xl container */}
         <h1 className="max-w-8xl mx-auto px-6 2xl:px-0 pt-36 lg:pt-52 relative z-30" role="img" aria-label="ECU8™ EV Battery Management ECU Prototype Platform">
-          <ECU8 className="h-16 sm:h-28 3xl:h-32" />
+          <ECU8 className="h-20 sm:h-28 3xl:h-32" />
         </h1>
 
         <motion.div
@@ -34,12 +34,12 @@ export default function ProductPage() {
 
           {/* Main image for mobile */}
           <div className="flex justify-center sm:justify-start item-start align-left self-start w-full xl:mb-0 xl:hidden">
-              <div className="w-full sm:max-w-lg z-30 mt-8">
+              <div className="w-[74%] sm:w-full sm:max-w-lg z-30 mt-0 sm:mt-8">
                 <Image
-                  src="/vertical/ecu8.webp"
+                  src="/vertical/ecu8-board.webp"
                   alt="ECU8™ EV battery management ECU prototype platform"
                   width={960}
-                  height={1008}
+                  height={747}
                   quality={70}
                   priority
                   onLoad={() => setImageLoaded(true)}
@@ -50,7 +50,7 @@ export default function ProductPage() {
 
             {/* Text Section */}
             <div className="xl:max-w-[50vw] mx-auto xl:w-2/3 text-left px-6 2xl:px-0 flex ">
-              <div className="text-left pt-12 ">
+              <div className="text-left pt-4 ">
                 <h2 className=" text-2xl sm:text-4xl font-bold xl:mb-6 mb-4 ">
                   ABOUT ECU8™
                 </h2>
@@ -76,10 +76,10 @@ export default function ProductPage() {
             <div className="justify-center mb-6 xl:mb-0 hidden xl:flex xl:w-[45rem] xl:shrink-0">
               <div className="w-full xs:max-w-xs xl:max-w-[36rem] z-30">
                 <Image
-                  src="/vertical/ecu8.webp"
+                  src="/vertical/ecu8-board.webp"
                   alt="ECU8™ EV battery management ECU prototype platform"
                   width={960}
-                  height={1008}
+                  height={747}
                   quality={70}
                   priority
                   onLoad={() => setImageLoaded(true)}
@@ -104,18 +104,18 @@ export default function ProductPage() {
         <div className="border-2 border-[#2F79F8] rounded-md overflow-hidden">
           <div className="grid grid-cols-1 md:grid-cols-[240px_minmax(0,1fr)] ">
             {/* PROCESSOR */}
-            <h3 className="p-4 lg:p-6 pb-0 md:pb-4 md:border-b border-[#2F79F8] font-semibold xs:text-xl 3xl:text-[22.4px] ">
+            <h3 className="p-4 lg:p-6 pb-0 md:pb-4 md:border-b border-[#2F79F8] font-semibold xs:text-xl lg:text-[1.375rem] 3xl:text-[22.4px] ">
               PROCESSOR
             </h3>
-            <div className="p-4 lg:p-6 border-b border-[#2F79F8] md:border-l md:border-[#2F79F8] xs:text-[1.125rem] xs:leading-[1.75rem] text-black/70 ">
+            <div className="p-4 lg:p-6 border-b border-[#2F79F8] md:border-l md:border-[#2F79F8] xs:text-[1.125rem] xs:leading-[1.75rem] lg:text-[1.1875rem] lg:leading-[1.9rem] text-black/70 ">
                 <p className="mb-1">Infineon AURIX™ based design</p>
                 <p className="mb-1">Available with any member of Infineon’s AURIX™ family</p>
             </div>
             {/* INTERFACES */}
-            <h3 className="p-4 lg:p-6 pb-0 md:pb-4 md:border-b border-[#2F79F8] font-semibold xs:text-xl 3xl:text-[22.4px] ">
+            <h3 className="p-4 lg:p-6 pb-0 md:pb-4 md:border-b border-[#2F79F8] font-semibold xs:text-xl lg:text-[1.375rem] 3xl:text-[22.4px] ">
               INTERFACES
             </h3>
-            <div className="p-4 lg:p-6 border-b border-[#2F79F8] md:border-l md:border-[#2F79F8] xs:text-[1.125rem] xs:leading-[1.75rem] text-black/70 ">
+            <div className="p-4 lg:p-6 border-b border-[#2F79F8] md:border-l md:border-[#2F79F8] xs:text-[1.125rem] xs:leading-[1.75rem] lg:text-[1.1875rem] lg:leading-[1.9rem] text-black/70 ">
                 <p className="mb-1">Customizable with any BMS interface</p>
                 <p className="mb-1">Ethernet network interface</p>
                 <p className="mb-1">ISO SPI</p>
@@ -123,10 +123,10 @@ export default function ProductPage() {
                 <p className="mb-1">Any additional interface required by your application</p>
             </div>
             {/* SAFETY & SECURITY */}
-            <h3 className="p-4 lg:p-6 pb-0 md:pb-4 md:border-b border-[#2F79F8] font-semibold xs:text-xl 3xl:text-[22.4px] ">
+            <h3 className="p-4 lg:p-6 pb-0 md:pb-4 md:border-b border-[#2F79F8] font-semibold xs:text-xl lg:text-[1.375rem] 3xl:text-[22.4px] ">
               SAFETY &amp; SECURITY
             </h3>
-            <div className="p-4 lg:p-6 border-b border-[#2F79F8] md:border-l md:border-[#2F79F8] xs:text-[1.125rem] xs:leading-[1.75rem] text-black/70">
+            <div className="p-4 lg:p-6 border-b border-[#2F79F8] md:border-l md:border-[#2F79F8] xs:text-[1.125rem] xs:leading-[1.75rem] lg:text-[1.1875rem] lg:leading-[1.9rem] text-black/70">
               <p className="mb-1">ISO 26262 functional safety</p>
               <p className="mb-1">ISO 21434 cybersecurity</p>
             </div>

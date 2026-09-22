@@ -1,5 +1,4 @@
 "use client";
-import Link from "next/link";
 import PartnersLogo from "./PartnersLogo";
 
 export default function Partners() {
@@ -19,13 +18,9 @@ export default function Partners() {
 
   return (
     <section aria-labelledby="partners-heading" className="pb-16 lg:pb-28 relative flex flex-col items-center justify-center">
-      <Link
-        href="/services"
-        aria-label="Learn about our work as an Infineon Preferred Design House"
-        className="text-center mb-4 px-4 text-[#425ACA] font-bold text-[11px] lg:text-[14px] leading-[1.4] tracking-[4px] lg:tracking-[6px] uppercase opacity-90 hover:opacity-100 transition-opacity"
-      >
+      <p className="text-center mb-4 px-4 text-[#425ACA] font-bold text-[11px] lg:text-[14px] leading-[1.4] tracking-[4px] lg:tracking-[6px] uppercase opacity-90">
         Infineon Preferred Design House
-      </Link>
+      </p>
       <h2 id="partners-heading" className="text-center mb-1 text-[24px] leading-[32px] lg:text-[30px] lg:leading-[38px] 3xl:text-[30px] 3xl:leading-[38px] font-bold uppercase pb-3 sm:pb-1 px-4">
         Trusted by partners worldwide
       </h2>
@@ -39,7 +34,7 @@ export default function Partners() {
         data-speed="custom"
         data-direction="right"
       >
-        <div className="scroller__inner flex flex-nowrap gap-8">
+        <div className="scroller__inner flex flex-nowrap gap-5 sm:gap-8">
           {duplicatedImages.map((img, idx) => (
             <PartnersLogo image={img.src} alt={img.alt} key={idx} />
           ))}

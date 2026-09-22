@@ -72,7 +72,7 @@ export default function DesktopNav() {
               className="w-44 absolute -top-3 left-0 lg:static lg:top-auto lg:left-auto" 
               aria-label="Neutron Controls Logo"
             >
-              <NavLogo className="text-white" />
+              <NavLogo className="text-white [filter:drop-shadow(0_1px_2px_rgba(0,0,0,1))_drop-shadow(0_3px_10px_rgba(0,0,0,0.95))]" />
             </Link>
               <div className="hidden lg:flex flex-1 justify-center">
                 <NavLinks />

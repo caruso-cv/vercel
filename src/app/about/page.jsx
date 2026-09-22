@@ -6,7 +6,6 @@ export const metadata = {
   description:
     'Neutron Controls traces its roots back to our proud Canadian heritage and a deep understanding of the semiconductor industry.',
   keywords: [
-    'ISO9001 certification',
     'ISO14001 certification',
     'BUILT IN THE USA',
     'DESIGNED IN CANADA',

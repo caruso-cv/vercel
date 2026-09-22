@@ -13,7 +13,7 @@ import {
 const cards = [
   {
     name: 'PIONEERING EXPERTISE',
-    description: 'Drawing on our capabilities in energy control, battery management systems, integrated safety-critical design, and advanced design solutions, we forged a path of excellence.',
+    description: 'Drawing on our capabilities in automotive battery management, integrated safety-critical design, and advanced design solutions, we forged a path of excellence.',
     icon: LightBulbIcon,
   },
   {

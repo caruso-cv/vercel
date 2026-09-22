@@ -3,7 +3,7 @@ import React from "react";
 
 const PartnersLogo = ({ image }) => {
   return (
-    <div className="relative overflow-hidden h-[100px] min-w-[200px] flex justify-center items-center">
+    <div className="relative overflow-hidden h-[68px] min-w-[136px] sm:h-[100px] sm:min-w-[200px] flex justify-center items-center">
       <Image
         src={image}
         alt={image}

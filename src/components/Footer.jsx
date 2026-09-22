@@ -52,13 +52,13 @@ export default function Footer() {
                 href="/solutions/ecu8"
                 aria-label="Navigate to ECU8 solution"
               >
-                <ECU8 className="4xs:h-8 opacity-60 hover:opacity-100 cursor-pointer transition-all duration-50 ease-in-out mb-2 lg:h-10" />
+                <ECU8 className="h-8 opacity-60 hover:opacity-100 cursor-pointer transition-all duration-50 ease-in-out mb-2 lg:h-10" />
               </Link>
               <Link 
                 href="/solutions/ecu8tr"
                 aria-label="Navigate to ECU8TR solution"
               >
-                <ECU8TR className="4xs:h-8 opacity-60 hover:opacity-100 cursor-pointer transition-all duration-50 ease-in-out lg:h-10" />
+                <ECU8TR className="h-8 opacity-60 hover:opacity-100 cursor-pointer transition-all duration-50 ease-in-out lg:h-10" />
               </Link>
             </div>
           </div>

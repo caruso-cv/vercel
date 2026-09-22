@@ -3,7 +3,7 @@ import Services from "@/components/services/Services";
 export const metadata = {
   title: 'Services | Advanced Battery Management Design Services',
   description:
-    'Smarter Energy Solutions – Advanced battery management design services built for efficiency, safety, and seamless integration—optimizing performance and reliability.',
+    'Automotive BMS, from prototype to production – Advanced battery management design services built for efficiency, safety, and seamless integration—optimizing performance and reliability.',
   keywords: [
     'BMS Controls',
     'Infineon’s AURIX™-MCUs',
@@ -15,7 +15,7 @@ export const metadata = {
   openGraph: {
     title: 'Services | Advanced Battery Management Design Services',
     description:
-      'Smarter Energy Solutions – Advanced battery management design services built for efficiency, safety, and seamless integration—optimizing performance and reliability.',
+      'Automotive BMS, from prototype to production – Advanced battery management design services built for efficiency, safety, and seamless integration—optimizing performance and reliability.',
     url: 'https://www.neutroncontrols.com/services',
     images: [
       {
@@ -28,7 +28,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'Services | Advanced Battery Management Design Services',
     description:
-      'Smarter Energy Solutions – Advanced battery management design services built for efficiency, safety, and seamless integration—optimizing performance and reliability.',
+      'Automotive BMS, from prototype to production – Advanced battery management design services built for efficiency, safety, and seamless integration—optimizing performance and reliability.',
     images: ['https://www.neutroncontrols.com/meta/general.jpg'],
   },
   alternates: {

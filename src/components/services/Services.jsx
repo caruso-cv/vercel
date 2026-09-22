@@ -2,11 +2,17 @@
 
 import Link from 'next/link';
 import { CheckIcon } from '@heroicons/react/20/solid';
-import Battery from '@/components/icons/Battery';
-import Design from '@/components/icons/Design';
-import Safety from '@/components/icons/SafetyIcon';
+import { BatteryCharging, CircuitBoard, ShieldCheck } from 'lucide-react';
 import InfineonSection from '@/components/services/InfineonSection';
 import { motion } from 'framer-motion';
+
+// Line glyph on a tinted tile, so the three cards read as one set and pick up
+// the indigo used by the card headings and buttons
+const IconTile = ({ icon: Icon }) => (
+  <span className="inline-flex h-40 sm:h-44 w-full items-center justify-center rounded-2xl bg-gradient-to-br from-[#425ACA]/[0.12] to-[#425ACA]/[0.04] ring-1 ring-inset ring-[#425ACA]/20">
+    <Icon aria-hidden="true" strokeWidth={1.5} className="h-20 w-20 sm:h-24 sm:w-24 text-[#425ACA]" />
+  </span>
+);
 
 const tiers = [
   {
@@ -19,16 +25,16 @@ const tiers = [
     features: [
       'High-performance BMS and ECU design',
       'Enhanced battery longevity',
-      'Tailored solutions for EVs and renewables',
-      'Industrial-grade safety and performance',
+      'Tailored solutions for automotive EV platforms',
+      'Automotive-grade safety and performance',
     ],
-    icon: <span aria-label="Battery icon" role="img"><Battery className="h-20 w-20 sm:w-28 sm:h-28" aria-hidden="true" /></span>,
+    icon: <IconTile icon={BatteryCharging} />,
   },
   {
     name: 'Safety-Critical Design',
     id: 'tier-team',
     href: '/about',
-    buttonText: 'Explore safety',
+    buttonText: 'See our approach',
     description:
       'Drive safety and reliability with integrated systems that meet ISO 26262 standards.',
     features: [
@@ -36,7 +42,7 @@ const tiers = [
       'Compliance with ISO 26262 for highest reliability',
       'High-performance designs prioritizing occupant and environmental protection',
     ],
-    icon: <span aria-label="Safety icon" role="img"><Safety className="h-20 w-20 sm:w-28 sm:h-28" aria-hidden="true" /></span>,
+    icon: <IconTile icon={ShieldCheck} />,
   },
   {
     name: 'Advanced Design Solutions',
@@ -51,7 +57,7 @@ const tiers = [
       'Advanced analytics',
       'Expert teams tackling complex challenges with ingenuity and creativity',
     ],
-    icon: <span aria-label="Design icon" role="img"><Design className="h-20 w-20 sm:w-28 sm:h-28" aria-hidden="true" /></span>,
+    icon: <IconTile icon={CircuitBoard} />,
   },
 ];
 
@@ -67,9 +73,9 @@ export default function Page() {
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="mt-2 uppercase lg:mt-6 text-pretty text-4xl font-bold text-white sm:text-balance sm:text-[56px] md:mt-4 leading-[1.1]"
+              className="mt-2 uppercase lg:mt-6 text-pretty text-[2rem] font-bold text-white sm:text-balance sm:text-[50px] md:mt-4 leading-[1.1]"
             >
-              Smarter Energy Solutions
+              Automotive BMS, from prototype to production
             </motion.h1>
           </div>
           <div className="relative mt-6 2xl:mt-10">
@@ -113,14 +119,14 @@ export default function Page() {
                   className="flex flex-col justify-between rounded-3xl bg-white p-6 shadow-lg ring-1 ring-gray-900/10 sm:p-8 w-full"
                 >
                   <div>
-                    <h2 id={tier.id} className="text-[1rem] leading-[1.75rem] font-semibold text-[#425ACA] pb-8">
+                    <h2 id={tier.id} className="text-center text-[1rem] leading-[1.75rem] lg:text-[1.125rem] lg:leading-[1.875rem] font-semibold text-[#425ACA] pb-4">
                       {tier.name}
                     </h2>
                     <div className="mt-4 sm:mt-6 flex items-center justify-center" aria-label={`Icon representing ${tier.name}`} role="img">
                       {tier.icon}
                     </div>
-                    <p className="mt-6 sm:mt-12 text-[1rem] leading-[1.65rem] text-black">{tier.description}</p>
-                    <ul role="list" className="mt-10 space-y-2 sm:space-y-4 text-[1rem] leading-[1.5rem]  text-gray-600">
+                    <p className="mt-6 sm:mt-12 text-[1rem] leading-[1.65rem] lg:text-[1.0625rem] lg:leading-[1.75rem] text-black">{tier.description}</p>
+                    <ul role="list" className="mt-10 space-y-2 sm:space-y-4 text-[1rem] leading-[1.5rem] lg:text-[1.0625rem] lg:leading-[1.6rem]  text-gray-600">
                       {tier.features.map((feature) => (
                         <li key={feature} className="flex gap-x-3">
                           <CheckIcon aria-hidden="true" className="h-6 w-5 flex-none text-[#425ACA]" />
@@ -132,7 +138,7 @@ export default function Page() {
                   <Link
                     href={tier.href}
                     aria-describedby={tier.id}
-                    className="mt-8 uppercase block rounded-md bg-[#425ACA] px-3.5 py-2 text-center text-[0.875rem] leading-[1.5rem] font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#425ACA]"
+                    className="mt-8 uppercase block rounded-md bg-[#425ACA] px-3.5 py-2 text-center text-[0.875rem] leading-[1.5rem] lg:text-[0.9375rem] lg:leading-[1.625rem] font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#425ACA]"
                   >
                     {tier.buttonText}
                   </Link>
@@ -145,15 +151,15 @@ export default function Page() {
                 className="flex flex-col gap-y-6 rounded-md p-8 ring-1 ring-gray-900/10 sm:gap-y-10 sm:p-10 lg:col-span-3 lg:flex-row lg:items-center"
               >
                 <div className="lg:flex-1">
-                  <h2 className="text-[1rem] leading-[1.75rem] font-semibold text-[#425ACA]">Our AURIX Expertise</h2>
-                  <p className="mt-4 text-[1rem] leading-[1.75rem] text-black">
+                  <h2 className="text-[1rem] leading-[1.75rem] lg:text-[1.125rem] lg:leading-[1.875rem] font-semibold text-[#425ACA]">Our AURIX Expertise</h2>
+                  <p className="mt-4 text-[1rem] leading-[1.75rem] lg:text-[1.0625rem] lg:leading-[1.8rem] text-black">
                     Unleash the full potential of Infineon’s AURIX™-MCUs with expert design support and tailored training, equipping you to harness cutting-edge technology for maximum performance and reliability.
                   </p>
                 </div>
                 <div className="lg:pl-10">
                   <Link
                     href="/solutions/ecu8tr"
-                    className="rounded-md px-3.5 py-2 text-sm/6 font-semibold text-[#425ACA] ring-1 ring-inset ring-indigo-200 hover:ring-indigo-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#425ACA] md:text-[1rem] md:leading-[1.75rem]"
+                    className="rounded-md px-3.5 py-2 text-sm/6 font-semibold text-[#425ACA] ring-1 ring-inset ring-indigo-200 hover:ring-indigo-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#425ACA] md:text-[1rem] md:leading-[1.75rem] lg:text-[1.0625rem]"
                   >
                     See our solutions <span aria-hidden="true">&rarr;</span>
                   </Link>
