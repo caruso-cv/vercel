@@ -26,7 +26,7 @@ export default function Partners() {
       </h2>
       <p className="text-center mb-12 text-[20px] leading-[28px] lg:text-[24px] lg:leading-[32px] 3xl:text-[24px] 3xl:leading-[32px] font-medium ">
         We build relationships rooted in trust, respect, and shared success.
-      </p>
+      </p> 
 
       <div
         className="scroller max-w-7xl"
