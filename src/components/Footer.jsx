@@ -1,8 +1,7 @@
 import React from "react";
 import Logo from "@/components/logos/Logo";
-import ELEV8TR from "@/components/logos/ELEV8TR";
 import ECU8TR from "@/components/logos/ECU8TR";
-import ENERG8TE from "@/components/logos/ENERG8TE";
+import ECU8 from "@/components/logos/ECU8";
 import BackgroundFooter from "@/components/backgrounds/BackgroundFooter";
 import LinkedIn from "@/components/icons/LinkedIn";
 import Link from "next/link";
@@ -50,22 +49,16 @@ export default function Footer() {
             </h3>
             <div>
               <Link 
+                href="/solutions/ecu8"
+                aria-label="Navigate to ECU8 solution"
+              >
+                <ECU8 className="4xs:h-8 opacity-60 hover:opacity-100 cursor-pointer transition-all duration-50 ease-in-out mb-2 lg:h-10" />
+              </Link>
+              <Link 
                 href="/solutions/ecu8tr"
                 aria-label="Navigate to ECU8TR solution"
               >
-                <ECU8TR className="4xs:h-8 opacity-60 hover:opacity-100 cursor-pointer transition-all duration-50 ease-in-out mb-2 lg:h-10" />
-              </Link>
-              <Link 
-                href="/solutions/elev8tr"
-                aria-label="Navigate to ELEV8TR solution"
-              >
-                <ELEV8TR className="4xs:h-8 opacity-60 hover:opacity-100 cursor-pointer transition-all duration-50 ease-in-out mb-2 lg:h-10" />
-              </Link>
-              <Link 
-                href="/solutions/energ8te"
-                aria-label="Navigate to ENERG8TE solution"
-              >
-                <ENERG8TE className="4xs:h-8 opacity-60 hover:opacity-100 cursor-pointer transition-all duration-50 ease-in-out lg:h-10" />
+                <ECU8TR className="4xs:h-8 opacity-60 hover:opacity-100 cursor-pointer transition-all duration-50 ease-in-out lg:h-10" />
               </Link>
             </div>
           </div>

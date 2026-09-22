@@ -79,10 +79,10 @@ export default function InfineonSection() {
         <div className="mx-auto max-w-2xl sm:text-center lg:max-w-3xl">
           <p className="text-lg font-semibold text-[#425ACA] lg:text-2xl">Custom design</p>
           <h2 className="mt-2 uppercase lg:mt-6 text-pretty text-4xl font-bold text-white sm:text-balance sm:text-[43.2px] md:mt-4 leading-[1.1]">
-            Infineon's Premier Design House
+            Infineon's Preferred Design House
           </h2>
           <p className="mt-6 text-gray-300 text-[1.25rem] leading-[1.75rem] md:mt-8">
-            Unlock your design potential with Neutron Controls, your Infineon Premier Design House for North America.
+            Unlock your design potential with Neutron Controls, your Infineon Preferred Design House for North America.
           </p>
         </div>
       </div>

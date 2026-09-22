@@ -12,7 +12,7 @@ export default function HeroNew() {
   const [firstAnim, setFirstAnim] = useState('visible');
   const [secondText, setSecondText] = useState('Your Energy');
   const [secondAnim, setSecondAnim] = useState('visible');
-  const [paraText, setParaText] = useState('Advanced BMS controllers for <br /> ESS/BESS installations.');
+  const [paraText, setParaText] = useState('EV battery management ECUs <br /> built on Infineon AURIX™.');
   const [paraVisible, setParaVisible] = useState(true);
 
   // Animation cycle
@@ -25,7 +25,7 @@ export default function HeroNew() {
           const newText = prev === 'Contain' ? 'Test Your' : 'Contain';
           setParaText(newText === 'Test Your'
             ? 'Battery factory point tester.'
-            : 'Advanced BMS controllers for <br /> ESS/BESS installations.'
+            : 'EV battery management ECUs <br /> built on Infineon AURIX™.'
           );
           return newText;
         });

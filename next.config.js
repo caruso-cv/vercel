@@ -30,6 +30,13 @@ const nextConfig = {
     deviceSizes: [320, 640, 768, 1024, 1280, 1536],
     imageSizes: [16, 32, 48, 64, 96],
   },
+  async redirects() {
+    return [
+      // Retired products. Both were indexed, so send inbound traffic home.
+      { source: '/solutions/energ8te', destination: '/', permanent: true },
+      { source: '/solutions/elev8tr', destination: '/', permanent: true },
+    ];
+  },
 };
 
 module.exports = withPWA(nextConfig);

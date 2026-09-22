@@ -9,24 +9,24 @@ import JsonLdProduct from '@/components/hero/JsonLdProduct'
 export const metadata = {
   title: 'Neutron Controls',
   description:
-    'Neutron Controls delivers advanced BMS controllers and energy management solutions for ESS/BESS installations, prioritizing efficiency, safety, and sustainability in industrial automation.',
+    'Neutron Controls is an Infineon Preferred Design House delivering EV battery management ECU platforms on Infineon AURIX™ and battery factory line testers for production quality.',
     keywords: [
       'Battery Management Systems (BMS)',
-      'Battery Energy Storage Systems (BESS)',
+      'EV Battery Management ECU',
+      'Infineon Preferred Design House',
+      'Infineon AURIX™',
       'Battery Factory Line Testers',
-      'ESS Controllers',
-      'Industrial Battery Testing Solutions',
       'Automotive Battery Quality Assurance'
     ],
   openGraph: {
     title: 'Neutron Controls',
     description:
-      'BMS controllers and energy management solutions for ESS/BESS installations, prioritizing efficiency, safety, and sustainability in industrial automation.',
+      'An Infineon Preferred Design House delivering EV battery management ECU platforms on Infineon AURIX™ and battery factory line testers for production quality.',
     url: 'https://www.neutroncontrols.com',
     images: [
       {
         url: 'https://www.neutroncontrols.com/meta/general.jpg',
-        alt: 'Battery container and robot arm testing batteries',
+        alt: 'Robot arm testing batteries on a production line',
       },
     ],
   },
@@ -34,7 +34,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'Neutron Controls',
     description:
-      'BMS controllers and energy management solutions for ESS/BESS installations, prioritizing efficiency, safety, and sustainability in industrial automation.',
+      'An Infineon Preferred Design House delivering EV battery management ECU platforms on Infineon AURIX™ and battery factory line testers for production quality.',
     images: ['https://www.neutroncontrols.com/meta/general.jpg'],
   },
   alternates: {

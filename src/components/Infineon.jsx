@@ -47,7 +47,7 @@ function Infineon() {
           <div className="border-t border-[#1B1C1E] py-6" />
           <div className="border-y border-[#1B1C1E]">
             <p className="text-pretty text-4xl xl:text-5xl font-bold text-white sm:text-balance sm:text-[2.7rem] p-16 pb-[52.5px] xl:pb-[54px] uppercase leading-[1.2]" >
-              Infineon&apos;s Premier Design House.
+              Infineon&apos;s Preferred Design House.
             </p>
           </div>
 
@@ -60,7 +60,7 @@ function Infineon() {
               animate="rest"
             >
               <p className="text-lg xl:text-2xl leading-relaxed max-w-xs font-geist text-[#8e8f90]">
-                As an Infineon Premier Design House, Neutron Controls brings ideas to life,
+                As an Infineon Preferred Design House, Neutron Controls brings ideas to life,
                 uniting Infineon&apos;s advanced solutions with our expert guidance.
               </p>
               <p className="inline-block font-medium text-white transition-colors font-geist pt-[56.5px] xl:text-xl xl:pt-[58.5px]">

@@ -5,8 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import ECU8TR from "@/components/logos/ECU8TR";
-import ENERG8TE from "@/components/logos/ENERG8TE";
-import ELEV8TR from "@/components/logos/ELEV8TR";
+import ECU8 from "@/components/logos/ECU8";
 
 const removeDesktopClasses = (str) => {
   return str.replace(/\b(?:lg|xl|2xl|3xl):[^\s]+/g, '');
@@ -24,34 +23,44 @@ const pinnedSections = [
       className:
         "",
     },
-    logo: <span role="img" aria-label="ENERG8TE logo"><ENERG8TE className="h-14 xs:h-16 sm:h-24 3xl:h-28 md:mb-1" /></span>,
+    logo: <span role="img" aria-label="ECU8 logo"><ECU8 className="h-14 xs:h-16 sm:h-24 3xl:h-28 md:mb-1" /></span>,
     logoClasses: 'mb-12',
     heading: (
       <>
-       BMS CONTROLLER FOR BESS/ESS
+       EV Battery Management ECU prototype platform
       </>
     ),
     headingClasses:
       "",
     paragraphs: [
       {
-        text: `The ENERG8TE™ ESS Controller is an advanced Energy Storage System management product designed to optimize the performance of Battery Energy Storage Systems (BESS).`,
+        text: `ECU8™ is a prototype platform for EV Battery Management ECUs, available with any member of Infineon’s AURIX™ family and intended as a path to certified production units, owned and built by the OEM.`,
         className: "",
       },
     ],
     bullets: [
-      "Optimized Energy Efficiency",
-      "System Reliability and Safety",
-      "Flexible Integration",
+      "Infineon AURIX™ Based Design",
+      "ISO 26262 Safety, ISO 21434 Security",
+      <>
+        Customizable interfaces:
+        <ul className='md:pl-2 pl-0 md:mt-2 md:mb-0 mb-1 2xl:text-[20px] md:text-[18px] text-[16px] md:leading-[28px]  2xl:leading-[28px] text-black/60'>
+          <li>- Any BMS interface</li>
+          <li>- Ethernet, ISO SPI</li>
+          <li>- CAN / CAN FD</li>
+        </ul>
+      </>,
     ],
     link: {
-      href: "/solutions/energ8te",
+      href: "/solutions/ecu8",
       label: "Find out more",
     },
-    imageClasses:'px-2 max-w-3xl',
+    imageClasses:'px-2 max-w-sm lg:max-w-md',
     image: {
-      src: "/vertical/energ8te-box-hero.webp",
-      alt: "ENERG8TE BMS Controls for Energy Storage",
+      src: "/vertical/ecu8.webp",
+      alt: "ECU8 EV battery management ECU prototype platform",
+      width: 600,
+      height: 630,
+      quality: 75,
     },
   },
 
@@ -102,48 +111,6 @@ const pinnedSections = [
       alt: "ECU8TR Battery Factory Point Tester",
     },
   },
-
-  // LAYER THREE
-  {
-    id: "elev8tr",
-    sectionClasses:
-    "lg:sticky top-[105px] lg:h-[calc(100dvh-144px)] bg-[#E8E8E8] lg:bg-[#E2E2E2] text-black z-40 flex flex-col-reverse lg:flex-row-reverse items-center justify-center lg:rounded-4xl lg:mx-12 py-20 xl:py-0 lg:mb-8 2xl:px-[90px] 3xl:px-40 mt-4 lg:mt-0",
-    containerClasses: "lg:w-2/3 3xl:w-1/2 text-left px-8 pt-0 sm:pt-4 lg:pt-0",
-    topNote: {
-      className:
-        "",
-    },
-    logo: <span role="img" aria-label="ELEV8TR logo"><ELEV8TR className="h-14 xs:h-16 sm:h-24 3xl:h-28 md:mb-1" /></span>,
-    logoClasses: 'mb-12',
-    heading: (
-      <>
-        <span className="hidden sm:inline">
-        THE COMPLETE PLATFORM FOR
-        </span>{" "}
-        ACCELERATING BMS ALGORITHM DEVELOPMENT
-      </>
-    ),
-    headingClasses:
-      "",
-    paragraphs: [
-      {
-        text: `ELEV8TR™ is a comprehensive package of advanced embedded development tools designed for OEMs looking to fast-track their Battery Management System (BMS) algorithms.`,
-        className: "",
-      },
-    ],
-    bullets: [
-      "All-in-One Simulation Solution",
-    ],
-    link: {
-      href: "/solutions/elev8tr",
-      label: "Find out more",
-    },
-    imageClasses:'',
-    image: {
-      src: "/vertical/elev8tr.webp",
-      alt: "ELEV8TR Battery Algorithm Simulator",
-    },
-  },
 ];
 
 export default function VerticalSlider() {
@@ -164,7 +131,7 @@ export default function VerticalSlider() {
 
   return (
     <div className='bg-[#FBFBFC]'>
-        <div className="relative w-full lg:h-[calc(350dvh-144px)] bg-white lg:bg-[#090A0B] lg:rounded-t-4xl z-10">
+        <div className="relative w-full lg:h-[calc(250dvh-32px)] bg-white lg:bg-[#090A0B] lg:rounded-t-4xl z-10">
         {/* -----------------------
             BLACK LAYER (pinned)
             ----------------------- */}
@@ -233,9 +200,9 @@ export default function VerticalSlider() {
                 <Image
                   src={item.image.src}
                   alt={item.image.alt}
-                  width={1200}
-                  height={800}
-                  quality={20}
+                  width={item.image.width ?? 1200}
+                  height={item.image.height ?? 800}
+                  quality={item.image.quality ?? 20}
                   className="w-full max-w-full lg:max-w-[50vw] h-auto"
                   sizes="(max-width: 768px) 100vw,
                   (max-width: 1024px) 50vw,

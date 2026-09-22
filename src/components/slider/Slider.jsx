@@ -6,7 +6,7 @@ import { useKeenSlider } from "keen-slider/react"
 import { motion } from "framer-motion"
 import Link from "next/link"
 import Hls from 'hls.js';
-import ENERG8TE from "@/components/logos/Energate";
+import ECU8 from "@/components/logos/ECU8";
 import ECU8TR from "@/components/logos/ECU8TR-slider";
 import Energy from "@/components/icons/Energy";
 import Manage from "@/components/icons/BatteryManage"
@@ -19,18 +19,18 @@ const slidesData = [
       videoSrc: "https://d3jn5509arnhlw.cloudfront.net/slider/1/master.m3u8",
       poster: "/slider/12.webp",
       headingIcon: <Energy className="mr-3 w-10 h-6"/>,
-      headingText: "BATTERY MANAGEMENT FOR ESS/BESS INSTALLATIONS",
-      bodyTextBeforeSpan: "We deliver a customizable ",
+      headingText: "EV BATTERY MANAGEMENT ECU PROTOTYPE PLATFORM",
+      bodyTextBeforeSpan: "Built on Infineon AURIX™ with a focus on ISO 26262 safety and ISO 21434 security. ",
       bodyTextBeforeSpan2: "", 
-      bodyTextSpan: "BMS called ENERG8TE™ for energy storage",
+      bodyTextSpan: "ECU8™ is a path to certified production units, owned and built by the OEM",
       bodyTextAfterSpan:
-        " designed to maximize efficiency, safety, and reliability in industrial power systems.",
-      ctaHref: "/solutions/energ8te",
+        " — customizable with any BMS interface, Ethernet, ISO SPI, or CAN/CAN FD.",
+      ctaHref: "/solutions/ecu8",
       ctaLabel: "Explore solutions",
-      ctaAriaLabel: "Explore details and specifications about ENERG8TE",
-      logo: <ENERG8TE className="h-8 w-auto"/>,
+      ctaAriaLabel: "Explore details and specifications about ECU8",
+      logo: <ECU8 className="h-14 w-auto"/>,
       logoContainerClasses:
-        "absolute bottom-36 right-6 xl:right-12 2xl:right-20 bg-white/85 backdrop-blur-sm px-4 py-[70px] rounded-lg shadow-md border-white/30",
+        "absolute bottom-36 right-6 xl:right-12 2xl:right-20 bg-white/85 backdrop-blur-sm px-16 py-14 rounded-lg shadow-md border-white/30",
     },
   },
   {

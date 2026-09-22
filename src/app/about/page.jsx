@@ -2,7 +2,7 @@ import AboutHero from '@/components/about/AboutHero'
 import Safety from "@/components/about/Safety"
 
 export const metadata = {
-  title: 'About | Expertise in Semiconductor Industry, BMS & ESS Solutions',
+  title: 'About | Expertise in Semiconductor Industry & Battery Management',
   description:
     'Neutron Controls traces its roots back to our proud Canadian heritage and a deep understanding of the semiconductor industry.',
   keywords: [
@@ -11,11 +11,11 @@ export const metadata = {
     'BUILT IN THE USA',
     'DESIGNED IN CANADA',
     'Semiconductor',
-    'BESS',
-    'BMS and ESS solutions',
+    'Battery Management Systems (BMS)',
+    'Infineon Preferred Design House',
   ],
   openGraph: {
-    title: 'About | Expertise in Semiconductor Industry, BMS & ESS Solutions',
+    title: 'About | Expertise in Semiconductor Industry & Battery Management',
     description:
       'Neutron Controls traces its roots back to our proud Canadian heritage and a deep understanding of the semiconductor industry.',
     url: 'https://www.neutroncontrols.com/about',
@@ -28,7 +28,7 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'About | Expertise in Semiconductor Industry, BMS & ESS Solutions',
+    title: 'About | Expertise in Semiconductor Industry & Battery Management',
     description:
       'Neutron Controls traces its roots back to our proud Canadian heritage and a deep understanding of the semiconductor industry.',
     images: ['https://www.neutroncontrols.com/meta/general.jpg'],

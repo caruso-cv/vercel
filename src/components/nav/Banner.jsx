@@ -34,7 +34,7 @@ export default function Example() {
             <circle r={1} cx={1} cy={1} />
           </svg>
           <span className='hidden sm:inline'>
-            Join us in Atlanta from March 16 - 25 <span className='hidden md:inline'>to see our BMS for ESS demo and
+            Join us in Atlanta from March 16 - 25 <span className='hidden md:inline'>to see our EV battery management demo and
             offering </span> at the Infineon booth 1331 &nbsp;
             <span aria-hidden="true">&rarr;</span>
           </span>

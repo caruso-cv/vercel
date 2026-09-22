@@ -2,9 +2,8 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import NavLogo from "@/components/logos/Logo";
-import Elev8tr from "@/components/logos/ELEV8TR";
 import Equ8tr from "@/components/logos/ECU8TR";
-import Energate from "@/components/logos/ENERG8TE";
+import Ecu8 from "@/components/logos/ECU8";
 
 export default function MobileNav({ isOpen, setIsOpen }) {
   const [scrollBarWidth, setScrollBarWidth] = useState(0);
@@ -96,14 +95,11 @@ export default function MobileNav({ isOpen, setIsOpen }) {
                 Solutions
               </p>
               <div className="flex flex-col gap-3 -ml-2">
+                <Link href="/solutions/ecu8" onClick={() => setIsOpen(false)} aria-label="Navigate to ECU8 solution">
+                  <Ecu8 className="h-10 text-white sm:opacity-60 hover:opacity-100 transition-all" />
+                </Link>
                 <Link href="/solutions/ecu8tr" onClick={() => setIsOpen(false)} aria-label="Navigate to ECU8TR solution">
                   <Equ8tr className="h-10 text-white sm:opacity-60 hover:opacity-100 transition-all" />
-                </Link>
-                <Link href="/solutions/elev8tr" onClick={() => setIsOpen(false)} aria-label="Navigate to ELEV8TR solution">
-                  <Elev8tr className="h-10 text-white sm:opacity-60 hover:opacity-100 transition-all" />
-                </Link>
-                <Link href="/solutions/energ8te" onClick={() => setIsOpen(false)} aria-label="Navigate to ENERG8TE solution">
-                  <Energate className="h-10 text-white sm:opacity-60 hover:opacity-100 transition-all" />
                 </Link>
               </div>
             </div>

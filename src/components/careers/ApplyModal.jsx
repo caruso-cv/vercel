@@ -7,11 +7,11 @@ export default function ApplyModal({ isOpen, onClose, showNotification }) {
   const jobOptions = [
     {
       name: 'General Application',
-      description: 'Seeking passionate professionals experienced in battery management and energy storage solutions.',
+      description: 'Seeking passionate professionals experienced in battery management and automotive control solutions.',
     },
     {
       name: 'Embedded Software Engineer',
-      description: 'Passionate about embedded software development? Join our innovative team and shape the future of battery management and energy storage solutions.',
+      description: 'Passionate about embedded software development? Join our innovative team and shape the future of battery management and automotive control solutions.',
     },
   ]
 

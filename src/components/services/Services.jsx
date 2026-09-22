@@ -79,7 +79,7 @@ export default function Page() {
               transition={{ delay: 0.2, duration: 0.8 }}
               className="mx-auto max-w-2xl text-pretty font-medium text-gray-200 text-[1rem] sm:text-[1.25rem]/[2rem] lg:max-w-4xl"
             >
-              Advanced BMS and ESS solutions designed for efficiency, safety, and <span className='hidden sm:inline'>seamless integration—optimizing performance and</span> reliability.
+              Advanced battery management design services built for efficiency, safety, and <span className='hidden sm:inline'>seamless integration—optimizing performance and</span> reliability.
             </motion.p>
             <svg
               aria-hidden="true"
