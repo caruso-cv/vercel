@@ -2,6 +2,7 @@ import Partners from '@/components/partners/Partners'
 import Slider from '@/components/slider/Slider'
 import Hero from '@/components/hero/Hero'
 import VerticalSlider from '@/components/slider/VerticalSlider'
+import InfineonSection from '@/components/services/InfineonSection'
 import DigitalBackground from '@/components/backgrounds/DigitalBackground'
 import NoiseOverlay from '@/components/backgrounds/NoiseOverlay'
 import JsonLdProduct from '@/components/hero/JsonLdProduct'
@@ -68,6 +69,7 @@ export default function Home() {
         <div>
           <VerticalSlider />
         </div>
+        <InfineonSection />
       </main>
     </div>
   );

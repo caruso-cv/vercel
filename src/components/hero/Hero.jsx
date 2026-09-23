@@ -1,7 +1,6 @@
 'use client'
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import Head from 'next/head';
 import { motion } from 'framer-motion';
 
 const HEADLINE_LINES = ['Accelerate', 'your path', 'to BMS'];
@@ -15,6 +14,9 @@ export default function HeroNew() {
   const VIDEO_DESKTOP = '/vid/hero-1080.mp4';
   const VIDEO_MOBILE = '/vid/hero-720.mp4';
   const POSTER = '/vid/hero-poster.webp';
+  // Phones don't get the video at all, so they get a portrait still instead
+  const PHONE_IMAGE = '/hero/hero-mobile.webp';
+  const PHONE = '(max-width: 639px)';
 
   const [videoPlaying, setVideoPlaying] = useState(false);
 
@@ -34,29 +36,44 @@ export default function HeroNew() {
     video.addEventListener('loadeddata', tryPlay);
     video.addEventListener('canplay', tryPlay);
 
-    // Phones get the 720p cut so the first frame arrives on a cellular connection
-    video.src = window.innerWidth < 640 ? VIDEO_MOBILE : VIDEO_DESKTOP;
-    video.load();
-    tryPlay();
+    // Phones show PHONE_IMAGE, so don't spend their data on a video they never see.
+    // Tablets take the 720p cut so the first frame still arrives on cellular.
+    const phone = window.matchMedia(PHONE);
+    const load = () => {
+      if (phone.matches) return;
+      video.src = window.innerWidth < 1024 ? VIDEO_MOBILE : VIDEO_DESKTOP;
+      video.load();
+      tryPlay();
+    };
+    load();
+    phone.addEventListener('change', load);
 
     return () => {
       video.removeEventListener('loadeddata', tryPlay);
       video.removeEventListener('canplay', tryPlay);
+      phone.removeEventListener('change', load);
     };
   }, []);
 
   return (
     <>
-      <Head>
-        {/* First paint of the hero is the poster, so fetch it early */}
-        <link rel="preload" as="image" href={POSTER} type="image/webp" />
-      </Head>
+      {/* First paint of the hero is one of these images, so fetch it early.
+          These have to render inline: next/head is inert under the app router */}
+      <link rel="preload" as="image" href={PHONE_IMAGE} type="image/webp" media={PHONE} />
+      <link rel="preload" as="image" href={POSTER} type="image/webp" media="(min-width: 640px)" />
       <section className="relative block min-h-full overflow-hidden">
+        {/* Phones get this still on its own — already cropped for a portrait
+            viewport, so it needs none of the video's framing transform */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-cover bg-center sm:hidden"
+          style={{ backgroundImage: `url("${PHONE_IMAGE}")` }}
+        />
         {/* Shown until the video reports it is playing, so a blocked video never
             leaves a native play button over the hero */}
         <div
           aria-hidden="true"
-          className="absolute inset-0 bg-cover bg-center transform -translate-x-[2%] scale-125 xl:scale-110"
+          className="absolute inset-0 hidden sm:block bg-cover bg-center transform -translate-x-[2%] scale-125 xl:scale-110"
           style={{ backgroundImage: `url("${POSTER}")` }}
         />
         <video
@@ -66,9 +83,8 @@ export default function HeroNew() {
           muted
           playsInline
           preload="auto"
-          poster={POSTER}
           onPlaying={() => setVideoPlaying(true)}
-          className={`absolute inset-0 w-full h-full object-cover object-center transform -translate-x-[2%] scale-125 xl:scale-110 transition-opacity duration-700 ${videoPlaying ? 'opacity-100' : 'opacity-0'}`}
+          className={`absolute inset-0 hidden sm:block w-full h-full object-cover object-center transform -translate-x-[2%] scale-125 xl:scale-110 transition-opacity duration-700 ${videoPlaying ? 'opacity-100' : 'opacity-0'}`}
           style={{ willChange: 'transform' }}
         />
         {/* Headline, copy and nav are white and sit top-left, so darken those edges */}

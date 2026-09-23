@@ -18,6 +18,8 @@ const SLIDE_DURATION = 12000
 const slidesData = [
   {
     slideId: 0,
+    // Phones get this still instead of the video
+    mobileImage: "/slider/ecu8-slider-mobile.webp",
     desktop: {
       videoSrc: "/vid/ecu8-slider-720.mp4",
       videoSrcMobile: "/vid/ecu8-slider-480.mp4",
@@ -181,6 +183,8 @@ export default function Slider() {
     const idx = currentSlide;
     const videoEl = videoRefs.current[idx];
     if (!videoEl) return;
+    // Slides that ship a phone still never show their video there, so skip the fetch
+    if (window.innerWidth < 640 && slidesData[idx].mobileImage) return;
     // Mobile autoplay only works on a muted, inline video
     videoEl.muted = true;
     videoEl.playsInline = true;
@@ -252,10 +256,18 @@ export default function Slider() {
                     className="lg:w-[800px] lg:h-[450px] lg:mr-44 lg:mb-20 bg-cover bg-center lg:rounded-lg rounded-t-lg"
                     style={{ backgroundImage: `url(${slide.desktop.poster})` }}
                   >
+                    {slide.mobileImage && (
+                      <img
+                        src={slide.mobileImage}
+                        alt=""
+                        aria-hidden="true"
+                        className="block sm:hidden w-full rounded-t-lg"
+                      />
+                    )}
                     {visitedSlides.has(index) && (
                       <video
                         ref={setVideoRef(index)}
-                        className={`w-full h-full object-cover lg:rounded-lg rounded-t-lg shadow-xl transition-opacity duration-500 ${playingSlides.has(index) ? 'opacity-100' : 'opacity-0'}`}
+                        className={`${slide.mobileImage ? 'hidden sm:block' : ''} w-full h-full object-cover lg:rounded-lg rounded-t-lg shadow-xl transition-opacity duration-500 ${playingSlides.has(index) ? 'opacity-100' : 'opacity-0'}`}
                         muted
                         playsInline
                         preload="auto"
